@@ -1,4 +1,4 @@
-import { loadConfig, ensureOut, out, readJson, writeJson, log, normDoi, sleep, zoteroBase, zoteroSaveAttachment, die } from './lib.mjs';
+import { loadConfig, ensureOut, out, readJson, writeJson, log, normDoi, sleep, zoteroBase, zoteroSaveAttachment, directPdfCandidates, die } from './lib.mjs';
 
 const topic = process.argv[2];
 if (!topic) die('用法: node 07_attach_pdfs.mjs <topic>');
@@ -22,17 +22,25 @@ const results = prev.filter(r => r.status === 'attached');   // 断点续跑：�
 const targets = [...sess.keys()].filter(d => !attached.has(d));
 log(`[7/7] PDF 全文：待处理 ${targets.length} 项（已挂载 ${attached.size}）`);
 
+// 卷期页元数据来自 final_items.json（出版社直链要用）
+const finals = new Map((readJson(out(topic, 'final_items.json'), []) || []).map(x => [normDoi(x.doi), x]));
+
+// 顺序：Unpaywall 优先（覆盖面广）-> 出版社直链兜底（Optica OE / MDPI，见 lib.directPdfCandidates）。
+// 全程串行，一条处理完再下一条 —— BOTDA 项目在导入高峰并发下载附件，Zotero 曾因此连续崩溃。
 for (const doi of targets) {
   let oa = null;
   try {
     const r = await fetch(`https://api.unpaywall.org/v2/${encodeURIComponent(doi)}?email=${email}`, { signal: AbortSignal.timeout(15000) });
     if (r.ok) oa = (await r.json()).best_oa_location;
   } catch { /* 无 OA 或超时 */ }
-  if (!oa) { results.push({ doi, status: 'no-oa' }); persist(); continue; }
 
-  const urls = [oa.url_for_pdf, (/\.pdf(\?|$)/i.test(oa.url || '') ? oa.url : null)].filter(Boolean);
+  const urls = oa ? [oa.url_for_pdf, (/\.pdf(\?|$)/i.test(oa.url || '') ? oa.url : null)] : [];
+  urls.push(...directPdfCandidates(finals.get(doi) || {}));
+  const cands = [...new Set(urls.filter(Boolean))];
+  if (!cands.length) { results.push({ doi, status: 'no-oa' }); persist(); continue; }
+
   let done = false;
-  for (const pdfUrl of [...new Set(urls)]) {
+  for (const pdfUrl of cands) {
     try {
       const pr = await fetch(pdfUrl, { signal: AbortSignal.timeout(60000), headers: UA, redirect: 'follow' });
       const buf = Buffer.from(await pr.arrayBuffer());

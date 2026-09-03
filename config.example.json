@@ -15,7 +15,8 @@
       "your main keyword",
       "your keyword variant",
       { "q": "keyword with date filter", "filter": "from-pub-date:2024-01-01" }
-    ]
+    ],
+    "dois": []
   },
   "filter": {
     "requireAny": ["main\\bkeyword"],
@@ -35,5 +36,12 @@
   "export": {
     "risFile": "文献补充.ris",
     "extraRis": ["manual_extra.ris"]
+  },
+  "report": {
+    "title": "示例主题文献报告",
+    "defaultCategory": "文献清单",
+    "categories": [
+      { "name": "综述与评述", "noteAny": ["综述", "review"] }
+    ]
   }
 }

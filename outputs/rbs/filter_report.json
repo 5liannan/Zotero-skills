@@ -1,8 +1,19 @@
 {
  "candidates": 4948,
  "inLibrary": 105,
+ "inLibrarySim": 1,
  "excluded": 0,
  "dupTitle": 5,
- "main": 181,
- "secondary": 66
+ "main": 180,
+ "secondary": 66,
+ "simThreshold": 0.9,
+ "simExcluded": [
+  {
+   "doi": "10.1103/physreva.44.8062",
+   "title": "Rayleigh-Brillouin light-scattering study of both fast and slow sound in binary gas mixtures",
+   "year": 1991,
+   "matchDoi": "10.48550/arxiv.1505.05623",
+   "matchTitle": "Rayleigh-Brillouin Scattering in Binary Gas Mixtures"
+  }
+ ]
 }

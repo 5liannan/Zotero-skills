@@ -9,6 +9,20 @@ export const sleep = ms => new Promise(r => setTimeout(r, ms));
 export const normTitle = s => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
 export const normDoi = d => (d || '').replace(/^https?:\/\/doi\.org\//i, '').replace(/^doi:\s*/i, '').trim().toLowerCase();
 
+// ---------- 标题相似度去重（移植自 BOTDA_literature/botda_collect.py 的实战口径）----------
+export const titleTokens = s => new Set((s || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter(Boolean));
+// 判定规则：公共词 >= minInter 且 >= 较短标题词数的 threshold 倍 -> 认定同一篇（返回 1，否则 0）。
+// BOTDA 原口径 minInter=5、threshold=0.8；通用场景下 0.8 对泛化短标题误杀偏多，工作流默认用 0.9（见 03）。
+export function tokenSim(A, B, { minInter = 5, threshold = 0.8 } = {}) {
+  if (!A.size || !B.size) return 0;
+  let inter = 0;
+  for (const t of A) if (B.has(t)) inter++;
+  if (inter >= minInter && inter / Math.min(A.size, B.size) >= threshold) return 1;
+  return 0;
+}
+export const titleSim = (a, b, opts) => tokenSim(titleTokens(a), titleTokens(b), opts);
+export const TITLE_SIM_THRESHOLD = 0.9;  // 工作流默认阈值（BOTDA 原为 0.85 线/0.8 比例）
+
 export function readJson(p, fallback = null) {
   try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return fallback; }
 }
@@ -115,4 +129,46 @@ export function toZoteroItem(x, topic) {
   it.DOI = x.doi; it.url = 'https://doi.org/' + x.doi;
   if (x.abstract) it.abstractNote = clean(x.abstract).slice(0, 2000);
   return it;
+}
+
+// ---------- BibTeX 导出（移植自 BOTDA to_bibtex / make_key）----------
+export function bibKey(x) {
+  const fam = ((x.authors?.[0]?.family) || 'Unknown').replace(/[^A-Za-z]/g, '') || 'Unknown';
+  const kw = [...titleTokens(x.title)].slice(0, 3).join('_') || 'paper';
+  return `${fam}_${x.year || 'nd'}_${kw}`;
+}
+export function toBibtex(x) {
+  const etype = x.type === 'proceedings-article' ? 'inproceedings' : x.type === 'book-chapter' ? 'inbook' : 'article';
+  const L = [`@${etype}{${bibKey(x)},`];
+  const auth = (x.authors || []).filter(a => a.family || a.given)
+    .map(a => a.given ? `${a.family}, ${a.given}` : (a.family || '')).join(' and ');
+  if (auth) L.push(`  author = {${auth}},`);
+  L.push(`  title = {${x.title}},`);
+  if (etype === 'article') L.push(`  journal = {${x.journal || ''}},`);
+  else L.push(`  booktitle = {${x.journal || x.publisher || 'Proceedings'}},`);
+  if (x.year) L.push(`  year = {${x.year}},`);
+  if (x.volume) L.push(`  volume = {${x.volume}},`);
+  if (x.issue) L.push(`  number = {${x.issue}},`);
+  if (x.page) L.push(`  pages = {${String(x.page).replace('-', '--')}},`);
+  L.push(`  doi = {${x.doi}},`);
+  if (x.publisher) L.push(`  publisher = {${x.publisher}},`);
+  if (x.abstract) L.push(`  abstract = {${String(x.abstract).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()}},`);
+  L.push('}');
+  return L.join('\n');
+}
+
+// ---------- 出版社直链 PDF（移植自 BOTDA pdf_boost.py；Unpaywall 覆盖不到时的兜底）----------
+const MDPI_ISSN = { s: '1424-8220', app: '2076-3417', photonics: '2304-6732' }; // sensors / applied sciences / photonics
+export function directPdfCandidates(x) {
+  const doi = normDoi(x.doi), urls = [];
+  if (doi.startsWith('10.1364/oe.')) {           // Optica Optics Express: 用卷/期/首页拼直链
+    const pg = String(x.page || '').split('-')[0];
+    if (x.volume && x.issue && pg) urls.push(`https://opg.optica.org/oe/viewmedia.cfm?uri=oe-${x.volume}-${x.issue}-${pg}&seq=0`);
+  }
+  const m = doi.match(/^10\.3390\/([a-z]+)(\d)(\d)(\d+)$/);   // MDPI: DOI 里编码了卷期与文章号
+  if (m) {
+    const issn = MDPI_ISSN[m[1]];
+    if (issn) urls.push(`https://www.mdpi.com/${issn}/${m[2]}/${m[3]}/${m[4]}/pdf`);
+  }
+  return urls;
 }

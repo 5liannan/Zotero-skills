@@ -4,7 +4,7 @@ const topic = process.argv[2];
 if (!topic) die('用法: node 02_search.mjs <topic>');
 const cfg = loadConfig(topic);
 const S = cfg.search;
-if (!S || !Array.isArray(S.queries) || !S.queries.length) die('config.search.queries 里没有关键词');
+if (!S || (!(S.queries?.length) && !(S.dois?.length))) die('config.search 里没有 queries 或 dois');
 ensureOut(topic);
 
 const prev = readJson(out(topic, 'candidates_all.json'), []) || [];
@@ -46,6 +46,36 @@ for (const item of S.queries) {
   }
   meta.push({ q: q.q, filter: q.filter || '', fetched, added });
   log(`  +${added} (抓到 ${fetched})  "${q.q}"`);
+  await sleep(S.pauseMs ?? 300);
+}
+
+// 直取 DOI（BOTDA 经验：探测清单里的经典文献用标题搜索可能漏，按 DOI 拉最可靠）
+for (const d of S.dois || []) {
+  const doi = normDoi(d);
+  if (!doi) continue;
+  if (pool.has(doi)) { meta.push({ q: `DOI:${doi}`, fetched: 0, added: 0, note: 'already-in-pool' }); continue; }
+  let added = 0;
+  try {
+    const j = await fetchJson(`https://api.crossref.org/works/${encodeURIComponent(doi)}?select=${encodeURIComponent(CROSSREF_SELECT)}&mailto=${S.mailto}`,
+      { headers: { 'User-Agent': `lit-workflow/1.0 (mailto:${S.mailto})` } });
+    const it = j.message;
+    const title = ((it.title && it.title[0]) || '').replace(/<[^>]+>/g, '');
+    if (title) {
+      pool.set(doi, {
+        doi, title,
+        journal: (it['container-title'] && it['container-title'][0]) || '',
+        year: (it.issued?.['date-parts']?.[0]?.[0]) || '',
+        authors: (it.author || []).map(a => ((a.given || '') + ' ' + (a.family || '')).trim()).join('; '),
+        volume: it.volume || '', issue: it.issue || '', page: it.page || '',
+        type: it.type || '', publisher: it.publisher || '',
+        abstract: ((it.abstract || '').replace(/<[^>]+>/g, ' ')).slice(0, 600),
+        source: 'DOI直取'
+      });
+      added = 1;
+    }
+  } catch { /* 404 等视为该 DOI 不可用，落 meta 即可 */ }
+  meta.push({ q: `DOI:${doi}`, fetched: 1, added });
+  log(`  +${added}  DOI:${doi}`);
   await sleep(S.pauseMs ?? 300);
 }
 

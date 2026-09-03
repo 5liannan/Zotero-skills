@@ -1,4 +1,4 @@
-import { loadConfig, ensureOut, out, readJson, writeJson, log, normDoi, normTitle, reAny, die } from './lib.mjs';
+import { loadConfig, ensureOut, out, readJson, writeJson, log, normDoi, normTitle, reAny, titleTokens, tokenSim, TITLE_SIM_THRESHOLD, die } from './lib.mjs';
 
 const topic = process.argv[2];
 if (!topic) die('用法: node 03_filter.mjs <topic>');
@@ -13,7 +13,7 @@ const cands = readJson(out(topic, 'candidates_all.json'), []) || [];
 log(`[3/7] 筛选：候选 ${cands.length} 条，其中已在库里 ${cands.filter(c => baseDOIs.has(normDoi(c.doi))).length} 条（将被排除）`);
 
 // 规则模型（与 rbs_task/filter.js 逻辑一致）：
-//   命中主桶 = requireAny 有匹配 AND requireContextAny 有匹配
+//   命中主桶 = requireAny 有匹配 AND（requireContextAny 配了才要求有匹配）
 //   命中后若 excludeAny 匹配但 rescueAny 不匹配 -> 丢弃
 //   secondary 是第二梯队，规则同上，互相独立去重
 function bucketRules(b) {
@@ -22,15 +22,41 @@ function bucketRules(b) {
 const buckets = [{ name: 'main', rules: bucketRules(F), list: [], seen: new Set(), file: 'filtered_main.json' }];
 if (F.secondary) buckets.push({ name: 'secondary', rules: bucketRules(F.secondary), list: [], seen: new Set(), file: 'filtered_secondary.json' });
 
-const stats = { candidates: cands.length, inLibrary: 0, excluded: 0, dupTitle: 0 };
+// 库内标题相似度排除（源自 BOTDA in_library 口径）：DOI 对不上但标题实为同一篇的情况，
+// 多见于预印本/出版社不同版本。阈值 config.filter.simThreshold（默认 0.9，BOTDA 原口径 0.8），
+// 设 simInLibrary=false 可整体关闭。被排除的明细写入 filter_report.json 的 simExcluded 供人工复查。
+const simOn = F.simInLibrary !== false;
+const simTh = Number(F.simThreshold) || 0.9;
+const baseItems = simOn ? baseline.filter(x => x.title) : [];
+const baseToks = baseItems.map(x => titleTokens(x.title));
+const simExcluded = [];
+const findLibByTitle = t => {
+  const A = titleTokens(t);
+  if (!A.size) return null;
+  for (let i = 0; i < baseToks.length; i++) {
+    if (tokenSim(A, baseToks[i], { threshold: simTh }) >= TITLE_SIM_THRESHOLD) return baseItems[i];
+  }
+  return null;
+};
+
+const stats = { candidates: cands.length, inLibrary: 0, inLibrarySim: 0, excluded: 0, dupTitle: 0 };
 buckets.forEach(b => { stats[b.name] = 0; });
 
 for (const c of cands) {
   if (baseDOIs.has(normDoi(c.doi))) { stats.inLibrary++; continue; }
+  if (simOn) {
+    const hit = findLibByTitle(c.title);
+    if (hit) {
+      stats.inLibrarySim++;
+      simExcluded.push({ doi: c.doi, title: c.title, year: c.year || '', matchDoi: hit.DOI || '', matchTitle: hit.title });
+      continue;
+    }
+  }
   const t = c.title;
   for (const b of buckets) {
     const { must, ctx, excl, rescue } = b.rules;
-    if (!must || !ctx || !must.test(t) || !ctx.test(t)) continue;
+    if (!must || !must.test(t)) continue;
+    if (ctx && !ctx.test(t)) continue;
     if (excl && excl.test(t) && !(rescue && rescue.test(t))) { stats.excluded++; break; }
     const n = normTitle(t);
     if (n) { if (b.seen.has(n)) { stats.dupTitle++; break; } b.seen.add(n); }
@@ -44,8 +70,8 @@ for (const b of buckets) {
   writeJson(out(topic, b.file), b.list);
   stats[b.name] = b.list.length;
 }
-writeJson(out(topic, 'filter_report.json'), stats);
-log(`结果：主入围 ${stats.main} 条 / 次级 ${stats.secondary} 条 | 已在库排除 ${stats.inLibrary} | 规则排除 ${stats.excluded} | 标题重复 ${stats.dupTitle}`);
+writeJson(out(topic, 'filter_report.json'), { ...stats, simThreshold: simOn ? simTh : null, simExcluded });
+log(`结果：主入围 ${stats.main} 条 / 次级 ${stats.secondary} 条 | 已在库排除 ${stats.inLibrary} | 标题相似排除 ${stats.inLibrarySim} | 规则排除 ${stats.excluded} | 标题重复 ${stats.dupTitle}`);
 
 for (const b of buckets) {
   log(`\n--- ${b.name} 入围清单（按年份倒序）---`);
