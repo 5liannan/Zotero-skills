@@ -1,0 +1,39 @@
+{
+  "topic": "demo",
+  "title": "示例主题：把这里改成你的研究方向",
+  "zotero": {
+    "apiBase": "http://localhost:23119",
+    "collectionKey": "",
+    "tags": ["文献补充-2026-09-03"]
+  },
+  "search": {
+    "mailto": "you@example.com",
+    "rows": 100,
+    "pagesPerQuery": 2,
+    "pauseMs": 300,
+    "queries": [
+      "your main keyword",
+      "your keyword variant",
+      { "q": "keyword with date filter", "filter": "from-pub-date:2024-01-01" }
+    ]
+  },
+  "filter": {
+    "requireAny": ["main\\bkeyword"],
+    "requireContextAny": ["context\\bword|another\\bcontext", "verySpecificTechnicalTerm"],
+    "excludeAny": ["unwanted\\bthing|another\\bunwanted"],
+    "rescueAny": ["exception\\bcase"],
+    "secondary": {
+      "requireAny": ["secondary\\bkeyword"],
+      "requireContextAny": ["context\\bword"],
+      "excludeAny": [],
+      "rescueAny": []
+    }
+  },
+  "finalize": {
+    "excludeDois": ["10.xxxx/replace-me-if-needed"]
+  },
+  "export": {
+    "risFile": "文献补充.ris",
+    "extraRis": ["manual_extra.ris"]
+  }
+}

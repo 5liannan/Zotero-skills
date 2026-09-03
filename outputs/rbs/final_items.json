@@ -1,0 +1,2440 @@
+[
+ {
+  "doi": "10.1051/anphys/192209170088",
+  "title": "Diffusion de la lumière et des rayons X par un corps transparent homogène",
+  "journal": "Annales de Physique",
+  "shortjournal": "Ann. Phys.",
+  "year": 1922,
+  "month": "",
+  "volume": "9",
+  "issue": "17",
+  "page": "88-122",
+  "type": "journal-article",
+  "publisher": "EDP Sciences",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Brillouin",
+    "given": "Léon"
+   }
+  ]
+ },
+ {
+  "doi": "10.1063/1.1761682",
+  "title": "Brillouin Scattering by Gases as a Test of the Boltzmann Equation",
+  "journal": "The Physics of Fluids",
+  "shortjournal": "",
+  "year": 1966,
+  "month": 2,
+  "volume": "9",
+  "issue": "2",
+  "page": "380-381",
+  "type": "journal-article",
+  "publisher": "AIP Publishing",
+  "abstract": "The frequency distribution of monochromatic light scattered by a gas is proposed as an experimental test of kinetic theory away from the hydrodynamic regime. The phenomenon is closely analogous to high-frequency sound propagation and is governed by the same linearized Boltzmann equation. The problem can be posed as an initial value problem in an infinite medium. The exact numerical solutions for Maxwell molecules of the preceding paper give an estimate of the results to be expected.",
+  "authors": [
+   {
+    "family": "Nelkin",
+    "given": "Mark"
+   },
+   {
+    "family": "Yip",
+    "given": "Sidney"
+   }
+  ]
+ },
+ {
+  "doi": "10.1121/1.1912453",
+  "title": "Rayleigh Scattering in Dilute Gases",
+  "journal": "The Journal of the Acoustical Society of America",
+  "shortjournal": "",
+  "year": 1971,
+  "month": 3,
+  "volume": "49",
+  "issue": "3C",
+  "page": "941-949",
+  "type": "journal-article",
+  "publisher": "Acoustical Society of America (ASA)",
+  "abstract": "Large-angle Rayleigh scattering of light provides a tool for studying fluctuations in dilute gases where the wavelength is comparable to the mean free path. Interpretation of such an experiment requires a molecular calculation of the spectrum of the density fluctuation. The initial value problem can be formulated using the linearized Boltzmann equation. Solutions are obtained for two types of repulsive intermolecular potential, Maxwell molecule and rigid sphere, and the results are used in a quantitative analysis of high-resolution measurement. The problem of studying molecular gases in a similar way is also discussed.",
+  "authors": [
+   {
+    "family": "Yip",
+    "given": "Sidney"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ao.5.0879_1",
+  "title": "Spontaneous Brillouin Scattering in Gases",
+  "journal": "Applied Optics",
+  "shortjournal": "Appl. Opt.",
+  "year": 1966,
+  "month": 5,
+  "volume": "5",
+  "issue": "5",
+  "page": "879_1",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Eastman",
+    "given": "D. P."
+   },
+   {
+    "family": "Wiggins",
+    "given": "T. A."
+   },
+   {
+    "family": "Rank",
+    "given": "D. H."
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/josa.56.001403",
+  "title": "Normal Brillouin Scattering in Compressed Gases",
+  "journal": "Journal of the Optical Society of America",
+  "shortjournal": "J. Opt. Soc. Am.",
+  "year": 1966,
+  "month": 10,
+  "volume": "56",
+  "issue": "10",
+  "page": "1403",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Rawson",
+    "given": "E. G."
+   },
+   {
+    "family": "Hara",
+    "given": "E. H."
+   },
+   {
+    "family": "May",
+    "given": "A. D."
+   },
+   {
+    "family": "Welsh",
+    "given": "H. L."
+   }
+  ]
+ },
+ {
+  "doi": "10.1063/1.1754395",
+  "title": "STIMULATED BRILLOUIN AND RAMAN SCATTERING IN GASES",
+  "journal": "Applied Physics Letters",
+  "shortjournal": "",
+  "year": 1965,
+  "month": 11,
+  "volume": "7",
+  "issue": "9",
+  "page": "236-238",
+  "type": "journal-article",
+  "publisher": "AIP Publishing",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Hagenlocker",
+    "given": "E. E."
+   },
+   {
+    "family": "Rado",
+    "given": "W. G."
+   }
+  ]
+ },
+ {
+  "doi": "10.1103/physrevlett.24.1394",
+  "title": "Effect of Strong Driving Field on the Frequency Shift of Stimulated Brillouin Scattering in Gases",
+  "journal": "Physical Review Letters",
+  "shortjournal": "Phys. Rev. Lett.",
+  "year": 1970,
+  "month": 6,
+  "volume": "24",
+  "issue": "25",
+  "page": "1394-1395",
+  "type": "journal-article",
+  "publisher": "American Physical Society (APS)",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Wang",
+    "given": "Chen-Show"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/josa.60.000749",
+  "title": "Measurement of Hypersound Speed in Gases by Stimulated Brillouin Scattering*",
+  "journal": "Journal of the Optical Society of America",
+  "shortjournal": "J. Opt. Soc. Am.",
+  "year": 1970,
+  "month": 6,
+  "volume": "60",
+  "issue": "6",
+  "page": "749",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Saito",
+    "given": "T. T."
+   },
+   {
+    "family": "Peterson",
+    "given": "L. M."
+   },
+   {
+    "family": "Rank",
+    "given": "D. H."
+   },
+   {
+    "family": "Wiggins",
+    "given": "T. A."
+   }
+  ]
+ },
+ {
+  "doi": "10.1016/0041-624x(70)90722-5",
+  "title": "A study of ultrasonic dispersion by Brillouin scattering in gases under pressure",
+  "journal": "Ultrasonics",
+  "shortjournal": "Ultrasonics",
+  "year": 1970,
+  "month": 7,
+  "volume": "8",
+  "issue": "3",
+  "page": "199",
+  "type": "journal-article",
+  "publisher": "Elsevier BV",
+  "abstract": "",
+  "authors": []
+ },
+ {
+  "doi": "10.1103/physrevlett.19.1467",
+  "title": "Brillouin Scattering in Carbon Dioxide in the Critical Region",
+  "journal": "Physical Review Letters",
+  "shortjournal": "Phys. Rev. Lett.",
+  "year": 1967,
+  "month": 12,
+  "volume": "19",
+  "issue": "26",
+  "page": "1467-1469",
+  "type": "journal-article",
+  "publisher": "American Physical Society (APS)",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Gammon",
+    "given": "Robert W."
+   },
+   {
+    "family": "Swinney",
+    "given": "H. L."
+   },
+   {
+    "family": "Cummins",
+    "given": "Herman Z."
+   }
+  ]
+ },
+ {
+  "doi": "10.1016/0030-4018(74)90052-2",
+  "title": "Optical heterodyne studies of Brillouin scattering in xenon near the critical point",
+  "journal": "Optics Communications",
+  "shortjournal": "Optics Communications",
+  "year": 1974,
+  "month": 2,
+  "volume": "10",
+  "issue": "2",
+  "page": "191-194",
+  "type": "journal-article",
+  "publisher": "Elsevier BV",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Eden",
+    "given": "Don"
+   },
+   {
+    "family": "Swinney",
+    "given": "Harry L."
+   }
+  ]
+ },
+ {
+  "doi": "10.1016/0041-624x(71)90423-9",
+  "title": "Brillouin scattering from SF6 in the vicinity of the critical point",
+  "journal": "Ultrasonics",
+  "shortjournal": "Ultrasonics",
+  "year": 1971,
+  "month": 10,
+  "volume": "9",
+  "issue": "4",
+  "page": "246",
+  "type": "journal-article",
+  "publisher": "Elsevier BV",
+  "abstract": "",
+  "authors": []
+ },
+ {
+  "doi": "10.1070/pu1970v012n04abeh003903",
+  "title": "STIMULATED MANDEL'SHTAM–BRILLOUIN SCATTERING AND STIMULATED ENTROPY (TEMPERATURE) SCATTERING OF LIGHT",
+  "journal": "Soviet Physics Uspekhi",
+  "shortjournal": "Sov. Phys. Usp.",
+  "year": 1970,
+  "month": 4,
+  "volume": "12",
+  "issue": "4",
+  "page": "463-489",
+  "type": "journal-article",
+  "publisher": "Uspekhi Fizicheskikh Nauk (UFN) Journal",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Starunov",
+    "given": "V S"
+   },
+   {
+    "family": "Fabelinskiĭ",
+    "given": "Immanuil L"
+   }
+  ]
+ },
+ {
+  "doi": "10.1007/978-3-540-39664-2_69",
+  "title": "Rayleigh-Brillouin Gain Spectroscopy in Gases",
+  "journal": "Springer Series in Optical Sciences",
+  "shortjournal": "",
+  "year": 1985,
+  "month": "",
+  "volume": "",
+  "issue": "",
+  "page": "227-228",
+  "type": "book-chapter",
+  "publisher": "Springer Berlin Heidelberg",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "She",
+    "given": "C. Y."
+   },
+   {
+    "family": "Moosmüller",
+    "given": "H."
+   },
+   {
+    "family": "Herring",
+    "given": "G. C."
+   },
+   {
+    "family": "Tang",
+    "given": "S. Y."
+   },
+   {
+    "family": "Lee",
+    "given": "S. A."
+   }
+  ]
+ },
+ {
+  "doi": "10.1139/p72-169",
+  "title": "Rayleigh–Brillouin Scattering in Compressed H2, D2, and HD. II",
+  "journal": "Canadian Journal of Physics",
+  "shortjournal": "Can. J. Phys.",
+  "year": 1972,
+  "month": 6,
+  "volume": "50",
+  "issue": "12",
+  "page": "1227-1229",
+  "type": "journal-article",
+  "publisher": "Canadian Science Publishing",
+  "abstract": "The observations presented by Hara et al. for the Brillouin spectrum of H 2 , D 2 , and HD are compared with the thermo-hydrodynamic theory of Bhatia and Tong. It is noted that although this theory is qualitatively correct it fails to describe accurately the spectrum at low to medium densities. It is suggested that the introduction of a relaxing thermal conduction might account for the discrepancy observed.",
+  "authors": [
+   {
+    "family": "Hara",
+    "given": "E. H."
+   },
+   {
+    "family": "May",
+    "given": "A. D."
+   }
+  ]
+ },
+ {
+  "doi": "10.1007/bf01175751",
+  "title": "Rayleigh-Brillouin light scattering in binary mixtures of monatomic gases: The role of the interparticle potential function in the two-fluid theory",
+  "journal": "Continuum Mechanics and Thermodynamics",
+  "shortjournal": "Continuum Mech. Thermodyn",
+  "year": 1994,
+  "month": 2,
+  "volume": "8",
+  "issue": "1",
+  "page": "53-64",
+  "type": "journal-article",
+  "publisher": "Springer Science and Business Media LLC",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Marques",
+    "given": "Wilson"
+   }
+  ]
+ },
+ {
+  "doi": "10.1007/s001610050028",
+  "title": "Original Article Rayleigh-Brillouin light scattering in binary mixtures of monatomic gases: The role of the interparticle potential function in the two-fluid theory",
+  "journal": "Continuum Mechanics and Thermodynamics",
+  "shortjournal": "Continuum Mechanics and Thermodynamics",
+  "year": 1996,
+  "month": 2,
+  "volume": "8",
+  "issue": "1",
+  "page": "53-64",
+  "type": "journal-article",
+  "publisher": "Springer Science and Business Media LLC",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Marques Jr.",
+    "given": "Wilson"
+   }
+  ]
+ },
+ {
+  "doi": "10.1021/j100165a016",
+  "title": "Rayleigh-Brillouin light scattering from noble gas mixtures. 1. The Landau-Placzek ratio",
+  "journal": "The Journal of Physical Chemistry",
+  "shortjournal": "J. Phys. Chem.",
+  "year": 1991,
+  "month": 6,
+  "volume": "95",
+  "issue": "12",
+  "page": "4673-4679",
+  "type": "journal-article",
+  "publisher": "American Chemical Society (ACS)",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Bot",
+    "given": "Arjen"
+   },
+   {
+    "family": "Schaink",
+    "given": "H. M."
+   },
+   {
+    "family": "Schram",
+    "given": "R. P. C."
+   },
+   {
+    "family": "Wegdam",
+    "given": "G. H."
+   }
+  ]
+ },
+ {
+  "doi": "10.1021/j100165a017",
+  "title": "Rayleigh-Brillouin light scattering from noble gas mixtures. 2. Partial structure factors",
+  "journal": "The Journal of Physical Chemistry",
+  "shortjournal": "J. Phys. Chem.",
+  "year": 1991,
+  "month": 6,
+  "volume": "95",
+  "issue": "12",
+  "page": "4679-4685",
+  "type": "journal-article",
+  "publisher": "American Chemical Society (ACS)",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Bot",
+    "given": "Arjen"
+   },
+   {
+    "family": "Wegdam",
+    "given": "G. H."
+   }
+  ]
+ },
+ {
+  "doi": "10.1063/1.344306",
+  "title": "Rayleigh–Brillouin light scattering from multicomponent mixtures: The Landau–Placzek ratio",
+  "journal": "Journal of Applied Physics",
+  "shortjournal": "",
+  "year": 1989,
+  "month": 9,
+  "volume": "66",
+  "issue": "5",
+  "page": "2118-2121",
+  "type": "journal-article",
+  "publisher": "AIP Publishing",
+  "abstract": "In one-component fluids Rayleigh–Brillouin light scattering can be used to determine the equation of state of the fluid: A combination of the Brillouin shift and the Landau–Placzek ratio yields the isothermal compressibility. The same technique has been applied to multicomponent mixtures. We derive an expression for the Landau–Placzek ratio in a multicomponent mixture and show that it contains additional terms compared to the one-component case due to concentration fluctuations in the mixture. When we apply the expression to recent experiments on a five-component mixture of hydrocarbons, we show that the additional contribution cannot be neglected.",
+  "authors": [
+   {
+    "family": "van der Elsken",
+    "given": "J."
+   },
+   {
+    "family": "Bot",
+    "given": "Arjen"
+   }
+  ]
+ },
+ {
+  "doi": "10.1103/physreva.44.8062",
+  "title": "Rayleigh-Brillouin light-scattering study of both fast and slow sound in binary gas mixtures",
+  "journal": "Physical Review A",
+  "shortjournal": "Phys. Rev. A",
+  "year": 1991,
+  "month": 12,
+  "volume": "44",
+  "issue": "12",
+  "page": "8062-8071",
+  "type": "journal-article",
+  "publisher": "American Physical Society (APS)",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Schram",
+    "given": "R. P. C."
+   },
+   {
+    "family": "Wegdam",
+    "given": "G. H."
+   },
+   {
+    "family": "Bot",
+    "given": "Arjen"
+   }
+  ]
+ },
+ {
+  "doi": "10.1103/physreva.78.033822",
+  "title": "Thermal phonon resonance in nitrogen gas observed by Brillouin scattering",
+  "journal": "Physical Review A",
+  "shortjournal": "Phys. Rev. A",
+  "year": 2008,
+  "month": 9,
+  "volume": "78",
+  "issue": "3",
+  "page": "",
+  "type": "journal-article",
+  "publisher": "American Physical Society (APS)",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Minami",
+    "given": "Yasuo"
+   },
+   {
+    "family": "Yogi",
+    "given": "Takeshi"
+   },
+   {
+    "family": "Sakai",
+    "given": "Keiji"
+   }
+  ]
+ },
+ {
+  "doi": "10.1063/1.2214220",
+  "title": "Light beating spectroscopy of Brillouin scattering in gases and solids",
+  "journal": "Journal of Applied Physics",
+  "shortjournal": "",
+  "year": 2006,
+  "month": 7,
+  "volume": "100",
+  "issue": "2",
+  "page": "",
+  "type": "journal-article",
+  "publisher": "AIP Publishing",
+  "abstract": "The experimental system of optical beating spectroscopy was improved, and the increased sensitivity and frequency resolution were demonstrated in the Brillouin scattering experiments in solids, crown glass (BK7), and polymethylmetacrylate (PMMA), and also in gases, air, and nitrogen. For their weak light scattering ability, these substances are very tough specimens for Brillouin scattering studies, and the classical spectrometer of Fabry-Pérot étalon has been so far used for the frequency analysis. The phonon peaks were observed with the present light beating system in BK7 at room temperature over the wave number range from k∕2π=1.03×104to8.84×104m−1 (corresponding frequency from 61.6to548MHz), and the spectra were fitted with Gaussian curves since a condenser lens in the incident light path caused a large instrumental width that overwhelmed the intrinsic phonon width. The spectra in PMMA were analyzed with Voigt functions. The dispersion relations obtained in these solids were in good agreement with the literature values of ultrasonic velocity. The spectra in air were well fitted with Lorentzian curve representing the phonon lifetime, and the absorption as well as the phase velocity was obtained.",
+  "authors": [
+   {
+    "family": "Yogi",
+    "given": "Takeshi"
+   },
+   {
+    "family": "Sakai",
+    "given": "Keiji"
+   },
+   {
+    "family": "Takagi",
+    "given": "Kenshiro"
+   }
+  ]
+ },
+ {
+  "doi": "10.1134/s0030400x0703023x",
+  "title": "Determination of the kinetic coefficients of a gas in a supersonic jet from Brillouin spontaneous scattering spectra",
+  "journal": "Optics and Spectroscopy",
+  "shortjournal": "Opt. Spectrosc.",
+  "year": 2007,
+  "month": 3,
+  "volume": "102",
+  "issue": "3",
+  "page": "467-468",
+  "type": "journal-article",
+  "publisher": "Pleiades Publishing Ltd",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Anisimov",
+    "given": "Yu. I."
+   },
+   {
+    "family": "Kosykh",
+    "given": "N. B."
+   },
+   {
+    "family": "Mashek",
+    "given": "I. Ch."
+   }
+  ]
+ },
+ {
+  "doi": "10.1063/1.3471814",
+  "title": "Optical beating Brillouin scattering spectroscopic measurements of high-temperature gas",
+  "journal": "Journal of Applied Physics",
+  "shortjournal": "",
+  "year": 2010,
+  "month": 8,
+  "volume": "108",
+  "issue": "4",
+  "page": "",
+  "type": "journal-article",
+  "publisher": "AIP Publishing",
+  "abstract": "The sound velocity of air at high temperature was measured in the 10 MHz frequency region using optical beating Brillouin scattering spectroscopy. The sound velocity dependence on temperature was observed, and the molecular weight of the gas was obtained and is in agreement with the literature value. The present experiment will enable the observation of gas phase rotation-translation (R-T) relaxation, for example, the R-T relaxation of nitrogen at high temperature that occurs in the 100 MHz region. The high-temperature sound velocity could also be used to measure the molecular fraction of the gas in this experiment.",
+  "authors": [
+   {
+    "family": "Minami",
+    "given": "Yasuo"
+   },
+   {
+    "family": "Yogi",
+    "given": "Takeshi"
+   },
+   {
+    "family": "Sakai",
+    "given": "Keiji"
+   }
+  ]
+ },
+ {
+  "doi": "10.1088/2040-8978/13/7/075708",
+  "title": "Rotational relaxation in diatomic gas at high temperature observed with Brillouin scattering spectroscopy",
+  "journal": "Journal of Optics",
+  "shortjournal": "J. Opt.",
+  "year": 2011,
+  "month": 5,
+  "volume": "13",
+  "issue": "7",
+  "page": "075708",
+  "type": "journal-article",
+  "publisher": "IOP Publishing",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Minami",
+    "given": "Yasuo"
+   },
+   {
+    "family": "Yogi",
+    "given": "Takeshi"
+   },
+   {
+    "family": "Sakai",
+    "given": "Keiji"
+   }
+  ]
+ },
+ {
+  "doi": "10.1080/00268970802570334",
+  "title": "Deep-UV Rayleigh scattering of N\n                    2\n                    , CH\n                    4\n                    and SF\n                    6",
+  "journal": "Molecular Physics",
+  "shortjournal": "Molecular Physics",
+  "year": 2008,
+  "month": 11,
+  "volume": "106",
+  "issue": "21-23",
+  "page": "2471-2479",
+  "type": "journal-article",
+  "publisher": "Informa UK Limited",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Ityaksov",
+    "given": "D."
+   },
+   {
+    "family": "Linnartz",
+    "given": "H."
+   },
+   {
+    "family": "Ubachs",
+    "given": "W."
+   }
+  ]
+ },
+ {
+  "doi": "10.1016/j.cplett.2008.07.049",
+  "title": "Deep-UV absorption and Rayleigh scattering of carbon dioxide",
+  "journal": "Chemical Physics Letters",
+  "shortjournal": "Chemical Physics Letters",
+  "year": 2008,
+  "month": 9,
+  "volume": "462",
+  "issue": "1-3",
+  "page": "31-34",
+  "type": "journal-article",
+  "publisher": "Elsevier BV",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Ityaksov",
+    "given": "D."
+   },
+   {
+    "family": "Linnartz",
+    "given": "H."
+   },
+   {
+    "family": "Ubachs",
+    "given": "W."
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ol.25.000347",
+  "title": "Experimental verification of Rayleigh scattering cross sections",
+  "journal": "Optics Letters",
+  "shortjournal": "Opt. Lett.",
+  "year": 2000,
+  "month": 3,
+  "volume": "25",
+  "issue": "5",
+  "page": "347",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Naus",
+    "given": "Hans"
+   },
+   {
+    "family": "Ubachs",
+    "given": "Wim"
+   }
+  ]
+ },
+ {
+  "doi": "10.1063/1.1469671",
+  "title": "Superheterodyne light beating spectroscopy for Rayleigh–Brillouin scattering using frequency-tunable lasers",
+  "journal": "Review of Scientific Instruments",
+  "shortjournal": "",
+  "year": 2002,
+  "month": 5,
+  "volume": "73",
+  "issue": "5",
+  "page": "1998-2010",
+  "type": "journal-article",
+  "publisher": "AIP Publishing",
+  "abstract": "We developed a new optical superheterodyne method for light scattering using frequency tunable lasers and succeeded in measuring Brillouin spectra of simple liquids in a wide frequency range from 10 MHz to 3 GHz. In this method the speed of a photodetector and electric circuits does not limit the upper frequency bound, since the superheterodyne detection of the signal allows us to shift the optical beat frequency down to a desired fixed frequency suitable for electric signal processing. Thus an almost ultimate signal-to-noise ratio is realized at any phonon frequency. This is a great advantage over conventional optical beating methods. It is realized by the continuous tunability of the frequency of the laser used as a local oscillator light for superheterodyne detection. Our method provides an extremely high frequency resolution (∼300 kHz), which is determined by the stability of an optical frequency difference between the two lasers under its feedback control. We call this method “superheterodyne Brillouin spectroscopy.” The method has a high potential for studying the dynamics in a wide class of transparent condensed matters.",
+  "authors": [
+   {
+    "family": "Tanaka",
+    "given": "Hajime"
+   },
+   {
+    "family": "Sonehara",
+    "given": "Tsuyoshi"
+   }
+  ]
+ },
+ {
+  "doi": "10.1121/1.417707",
+  "title": "A new method of coherent Rayleigh–Brillouin scattering using frequency-tunable cw lasers",
+  "journal": "The Journal of the Acoustical Society of America",
+  "shortjournal": "",
+  "year": 1996,
+  "month": 10,
+  "volume": "100",
+  "issue": "4_Supplement",
+  "page": "2624-2624",
+  "type": "journal-article",
+  "publisher": "Acoustical Society of America (ASA)",
+  "abstract": "A new phase-coherent Rayleigh–Brillouin scattering method using frequency-tunable cw lasers has been developed. Spontaneous Brillouin scattering is caused by thermally excited phonons whose phases have no physical meaning because of their random, incoherent nature. Thus only the power spectrum of the density fluctuations is measurable. In principle, however, coherent phonons having phase information can be generated by a scanning interference pattern that is produced by intersecting two laser beams with slightly different frequencies. When the dispersion relation of the phonon is satisfied, coherent phonons are generated resonantly in a sample. This resonance spectrum is physically equivalent to the spontaneous Brillouin spectrum. By a phase-sensitive heterodyne detection of the scattered light due to light-induced coherent phonons, complex Brillouin spectra have been measured for the first time. Since frequency-tunable cw lasers with high phase coherency are used, this method has a high-frequency resolution of ∼1 MHz, irrespective of the phonon frequency. The method has an extremely high sensitivity because of the coherent detection of signals while keeping a much higher frequency resolution than a Fabry–Perot interferometer. It is hoped that the method will be applied for studying the dynamics of acoustic phonons in various condensed matter, superseding a Fabry–Perot interferometer.",
+  "authors": [
+   {
+    "family": "Tanaka",
+    "given": "Hajime"
+   }
+  ]
+ },
+ {
+  "doi": "10.1109/ultsym.1998.765072",
+  "title": "High resolution phase-coherent Rayleigh-Brillouin scattering method",
+  "journal": "1998 IEEE Ultrasonics Symposium. Proceedings (Cat. No. 98CH36102)",
+  "shortjournal": "",
+  "year": "",
+  "month": "",
+  "volume": "2",
+  "issue": "",
+  "page": "1277-1280",
+  "type": "proceedings-article",
+  "publisher": "IEEE",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Takagi",
+    "given": "S."
+   },
+   {
+    "family": "Tanaka",
+    "given": "H."
+   }
+  ]
+ },
+ {
+  "doi": "10.1016/b978-0-12-811002-7.00018-7",
+  "title": "Stimulated Brillouin and Stimulated Rayleigh Scattering",
+  "journal": "Nonlinear Optics",
+  "shortjournal": "",
+  "year": 2020,
+  "month": "",
+  "volume": "",
+  "issue": "",
+  "page": "419-458",
+  "type": "book-chapter",
+  "publisher": "Elsevier",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Boyd",
+    "given": "Robert W."
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/fio.2005.jwa77",
+  "title": "Stimulated Rayleigh and Brillouin Scattering in Supercritical Fluids",
+  "journal": "Frontiers in Optics",
+  "shortjournal": "",
+  "year": 2005,
+  "month": "",
+  "volume": "",
+  "issue": "",
+  "page": "JWA77",
+  "type": "proceedings-article",
+  "publisher": "OSA",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Kalogerakis",
+    "given": "K. S."
+   },
+   {
+    "family": "Blehm",
+    "given": "B."
+   },
+   {
+    "family": "Forman",
+    "given": "R."
+   },
+   {
+    "family": "Jirauschek",
+    "given": "C."
+   },
+   {
+    "family": "Faris",
+    "given": "G. W."
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ao.50.005758",
+  "title": "Analytical model for Rayleigh–Brillouin line shapes in air: errata",
+  "journal": "Applied Optics",
+  "shortjournal": "Appl. Opt.",
+  "year": 2011,
+  "month": 10,
+  "volume": "50",
+  "issue": "29",
+  "page": "5758",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Witschas",
+    "given": "B."
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/oe.22.029655",
+  "title": "Temperature retrieval from Rayleigh-Brillouin scattering profiles measured in air",
+  "journal": "Optics Express",
+  "shortjournal": "Opt. Express",
+  "year": 2014,
+  "month": 12,
+  "volume": "22",
+  "issue": "24",
+  "page": "29655",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Witschas",
+    "given": "Benjamin"
+   },
+   {
+    "family": "Gu",
+    "given": "Ziyu"
+   },
+   {
+    "family": "Ubachs",
+    "given": "Wim"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ol.39.001972",
+  "title": "Daytime measurements of atmospheric temperature profiles (2–15  km) by lidar utilizing Rayleigh–Brillouin scattering",
+  "journal": "Optics Letters",
+  "shortjournal": "Opt. Lett.",
+  "year": 2014,
+  "month": 3,
+  "volume": "39",
+  "issue": "7",
+  "page": "1972",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Witschas",
+    "given": "Benjamin"
+   },
+   {
+    "family": "Lemmerz",
+    "given": "Christian"
+   },
+   {
+    "family": "Reitebuch",
+    "given": "Oliver"
+   }
+  ]
+ },
+ {
+  "doi": "10.1117/12.2027530",
+  "title": "Lidar measurements of atmospheric temperature profiles (2−15 km) by utilizing Rayleigh-Brillouin scattering",
+  "journal": "SPIE Proceedings",
+  "shortjournal": "",
+  "year": 2013,
+  "month": 10,
+  "volume": "8894",
+  "issue": "",
+  "page": "88940H",
+  "type": "proceedings-article",
+  "publisher": "SPIE",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Witschas",
+    "given": "Benjamin"
+   },
+   {
+    "family": "Lemmerz",
+    "given": "Christian"
+   },
+   {
+    "family": "Reitebuch",
+    "given": "Oliver"
+   }
+  ]
+ },
+ {
+  "doi": "10.1088/1742-6596/397/1/012048",
+  "title": "Spectra of Rayleigh-Brillouin scattering in supersonic gas flows measured with a wide aperture spectrometer",
+  "journal": "Journal of Physics: Conference Series",
+  "shortjournal": "J. Phys.: Conf. Ser.",
+  "year": 2012,
+  "month": 12,
+  "volume": "397",
+  "issue": "",
+  "page": "012048",
+  "type": "journal-article",
+  "publisher": "IOP Publishing",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Anisimov",
+    "given": "Yu"
+   },
+   {
+    "family": "Kosykh",
+    "given": "N"
+   },
+   {
+    "family": "Mashek",
+    "given": "I"
+   },
+   {
+    "family": "Smirnov",
+    "given": "S"
+   }
+  ]
+ },
+ {
+  "doi": "10.1175/2009jtecha1314.1",
+  "title": "The Airborne Demonstrator for the Direct-Detection Doppler Wind Lidar ALADIN on ADM-Aeolus. Part II: Simulations and Rayleigh Receiver Radiometric Performance",
+  "journal": "Journal of Atmospheric and Oceanic Technology",
+  "shortjournal": "",
+  "year": 2009,
+  "month": 12,
+  "volume": "26",
+  "issue": "12",
+  "page": "2516-2530",
+  "type": "journal-article",
+  "publisher": "American Meteorological Society",
+  "abstract": "Abstract In the frame of the Atmospheric Dynamics Mission Aeolus (ADM-Aeolus) satellite mission by the European Space Agency (ESA), a prototype of a direct-detection Doppler wind lidar was developed to measure wind from ground and aircraft at 355 nm. Wind is measured from aerosol backscatter signal with a Fizeau interferometer and from molecular backscatter signal with a Fabry–Perot interferometer. The aim of this study is to validate the satellite instrument before launch, improve the retrieval algorithms, and consolidate the expected performance. The detected backscatter signal intensities determine the instrument wind measurement performance among other factors, such as accuracy of the calibration and stability of the optical alignment. Results of measurements and simulations for a ground-based instrument are compared, analyzed, and discussed. The simulated atmospheric aerosol models were validated by use of an additional backscatter lidar. The measured Rayleigh backscatter signals of the wind lidar prototype up to an altitude of 17 km are compared to simulations and show a good agreement by a factor better than 2, including the analyses of different error sources. First analyses of the signal at the Mie receiver from high cirrus clouds are presented. In addition, the simulations of the Rayleigh signal intensities of the Atmospheric Laser Doppler Instrument (ALADIN) Airborne Demonstrator (A2D) instrument on ground and aircraft were compared to simulations of the satellite system. The satellite signal intensities above 11.5 km are larger than those from the A2D ground-based instrument and always smaller than those from the aircraft for all altitudes.",
+  "authors": [
+   {
+    "family": "Paffrath",
+    "given": "Ulrike"
+   },
+   {
+    "family": "Lemmerz",
+    "given": "Christian"
+   },
+   {
+    "family": "Reitebuch",
+    "given": "Oliver"
+   },
+   {
+    "family": "Witschas",
+    "given": "Benjamin"
+   },
+   {
+    "family": "Nikolaus",
+    "given": "Ines"
+   },
+   {
+    "family": "Freudenthaler",
+    "given": "Volker"
+   }
+  ]
+ },
+ {
+  "doi": "10.1088/1555-6611/aa760c",
+  "title": "The effect of signal to noise ratio on accuracy of temperature measurements for Brillouin lidar in water",
+  "journal": "Laser Physics",
+  "shortjournal": "Laser Phys.",
+  "year": 2017,
+  "month": 8,
+  "volume": "27",
+  "issue": "9",
+  "page": "096003",
+  "type": "journal-article",
+  "publisher": "IOP Publishing",
+  "abstract": "Abstract A lidar system with Fabry–Pérot etalon and an intensified charge coupled device can be used to obtain the scattering spectrum of the ocean and retrieve oceanic temperature profiles. However, the spectrum would be polluted by noise and result in a measurement error. To analyze the effect of signal to noise ratio (SNR) on the accuracy of measurements for Brillouin lidar in water, the theory model and characteristics of SNR are researched. The noise spectrums with different SNR are repetitiously measured based on simulation and experiment. The results show that accuracy is related to SNR, and considering the balance of time consumption and quality, the average of five measurements is adapted for real remote sensing under the pulse laser conditions of wavelength 532 nm, pulse energy 650 mJ, repetition rate 10 Hz, pulse width 8 ns and linewidth 0.003 cm −1 (90 MHz). Measuring with the Brillouin linewidth has a better accuracy at a lower temperature (&lt;15 °C), while measuring with the Brillouin shift is a more appropriate method at a higher temperature (&gt;15 °C), based on the classical retrieval model we adopt. The experimental results show that the temperature error is 0.71 °C and 0.06 °C based on shift and linewidth respectively when the image SNR is at the range of 3.2 dB–3.9 dB.",
+  "authors": [
+   {
+    "family": "Liang",
+    "given": "Kun"
+   },
+   {
+    "family": "Niu",
+    "given": "Qunjie"
+   },
+   {
+    "family": "Wu",
+    "given": "Xiangkui"
+   },
+   {
+    "family": "Xu",
+    "given": "Jiaqi"
+   },
+   {
+    "family": "Peng",
+    "given": "Li"
+   },
+   {
+    "family": "Zhou",
+    "given": "Bo"
+   }
+  ]
+ },
+ {
+  "doi": "10.1016/j.jqsrt.2017.10.029",
+  "title": "Rayleigh–Brillouin light scattering spectroscopy of nitrous oxide (N2O)",
+  "journal": "Journal of Quantitative Spectroscopy and Radiative Transfer",
+  "shortjournal": "Journal of Quantitative Spectroscopy and Radiative Transfer",
+  "year": 2018,
+  "month": 2,
+  "volume": "206",
+  "issue": "",
+  "page": "63-69",
+  "type": "journal-article",
+  "publisher": "Elsevier BV",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Wang",
+    "given": "Y."
+   },
+   {
+    "family": "Liang",
+    "given": "K."
+   },
+   {
+    "family": "van de Water",
+    "given": "W."
+   },
+   {
+    "family": "Marques",
+    "given": "W."
+   },
+   {
+    "family": "Ubachs",
+    "given": "W."
+   }
+  ]
+ },
+ {
+  "doi": "10.7498/aps.67.20172438",
+  "title": "Measurement of bulk viscosity of nitrogen based on spontaneous Rayleigh-Brillouin scattering",
+  "journal": "Acta Physica Sinica",
+  "shortjournal": "Acta Phys. Sin.",
+  "year": 2018,
+  "month": "",
+  "volume": "67",
+  "issue": "7",
+  "page": "077801",
+  "type": "journal-article",
+  "publisher": "Acta Physica Sinica, Chinese Physical Society and Institute of Physics, Chinese Academy of Sciences",
+  "abstract": "Bulk viscosity is an important parameter to understand gas viscosity in micro perspective. The traditional ultrasound absorbtion method with acoustic frequencies in a megahertz range cannot be directly applied to high frequencies field, where acoustic waves are in the gigahertz domain. However, gas bulk viscosity at high frequency can be measured by spontaneous Rayleigh-Brillouin scattering (SRBS) and coherent Rayleigh-Brillouin scattering (CRBS). Recent researches show that the bulk viscosity of nitrogen measured by CRBS at a wavelength of 532 nm is obviously different from the values from SRBS in the near-ultraviolet region. In order to obtain accurate bulk viscosity of nitrogen at the wavelength of 532 nm, the SRBS spectra of nitrogen excited by a 532 nm laser are measured in a pressure range from 1 bar to 9 bar at the constant room temperature. The measured SRBS spectrum at the pressure of 7 bar is compared with the theoretical spectrum to obtain optimal scattering angle by using the principle of minimum value of χ2. The theoretical spectrum is calculated by convolving the Tenti S6 model with the instrument transmission function of measurement system. Given that the effect of pressure on the bulk viscosity is negligible, the bulk viscosity value (1.46±0.14)×10-5 kg·m-1-1 of nitrogen at a temperature of 299 K is acquired by averaging the values of bulk viscosity under different pressures (4-9 bar), each value is obtained by comparing the measured spectra at different pressures with the theoretical spectra by using the optimal scattering angle and the principle of minimum value of χ2. The values of bulk viscosity of nitrogen over the pressure of 1-3 bar are not considered because of its big deviation compared with the values under higher pressures (4-9 bar). The results show that the average value of bulk viscosity obtained in our experiment is close to that from the theoretical calculation and SRBS experiments reported in the literature but different obviously from the bulk viscosity obtained by CRBS. In order to testify the bulk viscosity of nitrogen measured in our experiment, it is used to retrieve temperature of nitrogen under pressure ranging from 1 bar to 9 bar. The results show that the absolute error between the retrieved temperature and the reference temperature under different pressures are all below 2.50 K and the difference between the average temperature and the reference temperature is less than 0.15 K. This demonstrates that the measured bulk viscosity of nitrogen in our experiment is accurate and reliable for the gas parameters retrieved by SRBS.",
+  "authors": [
+   {
+    "family": "Wu Tao",
+    "given": ""
+   },
+   {
+    "family": "Shang Jing-Cheng",
+    "given": ""
+   },
+   {
+    "family": "He Xing-Dao",
+    "given": ""
+   },
+   {
+    "family": "Yang Chuan-Yin",
+    "given": ""
+   },
+   {
+    "family": "",
+    "given": ""
+   }
+  ]
+ },
+ {
+  "doi": "10.5768/jao201637.0307002",
+  "title": "Measurement of high-velocity gas flow parameters using laser Brillouin scattering",
+  "journal": "Journal of Applied Optics",
+  "shortjournal": "",
+  "year": 2016,
+  "month": "",
+  "volume": "37",
+  "issue": "3",
+  "page": "482-488",
+  "type": "journal-article",
+  "publisher": "Journal of Applied Optics",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Xiaohong",
+    "given": "Zhang"
+   }
+  ]
+ },
+ {
+  "doi": "10.1002/mop.33500",
+  "title": "Brillouin shift and temperature measurement by spontaneous Rayleigh‐Brillouin scattering profiles using different models",
+  "journal": "Microwave and Optical Technology Letters",
+  "shortjournal": "Micro &amp; Optical Tech Letters",
+  "year": 2022,
+  "month": 11,
+  "volume": "65",
+  "issue": "5",
+  "page": "1346-1352",
+  "type": "journal-article",
+  "publisher": "Wiley",
+  "abstract": "Abstract Spontaneous Rayleigh‐Brillouin scattering spectra in nitrogen have been measured in the pressure range from 4 to 7 bar at a wide temperature from 291 to 399 K with a scattering angle of about 90°, and then fitted to different theoretical models (S6, V3, and G3). The result of the root‐mean‐square errors of fitting residuals shows that the V3 and G3 models have good fitting performance. However, compared to the predicted Brillouin shift, the maximum relative errors in deducing the Brillouin shift from fitted data are 0.6% for the S6, 3.3% for the V3 and 4.6% the G3 models. The S6 model is the most accurate model in retrieving temperature for the absolute error below 3.5 K while the absolute error is less than 25 K for the V3 model and 35 K for the G3 model. Although the V3 and G3 models may not be suitable for the atmospheric temperature measurement, they are more potential for the high‐temperature measurement of unknown environmental pressures.",
+  "authors": [
+   {
+    "family": "Yan",
+    "given": "Hongda"
+   },
+   {
+    "family": "Wu",
+    "given": "Tao"
+   },
+   {
+    "family": "Xu",
+    "given": "Wenjie"
+   },
+   {
+    "family": "Ye",
+    "given": "Chenwen"
+   },
+   {
+    "family": "He",
+    "given": "Xingdao"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ol.506847",
+  "title": "Demonstration of a Rayleigh–Brillouin scattering spectrometer with a high spectral resolution for rapid gas temperature detection",
+  "journal": "Optics Letters",
+  "shortjournal": "Opt. Lett.",
+  "year": 2023,
+  "month": 11,
+  "volume": "48",
+  "issue": "22",
+  "page": "5931",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "A novel, to the best of our knowledge, Rayleigh–Brillouin scattering (RBS) spectrometer based on a virtually imaged phased array (VIPA) with a high spectral resolution is proposed for rapid gas temperature detection. CO 2 RBS spectra at gas pressure of 0.5–4 bar were acquired with a spectrum acquisition time of 10 s, and temperature inversion analysis was performed using TENTI S6 model. The root-mean-square error (RMSE) of the RBS profile fitting is less than 2.95%, and the maximum absolute error of temperature inversion is less than 2.45 K. Compared with traditional methods, this method has low RBS signal loss and short acquisition time without the frequency scanning process, which is more conducive to real-time detection applications.",
+  "authors": [
+   {
+    "family": "Yan",
+    "given": "Hongda"
+   },
+   {
+    "family": "Wu",
+    "given": "Tao"
+   },
+   {
+    "family": "Pi",
+    "given": "Sihao"
+   },
+   {
+    "family": "Wu",
+    "given": "Qiang"
+   },
+   {
+    "family": "Ye",
+    "given": "Chenwen"
+   },
+   {
+    "family": "He",
+    "given": "Xingdao"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ol.527996",
+  "title": "Development of a Rayleigh–Brillouin scattering spectrometer for fast high-gas-temperature measurements",
+  "journal": "Optics Letters",
+  "shortjournal": "Opt. Lett.",
+  "year": 2024,
+  "month": 7,
+  "volume": "49",
+  "issue": "14",
+  "page": "3850",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "We proposed a Rayleigh–Brillouin scattering (RBS) spectrometer based on a virtually imaged phased array (VIPA) for fast measurements of high-gas temperature. We measured the RBS spectra of air in the temperature range of 374 to 1073 K with an acquisition time of 7 s. We used the Tenti S6 model to fit the spectra and retrieve the absolute temperature values. The root mean square errors of spectra fit residual were less than 3.05%, and the absolute error of the retrieved temperature was less than 39 K. This study demonstrated the ability of the RBS spectrometer to realize fast high-temperature measurement and its potential for combustion control applications.",
+  "authors": [
+   {
+    "family": "Pi",
+    "given": "Sihao"
+   },
+   {
+    "family": "Wu",
+    "given": "Tao"
+   },
+   {
+    "family": "Yan",
+    "given": "Hongda"
+   },
+   {
+    "family": "Yang",
+    "given": "Jun"
+   },
+   {
+    "family": "Ye",
+    "given": "Chenwen"
+   },
+   {
+    "family": "He",
+    "given": "Xingdao"
+   }
+  ]
+ },
+ {
+  "doi": "10.1117/12.2680922",
+  "title": "Gas density measurement in high-pressure conditions by spontaneous Rayleigh-Brillouin scattering",
+  "journal": "Unconventional Imaging, Sensing, and Adaptive Optics 2023",
+  "shortjournal": "",
+  "year": 2023,
+  "month": 10,
+  "volume": "",
+  "issue": "",
+  "page": "13",
+  "type": "proceedings-article",
+  "publisher": "SPIE",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Park",
+    "given": "Youchan"
+   },
+   {
+    "family": "Kim",
+    "given": "Kyeongsun"
+   },
+   {
+    "family": "Kim",
+    "given": "Seonwoong"
+   },
+   {
+    "family": "Do",
+    "given": "Hyungrok"
+   }
+  ]
+ },
+ {
+  "doi": "10.1088/1367-2630/ac93a7",
+  "title": "Grüneisen approach for universal scaling of the Brillouin shift in gases",
+  "journal": "New Journal of Physics",
+  "shortjournal": "New J. Phys.",
+  "year": 2022,
+  "month": 10,
+  "volume": "24",
+  "issue": "10",
+  "page": "103005",
+  "type": "journal-article",
+  "publisher": "IOP Publishing",
+  "abstract": "Abstract A Grüneisen relationship is defined for gases, following the formulation of the original microscopic Grüneisen ratio γ = (d ln ω )/(d ln V ) for solids. In the case of gases acoustic excitations represent the modes at frequency ω to be considered. By comparing to measured Brillouin shifts in various gases (SF 6 , N 2 O, and CO 2 ) under various conditions of pressure and temperature, a specific value of the defined ratio γ 0 = 0.064 ± 0.004 is found to provide a universal description of the active modes in a gas. This finding of such universal gas law may find application in extrapolation of properties of ideal gases to regimes where those cannot be measured easily, like the acoustics and shocks at extremely high temperatures.",
+  "authors": [
+   {
+    "family": "Liang",
+    "given": "Kun"
+   },
+   {
+    "family": "Xu",
+    "given": "Jiaqi"
+   },
+   {
+    "family": "Wang",
+    "given": "Yuanqing"
+   },
+   {
+    "family": "Lü",
+    "given": "Hai-Feng"
+   },
+   {
+    "family": "Ubachs",
+    "given": "Wim"
+   }
+  ]
+ },
+ {
+  "doi": "10.1088/1367-2630/aceaa0",
+  "title": "Comment on ‘Gruneisen approach for universal scaling of the Brillouin shift in gases’",
+  "journal": "New Journal of Physics",
+  "shortjournal": "New J. Phys.",
+  "year": 2023,
+  "month": 8,
+  "volume": "25",
+  "issue": "8",
+  "page": "088001",
+  "type": "journal-article",
+  "publisher": "IOP Publishing",
+  "abstract": "Abstract I comment on the recent article Grüneisen approach for universal scaling of the Brillouin shift in gases by Liang et al (2022 New J. Phys. 24 103005). While the result of this article indeed provides a parametrization of measured Rayleigh Brillouin scattering spectra, I argue that the association with the Grüneisen effect is fortuitous. The Grüneisen effect is the change of the specific heat with compression of a gas. For the nontrivial case of the van der Waals gas, it predicts the decrease of the velocity of sound with increasing pressure. In solids, which is the context considered in the article by Liang et al , the effect is opposite: an increase of the velocity of sound with pressure.",
+  "authors": [
+   {
+    "family": "van de Water",
+    "given": "Willem"
+   }
+  ]
+ },
+ {
+  "doi": "10.1038/s41377-025-02168-3",
+  "title": "Absolute thermometry based on Brillouin scattering in gases",
+  "journal": "Light: Science &amp; Applications",
+  "shortjournal": "Light Sci Appl",
+  "year": 2026,
+  "month": 1,
+  "volume": "15",
+  "issue": "1",
+  "page": "",
+  "type": "journal-article",
+  "publisher": "Springer Science and Business Media LLC",
+  "abstract": "Abstract We propose a novel thermometric technique for measuring absolute temperature in gas media based on Brillouin scattering. The method retrieves the temperature from the acoustic velocity of the gas, inferred through the spectral shift experienced by a scattered laser beam during the Brillouin acousto-optic interaction. This approach is inherently contactless, enabling remote sensing applications with high precision. It also exhibits enhanced sensitivity in the cryogenic range and is fully compatible with distributed measurements along recent hollow-core single-mode fibres. This study establishes the theoretical foundations of the technique and provides experimental validation across a range of temperature and pressure conditions. The influence of the gas species on the Brillouin response is analysed, enabling the selection of the optimal gas medium for specific applications. Illustrative distributed measurements demonstrate the strong potential of this technique for cryogenic sensing, where favourable scaling of several parameters leads to significantly improved temperature sensitivity. These results open new avenues for high-accuracy, remote, and minimally invasive thermometric measurements across a wide temperature range, including extreme cryogenic environments.",
+  "authors": [
+   {
+    "family": "Yang",
+    "given": "Yuting"
+   },
+   {
+    "family": "Soto",
+    "given": "Marcelo A."
+   },
+   {
+    "family": "Thévenaz",
+    "given": "Luc"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ol.424526",
+  "title": "High-spectral-resolution lidar for measuring tropospheric temperature profiles by means of Rayleigh–Brillouin scattering",
+  "journal": "Optics Letters",
+  "shortjournal": "Opt. Lett.",
+  "year": 2021,
+  "month": 7,
+  "volume": "46",
+  "issue": "13",
+  "page": "3320",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "A novel high-spectral-resolution lidar receiver based on a Fizeau interferometer and a photomultiplier tube array for tropospheric temperature profiling is introduced. Compared to other temperature lidars, an imaging approach is used to resolve the entire Rayleigh–Brillouin (RB) spectrum without applying frequency scanning techniques. The functionality of the system is demonstrated by means of a nighttime measurement. Atmospheric temperature is retrieved from 4.0 km to 9.2 km by analyzing the measured RB spectra with the Tenti S6 line shape model. The systematic error of the retrieved temperatures is determined to be smaller than 3 K, and the corresponding random error varies between 1.7 K (4.0 km) and 2.3 K (9.2 km) for an observation time of 5 min and a vertical resolution of 0.3 km. Considering the short averaging time and the stable arrangement of the system, the suggested approach is also attractive for future airborne applications.",
+  "authors": [
+   {
+    "family": "Xu",
+    "given": "Jiaqi"
+   },
+   {
+    "family": "Witschas",
+    "given": "Benjamin"
+   },
+   {
+    "family": "Kabelka",
+    "given": "Pau Gomez"
+   },
+   {
+    "family": "Liang",
+    "given": "Kun"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ol.431350",
+  "title": "Airborne temperature profiling in the troposphere during daytime by lidar utilizing Rayleigh–Brillouin scattering",
+  "journal": "Optics Letters",
+  "shortjournal": "Opt. Lett.",
+  "year": 2021,
+  "month": 8,
+  "volume": "46",
+  "issue": "17",
+  "page": "4132",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "The airborne measurement of a temperature profile from 10.5 km down towards ground ( ≈ 1.4 k m above sea level) during daytime by means of a lidar utilizing Rayleigh–Brillouin (RB) scattering is demonstrated for the first time, to our knowledge. The spectra of the scattered light were measured by tuning the laser ( λ = 354.9 n m ) over a 11 GHz frequency range with a step size of 250 MHz while using a Fabry–Perot interferometer as a spectral filter. The measurement took 14 min and was conducted over a remote area in Iceland with the ALADIN Airborne Demonstrator on-board the DLR Falcon aircraft. The temperature profile was derived by applying an analytical RB line shape model to the backscatter spectra, which were measured at different altitudes with a vertical resolution of 630 m. A comparison with temperature profiles from radiosonde observations and model temperatures shows reasonable agreement with biases of less than ± 2 K . Based on Poisson statistics, the random error of the derived temperatures is estimated to vary between 0.1 K and 0.4 K. The work provides insight into the possible realization of airborne lidar temperature profilers based on RB scattering.",
+  "authors": [
+   {
+    "family": "Witschas",
+    "given": "Benjamin"
+   },
+   {
+    "family": "Lemmerz",
+    "given": "Christian"
+   },
+   {
+    "family": "Lux",
+    "given": "Oliver"
+   },
+   {
+    "family": "Marksteiner",
+    "given": "Uwe"
+   },
+   {
+    "family": "Reitebuch",
+    "given": "Oliver"
+   },
+   {
+    "family": "Schäfler",
+    "given": "Andreas"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ao.404995",
+  "title": "Improved method for gas temperature and pressure retrieval in Brillouin lidar remote sensing",
+  "journal": "Applied Optics",
+  "shortjournal": "Appl. Opt.",
+  "year": 2021,
+  "month": 1,
+  "volume": "60",
+  "issue": "3",
+  "page": "652",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "The Rayleigh–Brillouin scattered spectrum is an important tool for analyzing the temperature and pressure of gas in Brillouin lidar remote sensing. The Tenti-S6 model has been widely used to retrieve atmospheric temperatures. However, the retrieval accuracy of this method is unsatisfactory. We analyzed the influence of several factors on the retrieval accuracy of this method and developed an improved method for temperature and pressure retrieval. First, the Rayleigh–Brillouin spectral baseline was corrected using a new fitting procedure, and an experimental spectrum that is of high coincidence with the line shape of the S6 model could subsequently be obtained. Second, the influence of the Airy function on the retrieval accuracy was analyzed, and the retrieval error could be decreased using the Tenti-S6 model without the Airy function. We found that the gas parameters could be precisely detected under low-pressure conditions. Compared with the traditional method, our improved method could effectively reduce the temperature and pressure retrieval errors. The experimental results of nitrogen scattering in the laboratory and air scattering demonstrate the effectiveness, universality, and viability of the proposed improved method.",
+  "authors": [
+   {
+    "family": "Zhang",
+    "given": "Peng"
+   },
+   {
+    "family": "Liang",
+    "given": "Kun"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/oe.471155",
+  "title": "Coherent high-spectral-resolution lidar for the measurement of the atmospheric Mie–Rayleigh–Brillouin backscatter spectrum",
+  "journal": "Optics Express",
+  "shortjournal": "Opt. Express",
+  "year": 2022,
+  "month": 9,
+  "volume": "30",
+  "issue": "21",
+  "page": "38060",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "In this study, a 1550 nm coherent high-spectral-resolution lidar (CHSRL) is developed to measure the optical properties of aerosols and atmospheric wind profiles in the atmospheric boundary layer. To determine the optical properties, a coherent frequency discriminator based on the fast Fourier transform is designed in the CHSRL to separate the Mie and the Rayleigh–Brillouin backscatter spectra to fulfill the needs of high-spectral measurements. The atmospheric wind velocity is retrieved using the simultaneously measured Doppler shift. This non-optical frequency discriminator is a feasible and low-cost solution compared to a narrow-bandwidth optical filter, such as a Fabry–Perot interferometer or an atomic filter. However, shot, amplifier spontaneous emission, and detector noise interfere with the Rayleigh–Brillouin spectrum. Therefore, a spectrum correction algorithm is proposed to recover the interfered Rayleigh–Brillouin spectrum, and the measurement results of the spectral line agree well with those modeled with Tenti S6 at different central frequencies. Finally, field observations for comparison are conducted with the co-located CHSRL, Raman lidar, and coherent Doppler wind lidar. The comparison results indicate that the correlation coefficient of the aerosol backscatter coefficient is 0.84. The correlation coefficient and standard deviation of wind velocity are 0.98 and 0.13 m · s −1 , respectively.",
+  "authors": [
+   {
+    "family": "Chen",
+    "given": "Xiangcheng"
+   },
+   {
+    "family": "Dai",
+    "given": "Guangyao"
+   },
+   {
+    "family": "Wu",
+    "given": "Songhua"
+   },
+   {
+    "family": "Liu",
+    "given": "Jintao"
+   },
+   {
+    "family": "Yin",
+    "given": "Bin"
+   },
+   {
+    "family": "Wang",
+    "given": "Qichao"
+   },
+   {
+    "family": "Zhang",
+    "given": "Zhiyu"
+   },
+   {
+    "family": "Qin",
+    "given": "Shengguang"
+   },
+   {
+    "family": "Wang",
+    "given": "Xitao"
+   }
+  ]
+ },
+ {
+  "doi": "10.3390/photonics12010092",
+  "title": "Parameter Study on Ultraviolet Rayleigh–Brillouin Doppler Lidar with Dual-Pass Dual Fabry–Perot Interferometer for Accurately Measuring Near-Surface to Lower Stratospheric Wind Field",
+  "journal": "Photonics",
+  "shortjournal": "Photonics",
+  "year": 2025,
+  "month": 1,
+  "volume": "12",
+  "issue": "1",
+  "page": "92",
+  "type": "journal-article",
+  "publisher": "MDPI AG",
+  "abstract": "To suppress the influence of aerosols scattering on the double-edge detection technique and achieve high-accuracy measurement of the wind field throughout the troposphere to the lower stratosphere, an ultraviolet 355 nm Rayleigh–Brillouin Doppler lidar technology based on a dual-pass dual Fabry–Perot interferometer (FPI) is proposed. The wind speed detection principle of this technology is analyzed, and the formulas for radial wind speed measurement error caused by random noise and wind speed measurement bias caused by Mie scattering signal contamination are derived. Based on the detection principle, the structure of the lidar system is designed. Combining the wind speed measurement error and measurement bias on both sides, the parameters of the dual-pass dual-FPI are optimized. The free spectral range (FSR) of the dual-pass dual-FPI is selected as 12 GHz, the bandwidth as 1.8 GHz, and the peak-to-peak spacing as 6 GHz. Further, the detection performance of this new type of Rayleigh–Brillouin Doppler lidar with the designed system parameters is simulated and analyzed. The simulation results show that at an altitude of 0–20 km, within the radial wind speed dynamic range of ±50 m/s, the radial wind speed measurement bias caused by aerosol scattering signal is less than 0.17 m/s in the cloudless region; within the radial wind speed dynamic range of ±30 m/s, the bias is less than 0.44 m/s and 0.91 m/s in the simulated cumulus cloud at 4 km where aerosol backscatter ratio Rβ = 3.8 and cirrus cloud at 9 km where Rβ = 2.9, respectively; using a laser with a pulse energy of 350 mJ and a repetition frequency of 50 Hz, a 450 mm aperture telescope, setting the detection zenith angle of 30°, vertical resolution of 26 m@0–10 km, 78 m@10–20 km, and 260 m@20–30 km, and a time resolution of 1 min, with the daytime sky background brightness taking 0.3 WSr−1m−2nm−1@355 nm, the radial wind speed measurement errors of the system during the day and night are below 2.9 m/s and 1.6 m/s, respectively, up to 30 km altitude, below 0.28 m/s at 10 km altitude, and below 0.91 m/s at 20 km altitude all day.",
+  "authors": [
+   {
+    "family": "Shen",
+    "given": "Fahua"
+   },
+   {
+    "family": "Shu",
+    "given": "Zhifeng"
+   },
+   {
+    "family": "Dong",
+    "given": "Jihui"
+   },
+   {
+    "family": "Jin",
+    "given": "Guohua"
+   },
+   {
+    "family": "Yang",
+    "given": "Liangliang"
+   },
+   {
+    "family": "Hui",
+    "given": "Zhou"
+   },
+   {
+    "family": "Xu",
+    "given": "Hua"
+   }
+  ]
+ },
+ {
+  "doi": "10.5194/egusphere-egu25-12657",
+  "title": "On the measurement of the Rayleigh-Brillouin spectrum and atmospheric temperature using a coherent Doppler lidar",
+  "journal": "",
+  "shortjournal": "",
+  "year": 2025,
+  "month": 3,
+  "volume": "",
+  "issue": "",
+  "page": "",
+  "type": "posted-content",
+  "publisher": "Copernicus GmbH",
+  "abstract": "We present a Doppler lidar designed to detect the molecular spectrum characteristics, which are attributed to the Rayleigh-Brillouin scattering, in the atmospheric boundary layer. The suggested system is a continuous-wave, infrared Doppler lidar based on a bi-static transceiver and a coherent in-phase/quadrature detection scheme. For the detection of the features of the Rayleigh-Brillouin spectrum we use fiber-coupled, balanced photodetectors and a digitizer with a 1.6 GHz bandwidth. This broad bandwidth is necessary for the detection of Doppler shifts not only at frequencies of atmospheric winds, but also of the ones corresponding to molecular and acoustic speed that extend over several hundred megahertz. We demonstrate that using this configuration it is possible to detect the molecular Rayleigh-Brillouin spectrum over 30-minute time periods. The observational range of this system is focused on the lower part of the atmosphere (&lt; 200 m) and the objective is to investigate if the resolved features of the Rayleigh-Brillouin spectrum can be related to the temperature, which could lead to the development of a novel vertical profiler of atmospheric temperature.",
+  "authors": [
+   {
+    "family": "Angelou",
+    "given": "Nikolas"
+   },
+   {
+    "family": "Mann",
+    "given": "Jakob"
+   }
+  ]
+ },
+ {
+  "doi": "10.2514/6.2022-3365",
+  "title": "Experimental Demonstration of Dispersion of Rayleigh Brillouin Scattering from Air with an Atomic Cesium Vapor Prism Cell",
+  "journal": "AIAA AVIATION 2022 Forum",
+  "shortjournal": "",
+  "year": 2022,
+  "month": 6,
+  "volume": "",
+  "issue": "",
+  "page": "",
+  "type": "proceedings-article",
+  "publisher": "American Institute of Aeronautics and Astronautics",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Rekhy",
+    "given": "Anuj"
+   },
+   {
+    "family": "Leonov",
+    "given": "Boris S."
+   },
+   {
+    "family": "Abbasszadehrad",
+    "given": "Amirhossein"
+   },
+   {
+    "family": "Bak",
+    "given": "Junhwi"
+   },
+   {
+    "family": "Creel",
+    "given": "James"
+   },
+   {
+    "family": "Limbach",
+    "given": "Christopher"
+   },
+   {
+    "family": "Miles",
+    "given": "Richard B."
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ol.403391",
+  "title": "Evaluation of the Tenti S6 model for hydrocarbon fuels at elevated temperatures using filtered Rayleigh scattering measurements",
+  "journal": "Optics Letters",
+  "shortjournal": "Opt. Lett.",
+  "year": 2020,
+  "month": 9,
+  "volume": "45",
+  "issue": "19",
+  "page": "5579",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "This Letter targets the assessment of the well-known Tenti S6 model for predicting the Rayleigh–Brillouin scattering (RBS) spectra of select gas–phase hydrocarbon fuels ( C H 4 , C 2 H 2 , C 2 H 4 , C 3 H 8 , and C 4 H 10 ) over a temperature range of 300 to 700 K. The Tenti S6 model is evaluated by comparing filtered Rayleigh scattering (FRS) measurements to synthetic FRS signals generated from the combination of the Tenti S6 output and an accurate iodine absorption filter model. The experimental and synthetic FRS results agree very well ( &lt; 3 % difference) over the full temperature range for C H 4 , C 2 H 2 , and C 2 H 4 , indicating accurate calculation of the RBS spectra. For C 3 H 8 and C 4 H 10 , there are some large differences between the experimental and synthetic FRS results which cannot be resolved through tuning of bulk viscosity, internal heat capacity, or inclusion of vibrational degrees of freedom, suggesting the need for detailed measurements of the Rayleigh–Brillouin spectra.",
+  "authors": [
+   {
+    "family": "Pu",
+    "given": "Jinpeng"
+   },
+   {
+    "family": "Sutton",
+    "given": "Jeffrey A."
+   }
+  ]
+ },
+ {
+  "doi": "10.2514/2.797",
+  "title": "Velocity Measurements by Modulated Filtered Rayleigh Scattering Using Diode Lasers",
+  "journal": "AIAA Journal",
+  "shortjournal": "AIAA Journal",
+  "year": 1999,
+  "month": 6,
+  "volume": "37",
+  "issue": "6",
+  "page": "695-699",
+  "type": "journal-article",
+  "publisher": "American Institute of Aeronautics and Astronautics (AIAA)",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Mach",
+    "given": "Jeffrey"
+   },
+   {
+    "family": "Varghese",
+    "given": "Philip L."
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ol.42.003773",
+  "title": "Pressure, temperature, and three-component velocity fields by filtered Rayleigh scattering velocimetry",
+  "journal": "Optics Letters",
+  "shortjournal": "Opt. Lett.",
+  "year": 2017,
+  "month": 9,
+  "volume": "42",
+  "issue": "19",
+  "page": "3773",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Doll",
+    "given": "Ulrich"
+   },
+   {
+    "family": "Stockhausen",
+    "given": "Guido"
+   },
+   {
+    "family": "Willert",
+    "given": "Christian"
+   }
+  ]
+ },
+ {
+  "doi": "10.2514/6.2019-1326",
+  "title": "Towards single shot gas flow velocity and temperature measurements with coherent Rayleigh-Brillouin scattering",
+  "journal": "AIAA Scitech 2019 Forum",
+  "shortjournal": "",
+  "year": 2019,
+  "month": 1,
+  "volume": "",
+  "issue": "",
+  "page": "",
+  "type": "proceedings-article",
+  "publisher": "American Institute of Aeronautics and Astronautics",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Gerakis",
+    "given": "Alexandros"
+   },
+   {
+    "family": "Shneider",
+    "given": "Mikhail N."
+   }
+  ]
+ },
+ {
+  "doi": "10.2514/6.2020-0520",
+  "title": "Gas flow velocity and density limit estimates for single shot coherent Rayleigh-Brillouin scattering",
+  "journal": "AIAA Scitech 2020 Forum",
+  "shortjournal": "",
+  "year": 2020,
+  "month": 1,
+  "volume": "",
+  "issue": "",
+  "page": "",
+  "type": "proceedings-article",
+  "publisher": "American Institute of Aeronautics and Astronautics",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Gerakis",
+    "given": "Alexandros"
+   },
+   {
+    "family": "Shneider",
+    "given": "Mikhail N."
+   }
+  ]
+ },
+ {
+  "doi": "10.2514/6.2023-1932",
+  "title": "Towards multi-point thermodynamic flow characterization using single shot coherent Rayleigh Brillouin scattering",
+  "journal": "AIAA SCITECH 2023 Forum",
+  "shortjournal": "",
+  "year": 2023,
+  "month": 1,
+  "volume": "",
+  "issue": "",
+  "page": "",
+  "type": "proceedings-article",
+  "publisher": "American Institute of Aeronautics and Astronautics",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Kumar",
+    "given": "Atulya U."
+   },
+   {
+    "family": "Gerakis",
+    "given": "Alexandros"
+   }
+  ]
+ },
+ {
+  "doi": "10.2514/6.2024-1923",
+  "title": "Multi-point thermodynamic boundary layer characterization in a laboratory scale sub-sonic wind tunnel using single shot coherent Rayleigh Brillouin scattering.",
+  "journal": "AIAA SCITECH 2024 Forum",
+  "shortjournal": "",
+  "year": 2024,
+  "month": 1,
+  "volume": "",
+  "issue": "",
+  "page": "",
+  "type": "proceedings-article",
+  "publisher": "American Institute of Aeronautics and Astronautics",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Kumar",
+    "given": "Atulya U."
+   },
+   {
+    "family": "Gerakis",
+    "given": "Alexandros"
+   },
+   {
+    "family": "Barrero",
+    "given": "Santiago"
+   },
+   {
+    "family": "Rouse",
+    "given": "Anna"
+   },
+   {
+    "family": "Molenhouse",
+    "given": "Jack"
+   }
+  ]
+ },
+ {
+  "doi": "10.2514/6.2026-2091",
+  "title": "Simultaneous Multi-Component Velocity Measurement in a Closed-Circuit Wind Tunnel via Coherent Rayleigh-Brillouin Scattering",
+  "journal": "AIAA SCITECH 2026 Forum",
+  "shortjournal": "",
+  "year": 2026,
+  "month": 1,
+  "volume": "",
+  "issue": "",
+  "page": "",
+  "type": "proceedings-article",
+  "publisher": "American Institute of Aeronautics and Astronautics",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Kumar",
+    "given": "Atulya U."
+   },
+   {
+    "family": "Karatodorov",
+    "given": "Stefan"
+   },
+   {
+    "family": "Zhao",
+    "given": "Yingjie"
+   },
+   {
+    "family": "Alfaro",
+    "given": "Gabriel F."
+   },
+   {
+    "family": "Chim",
+    "given": "Felix S."
+   },
+   {
+    "family": "Gerakis",
+    "given": "Alexandros"
+   }
+  ]
+ },
+ {
+  "doi": "10.2514/6.2026-2094",
+  "title": "Characterizing Single-Shot Picosecond-Pump Coherent Rayleigh Brillouin Scattering for Nitrogen Thermometry",
+  "journal": "AIAA SCITECH 2026 Forum",
+  "shortjournal": "",
+  "year": 2026,
+  "month": 1,
+  "volume": "",
+  "issue": "",
+  "page": "",
+  "type": "proceedings-article",
+  "publisher": "American Institute of Aeronautics and Astronautics",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Senior",
+    "given": "Will C."
+   },
+   {
+    "family": "Beresh",
+    "given": "Steven J."
+   },
+   {
+    "family": "Richardson",
+    "given": "Daniel R."
+   }
+  ]
+ },
+ {
+  "doi": "10.2514/6.2026-0880",
+  "title": "Velocity and Temperature Survey Over a Wind Tunnel Model Using Spectrally Resolved Rayleigh and Mie Scattering",
+  "journal": "AIAA SCITECH 2026 Forum",
+  "shortjournal": "",
+  "year": 2026,
+  "month": 1,
+  "volume": "",
+  "issue": "",
+  "page": "",
+  "type": "proceedings-article",
+  "publisher": "American Institute of Aeronautics and Astronautics",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Crowe",
+    "given": "Evan"
+   },
+   {
+    "family": "Panda",
+    "given": "Jayanta"
+   }
+  ]
+ },
+ {
+  "doi": "10.21203/rs.3.rs-10194503/v1",
+  "title": "Velocity and Temperature Measurements in a Wind Tunnel using Spectrally Resolved Rayleigh and Mie Scattering",
+  "journal": "",
+  "shortjournal": "",
+  "year": 2026,
+  "month": 7,
+  "volume": "",
+  "issue": "",
+  "page": "",
+  "type": "posted-content",
+  "publisher": "Springer Science and Business Media LLC",
+  "abstract": "Abstract A spectrally resolved Rayleigh scattering system was installed around a high speed 35.6cm X 35.6cm wind tunnel with the goal of overcoming the essential challenges associated with Mie scattering from naturally present dust particles and moisture condensation, as well as the flare light contamination from passing a laser beam through uncoated glass windows. The point measurement set-up for temperature and one-component of velocity was built on three synchronized traverses to conduct surveys along a line in the axial direction. Measurements were taken at multiple stream wise positions in both an empty test section and adjacent to an airfoil. The wind tunnel used unfiltered room air with high level of naturally present dust particles. At high speeds condensation was formed, which dramatically increased the Mie scattering component. A model of the Rayleigh-Mie scattering and flare light, along with the instrument function for the Fabry-Perot interferometer is found to be able to correctly extract velocity and temperature with an average bias error of respectively 4m/s and 5.4K. Optical velocity data were compared to the facility measurements for the empty tunnel, and velocity measured via a 96-port pressure rail for the surveys over the airfoil. The transonic airfoil created local supersonic flows and shock waves. The optical technique was found to correctly measure the velocity rise through the supersonic flow and the sharp jump across shock waves. Temperature measurements were possible in the lower speeds; at high speeds, when condensation appeared, such measurements became impossible. The setup demonstrated that spectrally resolved Rayleigh/Mie can provide a much-needed tool for off-body velocimetry and thermometry in transonic and supersonic wind tunnels.",
+  "authors": [
+   {
+    "family": "Panda",
+    "given": "Jayanta"
+   },
+   {
+    "family": "Crowe",
+    "given": "Evan D."
+   }
+  ]
+ },
+ {
+  "doi": "10.1109/cleo/europe-eqec65582.2025.11111300",
+  "title": "Single-Shot Coherent Brillouin Scattering for Gas Particle Velocimetry",
+  "journal": "2025 Conference on Lasers and Electro-Optics Europe &amp;amp; European Quantum Electronics Conference (CLEO/Europe-EQEC)",
+  "shortjournal": "",
+  "year": 2025,
+  "month": 6,
+  "volume": "",
+  "issue": "",
+  "page": "1-1",
+  "type": "proceedings-article",
+  "publisher": "IEEE",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Karatodorov",
+    "given": "Stefan"
+   },
+   {
+    "family": "Mitrou",
+    "given": "Maria"
+   },
+   {
+    "family": "Gerakis",
+    "given": "Alexandros"
+   }
+  ]
+ },
+ {
+  "doi": "10.1109/icops45740.2023.10481379",
+  "title": "Computational Modeling of Coherent Rayleigh-Brillouin Scattering (CRBS) for Partially Ionized Plasmas",
+  "journal": "2023 IEEE International Conference on Plasma Science (ICOPS)",
+  "shortjournal": "",
+  "year": 2023,
+  "month": 5,
+  "volume": "",
+  "issue": "",
+  "page": "1-1",
+  "type": "proceedings-article",
+  "publisher": "IEEE",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Suzuki",
+    "given": "S."
+   },
+   {
+    "family": "Gerakis",
+    "given": "A."
+   },
+   {
+    "family": "Hara",
+    "given": "K."
+   }
+  ]
+ },
+ {
+  "doi": "10.1109/icops58192.2024.10626377",
+  "title": "Non-resonant, seedless coherent Rayleigh-Brillouin scattering four-wave mixing laser diagnostics for low temperature plasmas",
+  "journal": "2024 IEEE International Conference on Plasma Science (ICOPS)",
+  "shortjournal": "",
+  "year": 2024,
+  "month": 6,
+  "volume": "",
+  "issue": "",
+  "page": "1-1",
+  "type": "proceedings-article",
+  "publisher": "IEEE",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Gerakis",
+    "given": "A."
+   }
+  ]
+ },
+ {
+  "doi": "10.1051/epjconf/202023707004",
+  "title": "Characterization of a Novel Temperature Lidar Receiver by Means of Laboratory Rayleigh-Brillouin Scattering Measurements",
+  "journal": "EPJ Web of Conferences",
+  "shortjournal": "EPJ Web Conf.",
+  "year": 2020,
+  "month": "",
+  "volume": "237",
+  "issue": "",
+  "page": "07004",
+  "type": "journal-article",
+  "publisher": "EDP Sciences",
+  "abstract": "A new receiver setup based on an imaging Fizeau interferometer measuring the Rayleigh Brillouin scattering (RBS) spectra to retrieve tropospheric temperature profiles is introduced. The optical layout of the proposed receiver design is discussed and its functionality is demonstrated by means of accurate and controlled laboratory RBS measurements. The proposed temperature receiver is based on a Fizeau interferometer and a 32 channel PMT array which can resolve the RBS spectrum without applying any scanning procedures. In order to avoid any incidence angle fluctuations on the Fizeau interferometer caused by for instance atmospheric turbulence, the application of a fiver coupled telescope was investigated. It is shown that a 50 µm fiber (NA=0.12) provides both, sufficient coupling efficiency and sufficiently low divergence in order to keep the Finesse of the interferometer. The performance of the novel lidar receiver is verified by means of accurate laboratory RBS measurements.",
+  "authors": [
+   {
+    "family": "Xu",
+    "given": "Jiaqi"
+   },
+   {
+    "family": "Witschas",
+    "given": "Benjamin"
+   },
+   {
+    "family": "Liang",
+    "given": "Kun"
+   },
+   {
+    "family": "Wang",
+    "given": "Yuanqing"
+   },
+   {
+    "family": "Ubachs",
+    "given": "Wim"
+   }
+  ]
+ },
+ {
+  "doi": "10.1201/9788743806691-8",
+  "title": "Extended Hydrodynamic Models for Rayleigh–Brillouin Scattering in Polyatomic Rarefied Gases: A Comparative Study",
+  "journal": "Mathematical Solutions for Complex Engineering Systems",
+  "shortjournal": "",
+  "year": 2026,
+  "month": 6,
+  "volume": "",
+  "issue": "",
+  "page": "147-168",
+  "type": "book-chapter",
+  "publisher": "River Publishers",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Kumar",
+    "given": "Anil"
+   },
+   {
+    "family": "Bhattacharjee",
+    "given": "Rahul"
+   },
+   {
+    "family": "Singh",
+    "given": "Satyvir"
+   },
+   {
+    "family": "Rana",
+    "given": "Anirudh Singh"
+   }
+  ]
+ },
+ {
+  "doi": "10.1103/xflf-7fkd",
+  "title": "Kinetic theory of stimulated Brillouin scattering with velocity-dependent collisional relaxation",
+  "journal": "Physical Review A",
+  "shortjournal": "Phys. Rev. A",
+  "year": 2026,
+  "month": 6,
+  "volume": "113",
+  "issue": "6",
+  "page": "",
+  "type": "journal-article",
+  "publisher": "American Physical Society (APS)",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Shaukat",
+    "given": "Muzzamal I."
+   },
+   {
+    "family": "Watson",
+    "given": "Cooper K."
+   },
+   {
+    "family": "Svidzinsky",
+    "given": "Anatoly"
+   },
+   {
+    "family": "Eden",
+    "given": "J. Gary"
+   },
+   {
+    "family": "Scully",
+    "given": "Marlan O."
+   }
+  ]
+ },
+ {
+  "doi": "10.1515/tp-2026-0013",
+  "title": "The study of coherent Rayleigh-Brillouin scattering in multiple flow regimes using unified gas-kinetic scheme",
+  "journal": "Transport Phenomena",
+  "shortjournal": "",
+  "year": 2026,
+  "month": 2,
+  "volume": "1",
+  "issue": "1",
+  "page": "",
+  "type": "journal-article",
+  "publisher": "Walter de Gruyter GmbH",
+  "abstract": "Abstract Coherent Rayleigh-Brillouin scattering (CRBS) holds great promise for the characterization of gas properties and the investigation of gas kinetic processes. The CRBS spectrum exhibits a strong dependence on the Knudsen number (Kn), revealing its inherently multiscale nature. In the unified gas-kinetic scheme (UGKS), collisions are intrinsically coupled with free transport during flux construction, endowing the method with distinct multiscale capabilities. Specifically, the UGKS reduces to a Boltzmann solver when the relaxation time τ ≥Δ t , and to the gas-kinetic scheme (GKS)-a Navier–Stokes solver-when τ ≪Δ t , thereby accommodating flow regimes without constraints on the molecular mean free path or collision time. In this study, the UGKS is extended to simulate CRBS phenomena, with the governing equation formulated based on the Bhatnagar–Gross–Krook (BGK)-Shakhov model. Detailed derivations are provided. To account for the additional perturbation source term, a second-order accurate numerical algorithm is developed using the Strang splitting method within the UGKS framework. The proposed model is validated against argon CRBS experiments, demonstrating excellent agreement. Building on this validated framework, the impact of incident signal intensity on CRBS spectra across a range of Knudsen numbers is systematically examined, accompanied by an in-depth analysis of the underlying physical mechanisms. This work broadens the applicability of computational fluid dynamics (CFD)-based CRBS simulations and provides a reliable numerical foundation for exploring high-intensity, multiscale gas-kinetic phenomena in future research.",
+  "authors": [
+   {
+    "family": "Xi",
+    "given": "Xiaozhe"
+   },
+   {
+    "family": "Cao",
+    "given": "Junzhe"
+   },
+   {
+    "family": "Xu",
+    "given": "Kun"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ol.549654",
+  "title": "Effect of temperature on Brillouin scattering in gas-filled hollow-core fibers",
+  "journal": "Optics Letters",
+  "shortjournal": "Opt. Lett.",
+  "year": 2025,
+  "month": 2,
+  "volume": "50",
+  "issue": "5",
+  "page": "1536",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "Stimulated Brillouin scattering (SBS) in gas-filled hollow-core fibers (HCFs) provides high gain and narrow linewidth, making it a promising platform for advanced photonic applications. While Brillouin gain is known to depend quadratically on pressure and linewidth inversely on pressure, the combined effect of pressure and temperature – through their influence on gas density—has not been fully explored. In this study, we demonstrate that lowering the gas temperature from 373.15 K to 233.15 K at a pressure of 100 bars (using nitrogen) leads to a six-fold increase in Brillouin gain and a twofold reduction in linewidth. We systematically investigate the temperature dependence of key Brillouin parameters, including gain, frequency shift, linewidth, acoustic velocity, and temperature sensitivity, in nitrogen and carbon dioxide gases. The results reveal distinct temperature-dependent behaviors, aligning well with theoretical predictions, and provide new insights, to the best of our knowledge, into optimizing SBS performance in gas-filled hollow-core fibers.",
+  "authors": [
+   {
+    "family": "Huang",
+    "given": "Xiaohui"
+   },
+   {
+    "family": "Qi",
+    "given": "Yun"
+   },
+   {
+    "family": "Pang",
+    "given": "Meng"
+   },
+   {
+    "family": "Yang",
+    "given": "Fan"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ofs.2023.f2.3",
+  "title": "Novel low-temperature fiber sensing technique using Brillouin scattering in gas",
+  "journal": "28th International Conference on Optical Fiber Sensors",
+  "shortjournal": "",
+  "year": 2023,
+  "month": "",
+  "volume": "",
+  "issue": "",
+  "page": "F2.3",
+  "type": "proceedings-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "Brillouin scattering in gases shows the unique property to offer an enhanced temperature sensitivity at very low temperatures. This attractive solution for cryogenic systems is justified theoretically and validated experimentally.",
+  "authors": [
+   {
+    "family": "Yang",
+    "given": "Yuting"
+   },
+   {
+    "family": "Soto",
+    "given": "Marcelo A."
+   },
+   {
+    "family": "Thévenaz",
+    "given": "Luc"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/fio.2021.jth5a.110",
+  "title": "Spontaneous Brillouin Scattering in Gas-filled Anti-resonant Fibre",
+  "journal": "Frontiers in Optics + Laser Science 2021",
+  "shortjournal": "",
+  "year": 2021,
+  "month": "",
+  "volume": "",
+  "issue": "",
+  "page": "JTh5A.110",
+  "type": "proceedings-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "Spontaneous Brillouin scattering is measured for the first time in a hollow-core anti-resonant fibre (HC-ARF) filled with Nitrogen (N 2 ) gas at different pressures. A Brillouin gain of 0.029 m − 1 W − 1 is yielded at a pressure of 34.7 bar.",
+  "authors": [
+   {
+    "family": "Galal",
+    "given": "Malak"
+   },
+   {
+    "family": "Zhang",
+    "given": "Li"
+   },
+   {
+    "family": "Yang",
+    "given": "Fan"
+   },
+   {
+    "family": "Sebastian",
+    "given": "Suneetha"
+   },
+   {
+    "family": "Gao",
+    "given": "Shoufei"
+   },
+   {
+    "family": "Wang",
+    "given": "Yingying"
+   },
+   {
+    "family": "Thévenaz",
+    "given": "Luc"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/ofs.2018.we1",
+  "title": "Optomechanical sensing of hydrogen based on Brillouin scattering in gas in a hollow-core photonic crystal fiber",
+  "journal": "26th International Conference on Optical Fiber Sensors",
+  "shortjournal": "",
+  "year": 2018,
+  "month": "",
+  "volume": "",
+  "issue": "",
+  "page": "WE1",
+  "type": "proceedings-article",
+  "publisher": "OSA",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Zhao",
+    "given": "Yan"
+   },
+   {
+    "family": "Jin",
+    "given": "Wei"
+   },
+   {
+    "family": "Yang",
+    "given": "Fan"
+   }
+  ]
+ },
+ {
+  "doi": "10.1117/12.2540683",
+  "title": "High spatial resolution and intrinsically strain-insensitive distributed temperature sensing based on stimulated Brillouin scattering in gas",
+  "journal": "Seventh European Workshop on Optical Fibre Sensors",
+  "shortjournal": "",
+  "year": 2019,
+  "month": 8,
+  "volume": "",
+  "issue": "",
+  "page": "91",
+  "type": "proceedings-article",
+  "publisher": "SPIE",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Gyger",
+    "given": "Flavien"
+   },
+   {
+    "family": "Yang",
+    "given": "Fan"
+   },
+   {
+    "family": "Thévenaz",
+    "given": "Luc"
+   }
+  ]
+ },
+ {
+  "doi": "10.1016/j.optcom.2026.132999",
+  "title": "Dual-iodine-cell Brillouin LiDAR for ocean temperature profile estimation based on flight data",
+  "journal": "Optics Communications",
+  "shortjournal": "Optics Communications",
+  "year": 2026,
+  "month": 7,
+  "volume": "608",
+  "issue": "",
+  "page": "132999",
+  "type": "journal-article",
+  "publisher": "Elsevier BV",
+  "abstract": "",
+  "authors": [
+   {
+    "family": "Yang",
+    "given": "Fu"
+   },
+   {
+    "family": "Liang",
+    "given": "Luqiang"
+   },
+   {
+    "family": "Wang",
+    "given": "Wenqun"
+   },
+   {
+    "family": "Hou",
+    "given": "Chunhe"
+   },
+   {
+    "family": "He",
+    "given": "Yan"
+   }
+  ]
+ },
+ {
+  "doi": "10.3390/rs16152748",
+  "title": "System Design of Ocean Temperature Measurement System Using Brillouin Lidar Based on Dual Iodine Cells",
+  "journal": "Remote Sensing",
+  "shortjournal": "Remote Sensing",
+  "year": 2024,
+  "month": 7,
+  "volume": "16",
+  "issue": "15",
+  "page": "2748",
+  "type": "journal-article",
+  "publisher": "MDPI AG",
+  "abstract": "Ocean temperature profile information plays a key role in understanding the marine environment. The passive remote-sensing technique can provide sea surface temperature measurements over large areas. However, it is sensitive to the atmospheric environment and cannot provide seawater temperature profile information. The lidar technique is the only way to carry out seawater temperature profile measurements over large areas. However, it is insufficient for measuring speed, the receiving field, stability, spectral integrity, simple system structures, and so on. Therefore, we propose a Brillouin lidar method combining two iodine cells at different temperatures to realize temperature measurements, where one iodine cell is used as a filter to absorb the elastic scattering and the other as an edge detection discriminator to obtain the seawater temperature measurement. The system has a fast measurement speed, a large receiving field, a simple system structure, and high stability. The system feasibility was verified via principle simulation and real iodine absorption curve measurements. For an ocean temperature of [5 °C, 15 °C], a laser wavelength of 532.10495 nm was more appropriate, corresponding to the iodine pool temperature combinations of 50 °C and 78 °C. For an ocean temperature of [15 °C, 32 °C], a laser wavelength of 532.10518 nm was more appropriate, corresponding to the iodine cell temperature combinations of 60 °C and 78 °C. When the laser intensity reached a measurement precision of 1‰, the temperature could be predicted with an accuracy of up to 0.2 K. This work shows promise as a potential solution for seawater temperature profile measurement.",
+  "authors": [
+   {
+    "family": "Yang",
+    "given": "Fu"
+   },
+   {
+    "family": "Chen",
+    "given": "Wenhao"
+   },
+   {
+    "family": "Liang",
+    "given": "Luqiang"
+   },
+   {
+    "family": "Fang",
+    "given": "Chunqi"
+   },
+   {
+    "family": "He",
+    "given": "Yan"
+   }
+  ]
+ },
+ {
+  "doi": "10.1364/oe.457095",
+  "title": "Retrieval of sound-velocity profile in ocean by employing Brillouin scattering LiDAR",
+  "journal": "Optics Express",
+  "shortjournal": "Opt. Express",
+  "year": 2022,
+  "month": 4,
+  "volume": "30",
+  "issue": "10",
+  "page": "16419",
+  "type": "journal-article",
+  "publisher": "Optica Publishing Group",
+  "abstract": "Accurate remote sensing of the sound velocity profile of the upper-ocean mixed layers is of major important in oceanography, especially in underwater acoustic communication. However, the existing technologies cannot realize fast and real-time detection on sound velocity profile, a cost efficiency, flexibility, and real-time remote sensing technique is still highly urgent. In this paper, we propose a novel approach based on stimulated Brillouin scattering (SBS) LiDAR for retrieving the sound velocity profile. The sound velocity profiles in the upper-ocean mixed layer of South China Sea were retrieved theoretically and experimentally. We simulated the sound velocity profile of the upper-ocean mixed layer in South China Sea by using the Del Grosso algorithm and the data of temperature, salinity, depth selected from the World Ocean Atlas 2018 (WOA18). We designed a special ocean simulation system to measure the sound velocity in seawater with different temperatures, salinities, and pressures through measuring the frequency shift of SBS. Based on the measured sound velocities, we built a retrieval equation to express the sound velocity as a function of temperature, salinity, and pressure. Then, we retrieved the sound velocity profile of the upper-ocean mixed layer of South China Sea by using the retrieval equation. The results show that the retrieved sound velocity profile is good agreement with the theoretical simulation, and the difference between them is approximately 1∼2 m/s. Also, we have analyzed the differences between the theoretical simulation and experimental measurement. This work is essential to future application for remote sensing the sound velocity distribution profiles of the upper-ocean mixed layers by using the Brillouin LiDAR technique.",
+  "authors": [
+   {
+    "family": "Shi",
+    "given": "Jiulin"
+   },
+   {
+    "family": "Xu",
+    "given": "Ning"
+   },
+   {
+    "family": "Luo",
+    "given": "Ningning"
+   },
+   {
+    "family": "Li",
+    "given": "Shujing"
+   },
+   {
+    "family": "Xu",
+    "given": "Jinjun"
+   },
+   {
+    "family": "He",
+    "given": "Xingdao"
+   }
+  ]
+ }
+]

@@ -1,0 +1,4169 @@
+[
+ {
+  "key": "56AAPBVX",
+  "type": "journalArticle",
+  "title": "【Air、N2】【G3】基于小于一个标准大气压动力学区域的瑞利-布里渊散射的气体温度和压力的同时测量",
+  "DOI": "10.1016/j.optcom.2020.126721",
+  "creators": "Wang Jun;Pang Jingzhe;Chen Ning",
+  "date": "2021-04",
+  "pub": "Optics Communications"
+ },
+ {
+  "key": "5T3PTVDA",
+  "type": "journalArticle",
+  "title": "【@G-factor】【Tenti S6 vs G-factor vs G3 vs V3】【进行了解耦】改进的气体中瑞利-布里渊散射光谱的解析模型",
+  "DOI": "10.1080/09500340.2019.1654624",
+  "creators": "Ji Hang;Wu Hang;Yu Yin",
+  "date": "2019-09-20",
+  "pub": "Journal of Modern Optics"
+ },
+ {
+  "key": "NNTX3SI2",
+  "type": "journalArticle",
+  "title": "【Air】【Tenti S6】空气的瑞利-布里渊光散射光谱学：实验、预测模型和无量纲缩放",
+  "DOI": "10.1080/00268976.2020.1804635",
+  "creators": "Wang Yuanqing;Gu Ziyu;Liang Kun",
+  "date": "2021-01-17",
+  "pub": "Molecular Physics"
+ },
+ {
+  "key": "238GIMKH",
+  "type": "journalArticle",
+  "title": "【Ar、N2、CH4】【Tenti S6】在高达20atm的压力下对Ar、N2和CH4的瑞利-布里渊散射光谱进行测量",
+  "DOI": "10.1016/j.proci.2022.09.037",
+  "creators": "Teav Ketana;Steinberg Adam M.",
+  "date": "2023",
+  "pub": "Proceedings of the Combustion Institute"
+ },
+ {
+  "key": "A5NCBHH3",
+  "type": "journalArticle",
+  "title": "【CRBS】采用双色单次相干瑞利-布里渊散射方案对托尔级、无籽、非共振速度分布函数进行测量",
+  "DOI": "10.1088/1361-6463/acb275",
+  "creators": "Bak Junhwi;Randolph Robert;Gerakis Alexandros",
+  "date": "2023-02-16",
+  "pub": "Journal of Physics D: Applied Physics"
+ },
+ {
+  "key": "8754NA5M",
+  "type": "journalArticle",
+  "title": "【CRBS】啁啾率对单次发射相干瑞利-布里渊散射的影响",
+  "DOI": "10.1103/physreva.110.033519",
+  "creators": "Suzuki S.;Gerakis A.;Hara K.",
+  "date": "2024-09-18",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "NVKRXQ45",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】基于自发瑞利-布里渊散射的相关参数误差对气体温度准确测量的影响",
+  "DOI": "10.3788/aos201939.0912006",
+  "creators": "Tao Wu 吴涛;Chuanyin Yang 杨传音;Jingcheng Shang 商景诚",
+  "date": "2019",
+  "pub": "Acta Optica Sinica"
+ },
+ {
+  "key": "ZBHE7Z8T",
+  "type": "journalArticle",
+  "title": "【Air、N2】【Tenti S6】Air和N2中瑞利-布里渊谱线宽的温度依赖性",
+  "DOI": "10.3390/s17071503",
+  "creators": "Liang Kun;Xu Jiaqi;Zhang Peng",
+  "date": "2017-06-26",
+  "pub": "Sensors"
+ },
+ {
+  "key": "R5KXK27A",
+  "type": "journalArticle",
+  "title": "【CRBS】基于相干瑞利-布里渊散射的遥感气体测量",
+  "DOI": "10.1063/1.4959778",
+  "creators": "Gerakis A.;Shneider M. N.;Stratton B. C.",
+  "date": "2016-07-18",
+  "pub": "Applied Physics Letters"
+ },
+ {
+  "key": "I5RKR2LJ",
+  "type": "journalArticle",
+  "title": "【@】【多原子气体】【Wu模型】非振动多原子气体的Boltzmann方程的动力学模型",
+  "DOI": "10.1017/jfm.2014.632",
+  "creators": "Wu Lei;White Craig;Scanlon Thomas J.",
+  "date": "2015-01-25",
+  "pub": "Journal of Fluid Mechanics"
+ },
+ {
+  "key": "SS36VT95",
+  "type": "journalArticle",
+  "title": "【CRBS】【N2、Ar、CH4】大气原子和分子气体温度的相干瑞利-布里渊散射测量",
+  "DOI": "10.1364/oe.22.020117",
+  "creators": "Graul Jacob;Lilly Taylor",
+  "date": "2014-08-25",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "LN9APGX2",
+  "type": "journalArticle",
+  "title": "【CRBS】利用啁啾光晶格实现单次相干瑞利-布里渊散射",
+  "DOI": "10.1364/ol.38.004449",
+  "creators": "Gerakis A.;Shneider M. N.;Barker P. F.",
+  "date": "2013-11-01",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "BMYVQJCI",
+  "type": "journalArticle",
+  "title": "【CRBS】相干瑞利-布里渊散射在原位纳米颗粒和大分子检测中的应用",
+  "DOI": "10.1063/1.4804137",
+  "creators": "Shneider M. N.;Gimelshein S. F.",
+  "date": "2013-04-29",
+  "pub": "Applied Physics Letters"
+ },
+ {
+  "key": "YDYTRKWC",
+  "type": "journalArticle",
+  "title": "【CRBS】由高强度光晶格限制的气体所产生的窄带相干瑞利-布里渊散射",
+  "DOI": "10.1103/physreva.87.033825",
+  "creators": "Cornella Barry M.;Gimelshein Sergey F.;Lilly Taylor C.",
+  "date": "2013-3-22",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "IE4IKNTG",
+  "type": "journalArticle",
+  "title": "【@G3】【Air】【Tenti S6 vs G3】空气瑞利-布里渊线形的解析模型",
+  "DOI": "10.1364/ao.50.000267",
+  "creators": "Witschas B.",
+  "date": "2011-01-20",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "ISQFDK6J",
+  "type": "journalArticle",
+  "title": "【CRBS】原子和分子物种中窄带相干瑞利-布里渊散射的实验与数值分析",
+  "DOI": "10.1364/oe.20.012975",
+  "creators": "Cornella Barry M.;Gimelshein Sergey F.;Shneider Mikhail N.",
+  "date": "2012-06-04",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "T66Y9GTF",
+  "type": "journalArticle",
+  "title": "【CRBS】相干瑞利-布里渊散射中的谱线变窄",
+  "DOI": "10.1103/physrevlett.107.173903",
+  "creators": "Manteghi A.;Dam N. J.;Meijer A. S.",
+  "date": "2011-10-18",
+  "pub": "Physical Review Letters"
+ },
+ {
+  "key": "9CHQKPRW",
+  "type": "journalArticle",
+  "title": "【CRBS】二元气体混合物中的相干瑞利-布里渊散射",
+  "DOI": "10.1088/1742-5468/2007/03/p03013",
+  "creators": "Marques W",
+  "date": "2007-03-23",
+  "pub": "Journal of Statistical Mechanics: Theory and Experiment"
+ },
+ {
+  "key": "XKKC7XZI",
+  "type": "journalArticle",
+  "title": "【CRBS】【CO2】二氧化碳中相干瑞利-布里渊散射的功率谱",
+  "DOI": "10.1103/physreva.71.045801",
+  "creators": "Pan Xingguo;Shneider Mikhail N.;Miles Richard B.",
+  "date": "2005-04-04",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "ZKJB3S9B",
+  "type": "journalArticle",
+  "title": "【CRBS】分子气体中的相干瑞利-布里渊散射",
+  "DOI": "10.1103/physreva.69.033814",
+  "creators": "Pan Xingguo;Shneider Mikhail N.;Miles Richard B.",
+  "date": "2004-03-22",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "8VI9V9VP",
+  "type": "journalArticle",
+  "title": "【CRBS】相干瑞利-布里渊散射",
+  "DOI": "10.1103/physrevlett.89.183001",
+  "creators": "Pan Xingguo;Shneider Mikhail N.;Miles Richard B.",
+  "date": "2002-10-10",
+  "pub": "Physical Review Letters"
+ },
+ {
+  "key": "5TZY2H5Z",
+  "type": "journalArticle",
+  "title": "【@】【多原子气体】【Rough-sphere模型】扩展动力学模中型的光散射：多原子理想气体",
+  "DOI": "10.1016/s0378-4371(98)00427-0",
+  "creators": "Marques Wilson",
+  "date": "1999-02",
+  "pub": "Physica A: Statistical Mechanics and its Applications"
+ },
+ {
+  "key": "QU39AMTZ",
+  "type": "journalArticle",
+  "title": "【S-RBS】【Ar、SF6】纯气体中的受激瑞利-布里渊增益光谱学",
+  "DOI": "10.1103/physrevlett.51.1648",
+  "creators": "She C. Y.;Herring G. C.;Moosmüller H.",
+  "date": "1983-10-31",
+  "pub": "Physical Review Letters"
+ },
+ {
+  "key": "KJH4ZQP9",
+  "type": "journalArticle",
+  "title": "【CRBS】【CO2、SO2、H2S、C2H6】【Tenti-S6】相干瑞利-布里渊散射测量极性和非极性气体的体积粘度及其动力学理论",
+  "DOI": "10.1063/1.3491513",
+  "creators": "Meijer A. S.;De Wijn A. S.;Peters M. F. E.",
+  "date": "2010-10-28",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "2C7AX6MW",
+  "type": "journalArticle",
+  "title": "液态稀有气体的体积粘度",
+  "DOI": "10.1063/1.5142364",
+  "creators": "Chatwell René Spencer;Vrabec Jadran",
+  "date": "2020-03-07",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "4CDWLBZT",
+  "type": "journalArticle",
+  "title": "【CO2】【Tenti S6】基于自发瑞利-布里渊散射的CO2体积粘度测量",
+  "DOI": "10.1109/access.2020.2976883",
+  "creators": "Shang Jingcheng;Wu Tao;Wang Hao",
+  "date": "2020",
+  "pub": "IEEE Access"
+ },
+ {
+  "key": "2RK69UWZ",
+  "type": "journalArticle",
+  "title": "【N2】【Tenti S6】从自发瑞利-布里渊散射中确定氮气的温度依赖性体积粘度",
+  "DOI": "10.1364/ol.38.001110",
+  "creators": "Gu Ziyu;Ubachs Wim",
+  "date": "2013-04-01",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "NGY5RJHC",
+  "type": "journalArticle",
+  "title": "【!】【OTDR】空芯反谐振光纤中气体压力分布演化的分布式测量与修正Navier-Stokes模型",
+  "DOI": "10.1109/jstqe.2024.3397456",
+  "creators": "Elistratova Elizaveta;Kelly Thomas W.;Davidson Ian A.",
+  "date": "2024-11",
+  "pub": "IEEE Journal of Selected Topics in Quantum Electronics"
+ },
+ {
+  "key": "3AE6GZC6",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】Waldmann-Snider Collision Integrals and Nonspherical Molecular Interaction. I. Collision Integrals for Pure Gases",
+  "DOI": "10.1515/zna-1974-1202",
+  "creators": "Köhler W. E.",
+  "date": "1974-12-01",
+  "pub": "Zeitschrift für Naturforschung A"
+ },
+ {
+  "key": "X8GVBQQH",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【N2】分子氮中的瑞利-布里渊光谱",
+  "DOI": "10.1103/physreva.13.752",
+  "creators": "Sandoval R. P.;Armstrong R. L.",
+  "date": "1976-02-01",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "R7BZT4NQ",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【CO2、N2、C2F6、C2H6】瑞利-布里渊散射气体的内部弛豫",
+  "DOI": "10.1063/1.432723",
+  "creators": "Lao Q. H.;Schoen P. E.;Chu B.",
+  "date": "1976-05-01",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "W5YRBJFF",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【He、Ne、Ar】惰性气体布里渊光谱的缩放行为",
+  "DOI": "10.1063/1.432774",
+  "creators": "Fookson J. E.;Gornall W. S.;Cohen H. D.",
+  "date": "1976-07-01",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "NA8JE8R9",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【He、Ne、Ar】压缩的氦、氖和氩的瑞利-布里渊光谱。I：缩放",
+  "DOI": "10.1103/physreva.22.692",
+  "creators": "Ghaem-Maghami V.;May A. D.",
+  "date": "1980-08-01",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "J5UT3VJX",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】中等密度气体混合物的散射光研究：流体动力学区域",
+  "DOI": "10.1103/physreva.24.1574",
+  "creators": "Letamendia L.;Chabrat J. P.;Nouchi G.",
+  "date": "1981-09-01",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "ET44KQZP",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【S-RBS】【SF6、Ar、SF6-He】受激瑞利-布里渊增益光谱学",
+  "DOI": "10.1103/physreva.31.3733",
+  "creators": "She C. Y.;Herring G. C.;Moosmüller H.",
+  "date": "1985-06-01",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "KPNUMAMH",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【CS2、CCI4 】具有内部自由度的流体。II.瑞利-布里渊散射",
+  "DOI": "10.1063/1.451881",
+  "creators": "López De Haro M.;Rodríguez R. F.;García-Colín L. S.",
+  "date": "1987-04-01",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "5U7VS4U5",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】在355nm处的激光雷达风剖面的双边缘分子测量",
+  "DOI": "10.1364/ol.25.001466",
+  "creators": "Flesia Cristina;Korb C. Laurence;Hirt Christian",
+  "date": "2000-10-01",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "8GTJ8M7A",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【SF6】气体SF6的各向同性碰撞诱导光散射光谱",
+  "DOI": "10.1063/1.1463421",
+  "creators": "Godet J.-L.;Rachet F.;Le Duff Y.",
+  "date": "2002-04-01",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "ZJ9DNCX3",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【CO2】关于二氧化碳中相干瑞利-布里渊散射功率谱的说明",
+  "DOI": "",
+  "creators": "Pan Xingguo;Shneider Mikhail N;Miles Richard B",
+  "date": "2004",
+  "pub": ""
+ },
+ {
+  "key": "4LFW9MP6",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【N2、Air】【Tenti S6、Tenti S7、Gaussian】地球风速测量的瑞利-布里渊散射实验室研究",
+  "DOI": "",
+  "creators": "Ubachs W;Vieitez M O;Gu Z Y",
+  "date": "2005",
+  "pub": ""
+ },
+ {
+  "key": "TJNV862H",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【O2、N2、Air】【Tenti S6】氮气、氧气和空气中的瑞利-布里渊散射",
+  "DOI": "",
+  "creators": " ",
+  "date": "2010",
+  "pub": ""
+ },
+ {
+  "key": "H8J3YQPX",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】空气中自发瑞利-布里渊散射的实验",
+  "DOI": "",
+  "creators": "",
+  "date": "2011",
+  "pub": ""
+ },
+ {
+  "key": "ZV2QQAR3",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【N2、SF6】用于紫外波段的瑞利-布里渊散射光谱仪",
+  "DOI": "10.1063/1.4721272",
+  "creators": "Gu Ziyu;Vieitez M. Ofelia;Van Duijn Eric-Jan",
+  "date": "2012-05-01",
+  "pub": "Review of Scientific Instruments"
+ },
+ {
+  "key": "JPI6QU5Q",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【Air】不同温度和压力下空气的瑞利-布里渊散射图谱",
+  "DOI": "10.1364/ao.52.004640",
+  "creators": "Gu Ziyu;Witschas Benjamin;Van De Water Willem",
+  "date": "2013-07-01",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "PS4J6WNM",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】一种测量气体自发瑞利-布里渊散射频谱的系统",
+  "DOI": "10.3788/lop51.072901",
+  "creators": "Feng Jing 冯静;He Xingdao 何兴道;Wu Tao 吴涛",
+  "date": "2014",
+  "pub": "Laser & Optoelectronics Progress"
+ },
+ {
+  "key": "4Q4JNWXN",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【CO2】【Tenti S6 vs S7】二氧化碳的瑞利-布里渊散射",
+  "DOI": "10.1364/ol.39.003301",
+  "creators": "Gu Z. Y.;Ubachs W.;Van De Water W.",
+  "date": "2014-06-01",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "T6Y88RD6",
+  "type": "journalArticle",
+  "title": "【Air、N2、O2】对空气、氮气和氧气气体中瑞利-布里渊散射的系统研究",
+  "DOI": "10.1063/1.4895130",
+  "creators": "Gu Ziyu;Ubachs Wim",
+  "date": "2014-09-14",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "G9UDA7FR",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【Air】利用瑞利-布里渊散射测量对流层温度剖面：来自实验室和大气研究的结果",
+  "DOI": "10.1051/epjconf/201611927004",
+  "creators": "Witschas Benjamin;Reitebuch Oliver;Lemmerz Christian",
+  "date": "2016",
+  "pub": "EPJ Web of Conferences"
+ },
+ {
+  "key": "7PFLCFNE",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【Air】自发气体瑞利-布里渊散射光谱的理论与实验分析",
+  "DOI": "10.1016/j.ijleo.2016.05.042",
+  "creators": "Xia Ruxiao;He Xingdao;Wu Tao",
+  "date": "2016-09",
+  "pub": "Optik"
+ },
+ {
+  "key": "AQUVHG3B",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【N2、O2、Air】【Tenti S6】基于自发瑞利-布里渊散射的氮气、氧气和空气的温度依赖性的体积粘度的测量",
+  "DOI": "10.1109/access.2019.2942219",
+  "creators": "Shang Jingcheng;Wu Tao;Wang Hao",
+  "date": "2019",
+  "pub": "IEEE Access"
+ },
+ {
+  "key": "3XQJGL5K",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【DSMC】气体热波动的直接模拟蒙特卡罗模拟",
+  "DOI": "10.1063/1.5093369",
+  "creators": "Bruno Domenico",
+  "date": "2019-04-01",
+  "pub": "Physics of Fluids"
+ },
+ {
+  "key": "JHGR77GD",
+  "type": "journalArticle",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【SF6】【DSMC、Hydro-i、Hydro-r 、EV】SF6中瑞利-布里渊散射光谱中的密集气体效应",
+  "DOI": "10.1016/j.cplett.2019.136595",
+  "creators": "Bruno D.;Frezzotti A.",
+  "date": "2019-09",
+  "pub": "Chemical Physics Letters"
+ },
+ {
+  "key": "UTAJ3Z2D",
+  "type": "journalArticle",
+  "title": "【CRBS】单次相干瑞利-布里渊散射的无籽非共振气体流动速度测量技术",
+  "DOI": "10.1103/ktvb-mw8z",
+  "creators": "Gerakis Alexandros;Bak Junhwi;Randolph Robert",
+  "date": "2025-12-10",
+  "pub": "Physical Review Applied"
+ },
+ {
+  "key": "H3847UHT",
+  "type": "journalArticle",
+  "title": "利用基于VIPA的光谱仪对低温低压气体中的瑞利-布里渊散射进行快速测量",
+  "DOI": "10.1364/ol.551346",
+  "creators": "Pi Sihao;Wu Tao;Feng Xinxin",
+  "date": "2025-03-15",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "SZR7AJBS",
+  "type": "journalArticle",
+  "title": "【CRBS】同时、多点、单次相干瑞利-布里渊散射",
+  "DOI": "10.1364/ol.575049",
+  "creators": "Kumar Atulya;Kounalakis Marios;Flores Alfaro Gabriel M.",
+  "date": "2025-12-15",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "4BHP3MMI",
+  "type": "journalArticle",
+  "title": "【CRBS】相干瑞利-布里渊散射：分子间势能和啁啾率的影响",
+  "DOI": "10.1017/flo.2026.10041",
+  "creators": "Wu Lei",
+  "date": "2026",
+  "pub": "Flow"
+ },
+ {
+  "key": "K7Z65GM2",
+  "type": "journalArticle",
+  "title": "【SF6−He、SF6−D2、SF6−H2】不同质量成分的二元混合气体中的瑞利-布里渊散射：SF6−He、SF6−D2和SF6−H2",
+  "DOI": "10.1103/physreve.103.013102",
+  "creators": "Wang Yuanqing;Ubachs Wim;Marques Wilson",
+  "date": "2021-01-05",
+  "pub": "Physical Review E"
+ },
+ {
+  "key": "DQRHFBKQ",
+  "type": "journalArticle",
+  "title": "【CT-DSMC】通过CT-DSMC模拟分子氧中的瑞利-布里渊散射",
+  "DOI": "10.1016/j.euromechflu.2016.12.007",
+  "creators": "Bruno Domenico;Frezzotti Aldo;Ghiroldi Gian Pietro",
+  "date": "2017-07",
+  "pub": "European Journal of Mechanics - B/Fluids"
+ },
+ {
+  "key": "7W752NV7",
+  "type": "journalArticle",
+  "title": "【N2、Air】【Tenti S6 vs G3 vs V3】氮气和空气瑞利-布里渊光谱轮廓及布里渊频移分析",
+  "DOI": "10.1364/oe.22.002092",
+  "creators": "Ma Yong;Li Hao;Gu ZiYu",
+  "date": "2014-01-27",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "R8ERCENF",
+  "type": "journalArticle",
+  "title": "Brillouin scattering in hollow-core fibers filled with mixed gas",
+  "DOI": "10.1364/ol.559173",
+  "creators": "Huang Xiaohui;Wang Anting;Qi Yun",
+  "date": "2025-06-15",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "BMMG4LRG",
+  "type": "journalArticle",
+  "title": "反谐振空芯光纤中的背向散射：比标准光纤低40dB以上",
+  "DOI": "10.1364/optica.403087",
+  "creators": "Michaud-Belleau V.;Numkam Fokoua E.;Bradley T. D.",
+  "date": "2021-02-20",
+  "pub": "Optica"
+ },
+ {
+  "key": "H28VB8AK",
+  "type": "journalArticle",
+  "title": "气体填充反谐振空芯光纤的光声布里渊光谱",
+  "DOI": "10.1364/optica.417235",
+  "creators": "Zhao Yan;Qi Yun;Ho Hoi Lut",
+  "date": "2021-04-20",
+  "pub": "Optica"
+ },
+ {
+  "key": "Z29LZAWY",
+  "type": "journalArticle",
+  "title": "空芯光纤技术：“气体光子学”的崛起",
+  "DOI": "10.3390/fib7020016",
+  "creators": "Debord Benoît;Amrani Foued;Vincetti Luca",
+  "date": "2019-02-18",
+  "pub": "Fibers"
+ },
+ {
+  "key": "NWV7WYHL",
+  "type": "journalArticle",
+  "title": "宽带37芯空芯光纤的首次演示及其在高容量模式分复用中的应用",
+  "DOI": "",
+  "creators": "Jung Y;Fokoua E Numkam;Wooler J P",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "C55EEPUX",
+  "type": "journalArticle",
+  "title": "空芯光子晶体光纤的极限低损耗",
+  "DOI": "10.1364/opex.13.000236",
+  "creators": "Roberts P. J.;Couny F.;Sabert H.",
+  "date": "2005",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "K8CX6FWP",
+  "type": "journalArticle",
+  "title": "空芯光纤气体激光器（hofglas）研究进展综述[特邀]",
+  "DOI": "10.1364/ome.2.000948",
+  "creators": "Nampoothiri A. V. Vasudevan;Jones Andrew M.;Fourcade-Dutin C.",
+  "date": "2012-07-01",
+  "pub": "Optical Materials Express"
+ },
+ {
+  "key": "F7DWIGZM",
+  "type": "journalArticle",
+  "title": "空芯光子带隙光纤：技术及其应用",
+  "DOI": "10.1515/nanoph-2013-0042",
+  "creators": "Poletti Francesco;Petrovich Marco N.;Richardson David J.",
+  "date": "2013-12-16",
+  "pub": "nanoph"
+ },
+ {
+  "key": "BLV4RHYU",
+  "type": "journalArticle",
+  "title": "嵌套反谐振无节点空芯光纤",
+  "DOI": "10.1364/oe.22.023807",
+  "creators": "Poletti Francesco",
+  "date": "2014-10-06",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "XB8TU7XZ",
+  "type": "journalArticle",
+  "title": "反谐振六角空芯光纤",
+  "DOI": "10.1364/oe.23.001289",
+  "creators": "Hayes John R.;Poletti Francesco;Abokhamis Mousavi S.",
+  "date": "2015-01-26",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "G4B26C2L",
+  "type": "journalArticle",
+  "title": "基于腔体的中红外光纤气体激光器，由二极管激光泵浦",
+  "DOI": "10.1364/optica.3.000218",
+  "creators": "Abu Hassan Muhammad Rosdi;Yu Fei;Wadsworth William J.",
+  "date": "2016-03-20",
+  "pub": "Optica"
+ },
+ {
+  "key": "6BDA4CIW",
+  "type": "journalArticle",
+  "title": "双芯反谐振空芯光纤",
+  "DOI": "",
+  "creators": "Liu Xuesong;Fan Zhongwei;Shi Zhaohui",
+  "date": "2016-07-25",
+  "pub": ""
+ },
+ {
+  "key": "G9QMM2GZ",
+  "type": "journalArticle",
+  "title": "用于气体压力传感的空芯光纤反谐振反射式导引机构",
+  "DOI": "10.1364/oe.24.027890",
+  "creators": "Hou Maoxiang;Zhu Feng;Wang Ying",
+  "date": "2016-11-28",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "5Y9EDR8P",
+  "type": "journalArticle",
+  "title": "可见光谱范围无芯空芯光纤",
+  "DOI": "10.1364/ol.42.000061",
+  "creators": "Gao Shou-fei;Wang Ying-ying;Liu Xiao-lu",
+  "date": "2017-01-01",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "CET3NLTF",
+  "type": "journalArticle",
+  "title": "反谐振空芯光纤色散的测量",
+  "DOI": "10.1109/jphot.2018.2861226",
+  "creators": "Grigorova Teodora;Sollapur Rudrakant;Hoffmann Andreas",
+  "date": "2018-08",
+  "pub": "IEEE Photonics Journal"
+ },
+ {
+  "key": "K284HNPS",
+  "type": "journalArticle",
+  "title": "左轮手枪空芯光纤",
+  "DOI": "10.3390/fib6020039",
+  "creators": "Bufetov Igor;Kosolapov Alexey;Pryamikov Andrey",
+  "date": "2018-06-07",
+  "pub": "Fibers"
+ },
+ {
+  "key": "LBRC65I4",
+  "type": "journalArticle",
+  "title": "具有损耗极低的空芯连体管型负曲率光纤",
+  "DOI": "10.1038/s41467-018-05225-1",
+  "creators": "Gao Shou-fei;Wang Ying-ying;Ding Wei",
+  "date": "2018-07-19",
+  "pub": "Nature Communications"
+ },
+ {
+  "key": "TI34GDLD",
+  "type": "journalArticle",
+  "title": "基于瑞利-布里渊光谱的气体温度和压力反演",
+  "DOI": "10.1109/access.2020.2965643",
+  "creators": "Zhang Peng;Xu Jiaqi;Zhang Ruizhe",
+  "date": "2020",
+  "pub": "IEEE Access"
+ },
+ {
+  "key": "HEH9R4MS",
+  "type": "journalArticle",
+  "title": "【BOTDR】【提取BFS算法：相似匹配法】基于相似匹配方法的光纤布里渊频移提取准确性影响因素分析",
+  "DOI": "10.3788/cjl202047.0506003",
+  "creators": "Zhao Lijuan 赵丽娟;Wang Heqing 王贺晴;Xu Zhiniu 徐志钮",
+  "date": "2020",
+  "pub": "Chinese Journal of Lasers"
+ },
+ {
+  "key": "BZX2BFIW",
+  "type": "journalArticle",
+  "title": "理解反谐振空芯光纤的材料损耗",
+  "DOI": "10.1364/oe.380847",
+  "creators": "Wu Dakun;Yu Fei;Liao Meisong",
+  "date": "2020-04-13",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "BFCRH9S8",
+  "type": "journalArticle",
+  "title": "空芯光子晶体光纤气体传感",
+  "DOI": "10.3390/s20102996",
+  "creators": "Yu Ruowei;Chen Yuxing;Shui Lingling",
+  "date": "2020-05-25",
+  "pub": "Sensors"
+ },
+ {
+  "key": "X6KLKVVL",
+  "type": "journalArticle",
+  "title": "低损耗空芯反谐振光纤及其应用的最新进展",
+  "DOI": "10.1109/jstqe.2019.2957445",
+  "creators": "Ding Wei;Wang Ying-Ying;Gao Shou-Fei",
+  "date": "2020-07",
+  "pub": "IEEE Journal of Selected Topics in Quantum Electronics"
+ },
+ {
+  "key": "YJYPF9AX",
+  "type": "journalArticle",
+  "title": "1.9 µm波长窗口中的双折射大模场面积反谐振空芯光纤",
+  "DOI": "10.1364/ol.398650",
+  "creators": "Stępniewski Grzegorz;Dobrakowski Dominik;Pysz Dariusz",
+  "date": "2020-08-01",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "TB4QZ56A",
+  "type": "journalArticle",
+  "title": "反谐振空芯光纤中的超低布里渊散射",
+  "DOI": "10.1063/5.0017796",
+  "creators": "Iyer Arjun;Xu Wendao;Antonio-Lopez J. Enrique",
+  "date": "2020-09-01",
+  "pub": "APL Photonics"
+ },
+ {
+  "key": "FPAUX8FM",
+  "type": "journalArticle",
+  "title": "空芯光纤",
+  "DOI": "10.13164/re.2020.0417",
+  "creators": "Komanec M.;Dousek D.;Suslov D.",
+  "date": "2020-09-15",
+  "pub": "Radioengineering"
+ },
+ {
+  "key": "3LCTJ8U2",
+  "type": "journalArticle",
+  "title": "基于深度学习的多模态光纤分布式温度传感",
+  "DOI": "10.3390/s25092811",
+  "creators": "Yang Luxuan;Wang Xiaoyan;Wu Tong",
+  "date": "2025-04-29",
+  "pub": "Sensors"
+ },
+ {
+  "key": "CBGKT9NZ",
+  "type": "journalArticle",
+  "title": "【综述】相位敏感光时域反射技术事件分类研究进展",
+  "DOI": "10.3788/lop251762",
+  "creators": "Li Wei 李微;Fu Haiwei 傅海威;Wang Boan 王柏安",
+  "date": "2026",
+  "pub": "Laser & Optoelectronics Progress"
+ },
+ {
+  "key": "P5BJXT8R",
+  "type": "journalArticle",
+  "title": "长距离充SF6反谐振空芯光纤中的布里渊散射与单纵模激射",
+  "DOI": "10.1364/prj.575393",
+  "creators": "Liang Hao;Zhang Weixiang;Wang Zhiqi",
+  "date": "2026-04-01",
+  "pub": "Photonics Research"
+ },
+ {
+  "key": "93YEB2ZB",
+  "type": "journalArticle",
+  "title": "空芯反谐振光纤传感器用于同时测量CH₄和C₂H₂",
+  "DOI": "10.1109/jlt.2026.3663354",
+  "creators": "Yang Yuan;Yan Zhengqiang;Tang Qiaoling",
+  "date": "2026-5-1",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "F3PIGH26",
+  "type": "journalArticle",
+  "title": "【BOTDR】利用布里渊拍频光谱重建技术增强斜坡辅助BOTDR的精度",
+  "DOI": "10.1016/j.optlastec.2025.114349",
+  "creators": "Zan Wei;Bai Qing;Liu Xinyi",
+  "date": "2026-01",
+  "pub": "Optics & Laser Technology"
+ },
+ {
+  "key": "LDIJAXKP",
+  "type": "journalArticle",
+  "title": "空芯光纤中的背向散射表征：通过直接和相干OTDR技术分离空气分子与表面散射来源",
+  "DOI": "",
+  "creators": "Nakamura Atsushi;Hayakawa Jumpei;Iida Hiroyuki",
+  "date": "2026",
+  "pub": "Optical Fiber Communication Conference"
+ },
+ {
+  "key": "FRXDTCGM",
+  "type": "journalArticle",
+  "title": "基于物理原理的数据驱动物种分类及气体密度估计，采用谱分散式的自发瑞利-布里渊散射技术",
+  "DOI": "10.1016/j.optlastec.2025.112651",
+  "creators": "Park Y.;Kim K.;Kim S.",
+  "date": "2025-08",
+  "pub": "Optics & Laser Technology"
+ },
+ {
+  "key": "UZUHMH6Q",
+  "type": "journalArticle",
+  "title": "光学吸收光谱揭示反谐振空芯光纤中的气态氯",
+  "DOI": "10.1364/oe.537473",
+  "creators": "Harrington K.;Mears R.;Stone J. M.",
+  "date": "2024-10-21",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "SGIPWI5C",
+  "type": "journalArticle",
+  "title": "反谐振空芯光纤中的超高容量传输",
+  "DOI": "10.1109/jlt.2025.3600818",
+  "creators": "Liu Xumeng;Zhang Xu;Li Chao",
+  "date": "2025",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "YE5SATYE",
+  "type": "journalArticle",
+  "title": "利用气体诱导差分折射率降低气密封装空芯光纤气体池的损耗与弯曲敏感性",
+  "DOI": "10.1364/oe.545939",
+  "creators": "Pradhan Somarpita;Kelly Thomas W.;Elistratova Elizaveta",
+  "date": "2025-01-13",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "6C7XFINI",
+  "type": "journalArticle",
+  "title": "超低损耗、超高模纯度的四重截断型双嵌套反谐振空芯光纤",
+  "DOI": "10.1364/optica.542911",
+  "creators": "Gao Shoufei;Chen Hao;Sun Yizhi",
+  "date": "2025-01-20",
+  "pub": "Optica"
+ },
+ {
+  "key": "SW49UQW9",
+  "type": "journalArticle",
+  "title": "基于反演建模的布里渊激光雷达气体温度和压力的反演",
+  "DOI": "10.1109/jsen.2025.3563720",
+  "creators": "Zhang Peng",
+  "date": "2025-6-1",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "C4VHD899",
+  "type": "journalArticle",
+  "title": "宽带光纤，每公里衰减低于0.1dB",
+  "DOI": "10.1038/s41566-025-01747-5",
+  "creators": "Petrovich Marco;Numkam Fokoua Eric;Chen Yong",
+  "date": "2025-09-01",
+  "pub": "Nature Photonics"
+ },
+ {
+  "key": "63K9H8KA",
+  "type": "journalArticle",
+  "title": "基于相敏光时域反射技术的光纤传感器性能提升",
+  "DOI": "10.1007/s12596-023-01578-z",
+  "creators": "Zhan Yage;Li Kehan;Liu Lirui",
+  "date": "2024-09",
+  "pub": "Journal of Optics"
+ },
+ {
+  "key": "MA3BEU2B",
+  "type": "journalArticle",
+  "title": "基于差分脉宽对与FFDNet的BOTDA性能提升",
+  "DOI": "10.1109/jsen.2024.3382683",
+  "creators": "Ge Xiaopeng;Wang Tao;Zhang Qian",
+  "date": "2024-5-15",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "K699UM6E",
+  "type": "journalArticle",
+  "title": "Quantitative gas property measurements by filtered Rayleigh scattering: a review",
+  "DOI": "10.1088/1361-6501/acd40b",
+  "creators": "Ground Cody R;Hunt Robin L;Hunt Gregory J",
+  "date": "2023-09-01",
+  "pub": "Measurement Science and Technology"
+ },
+ {
+  "key": "NLMQWZCV",
+  "type": "journalArticle",
+  "title": "【N2、O2、SF6】【Kr】【He-Xe、He-CO2】原子和分子气体和气体混合物中的相干和自发的瑞利-布里渊散射",
+  "DOI": "10.1103/physreva.82.043836",
+  "creators": "Vieitez M. O.;Van Duijn E. J.;Ubachs W.",
+  "date": "2010-10-25",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "5Z7D87N6",
+  "type": "journalArticle",
+  "title": "【@V3】【S7 vs G3 vs V3】气体瑞利-布里渊散射光谱的解析模型",
+  "DOI": "10.1088/2040-8978/14/9/095703",
+  "creators": "Ma Yong;Fan Fan;Liang Kun",
+  "date": "2012-09-01",
+  "pub": "Journal of Optics"
+ },
+ {
+  "key": "RV9E3BHJ",
+  "type": "journalArticle",
+  "title": "高强场下的相干瑞利散射",
+  "DOI": "10.1016/j.optcom.2004.05.018",
+  "creators": "Shneider Mikhail N.;Barker P.F.;Pan Xingguo",
+  "date": "2004-09",
+  "pub": "Optics Communications"
+ },
+ {
+  "key": "IMFIACN2",
+  "type": "journalArticle",
+  "title": "Waldmann-Snider碰撞积分在多原子气体混合物中的精确与近似关系",
+  "DOI": "10.1515/zna-1979-1101",
+  "creators": "Köhler W. E.;'T Hooft G. W.",
+  "date": "1979-11-01",
+  "pub": "Zeitschrift für Naturforschung A"
+ },
+ {
+  "key": "6DVFET96",
+  "type": "journalArticle",
+  "title": "高密度下氢的瑞利-布里渊谱",
+  "DOI": "10.1139/p78-155",
+  "creators": "May A. D.;Hubert M.;Ghaem-Maghami V.",
+  "date": "1978-09-01",
+  "pub": "Canadian Journal of Physics"
+ },
+ {
+  "key": "93TNT4NJ",
+  "type": "journalArticle",
+  "title": "【!】【多原子气体】【Tenti 6矩模型(S6)】分子气体中瑞利-布里渊散射的动力学模型描述",
+  "DOI": "10.1139/p74-041",
+  "creators": "Tenti G.;Boley C. D.;Desai Rashmi C.",
+  "date": "1974-02-15",
+  "pub": "Canadian Journal of Physics"
+ },
+ {
+  "key": "BP67747N",
+  "type": "journalArticle",
+  "title": "【!】【多原子气体】【Boley 7矩模型(S7)】分子气体中的动力学模型和布里渊散射",
+  "DOI": "10.1139/p72-286",
+  "creators": "Boley C. D.;Desai Rashmi C.;Tenti G.",
+  "date": "1972-09-15",
+  "pub": "Canadian Journal of Physics"
+ },
+ {
+  "key": "22UJSMFM",
+  "type": "journalArticle",
+  "title": "在动力学区域的SF6瑞利-布里渊散射",
+  "DOI": "10.1016/j.cplett.2016.12.033",
+  "creators": "Wang Yuanqing;Yu Yin;Liang Kun",
+  "date": "2017-02",
+  "pub": "Chemical Physics Letters"
+ },
+ {
+  "key": "ITW83ZAI",
+  "type": "journalArticle",
+  "title": "【!】【N2】【Tenti S6】通过分析自发瑞利-布里渊散射轮廓分别对氮气进行压力和温度反演",
+  "DOI": "10.1016/j.optcom.2018.12.017",
+  "creators": "Shang Jingcheng;Wu Tao;Yang Chuanyin",
+  "date": "2019-04",
+  "pub": "Optics Communications"
+ },
+ {
+  "key": "2WXJCXRT",
+  "type": "journalArticle",
+  "title": "【多原子气体-CH4】【Hammond-Wiggins hydrodynamic model】甲烷的瑞利-布里渊散射",
+  "DOI": "10.1063/1.433425",
+  "creators": "Hammond C. M.;Wiggins T. A.",
+  "date": "1976-10-01",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "WTGIQKIH",
+  "type": "journalArticle",
+  "title": "【Ar-Kr-He】二元气体混合物中的瑞利-布里渊散射",
+  "DOI": "10.1103/physrevlett.114.243902",
+  "creators": "Gu Z.;Ubachs W.;Marques W.",
+  "date": "2015-06-17",
+  "pub": "Physical Review Letters"
+ },
+ {
+  "key": "P25P3PZU",
+  "type": "journalArticle",
+  "title": "【!】非真空条件下空芯光子带隙光纤的气体填充动力学",
+  "DOI": "10.1364/ao.54.001751",
+  "creators": "Wynne R.;Barabadi B.",
+  "date": "2015-03-01",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "FZ267RYM",
+  "type": "journalArticle",
+  "title": "【!】利用激光吸收光谱技术研究痕量甲烷向中空芯光纤内的扩散/流动动力学",
+  "DOI": "10.1109/jsen.2020.3042345",
+  "creators": "Challener William A.;Kasten Ansas M.;Yu Fei",
+  "date": "2021-03-01",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "P7X53PD5",
+  "type": "journalArticle",
+  "title": "【!】空芯光子带隙光纤中气体流动的动力学",
+  "DOI": "10.1364/ao.47.002790",
+  "creators": "Henningsen Jes;Hald Jan",
+  "date": "2008-05-20",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "DLI5VHEI",
+  "type": "journalArticle",
+  "title": "瑞利散射在压力评估中的应用",
+  "DOI": "10.1016/j.measen.2021.100253",
+  "creators": "Mari Domenico;Pisani Marco;Francese Claudio",
+  "date": "2021-12",
+  "pub": "Measurement: Sensors"
+ },
+ {
+  "key": "E38MPLZU",
+  "type": "journalArticle",
+  "title": "【CO2、N2、Ar、N2O、CH4、CO、SF6】各种气体中瑞利散射截面的直接测量",
+  "DOI": "10.1016/j.jqsrt.2004.07.025",
+  "creators": "Sneep Maarten;Ubachs Wim",
+  "date": "2005-05",
+  "pub": "Journal of Quantitative Spectroscopy and Radiative Transfer"
+ },
+ {
+  "key": "P55N9KWI",
+  "type": "journalArticle",
+  "title": "【综述】面向交通基础设施结构监测的布里渊分布式传感综述",
+  "DOI": "10.3390/infrastructures10060148",
+  "creators": "Lv Bin;Peng Yuqing;Du Cong",
+  "date": "2025-06-16",
+  "pub": "Infrastructures"
+ },
+ {
+  "key": "XK6QXGZY",
+  "type": "journalArticle",
+  "title": "【ROTDR】【Wiener反卷积算法】Wiener反卷积的辅助子尺度空间分辨率ROTDR温度传感器",
+  "DOI": "10.3390/s22249942",
+  "creators": "Zhu Wenhao;Wu Haoting;Chen Weixuan",
+  "date": "2022-12-16",
+  "pub": "Sensors"
+ },
+ {
+  "key": "Z2VQBYBA",
+  "type": "journalArticle",
+  "title": "基于自构建全连接神经网络的增强型拉曼分布式温度传感器",
+  "DOI": "10.1109/jsen.2022.3183014",
+  "creators": "Lin Shan;Chang Jun;Zhang Zhifeng",
+  "date": "2022-8-15",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "4ZV8ZGYD",
+  "type": "journalArticle",
+  "title": "基于K-SVD的压缩感知在布里渊光纤分布式传感器中的应用",
+  "DOI": "10.1109/jsen.2022.3191336",
+  "creators": "Dong Yong;Yang Ya-Nan;Azad Abul Kalam",
+  "date": "2022-8-15",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "WI457LCJ",
+  "type": "journalArticle",
+  "title": "【综述】分布式声学传感技术研究进展",
+  "DOI": "10.3390/s22166060",
+  "creators": "Shang Ying;Sun Maocheng;Wang Chen",
+  "date": "2022-08-13",
+  "pub": "Sensors"
+ },
+ {
+  "key": "K863FDQG",
+  "type": "journalArticle",
+  "title": "【BOTDR】【过采样+Golay编码+全变分正则化反卷积算法】采用过采样编码和反卷积算法的长距离高空间分辨率布里渊时域传感器",
+  "DOI": "10.1109/jsen.2022.3182392",
+  "creators": "Li Yiqi;Zhao Can;Wu Hao",
+  "date": "2022-8-1",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "52W493Y5",
+  "type": "journalArticle",
+  "title": "【RDTS】一种基于下采样和卷积神经网络的RDTS信号去噪深度学习模型",
+  "DOI": "10.1109/jlt.2022.3149400",
+  "creators": "Wang Honghui;Wang Yuhang;Wang Xiang",
+  "date": "2022-6-15",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "L9XVUUXL",
+  "type": "journalArticle",
+  "title": "【STFT-BOTDR】【图像反卷积算法】利用图像反卷积提高BOTDR传感器的空间分辨率",
+  "DOI": "10.1364/oe.459519",
+  "creators": "Wu Haoting;Guo Nan;Feng Danqi",
+  "date": "2022-05-23",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "MECGMBI4",
+  "type": "journalArticle",
+  "title": "【BOTDR】用于布里渊光时域反射计中稳健且快速温度测量的小波卷积神经网络",
+  "DOI": "10.1364/oe.451877",
+  "creators": "Chen Bei;Su Lianghao;Zhang Zhaoyang",
+  "date": "2022-04-25",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "XT7KD4IW",
+  "type": "journalArticle",
+  "title": "【BOFDA】基于BOFDA的分布式湿度光纤传感器采用一种简单的机器学习方法",
+  "DOI": "10.1364/oe.453906",
+  "creators": "Karapanagiotis Christos;Hicke Konstantin;Wosniok Aleksander",
+  "date": "2022-04-11",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "K3DZMME5",
+  "type": "journalArticle",
+  "title": "【RDTS】基于低水峰光纤和优化降噪神经网络的 24 km 高性能拉曼分布式温度传感",
+  "DOI": "10.3390/s22062139",
+  "creators": "Wu Hao;Du Haoze;Zhao Can",
+  "date": "2022-03-10",
+  "pub": "Sensors"
+ },
+ {
+  "key": "BC68UQUX",
+  "type": "journalArticle",
+  "title": "【BOTDA】【信号重建算法：二维时频域重建】基于图像超分辨率重建的BOTDA性能增强",
+  "DOI": "10.1109/jsen.2021.3139321",
+  "creators": "Hu Yuting;Shang Qiufeng",
+  "date": "2022-2-15",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "BEXLAXJJ",
+  "type": "journalArticle",
+  "title": "【RDTS】【监督学习】基于深度学习的超空间分辨率拉曼分布式温度传感",
+  "DOI": "10.1109/jstqe.2022.3195734",
+  "creators": "Wu Hao;Zhao Can;Tang Ming",
+  "date": "2022",
+  "pub": "IEEE Journal of Selected Topics in Quantum Electronics"
+ },
+ {
+  "key": "AKHUEPNK",
+  "type": "journalArticle",
+  "title": "【BOCDR】面向潜在高速实现的布里渊光相关域传感神经网络辅助信号处理",
+  "DOI": "10.1364/oe.439215",
+  "creators": "Yao Yuguo;Mizuno Yosuke",
+  "date": "2021-10-25",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "DCNT5JJX",
+  "type": "journalArticle",
+  "title": "【Φ-OTDR】【去噪算法】【CNN】基于监督学习的相位OTDR高保真声学信号增强",
+  "DOI": "10.1364/oe.439646",
+  "creators": "Jiang Fei;Zhang Zhenhai;Lu Zixiao",
+  "date": "2021-10-11",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "L2F99WF6",
+  "type": "journalArticle",
+  "title": "【OFDR】基于距离补偿和图像小波去噪的高空间分辨率应变传感器OFDR",
+  "DOI": "10.1109/jlt.2021.3095851",
+  "creators": "Li Pengfei;Fu Cailing;Du Bin",
+  "date": "2021-10",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "93GIWF3T",
+  "type": "journalArticle",
+  "title": "【OFDR】基于图像去噪的OFDR高空间分辨率研究",
+  "DOI": "10.1109/jsen.2021.3089479",
+  "creators": "Qu Shuai;Qin Zengguang;Xu Yanping",
+  "date": "2021-09-01",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "BKJIMFVJ",
+  "type": "journalArticle",
+  "title": "基于深度学习方法的多事件检测在拉曼分布式温度传感器中的测量精度提升",
+  "DOI": "10.1364/oe.433690",
+  "creators": "Datta Amitabha;Raj Vishnu;Sankar Viswanathan",
+  "date": "2021-08-16",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "56F8RURY",
+  "type": "journalArticle",
+  "title": "【BOTDA】基于瞬态泵浦脉冲的BOTDA毫米级识别能力及算法增强",
+  "DOI": "10.1364/ol.424856",
+  "creators": "Zhou Dengwang;Ba Dexin;Wang Benzhang",
+  "date": "2021-07-15",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "QDHHH42P",
+  "type": "journalArticle",
+  "title": "【BOFDA】【BFS提取算法】时间效率高的卷积神经网络辅助布里渊光学频域分析",
+  "DOI": "10.3390/s21082724",
+  "creators": "Karapanagiotis Christos;Wosniok Aleksander;Hicke Konstantin",
+  "date": "2021-04-13",
+  "pub": "Sensors"
+ },
+ {
+  "key": "KX7MWZH4",
+  "type": "journalArticle",
+  "title": "【BOTDA】【反卷积算法】用反卷积算法提高BOTDA传感器的空间分辨率",
+  "DOI": "10.1109/jlt.2020.3047504",
+  "creators": "Shen Li;Zhao Zhiyong;Zhao Can",
+  "date": "2021-4-1",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "S9KPPCG8",
+  "type": "journalArticle",
+  "title": "基于深度学习的高性能拉曼分布式温度传感",
+  "DOI": "10.1109/jlt.2020.3032150",
+  "creators": "Zhang Zhongshu;Wu Hao;Zhao Can",
+  "date": "2021-1-15",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "KZ2LPI3P",
+  "type": "journalArticle",
+  "title": "【BOCDR】基于卷积神经网络的布里渊光学相关域反射率空间分辨率增强：概念验证",
+  "DOI": "10.1109/access.2021.3110874",
+  "creators": "Caceres Jelah N.;Noda Kohei;Zhu Guangtao",
+  "date": "2021",
+  "pub": "IEEE Access"
+ },
+ {
+  "key": "JLGLMNP9",
+  "type": "journalArticle",
+  "title": "长距离光纤振动传感中使用卷积神经网络作为实时去噪器",
+  "DOI": "10.1364/oe.402789",
+  "creators": "Liehr Sascha;Borchardt Christopher;Münzenberger Sven",
+  "date": "2020-12-21",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "Q7K9UG2N",
+  "type": "journalArticle",
+  "title": "【BOTDA】长脉冲布里渊光时域分析中短空间分辨率的提取",
+  "DOI": "10.1364/ol.397101",
+  "creators": "Wang Sheng;Yang Zhisheng;Zaslawski Simon",
+  "date": "2020-08-01",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "DC9XUNTU",
+  "type": "journalArticle",
+  "title": "【BOTDA】Brillouin 光时域分析二维后处理研究",
+  "DOI": "10.1109/jlt.2020.2967091",
+  "creators": "Zaslawski Simon;Yang Zhisheng;Thevenaz Luc",
+  "date": "2020-7-15",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "SET6S65D",
+  "type": "journalArticle",
+  "title": "【DFT-BOTDR】基于高阶自卷积窗的DFT-BOTDR空间分辨率增强",
+  "DOI": "10.1016/j.yofte.2020.102188",
+  "creators": "He Qian;Jiang Heng;Wang Zongqiang",
+  "date": "2020-07",
+  "pub": "Optical Fiber Technology"
+ },
+ {
+  "key": "K7YVKLKC",
+  "type": "journalArticle",
+  "title": "【OFDR】基于图像处理的OFDR分布式传感系统精度提升",
+  "DOI": "10.1016/j.optlaseng.2019.105824",
+  "creators": "Zhao Shiyuan;Cui Jiwen;Wu Zhanjun",
+  "date": "2020-01",
+  "pub": "Optics and Lasers in Engineering"
+ },
+ {
+  "key": "I4NPLPRJ",
+  "type": "journalArticle",
+  "title": "【COTDR】【ANN】利用人工神经网络进行光纤实时动态应变传感",
+  "DOI": "10.1364/oe.27.007405",
+  "creators": "Liehr Sascha;Jäger Lena Ann;Karapanagiotis Christos",
+  "date": "2019-03-04",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "WMGNSX4G",
+  "type": "journalArticle",
+  "title": "【BOTDR】【提取BFS算法】光纤分布式传感器布里渊频移提取的质心分析详细评估",
+  "DOI": "10.1109/jsen.2018.2875938",
+  "creators": "Zheng Hanrong;Fang Zujie;Wang Zhaoyong",
+  "date": "2019-1-1",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "K3ELWZCT",
+  "type": "journalArticle",
+  "title": "布里渊光相关域反射计最新进展",
+  "DOI": "10.3390/app8101845",
+  "creators": "Mizuno Yosuke;Lee Heeyoung;Nakamura Kentaro",
+  "date": "2018-10-08",
+  "pub": "Applied Sciences"
+ },
+ {
+  "key": "A39RJFWN",
+  "type": "journalArticle",
+  "title": "利用全变差反卷积技术提高拉曼DTS空间分辨率",
+  "DOI": "10.1109/jsen.2016.2539279",
+  "creators": "Bazzo Joao Paulo;Pipa Daniel Rodrigues;Martelli Cicero",
+  "date": "2016-06",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "8AKS6XIE",
+  "type": "journalArticle",
+  "title": "【BOTDR】【BFS提取算法】用相似匹配法确定布里渊频移的变化",
+  "DOI": "10.1109/jlt.2015.2470536",
+  "creators": "Wang Feng;Zhan Weiwei;Lu Yuangang",
+  "date": "2015-10-1",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "H44W8EZS",
+  "type": "journalArticle",
+  "title": "【BOCDR】布里渊光相关域反射计（BOCDR）的提出",
+  "DOI": "10.1364/oe.16.012148",
+  "creators": "Mizuno Yosuke;Zou Weiwen;He Zuyuan",
+  "date": "2008-08-04",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "8EKGJEMU",
+  "type": "journalArticle",
+  "title": "利用信号处理技术提高布里渊型光纤温度传感器的精度",
+  "DOI": "10.1109/lpt.2004.824982",
+  "creators": "Bernini R.;Minardo A.;Zeni L.",
+  "date": "2004-04",
+  "pub": "IEEE Photonics Technology Letters"
+ },
+ {
+  "key": "UEVMRN5M",
+  "type": "journalArticle",
+  "title": "基于系数补偿方法的 BOTDA 布里渊增益谱校正",
+  "DOI": "",
+  "creators": "WangⰠ Cheng;MaⰠ Yingxian;XieⰠ整 Peng",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "7XAKVMRR",
+  "type": "journalArticle",
+  "title": "【BOTDA】【单样本自监督学习】【BFS提取算法】基于物理增强空间分辨率神经网络的无监督超空间分辨率布里渊频移提取",
+  "DOI": "",
+  "creators": "Ge Zhao;Wu Hao;Zhao Zhiyong",
+  "date": "？？？",
+  "pub": ""
+ },
+ {
+  "key": "JNGPMPPQ",
+  "type": "journalArticle",
+  "title": "【BOCDR】浅层神经网络赋能的高速布里渊光相关域反射计：优化与实时运行",
+  "DOI": "10.1109/tim.2023.3244253",
+  "creators": "Yao Yuguo;Lu Yuangang;Mizuno Yosuke",
+  "date": "2023",
+  "pub": "IEEE Transactions on Instrumentation and Measurement"
+ },
+ {
+  "key": "MFXWRTE9",
+  "type": "journalArticle",
+  "title": "【BOTDA】从长脉冲BOTDA传感器实现可变高空间分辨率提取",
+  "DOI": "10.1109/jiot.2022.3209674",
+  "creators": "Ge Zhao;Shen Li;Zhao Can",
+  "date": "2023-01-15",
+  "pub": "IEEE Internet of Things Journal"
+ },
+ {
+  "key": "NYWTE8VA",
+  "type": "journalArticle",
+  "title": "【BOFDA】【多峰BGS】【BFS提取算法：LCF】【物理参数反演算法：ML】基于机器学习的BOFDA实现标准光纤温度与应变同步传感",
+  "DOI": "10.1364/oe.480224",
+  "creators": "Karapanagiotis Christos;Hicke Konstantin;Krebber Katerina",
+  "date": "2023-01-30",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "RUYHTZRD",
+  "type": "journalArticle",
+  "title": "【BOTDR】基于卷积神经网络的BOTDR动态应变测量去噪",
+  "DOI": "10.3390/s23041764",
+  "creators": "Li Bo;Jiang Ningjun;Han Xiaole",
+  "date": "2023-02-04",
+  "pub": "Sensors"
+ },
+ {
+  "key": "XGTTHW6T",
+  "type": "journalArticle",
+  "title": "【BOTDS】基于稀疏频率采样和人工神经网络的快速准确布里渊光学时域传感",
+  "DOI": "10.1109/jsen.2023.3244845",
+  "creators": "Zhang Yuyang;Lu Yuangang;Peng Jianqin",
+  "date": "2023-4-1",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "6XIQLP82",
+  "type": "journalArticle",
+  "title": "【BOTDR】空间自适应图像去噪方法在BOTDR中的SNR增强",
+  "DOI": "10.1109/jlt.2022.3231973",
+  "creators": "Wang Qinglin;Bai Qing;Liu Yuting",
+  "date": "2023-4-15",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "L4RLLH9C",
+  "type": "journalArticle",
+  "title": "【BOTDA】【BFS提取算法】基于概率机器学习的稳健矢量BOTDA信号处理",
+  "DOI": "10.3390/s23136064",
+  "creators": "Venketeswaran Abhishek;Lalam Nageswara;Lu Ping",
+  "date": "2023-06-30",
+  "pub": "Sensors"
+ },
+ {
+  "key": "4PQI5R96",
+  "type": "journalArticle",
+  "title": "提升传感精度的布里渊光相关域分析最新进展",
+  "DOI": "10.1109/jlt.2022.3233294",
+  "creators": "Song Kwang Yong;Youn Jae Hyeong",
+  "date": "2023-07-01",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "ETLDHJVU",
+  "type": "journalArticle",
+  "title": "布里渊分布式光纤传感器中的机器学习方法",
+  "DOI": "10.3390/s23136187",
+  "creators": "Karapanagiotis Christos;Krebber Katerina",
+  "date": "2023-07-06",
+  "pub": "Sensors"
+ },
+ {
+  "key": "8JB4BCA9",
+  "type": "journalArticle",
+  "title": "【BOTDA】【差分Golay编码+全变差反卷积算法】基于差分Golay编码和反卷积算法的BOTDA传感系统",
+  "DOI": "10.1109/jlt.2023.3258604",
+  "creators": "Wei Weilun;Shen Li;Zhao Zhiyong",
+  "date": "2023-8-15",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "TUK9EZZX",
+  "type": "journalArticle",
+  "title": "【OTDR】基于数据驱动去噪先验的灵活高增益DOFS反卷积",
+  "DOI": "10.1109/jlt.2023.3279465",
+  "creators": "Wu Hao;Zhang Mingming;Ge Zhao",
+  "date": "2023-10-1",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "J7PWU2MW",
+  "type": "journalArticle",
+  "title": "【φ-OTDR】基于FFDNet网络的φ-OTDR多事件定位去噪方案",
+  "DOI": "10.3390/photonics10101114",
+  "creators": "Yang Xiyu;Li Shuai;Xu Yanping",
+  "date": "2023-10-03",
+  "pub": "Photonics"
+ },
+ {
+  "key": "E2CLBV8N",
+  "type": "journalArticle",
+  "title": "基于稀疏频率采样和 ANN 恢复方法的快速准确布里渊光时域传感",
+  "DOI": "10.1109/lpt.2023.3301556",
+  "creators": "Zhang Yuyang;Lu Yuangang;Peng Jianqin",
+  "date": "2023-10-15",
+  "pub": "IEEE Photonics Technology Letters"
+ },
+ {
+  "key": "DITGT4KQ",
+  "type": "journalArticle",
+  "title": "【BOTDR】利用神经网络提高分布式布里渊光纤传感器响应速度和精度",
+  "DOI": "10.1016/j.optlastec.2023.109705",
+  "creators": "Huang Qiang;Shi Haotian;Huang Chukun",
+  "date": "2023-12",
+  "pub": "Optics & Laser Technology"
+ },
+ {
+  "key": "TU7NBK7F",
+  "type": "journalArticle",
+  "title": "【OFDR】【去噪算法】基于卷积神经网络的OFDR系统高空间分辨率实现方法",
+  "DOI": "10.1109/jsen.2023.3332027",
+  "creators": "Li Shuai;Xu Yanping;Liu Zhaojun",
+  "date": "2023-12-15",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "9CAUSDK8",
+  "type": "journalArticle",
+  "title": "【BOTDR】【提取BFS算法：ANN】【双峰BGS】基于人工神经网络的BOTDR空间分辨率内非均匀应变双峰布里渊频移提取",
+  "DOI": "10.1117/1.oe.63.1.016106",
+  "creators": "Song Muping;Cui Enxue;Jia Ning",
+  "date": "2024-1-31",
+  "pub": "Optical Engineering"
+ },
+ {
+  "key": "TNI38IF6",
+  "type": "journalArticle",
+  "title": "【BOTDS】【信号重建算法：二维时频域重建】基于二维稀疏采样和深度学习恢复的快速布里渊光学时域传感",
+  "DOI": "10.1016/j.optcom.2023.130043",
+  "creators": "Sun Zhonghao;Zhang Yuyang;Lu Yuangang",
+  "date": "2024-02",
+  "pub": "Optics Communications"
+ },
+ {
+  "key": "2RKMBBYT",
+  "type": "journalArticle",
+  "title": "基于深度学习模型的分布式光纤传感多事件识别",
+  "DOI": "10.1007/s11432-023-3896-4",
+  "creators": "Li Yujiao;Cao Xiaomin;Ni Wenhao",
+  "date": "2024-03",
+  "pub": "Science China Information Sciences"
+ },
+ {
+  "key": "E3KH9Q5Q",
+  "type": "journalArticle",
+  "title": "光纤分布式布里渊传感器中压缩感知性能评估",
+  "DOI": "10.1109/jlt.2023.3328792",
+  "creators": "Díaz Felipe;Soto Marcelo A.",
+  "date": "2024-3-15",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "ALT375GG",
+  "type": "journalArticle",
+  "title": "【BOTDA】基于反卷积和全相位数字滤波的高空间分辨率BOTDA",
+  "DOI": "10.1109/jsen.2024.3359257",
+  "creators": "Peng Jiaxin;Wang Tao;Zhang Qian",
+  "date": "2024-4-1",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "LCCLDG9L",
+  "type": "journalArticle",
+  "title": "【OFDR】基于光频域反射计的高性能分布式传感系统：数据与物理驱动神经网络赋能",
+  "DOI": "10.1364/oe.514466",
+  "creators": "Zhang Zhaopeng;Peng Wei;Alsalman Osamah",
+  "date": "2024-07-01",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "4A3JR7B5",
+  "type": "journalArticle",
+  "title": "基于带凸优化压缩感知的布里渊增益谱恢复方法",
+  "DOI": "10.1364/ao.528053",
+  "creators": "Zhu Borong;Azad Abul Kalam;Yu Kuanglu",
+  "date": "2024-07-20",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "D9Y359VN",
+  "type": "journalArticle",
+  "title": "机器学习在声学超材料和声子晶体设计中的应用：综述",
+  "DOI": "10.1088/1361-665x/ad51bc",
+  "creators": "Chen Jianquan;Huang Jiahan;An Mingyi",
+  "date": "2024-07-01",
+  "pub": "Smart Materials and Structures"
+ },
+ {
+  "key": "URASXGFK",
+  "type": "journalArticle",
+  "title": "像处理的改进分布式光纤传感器布里渊频移提取方法",
+  "DOI": "10.3390/a17080365",
+  "creators": "Konstantinov Yuri;Krivosheev Anton;Barkov Fedor",
+  "date": "2024-08-20",
+  "pub": "Algorithms"
+ },
+ {
+  "key": "I8XM3IY4",
+  "type": "journalArticle",
+  "title": "【BOCDA】基于深度学习的布里渊光学相关域传感应变测量在安全评估应用中的研究",
+  "DOI": "10.1109/jiot.2024.3415634",
+  "creators": "Park Jae-Hyun;Song Kwang Yong",
+  "date": "2024-10-1",
+  "pub": "IEEE Internet of Things Journal"
+ },
+ {
+  "key": "CXJLVKH5",
+  "type": "journalArticle",
+  "title": "基于一维卷积神经网络的单通道分布式拉曼温度传感",
+  "DOI": "10.1016/j.yofte.2024.104000",
+  "creators": "Renner Esther;Mampilli John S.;Amer Nadia",
+  "date": "2024-12",
+  "pub": "Optical Fiber Technology"
+ },
+ {
+  "key": "E34VI27N",
+  "type": "journalArticle",
+  "title": "物理模型辅助混合神经网络实现基于单晶光纤的高空间分辨率分布式高温传感",
+  "DOI": "10.1109/tim.2025.3578705",
+  "creators": "Liu Xu;Cai Kaidi;Guo Siqi",
+  "date": "2025",
+  "pub": "IEEE Transactions on Instrumentation and Measurement"
+ },
+ {
+  "key": "6DQ4MXTS",
+  "type": "journalArticle",
+  "title": "【OFDR】【Wiener反卷积算法】基于Wiener反卷积的高空间分辨率光频域反射测量",
+  "DOI": "10.1109/jlt.2024.3511584",
+  "creators": "Lou Yuyang;Yin Guolu;Liu Kaijun",
+  "date": "2025-04-01",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "MAE2TQUR",
+  "type": "journalArticle",
+  "title": "【!】空芯光子晶体光纤气体池内气体流动动力学分析",
+  "DOI": "10.1016/j.ijleo.2014.01.022",
+  "creators": "Parmar Vinod;Bhatnagar Randhir",
+  "date": "2014-07",
+  "pub": "Optik"
+ },
+ {
+  "key": "SC7GKBRL",
+  "type": "journalArticle",
+  "title": "【!】钻孔空芯光子晶体光纤中气体扩散的数值分析",
+  "DOI": "10.1016/j.measurement.2018.05.106",
+  "creators": "Masum B.M.;Aminossadati S.M.;Leonardi C.R.",
+  "date": "2018-10",
+  "pub": "Measurement"
+ },
+ {
+  "key": "7T25MEGU",
+  "type": "journalArticle",
+  "title": "【!】空芯光子晶体光纤中压力驱动气体流动的数值与实验研究",
+  "DOI": "10.1364/ao.58.000963",
+  "creators": "Masum Billah M.;Aminossadati Saiied M.;Kizil Mehmet S.",
+  "date": "2019-02-01",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "NFUG5PWZ",
+  "type": "journalArticle",
+  "title": "利用空芯波导在气体中增强布里渊放大",
+  "DOI": "10.1038/s41566-020-0676-z",
+  "creators": "Yang Fan;Gyger Flavien;Thévenaz Luc",
+  "date": "2020-11",
+  "pub": "Nature Photonics"
+ },
+ {
+  "key": "LATIABDI",
+  "type": "journalArticle",
+  "title": "【!】空芯光子晶体光纤中的气体动力学研究",
+  "DOI": "10.1016/j.ijleo.2021.167797",
+  "creators": "Li Yan;Yang Xuemei;Hao Xiangying",
+  "date": "2021-11",
+  "pub": "Optik"
+ },
+ {
+  "key": "FHSWWCCL",
+  "type": "journalArticle",
+  "title": "【!】直拉空芯光纤内部气体成分与压力",
+  "DOI": "10.1109/jlt.2022.3164810",
+  "creators": "Rikimi Shuichiro;Chen Yong;Kelly Thomas W.",
+  "date": "2022-07-15",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "9238LHA5",
+  "type": "journalArticle",
+  "title": "利用微通道增强反谐振空芯光纤气体传感器中的气体扩散",
+  "DOI": "10.1007/s13320-025-0753-5",
+  "creators": "Kozioł Paweł;Bojęś Piotr;Jaworski Piotr",
+  "date": "2025-09",
+  "pub": "Photonic Sensors"
+ },
+ {
+  "key": "CLMCU9MY",
+  "type": "journalArticle",
+  "title": "【Φ-OTDR】用于Φ-OTDR事件检测中SNR增强的自适应多尺度快速灵活去噪网络",
+  "DOI": "10.1016/j.optcom.2025.132261",
+  "creators": "Kamanga Isaack;Wang Zhi;Zhu Guo",
+  "date": "2025-11",
+  "pub": "Optics Communications"
+ },
+ {
+  "key": "AHC7Y22N",
+  "type": "journalArticle",
+  "title": "【DTS】工业应用中解决温度事件重叠的高级传感器信号处理",
+  "DOI": "10.1109/jsen.2026.3651301",
+  "creators": "Dejband Erfan;Tan Tan-Hsu;Chanie Manie Yibeltal",
+  "date": "2026-2-15",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "GHZ3EIF6",
+  "type": "journalArticle",
+  "title": "【BOTDR】基于实时包络累加和频率响应卷积的高精度BOTDR",
+  "DOI": "10.1109/tim.2025.3633360",
+  "creators": "Xie Peng;Zhang Li-Ao;Wang Cheng",
+  "date": "2026",
+  "pub": "IEEE Transactions on Instrumentation and Measurement"
+ },
+ {
+  "key": "T76ZUEU5",
+  "type": "journalArticle",
+  "title": "【综述】机器学习赋能的分布式光纤传感器综述：原理与应用",
+  "DOI": "",
+  "creators": "Davarapalli Kishore;Kumar Sonu;Sabbarapu Ganesh",
+  "date": "2025",
+  "pub": ""
+ },
+ {
+  "key": "VB9MZXJN",
+  "type": "journalArticle",
+  "title": "【中文】【BOTDA】基于渐进差分法的高空间分辨率BOTDA传感解调",
+  "DOI": "10.3788/irla20250355",
+  "creators": "Zhang Qian 张倩;Zhu Yaqi 朱亚琦;Wang Dawei 王大为",
+  "date": "2025",
+  "pub": "Infrared and Laser Engineering"
+ },
+ {
+  "key": "35SPFYK6",
+  "type": "journalArticle",
+  "title": "【综述】航空结构健康监测：机器学习的综合综述与未来方向",
+  "DOI": "10.1080/10589759.2024.2350575",
+  "creators": "Kosova Furkan;Altay Özkan;Ünver Hakkı Özgür",
+  "date": "2025-01-02",
+  "pub": "Nondestructive Testing and Evaluation"
+ },
+ {
+  "key": "Q7W3NPSA",
+  "type": "journalArticle",
+  "title": "【BOTDA】【BFS提取算法：GA-ANN-LSSVM】【!多峰】用于长距离油气管道监测的自适应布里渊频移提取的GA-ANN-LSSVM混合算法",
+  "DOI": "10.1364/oe.561846",
+  "creators": "Wang Weiqiang;Pang Hao;Lou Fangwei",
+  "date": "2025-06-16",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "6HVPW7DK",
+  "type": "journalArticle",
+  "title": "【Φ-OTDR】基于CNN-LSTM-Transformer Net的分布式光纤振动传感事件识别方法",
+  "DOI": "10.1051/wujns/2025304321",
+  "creators": "Li Jun;Wang Liqun;Liu Jin",
+  "date": "2025-08",
+  "pub": "Wuhan University Journal of Natural Sciences"
+ },
+ {
+  "key": "R64ZY72Z",
+  "type": "journalArticle",
+  "title": "【Φ-OTDR】采用改进的自适应非局部均值去噪方法提升Φ-OTDR的信噪比",
+  "DOI": "10.1016/j.optcom.2025.131914",
+  "creators": "Zeng Weiming;Sun Yizheng;Shen Hengwei",
+  "date": "2025-08",
+  "pub": "Optics Communications"
+ },
+ {
+  "key": "J97QIBIA",
+  "type": "journalArticle",
+  "title": "【BOTDA】【信号重建算法：一维频域重建】【BFS提取算法】【去噪算法】基于超分辨率重建辅助的高精度快速BOTDA传感",
+  "DOI": "10.1109/jsen.2025.3581796",
+  "creators": "Zhang Zhihao;Ma Xiaole;Wang Ziyang",
+  "date": "2025-8-1",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "AKUHW74V",
+  "type": "journalArticle",
+  "title": "【BOTDA】使用非均匀探测光补偿方法降低BOTDA中光功率波动的影响",
+  "DOI": "10.1016/j.optlastec.2025.112829",
+  "creators": "Zan Wei;Bai Qing;Liu Xinyi",
+  "date": "2025-09",
+  "pub": "Optics & Laser Technology"
+ },
+ {
+  "key": "Q5A5EVKT",
+  "type": "journalArticle",
+  "title": "【Φ-OTDR】使用傅里叶增强深度学习框架的分布式光纤传感系统事件识别",
+  "DOI": "10.1109/jsen.2025.3601500",
+  "creators": "Zhu Shilong;Yin Bo;Sun Yue-Ting",
+  "date": "2025-10-1",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "VQAMPSVV",
+  "type": "journalArticle",
+  "title": "【!】【直接探测Φ-OTDR】基于深度非负矩阵分解与非局部均值滤波的Φ-OTDR系统去噪方法",
+  "DOI": "10.1016/j.optcom.2025.132420",
+  "creators": "Zhang Shihe;Cheng Yafeng;Ming Changpeng",
+  "date": "2025-11",
+  "pub": "Optics Communications"
+ },
+ {
+  "key": "L52JYMQ8",
+  "type": "journalArticle",
+  "title": "【多原子气体】【6矩、7矩、8矩、9矩模型】分子气体中偏振和去偏振瑞利-布里渊散射光谱模型",
+  "DOI": "10.1364/oe.15.014257",
+  "creators": "Zheng Qiuhua",
+  "date": "2007",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "NG7F3QR6",
+  "type": "journalArticle",
+  "title": "【Φ-OTDR】基于深度学习分离的Φ-OTDR多源事件识别系统",
+  "DOI": "10.1016/j.optlastec.2025.113212",
+  "creators": "Shi Yi;Chen Jie;Yan Qiren",
+  "date": "2025-11",
+  "pub": "Optics & Laser Technology"
+ },
+ {
+  "key": "CHAFH7Z3",
+  "type": "journalArticle",
+  "title": "【多原子气体-SF6】多原子气体中频率依赖热导率的观测",
+  "DOI": "10.1103/physrevlett.29.150",
+  "creators": "Clark Noel A.;Mellman G. R.;Greytak T. J.",
+  "date": "1972-07-17",
+  "pub": "Physical Review Letters"
+ },
+ {
+  "key": "UN5XVHZH",
+  "type": "journalArticle",
+  "title": "【高阶（21矩）模型】气体中密度波动的光谱",
+  "DOI": "10.1063/1.1692060",
+  "creators": "Sugawara Akira;Yip Sidney;Sirovich Lawrence",
+  "date": "1968-05-01",
+  "pub": "The Physics of Fluids"
+ },
+ {
+  "key": "GCPBWL5N",
+  "type": "journalArticle",
+  "title": "【3P、3E模型】麦克斯韦气体中的时变相关性",
+  "DOI": "10.1063/1.1761681",
+  "creators": "Ranganathan S.;Yip Sidney",
+  "date": "1966-02-01",
+  "pub": "The Physics of Fluids"
+ },
+ {
+  "key": "CM2EUS9B",
+  "type": "journalArticle",
+  "title": "【Hanson-Morse模型】对于具有内部结构气体的动力学模型",
+  "DOI": "10.1063/1.1762114",
+  "creators": "Hanson F. B.;Morse T. F.",
+  "date": "1967-02-01",
+  "pub": "The Physics of Fluids"
+ },
+ {
+  "key": "LEEYN6KM",
+  "type": "journalArticle",
+  "title": "【BGK模型】气体碰撞过程模型. I.带电和中性单组分系统的小振幅过程",
+  "DOI": "10.1103/physrev.94.511",
+  "creators": "Bhatnagar P. L.;Gross E. P.;Krook M.",
+  "date": "1954-05-01",
+  "pub": "Physical Review"
+ },
+ {
+  "key": "WZTZR29I",
+  "type": "journalArticle",
+  "title": "【Morse模型】具有内部自由度的气体动力学模型",
+  "DOI": "10.1063/1.1711128",
+  "creators": "Morse T. F.",
+  "date": "1964-02-01",
+  "pub": "The Physics of Fluids"
+ },
+ {
+  "key": "A4MV7F87",
+  "type": "journalArticle",
+  "title": "动力学模型在流体中时间依赖性密度相关性的应用",
+  "DOI": "10.1103/physrev.135.a1241",
+  "creators": "Yip Sidney;Nelkin Mark",
+  "date": "1964-8-31",
+  "pub": "Physical Review"
+ },
+ {
+  "key": "DDSK6MCS",
+  "type": "journalArticle",
+  "title": "【六矩模型】通过瑞利-布里渊散射确定气体流场的一维温度和数密度分布",
+  "DOI": "10.1364/ao.31.002839",
+  "creators": "Lock James A.;Seasholtz Richard G.;John W. Trevor",
+  "date": "1992-05-20",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "B3FYFJTS",
+  "type": "journalArticle",
+  "title": "【S7、S6、SH、SM模型】正氢和副氢的瑞利-布里渊光谱：对Wang-Chang Uhlenbeck方程模型解的检验",
+  "DOI": "10.1139/p75-044",
+  "creators": "Hubert M.;May A. D.",
+  "date": "1975-02-15",
+  "pub": "Canadian Journal of Physics"
+ },
+ {
+  "key": "YNVCK9DF",
+  "type": "journalArticle",
+  "title": "【英】【综述】相敏光学时域反射测量技术的进展",
+  "DOI": "10.29026/oea.2022.200078",
+  "creators": "Liu Shuaiqi;Yu Feihong;Hong Rui",
+  "date": "2022",
+  "pub": "Opto-Electronic Advances"
+ },
+ {
+  "key": "BHI3T339",
+  "type": "journalArticle",
+  "title": "【英】【综述】相敏光学时域反射(Ф-OTDR)的研究进展",
+  "DOI": "10.1007/s13320-021-0619-4",
+  "creators": "Rao Yunjiang;Wang Zinan;Wu Huijuan",
+  "date": "2021-03",
+  "pub": "Photonic Sensors"
+ },
+ {
+  "key": "ACRG7I2G",
+  "type": "journalArticle",
+  "title": "【中】【综述】基于Φ-OTDR的光纤分布式传感信号处理及应用",
+  "DOI": "10.3788/lop202158.1306003",
+  "creators": "Wu Huijuan 吴慧娟;Liu Xinyu 刘欣雨;Rao Yunjiang 饶云江",
+  "date": "2021",
+  "pub": "Laser & Optoelectronics Progress"
+ },
+ {
+  "key": "WZQXCI3G",
+  "type": "journalArticle",
+  "title": "Recent Advances in Phase-Sensitive Optical Time Domain Reflectometry (Ф-OTDR)",
+  "DOI": "10.1007/s13320-021-0619-4",
+  "creators": "Rao Yunjiang;Wang Zinan;Wu Huijuan",
+  "date": "2021-03",
+  "pub": "Photonic Sensors"
+ },
+ {
+  "key": "8MGFYDPU",
+  "type": "journalArticle",
+  "title": "Recent Advances in Distributed Acoustic Sensing Based on Phase-Sensitive Optical Time Domain Reflectometry",
+  "DOI": "10.1155/2018/3897873",
+  "creators": "Muanenda Yonas",
+  "date": "2018",
+  "pub": "Journal of Sensors"
+ },
+ {
+  "key": "WUI4U5CH",
+  "type": "journalArticle",
+  "title": "【@】【DPP-BOTDA】用于高空间分辨率传感的差分脉冲宽度对BOTDA",
+  "DOI": "10.1364/oe.16.021616",
+  "creators": "Li Wenhai;Bao Xiaoyi;Li Yun",
+  "date": "2008-12-22",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "Y36CF7PA",
+  "type": "journalArticle",
+  "title": "【#】基于深度学习的双脉冲BOTDA中精确布里渊频移测定",
+  "DOI": "",
+  "creators": "",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "5BBUBBQX",
+  "type": "journalArticle",
+  "title": "【#】深度学习用于克服布里渊光学频域分析中的次级交互伪影",
+  "DOI": "",
+  "creators": "",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "75DTI3UR",
+  "type": "journalArticle",
+  "title": "Recent Progress in Infrared Absorption Spectroscopy for Gas Sensing With Discrete Optics, Hollow-Core Fibers and On-Chip Waveguides",
+  "DOI": "10.1109/jlt.2023.3262774",
+  "creators": "Zheng Chuantao;Pi Mingquan;Song Fang",
+  "date": "2023-7-1",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "CACMHU3F",
+  "type": "journalArticle",
+  "title": "Real-Time Denoising of Brillouin Optical Time Domain Analyzer With High Data Fidelity Using Convolutional Neural Networks",
+  "DOI": "10.1109/jlt.2018.2876909",
+  "creators": "Wu Hao;Wan Yangyang;Tang Ming",
+  "date": "2019-6-1",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "AD7XEGEB",
+  "type": "journalArticle",
+  "title": "Enhanced Raman Distributed Temperature Sensor Based on Self-Constructed Fully Connected Neural Network",
+  "DOI": "10.1109/jsen.2022.3183014",
+  "creators": "Lin Shan;Chang Jun;Zhang Zhifeng",
+  "date": "2022-8-15",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "RML55EGX",
+  "type": "journalArticle",
+  "title": "24 km High-Performance Raman Distributed Temperature Sensing Using Low Water Peak Fiber and Optimized Denoising Neural Network",
+  "DOI": "10.3390/s22062139",
+  "creators": "Wu Hao;Du Haoze;Zhao Can",
+  "date": "2022-03-10",
+  "pub": "Sensors"
+ },
+ {
+  "key": "MF8CR9EJ",
+  "type": "journalArticle",
+  "title": "【Air】【Tenti S6、DSMC、MD】从瑞利-布里渊光散射光谱中发现空气的体积粘度",
+  "DOI": "10.1063/5.0136837",
+  "creators": "Bruno Domenico;Frezzotti Aldo;Jamali Seyed Hossein",
+  "date": "2023-01-21",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "LY4QJK8U",
+  "type": "journalArticle",
+  "title": "【#】突破光纤布拉格光栅传感器的交叉敏感性退化：一种基于物理信息的鲁棒判别共设计框架",
+  "DOI": "",
+  "creators": "Yalınbaş Fatih;Yılmaz Güneş",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "MDSERP37",
+  "type": "journalArticle",
+  "title": "Loss mechanisms in hollow-core optical fibers",
+  "DOI": "",
+  "creators": "Fokoua Eric Numkam;Mousavi Seyed Abokhamis;Richardson David J",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "Q2TK93BG",
+  "type": "journalArticle",
+  "title": "【翻译】空芯反谐振光纤中背向散射的理论分析",
+  "DOI": "10.1063/5.0057999",
+  "creators": "Numkam Fokoua Eric;Michaud-Belleau Vincent;Genest Jérôme",
+  "date": "2021-09-01",
+  "pub": "APL Photonics"
+ },
+ {
+  "key": "8L6E9U7B",
+  "type": "journalArticle",
+  "title": "【2023】【华中科技大学】【硕士学位论文】基于瑞利布里渊散射光谱的大气温压廓线同步反演方法研究",
+  "DOI": "",
+  "creators": "Bei Wang;Kun Liang",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "U3DMRXLI",
+  "type": "journalArticle",
+  "title": "【N2】【Tenti S6】压力对氮气中自发瑞利-布里渊散射光谱的影响",
+  "DOI": "10.1080/09500340.2017.1416689",
+  "creators": "Yang Chuanyin;Wu Tao;Shang Jingcheng",
+  "date": "2018-05-04",
+  "pub": "Journal of Modern Optics"
+ },
+ {
+  "key": "WMS63WCX",
+  "type": "journalArticle",
+  "title": "【翻译】气体填充反谐光光纤中后向布里渊散射的研究",
+  "DOI": "10.1063/5.0151018",
+  "creators": "Galal Malak;Zhang Li;Gao Shoufei",
+  "date": "2023-08-01",
+  "pub": "APL Photonics"
+ },
+ {
+  "key": "HCSTMRHG",
+  "type": "journalArticle",
+  "title": "编码BOTDA传感器脉冲调制格式分析",
+  "DOI": "10.1364/oe.18.014878",
+  "creators": "Soto Marcelo A.;Bolognini Gabriele;Di Pasquale Fabrizio",
+  "date": "2010-07-05",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "VBFY8GH7",
+  "type": "journalArticle",
+  "title": "无扫频分布式布里渊时域分析仪（SF-BOTDA）",
+  "DOI": "10.1364/oe.19.00b842",
+  "creators": "Voskoboinik Asher;Yilmaz Omer F.;Willner Alan W.",
+  "date": "2011-12-12",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "IJ25BLR6",
+  "type": "journalArticle",
+  "title": "【BOTDR】提高BOTDR信噪比的随机编码方法",
+  "DOI": "10.1364/oe.456620",
+  "creators": "Wang Qinglin;Bai Qing;Liang Changshuo",
+  "date": "2022-03-28",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "R36R7RZP",
+  "type": "journalArticle",
+  "title": "【BOTDR】【随机编码】提高BOTDR信噪比的随机编码方法",
+  "DOI": "10.1364/oe.456620",
+  "creators": "Wang Qinglin;Bai Qing;Liang Changshuo",
+  "date": "2022-03-28",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "27LG3XH4",
+  "type": "journalArticle",
+  "title": "低损耗、SF6流动反谐振空芯光纤中的自发和受激布里渊动力学",
+  "DOI": "",
+  "creators": "Liang Hao;Sun Yizhi;Tan Haitong",
+  "date": "2025",
+  "pub": ""
+ },
+ {
+  "key": "Y9KUFM5Z",
+  "type": "journalArticle",
+  "title": "【中文】空芯光纤在红外波段的研究进展（特邀）",
+  "DOI": "10.3788/aos250871",
+  "creators": "Gao Ran 高然;Song Weijun 宋维君;Zhang Lei 张磊",
+  "date": "2025",
+  "pub": "Acta Optica Sinica"
+ },
+ {
+  "key": "64JSYSTQ",
+  "type": "journalArticle",
+  "title": "【翻译】空芯光纤的瞬态气体诱导折射率效应",
+  "DOI": "10.1364/oe.517755",
+  "creators": "Kelly Thomas W.;Rikimi Shuichiro;Davidson Ian A.",
+  "date": "2024-06-03",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "BIFE2BQF",
+  "type": "journalArticle",
+  "title": "【翻译】空芯光纤：现状与展望",
+  "DOI": "10.3367/ufne.2023.12.039616",
+  "creators": "Pryamikov Andrei D.;Gladyshev Alexey V.;Kosolapov Aleksei F.",
+  "date": "2024-02",
+  "pub": "Physics-Uspekhi"
+ },
+ {
+  "key": "K5NZS8GN",
+  "type": "journalArticle",
+  "title": "【中文】【基于K-means聚类算法的RBFNN】多峰布里渊散射谱的拟合算法研究",
+  "DOI": "",
+  "creators": "Yuan Gao;Jianjun Gao;Jiahao Du",
+  "date": "2019",
+  "pub": ""
+ },
+ {
+  "key": "VD6QM5IY",
+  "type": "journalArticle",
+  "title": "【中文】【BOTDR】【BFS提取算法】基于人工神经网络的智能化架空线路应变快速解调方法",
+  "DOI": "10.16818/j.issn1001-5868.2021092401",
+  "creators": " ; ; ",
+  "date": "2022",
+  "pub": "半导体光电"
+ },
+ {
+  "key": "C6HUZ85B",
+  "type": "journalArticle",
+  "title": "【中文】【综述】基于机器学习的布里渊光时域分析传感系统温度提取研究进展",
+  "DOI": "10.3788/lop202158.1306022",
+  "creators": "Li Zhilong 李治龙;Zhang Weihua 张卫华;Wang Yimin 王一民",
+  "date": "2021",
+  "pub": "Laser & Optoelectronics Progress"
+ },
+ {
+  "key": "RF72VZAB",
+  "type": "journalArticle",
+  "title": "【中文】【综述】分布式布里渊光纤传感系统中的数字信号处理技术研究进展",
+  "DOI": "10.3788/aos231398",
+  "creators": "Yang Guijiang 杨贵江;Qian Yuhao 钱宇昊;Zhou Yiyi 周旖艺",
+  "date": "2024",
+  "pub": "Acta Optica Sinica"
+ },
+ {
+  "key": "9CX8ZESP",
+  "type": "journalArticle",
+  "title": "【博士学位论文】Applications of Artificial Intelligence to Control and Analyze the Performance of Fiber-Optic Transmission Systems",
+  "DOI": "",
+  "creators": "Ye Xiaoyan",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "BZIV9HBC",
+  "type": "journalArticle",
+  "title": "【中文】基于神经网络的光纤温度估算方法的优化",
+  "DOI": "10.13756/j.gtxyj.2025.230123",
+  "creators": " ; ; ",
+  "date": "2025",
+  "pub": "光通信研究"
+ },
+ {
+  "key": "J96HWTPP",
+  "type": "journalArticle",
+  "title": "【中文】机器学习技术在分布式光纤传感性能提升中的应用进展",
+  "DOI": "",
+  "creators": " ; ; ",
+  "date": "2025",
+  "pub": "激光与光电子学进展"
+ },
+ {
+  "key": "MF8IDXYV",
+  "type": "journalArticle",
+  "title": "Multi-Core vs Hollow-Core Fibers: Technical Study of Their Viability in SDM Power-Constrained Submarine Systems",
+  "DOI": "10.1109/jlt.2023.3278714",
+  "creators": "Meseguer Alexis Carbo;De Araujo Juliana Tiburcio;Antona Jean-Christophe",
+  "date": "2023-6-15",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "BHDAM3VP",
+  "type": "journalArticle",
+  "title": "【中文】【综述】分布式布里渊光纤传感信号降噪技术研究进展",
+  "DOI": "10.3788/lop241115",
+  "creators": "Gao Haoran 高浩然;Li Yongzheng 李拥政;Guo Linfeng 郭林峰",
+  "date": "2025",
+  "pub": "Laser & Optoelectronics Progress"
+ },
+ {
+  "key": "F8K3YU7M",
+  "type": "journalArticle",
+  "title": "【BOTDR】基于差分脉宽对技术的计算布里渊光学时域反射测量空间分辨率的提高",
+  "DOI": "10.1109/jsen.2025.3584360",
+  "creators": "Shu Dayong;Lv Tuo;Cao Zhi-Han",
+  "date": "2025-8-1",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "53NTL4D6",
+  "type": "journalArticle",
+  "title": "【Ar、CO2、SF6、CH4】利用宽带腔增强光谱对氩、二氧化碳、六氟化硫和甲烷的瑞利散射截面",
+  "DOI": "10.1016/j.jqsrt.2019.05.031",
+  "creators": "Wilmouth David M.;Sayres David S.",
+  "date": "2019-09",
+  "pub": "Journal of Quantitative Spectroscopy and Radiative Transfer"
+ },
+ {
+  "key": "NADMKKFD",
+  "type": "journalArticle",
+  "title": "Experimental assessment of the Tenti S6 model for combustion-relevant gases and filtered Rayleigh scattering applications",
+  "DOI": "10.1007/s00340-018-7121-8",
+  "creators": "Mcmanus Thomas A.;Monje Ignacio Trueba;Sutton Jeffrey A.",
+  "date": "2019-01",
+  "pub": "Applied Physics B"
+ },
+ {
+  "key": "XQDV3S2E",
+  "type": "journalArticle",
+  "title": "【N2、Ar、O2、Air】氮气、氩气、氧气和空气的瑞利散射截面测量",
+  "DOI": "10.1016/j.jqsrt.2014.05.030",
+  "creators": "Thalman Ryan;Zarzana Kyle J.;Tolbert Margaret A.",
+  "date": "2014-11",
+  "pub": "Journal of Quantitative Spectroscopy and Radiative Transfer"
+ },
+ {
+  "key": "GV6876JA",
+  "type": "journalArticle",
+  "title": "非互易布里渊散射诱导透明",
+  "DOI": "10.1038/nphys3236",
+  "creators": "Kim JunHwan;Kuzyk Mark C.;Han Kewen",
+  "date": "2015-03",
+  "pub": "Nature Physics"
+ },
+ {
+  "key": "HYC2V2MX",
+  "type": "journalArticle",
+  "title": "【翻译】正负曲率嵌套在反谐振空芯光纤中的研究",
+  "DOI": "10.1364/ol.42.000703",
+  "creators": "Hasan Md Imran;Akhmediev Nail;Chang Wonkeun",
+  "date": "2017-02-15",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "9I9H5XZZ",
+  "type": "journalArticle",
+  "title": "【翻译】空气中的导波布里渊散射",
+  "DOI": "10.1364/optica.3.001316",
+  "creators": "Renninger William H.;Behunin Ryan O.;Rakich Peter T.",
+  "date": "2016-12-20",
+  "pub": "Optica"
+ },
+ {
+  "key": "E7STD5E7",
+  "type": "journalArticle",
+  "title": "【翻译】空芯光纤中气体诱导差分折射率增强导光",
+  "DOI": "10.1364/optica.424224",
+  "creators": "Kelly T. W.;Horak P.;Davidson I. A.",
+  "date": "2021-06-20",
+  "pub": "Optica"
+ },
+ {
+  "key": "QXK76ZMY",
+  "type": "journalArticle",
+  "title": "【翻译】反谐振空芯光纤辅助气体光谱综述",
+  "DOI": "10.3390/s21165640",
+  "creators": "Jaworski Piotr",
+  "date": "2021-08-21",
+  "pub": "Sensors"
+ },
+ {
+  "key": "SPX7YMDW",
+  "type": "journalArticle",
+  "title": "【翻译】多模嵌套型空心光纤",
+  "DOI": "10.1109/jlt.2021.3101522",
+  "creators": "Goel Charu;Yoo Seongwoo",
+  "date": "2021-10",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "D4KMWV9R",
+  "type": "journalArticle",
+  "title": "【翻译】反谐空芯光纤的光时域后向散射",
+  "DOI": "10.1364/oe.461873",
+  "creators": "Slavík Radan;Numkam Fokoua Eric R.;Bradley Thomas D.",
+  "date": "2022-08-15",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "XSBEF5I9",
+  "type": "journalArticle",
+  "title": "【翻译】《空芯光纤的损耗：机制、缩放规则和极限》",
+  "DOI": "10.1364/aop.470592",
+  "creators": "Numkam Fokoua Eric;Abokhamis Mousavi Seyed;Jasion Gregory T.",
+  "date": "2023-03-31",
+  "pub": "Advances in Optics and Photonics"
+ },
+ {
+  "key": "Y2UAL2J8",
+  "type": "journalArticle",
+  "title": "【翻译】【综述】《用于电信和数据传输的空芯光纤》",
+  "DOI": "10.3390/app131910699",
+  "creators": "Borzycki Krzysztof;Osuch Tomasz",
+  "date": "2023-09-26",
+  "pub": "Applied Sciences"
+ },
+ {
+  "key": "9CFDHEFI",
+  "type": "journalArticle",
+  "title": "【翻译】反谐振空芯光纤中的基本热噪声",
+  "DOI": "10.1103/physreva.106.023501",
+  "creators": "Michaud-Belleau Vincent;Numkam Fokoua Eric R.;Horak Peter",
+  "date": "2022-08-01",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "FQ87RZMW",
+  "type": "journalArticle",
+  "title": "多芯光纤与空芯光纤：SDM电力受限潜艇系统中应用的技术可行性研究",
+  "DOI": "10.1109/jlt.2023.3278714",
+  "creators": "Meseguer Alexis Carbo;De Araujo Juliana Tiburcio;Antona Jean-Christophe",
+  "date": "2023-06-15",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "LIX77VIX",
+  "type": "journalArticle",
+  "title": "【中文】脉冲光的光纤布里渊散射谱拟合研究",
+  "DOI": "10.3788/cjl221196",
+  "creators": "Yang Zhi 杨志;Wang Zhen 王震;Li Yongqian 李永倩",
+  "date": "2023",
+  "pub": "Chinese Journal of Lasers"
+ },
+ {
+  "key": "R93ENUSY",
+  "type": "journalArticle",
+  "title": "【PCA】瑞利-布里渊散射光谱的线性近似",
+  "DOI": "10.1364/ao.55.007707",
+  "creators": "Binietoglou Ioannis;Giampouras Paris;Belegante Livio",
+  "date": "2016-09-20",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "6NDF2IWY",
+  "type": "journalArticle",
+  "title": "【翻译】【无源代码】【NN】基于拍频与神经网络算法的光纤温度传感器",
+  "DOI": "10.1016/j.yofte.2021.102783",
+  "creators": "Tong Xingxing;Shen Yanxia;Mao Xiaowei",
+  "date": "2022-01",
+  "pub": "Optical Fiber Technology"
+ },
+ {
+  "key": "SBYW6P2I",
+  "type": "journalArticle",
+  "title": "【博士学位论文】相干瑞利-布里渊散射",
+  "DOI": "",
+  "creators": "Pan Xingguo",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "GNR2Y5ZJ",
+  "type": "journalArticle",
+  "title": "【动力学模型源代码】【博士学位论文】分子气体中的自发瑞利-布里渊散射",
+  "DOI": "",
+  "creators": "Wang Yuanqing",
+  "date": "2019",
+  "pub": ""
+ },
+ {
+  "key": "2ECIS9DK",
+  "type": "journalArticle",
+  "title": "【博士学位论文】大气气体上的自发瑞利-布里渊散射",
+  "DOI": "",
+  "creators": "Gu Ziyu",
+  "date": "2015",
+  "pub": ""
+ },
+ {
+  "key": "UF7GLQ5Y",
+  "type": "journalArticle",
+  "title": "Coherent Rayleigh Scattering",
+  "DOI": "10.1103/physrevlett.85.1222",
+  "creators": "Grinstead Jay H.;Barker Peter F.",
+  "date": "2000-8-7",
+  "pub": "Physical Review Letters"
+ },
+ {
+  "key": "GPHPT7NU",
+  "type": "journalArticle",
+  "title": "Coherent Brillouin scattering",
+  "DOI": "10.1364/oe.19.024046",
+  "creators": "Gerakis A.;Shneider M. N.;Barker P. F.",
+  "date": "2011-11-21",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "U7X6R3VN",
+  "type": "journalArticle",
+  "title": "具有内部自由度的稀薄气体输动方程",
+  "DOI": "",
+  "creators": "Nwth-Holland Q",
+  "date": "1971",
+  "pub": ""
+ },
+ {
+  "key": "TMFIT3HT",
+  "type": "journalArticle",
+  "title": "【N2、CO2、SF6】【Wu vs Tenti S6 】通过分子气体的光散射提取平移Eucken因子",
+  "DOI": "10.1017/jfm.2020.568",
+  "creators": "Wu Lei;Liu Haihu;Ubachs Wim",
+  "date": "2020-10-25",
+  "pub": "Journal of Fluid Mechanics"
+ },
+ {
+  "key": "W3J5C3CY",
+  "type": "journalArticle",
+  "title": "【CO2】【Tenti S6 vs Hammond–Wiggins hydrodynamic】通过532nm瑞利-布里渊光散射光谱测定CO2的体积粘度",
+  "DOI": "10.1063/1.5093541",
+  "creators": "Wang Yuanqing;Ubachs Wim;Van De Water Willem",
+  "date": "2019-04-21",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "SQLCC74Q",
+  "type": "journalArticle",
+  "title": "【N2】【Tenti S6】基于Wiener滤波的自发瑞利-布里渊散射光谱分析",
+  "DOI": "10.1063/1.5001879",
+  "creators": "Wu Tao;Shang Jingcheng;Yang Chuanyin",
+  "date": "2018-01-01",
+  "pub": "AIP Advances"
+ },
+ {
+  "key": "8Y8NRKFR",
+  "type": "journalArticle",
+  "title": "【Air】大气中自发瑞利-布里渊散射的水平激光雷达测量证明",
+  "DOI": "10.1364/ao.51.006207",
+  "creators": "Witschas Benjamin;Lemmerz Christian;Reitebuch Oliver",
+  "date": "2012-09-01",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "PN8HX22H",
+  "type": "journalArticle",
+  "title": "【N2、Air】【Tenti S6】紫外光在氮气、干燥空气和潮湿空气中的自发瑞利-布里渊散射",
+  "DOI": "10.1364/ao.49.004217",
+  "creators": "Witschas Benjamin;Vieitez Maria O.;Van Duijn Eric-Jan",
+  "date": "2010-08-01",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "9DXUXZC2",
+  "type": "journalArticle",
+  "title": "【Ar】在298K下，70至260 MPa压力范围内氩气密集气体的瑞利-布里渊散射光谱：声速和比热容比γ",
+  "DOI": "10.1080/00319109308030350",
+  "creators": "Carraresi L.;Celli M.;Barocchi F.",
+  "date": "1993-01",
+  "pub": "Physics and Chemistry of Liquids"
+ },
+ {
+  "key": "V6XXA2ZH",
+  "type": "journalArticle",
+  "title": "【He、Ne、Ar】压缩的氦、氖和氩的瑞利-布里渊光谱。II：流体动力学区域",
+  "DOI": "10.1103/physreva.22.698",
+  "creators": "Ghaem-Maghami V.;May A. D.",
+  "date": "1980-08-01",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "YXAP9C7P",
+  "type": "journalArticle",
+  "title": "来自流体混合物的瑞利-布里渊散射",
+  "DOI": "10.1051/jphyscol:1972106",
+  "creators": "Desai R. C.",
+  "date": "1972-02",
+  "pub": "Le Journal de Physique Colloques"
+ },
+ {
+  "key": "GMCPNQCC",
+  "type": "journalArticle",
+  "title": "【H2、D2、HD】压缩氢气、氘气和氢氘化合物中的瑞利-布里渊散射",
+  "DOI": "",
+  "creators": "Hara E H;May A D;Knaap H F P",
+  "date": "1970",
+  "pub": ""
+ },
+ {
+  "key": "JAU96748",
+  "type": "journalArticle",
+  "title": "VanHove的Gs(r,t)f的简单二元碰撞模型",
+  "DOI": "",
+  "creators": "Nelkin Mark;Ghatak Ajoy",
+  "date": "1964",
+  "pub": ""
+ },
+ {
+  "key": "H5L8XJ7R",
+  "type": "journalArticle",
+  "title": "【SF6-He】不同质量气体混合物中瑞利散射与布里渊散射的耦合",
+  "DOI": "10.1103/physrevlett.26.1094",
+  "creators": "Gornall W. S.;Wang C. S.;Yang C. C.",
+  "date": "1971-05-03",
+  "pub": "Physical Review Letters"
+ },
+ {
+  "key": "H2II2CSV",
+  "type": "journalArticle",
+  "title": "Waldmann-Snider Collision Integrals and Nonspherical Molecular Interaction: II. DWBA-Scattering Amplitude and Cross Sections for Linear Molecules",
+  "DOI": "10.1515/zna-1975-0202",
+  "creators": "Köhler W. E.",
+  "date": "1975-02-01",
+  "pub": "Zeitschrift für Naturforschung A"
+ },
+ {
+  "key": "VG6NZQ9Y",
+  "type": "journalArticle",
+  "title": "慢中子散射动力学方程的推导",
+  "DOI": "10.1103/physrev.139.a1138",
+  "creators": "Van Leeuwen J. M. J.;Yip Sidney",
+  "date": "1965-08-16",
+  "pub": "Physical Review"
+ },
+ {
+  "key": "FIIDLKGB",
+  "type": "journalArticle",
+  "title": "气体中光散射的动力学理论分析",
+  "DOI": "10.1103/physrev.168.121",
+  "creators": "Sugawara Akira;Yip Sidney;Sirovich Lawrence",
+  "date": "1968-04-05",
+  "pub": "Physical Review"
+ },
+ {
+  "key": "A8ANDMPR",
+  "type": "journalArticle",
+  "title": "基于气体混合物的超材料：电致伸缩效应的解析建模及相应的布里渊频移",
+  "DOI": "10.1007/s13369-024-09753-5",
+  "creators": "Khakpour Omid;Sani Seyed Mojtaba Rezaei;Rahighi Reza",
+  "date": "2025-04",
+  "pub": "Arabian Journal for Science and Engineering"
+ },
+ {
+  "key": "GUS9EMP5",
+  "type": "journalArticle",
+  "title": "【SF6】气体中受激布里渊后向散射的压力依赖性",
+  "DOI": "10.1016/0030-4018(91)90069-p",
+  "creators": "Kummrow A.;Meng H.",
+  "date": "1991-06",
+  "pub": "Optics Communications"
+ },
+ {
+  "key": "S76DZGQ7",
+  "type": "journalArticle",
+  "title": "气体混合物中布里渊线宽的研究",
+  "DOI": "10.1007/s12648-021-02079-0",
+  "creators": "Khakpour Omid;Yang Bo;Chao Guo",
+  "date": "2022-03",
+  "pub": "Indian Journal of Physics"
+ },
+ {
+  "key": "ILX95BWX",
+  "type": "journalArticle",
+  "title": "【通用系统】从布里渊散射光谱中提取参数的最优频率扫描范围",
+  "DOI": "10.1016/j.ijleo.2018.01.016",
+  "creators": "Xu Zhi-niu;Hu Zhi-wei;Zhao Li-juan",
+  "date": "2018-04",
+  "pub": "Optik"
+ },
+ {
+  "key": "EQH69Z8U",
+  "type": "journalArticle",
+  "title": "BOTDA范围扩展技术限制",
+  "DOI": "10.1109/jsen.2015.2424293",
+  "creators": "Angulo-Vinuesa Xabier;Dominguez-Lopez Alejandro;Lopez-Gil Alexia",
+  "date": "2016-05",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "AJLWGE6U",
+  "type": "journalArticle",
+  "title": "基于BOTDA的SMW H型桩变形监测新方法",
+  "DOI": "10.1016/j.measurement.2015.02.027",
+  "creators": "Ding Yong;Wang Ping;Yu She",
+  "date": "2015-06",
+  "pub": "Measurement"
+ },
+ {
+  "key": "X3YN6YTP",
+  "type": "journalArticle",
+  "title": "使用平衡检测的BOTDA信噪比改进",
+  "DOI": "10.1109/lpt.2013.2293603",
+  "creators": "Dominguez-Lopez Alejandro;Lopez-Gil Alexia;Martin-Lopez Sonia",
+  "date": "2014-02",
+  "pub": "IEEE Photonics Technology Letters"
+ },
+ {
+  "key": "X8WKR93Z",
+  "type": "journalArticle",
+  "title": "High-Spatial-Resolution Fast BOTDA for Dynamic Strain Measurement Based on Differential Double-Pulse and Second-Order Sideband of Modulation",
+  "DOI": "10.1109/jphot.2013.2267532",
+  "creators": " ; ; ",
+  "date": "2013-06",
+  "pub": "IEEE Photonics Journal"
+ },
+ {
+  "key": "RJGQX9F4",
+  "type": "journalArticle",
+  "title": "一种利用外差检测的混合单端接入BOTDA和COTDR传感系统",
+  "DOI": "10.1109/jlt.2013.2262498",
+  "creators": " ; ; ",
+  "date": "2013-06",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "ZR7K9R69",
+  "type": "journalArticle",
+  "title": "自外差检测在BOTDA中提高信噪比和分布式相移测量",
+  "DOI": "10.1109/jlt.2011.2168808",
+  "creators": "Zornoza Ander;Sagues Mikel;Loayssa Alayn",
+  "date": "2012-04",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "4DXNU2J5",
+  "type": "journalArticle",
+  "title": "Intense Brillouin amplification in gas using hollow-core waveguides",
+  "DOI": "10.1038/s41566-020-0676-z",
+  "creators": "Yang Fan;Gyger Flavien;Thévenaz Luc",
+  "date": "11/2020",
+  "pub": "Nature Photonics"
+ },
+ {
+  "key": "2XJCIYYA",
+  "type": "journalArticle",
+  "title": "【@】气体填充反谐光光纤中后向布里渊散射的研究",
+  "DOI": "10.1063/5.0151018",
+  "creators": "Galal Malak;Zhang Li;Gao Shoufei",
+  "date": "2023-08-01",
+  "pub": "APL Photonics"
+ },
+ {
+  "key": "SRX9GD2L",
+  "type": "journalArticle",
+  "title": "【@】气体填充反谐振空芯光纤的光声布里渊光谱",
+  "DOI": "10.1364/optica.417235",
+  "creators": "Zhao Yan;Qi Yun;Ho Hoi Lut",
+  "date": "2021-04-20",
+  "pub": "Optica"
+ },
+ {
+  "key": "MNBWLCDI",
+  "type": "journalArticle",
+  "title": "【@】利用空芯波导实现气体中的强布里渊放大",
+  "DOI": "10.1038/s41566-020-0676-z",
+  "creators": "Yang Fan;Gyger Flavien;Thévenaz Luc",
+  "date": "11/2020",
+  "pub": "Nature Photonics"
+ },
+ {
+  "key": "CAIBNQK3",
+  "type": "journalArticle",
+  "title": "基于瑞利布里渊散射光谱的大气温压  廓线同步反演方法研究",
+  "DOI": "",
+  "creators": "Bei Wang;Kun Liang",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "SVK7R5B6",
+  "type": "journalArticle",
+  "title": "【@】空芯光纤技术：“气体光子学”的崛起",
+  "DOI": "10.3390/fib7020016",
+  "creators": "Debord Benoît;Amrani Foued;Vincetti Luca",
+  "date": "2019-02-18",
+  "pub": "Fibers"
+ },
+ {
+  "key": "5K5HZDXH",
+  "type": "journalArticle",
+  "title": "反谐振空芯光纤中的基本热噪声",
+  "DOI": "10.1103/physreva.106.023501",
+  "creators": "Michaud-Belleau Vincent;Numkam Fokoua Eric R.;Horak Peter",
+  "date": "2022-8-1",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "8VWU3U32",
+  "type": "journalArticle",
+  "title": "【@】反谐振空芯光纤中的背向散射：比标准光纤低40dB以上",
+  "DOI": "10.1364/optica.403087",
+  "creators": "Michaud-Belleau V.;Numkam Fokoua E.;Bradley T. D.",
+  "date": "2021-02-20",
+  "pub": "Optica"
+ },
+ {
+  "key": "AS2GBN2T",
+  "type": "journalArticle",
+  "title": "双芯反谐振空芯光纤",
+  "DOI": "",
+  "creators": "Liu Xuesong;Fan Zhongwei;Shi Zhaohui",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "AJ6MFG8H",
+  "type": "journalArticle",
+  "title": "气体反谐振芯光纤辅助光谱技术研究进展",
+  "DOI": "10.3390/s21165640",
+  "creators": "Jaworski Piotr",
+  "date": "2021-08-21",
+  "pub": "Sensors"
+ },
+ {
+  "key": "RTEC34DD",
+  "type": "journalArticle",
+  "title": "多模嵌套型空心光纤",
+  "DOI": "10.1109/jlt.2021.3101522",
+  "creators": "Goel Charu;Yoo Seongwoo",
+  "date": "10/2021",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "2V87I83D",
+  "type": "journalArticle",
+  "title": "反谐空芯光纤的光时域后向散射",
+  "DOI": "10.1364/oe.461873",
+  "creators": "Slavík Radan;Numkam Fokoua Eric R.;Bradley Thomas D.",
+  "date": "2022-08-15",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "WG39ZYRB",
+  "type": "journalArticle",
+  "title": "多芯光纤与空芯光纤：SDM电力受限潜艇系统中应用的技术可行性研究",
+  "DOI": "10.1109/jlt.2023.3278714",
+  "creators": "Meseguer Alexis Carbo;De Araujo Juliana Tiburcio;Antona Jean-Christophe",
+  "date": "2023-6-15",
+  "pub": "Journal of Lightwave Technology"
+ },
+ {
+  "key": "I7ZCLA6U",
+  "type": "journalArticle",
+  "title": "空芯光纤",
+  "DOI": "",
+  "creators": "Belardi Walter",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "B3P5F3WA",
+  "type": "journalArticle",
+  "title": "【硕士学位论文】《人工神经网络对布里渊光时域分析仪应变和温度的判别》",
+  "DOI": "",
+  "creators": "Piccolo Arianna",
+  "date": "2016",
+  "pub": ""
+ },
+ {
+  "key": "YNLNSA4T",
+  "type": "journalArticle",
+  "title": "【博士学位论文】《布里渊光学时域分析的新方法》",
+  "DOI": "",
+  "creators": "Cicoli Michele",
+  "date": "2021",
+  "pub": ""
+ },
+ {
+  "key": "XLBYLT7K",
+  "type": "journalArticle",
+  "title": "超低损耗空芯光子晶体光纤",
+  "DOI": "10.1364/opex.13.000236",
+  "creators": "Roberts P. J.;Couny F.;Sabert H.",
+  "date": "2005",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "DPGBHW9W",
+  "type": "journalArticle",
+  "title": "宽带37芯空芯光纤的首次演示及其在高容量模式分复用中的应用",
+  "DOI": "",
+  "creators": "Jung Y;Fokoua E Numkam;Wooler J P",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "55V66M4M",
+  "type": "journalArticle",
+  "title": "空芯光纤在红外波段的研究进展（特邀）",
+  "DOI": "10.3788/aos250871",
+  "creators": "Gao Ran 高然;Song Weijun 宋维君;Zhang Lei 张磊",
+  "date": "2025",
+  "pub": "Acta Optica Sinica"
+ },
+ {
+  "key": "YRBBED5L",
+  "type": "journalArticle",
+  "title": "【综述】《用于电信和数据传输的空芯光纤》",
+  "DOI": "10.3390/app131910699",
+  "creators": "Borzycki Krzysztof;Osuch Tomasz",
+  "date": "2023-09-26",
+  "pub": "Applied Sciences"
+ },
+ {
+  "key": "WFYWRHYQ",
+  "type": "journalArticle",
+  "title": "《空芯光纤的损耗：机制、缩放规则和极限》",
+  "DOI": "10.1364/aop.470592",
+  "creators": "Numkam Fokoua Eric;Abokhamis Mousavi Seyed;Jasion Gregory T.",
+  "date": "2023-03-31",
+  "pub": "Advances in Optics and Photonics"
+ },
+ {
+  "key": "JABJ6UF9",
+  "type": "journalArticle",
+  "title": "《用于表征大气激光雷达反向散射的自发瑞利-布里渊散射实验》",
+  "DOI": "",
+  "creators": "Ubachs Dr W",
+  "date": "2010",
+  "pub": "Final report"
+ },
+ {
+  "key": "7C6FLDYM",
+  "type": "journalArticle",
+  "title": "【瑞利散射频谱】基于人工神经网络的瑞利散射频谱解调方法",
+  "DOI": "10.3788/aos202141.1306012",
+  "creators": "Wang Yifan 王一凡;Liu Qingwen 刘庆文;He Zuyuan 何祖源",
+  "date": "2021",
+  "pub": "Acta Optica Sinica"
+ },
+ {
+  "key": "9XWGYKCK",
+  "type": "journalArticle",
+  "title": "Laser Rayleigh scattering",
+  "DOI": "10.1088/0957-0233/12/5/201",
+  "creators": "Miles Richard B;Lempert Walter R;Forkey Joseph N",
+  "date": "2001-05-01",
+  "pub": "Measurement Science and Technology"
+ },
+ {
+  "key": "8GJCMY63",
+  "type": "journalArticle",
+  "title": "【综述】滤波瑞利散射法的定量气体性质测量：综述",
+  "DOI": "10.1088/1361-6501/acd40b",
+  "creators": "Ground Cody R;Hunt Robin L;Hunt Gregory J",
+  "date": "2023-09-01",
+  "pub": "Measurement Science and Technology"
+ },
+ {
+  "key": "FQXX4XSN",
+  "type": "journalArticle",
+  "title": "通过相干瑞利散射进行温度测量",
+  "DOI": "10.1364/ol.27.000161",
+  "creators": "Pan Xingguo;Barker Peter F.;Meschanov A.",
+  "date": "2002-02-01",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "SJVZFSXP",
+  "type": "journalArticle",
+  "title": "【基于部分相干光干涉】利用通过部分相干光干涉进行双参数采集的超窄线宽测量",
+  "DOI": "10.1364/oe.387398",
+  "creators": "Wang Zhihui;Ke Changjian;Zhong Yibo",
+  "date": "2020-03-16",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "B9RLMM4S",
+  "type": "journalArticle",
+  "title": "All-fiber stimulated Brillouin ring laser with submilliwatt pump threshold",
+  "DOI": "10.1364/ol.7.000509",
+  "creators": "Stokes L. F.;Chodorow M.;Shaw H. J.",
+  "date": "1982-10-01",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "3WVJUNM6",
+  "type": "journalArticle",
+  "title": "【@】瓦特级超高光信噪比单纵模可调谐布里渊光纤激光器",
+  "DOI": "10.1364/ol.38.000019",
+  "creators": "Wang Gaomeng;Zhan Li;Liu Jinmei",
+  "date": "2013-01-01",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "SZMV2JFJ",
+  "type": "journalArticle",
+  "title": "发射两个斯托克斯分量的布里渊光纤环形激光器的动态行为",
+  "DOI": "10.1103/physreva.52.2327",
+  "creators": "Randoux S.;Lecoeuche V.;Ségard B.",
+  "date": "1995-9-1",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "XGPQQS96",
+  "type": "journalArticle",
+  "title": "【环形腔】【法珀腔】【光纤长度的影响】布里渊光纤激光器的动态分析：实验方法",
+  "DOI": "10.1103/physreva.51.r4345",
+  "creators": "Randoux S.;Lecoeuche V.;Ségard B.",
+  "date": "1995-6-1",
+  "pub": "Physical Review A"
+ },
+ {
+  "key": "WV3XVTM9",
+  "type": "journalArticle",
+  "title": "具有超窄线宽的基于基频声波的受激布里渊散射",
+  "DOI": "10.1063/5.0242703",
+  "creators": "Xu Wendao;Zerbib Maxime;Iyer Arjun",
+  "date": "2025-01-01",
+  "pub": "APL Photonics"
+ },
+ {
+  "key": "KGN8BP95",
+  "type": "journalArticle",
+  "title": "脉冲光纤放大器中受激布里渊散射的依赖性与信号带宽、脉冲持续时间和重复频率有关",
+  "DOI": "10.3788/col201210.111402",
+  "creators": "Rongtao Su Rongtao Su;Pu Zhou Pu Zhou;Xiaolin Wang Xiaolin Wang",
+  "date": "2012",
+  "pub": "Chinese Optics Letters"
+ },
+ {
+  "key": "SQHXAYU2",
+  "type": "journalArticle",
+  "title": "高压气体中的受激布里渊效应",
+  "DOI": "10.1364/josa.56.000174",
+  "creators": "Rank D. H.;Wiggins T. A.;Wick R. V.",
+  "date": "1966-02-01",
+  "pub": "Journal of the Optical Society of America"
+ },
+ {
+  "key": "EMJWEXEH",
+  "type": "journalArticle",
+  "title": "【He-CH4】在二元气体混合物中的受激布里渊散射增益变化和瞬态效应",
+  "DOI": "10.1364/josab.7.002090",
+  "creators": "Jones D. C.;Mangir M. S.;Rockwell D. A.",
+  "date": "1990-10-01",
+  "pub": "Journal of the Optical Society of America B"
+ },
+ {
+  "key": "ZC2NPSZ8",
+  "type": "journalArticle",
+  "title": "【综述】受激布里渊综述：50年前发明和今天应用",
+  "DOI": "10.1155/2018/2459501",
+  "creators": "Garmire Elsa",
+  "date": "2018-12-02",
+  "pub": "International Journal of Optics"
+ },
+ {
+  "key": "3UKK7MZ8",
+  "type": "journalArticle",
+  "title": "【综述】100年的布里渊散射：历史和未来的展望",
+  "DOI": "10.1063/5.0095488",
+  "creators": "Merklein Moritz;Kabakova Irina V.;Zarifi Atiyeh",
+  "date": "2022-12-01",
+  "pub": "Applied Physics Reviews"
+ },
+ {
+  "key": "2RIWDKLP",
+  "type": "journalArticle",
+  "title": "零密度条件下CO2、CH4和SF6的粘度",
+  "DOI": "10.1063/1.555777",
+  "creators": "Trengove R. D.;Wakeham W. A.",
+  "date": "1987-04-01",
+  "pub": "Journal of Physical and Chemical Reference Data"
+ },
+ {
+  "key": "UDEQU4Z7",
+  "type": "journalArticle",
+  "title": "Rotational and Vibrational Relaxation in Diatomic Gases",
+  "DOI": "10.1063/1.1724417",
+  "creators": "Parker J. G.",
+  "date": "1959-07-01",
+  "pub": "The Physics of Fluids"
+ },
+ {
+  "key": "3YUL5GAJ",
+  "type": "journalArticle",
+  "title": "Bulk viscosity of molecular fluids",
+  "DOI": "10.1063/1.5022752",
+  "creators": "Jaeger Frederike;Matar Omar K.;Müller Erich A.",
+  "date": "2018-05-07",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "GYSQFYNK",
+  "type": "journalArticle",
+  "title": "Numerical estimates for the bulk viscosity of ideal gases",
+  "DOI": "10.1063/1.4729611",
+  "creators": "Cramer M. S.",
+  "date": "2012-06-01",
+  "pub": "Physics of Fluids"
+ },
+ {
+  "key": "8I88BW9K",
+  "type": "journalArticle",
+  "title": "【热导率】低密度下九种多原子气体的热导率",
+  "DOI": "10.1063/1.555864",
+  "creators": "Uribe F. J.;Mason E. A.;Kestin J.",
+  "date": "1990-09-01",
+  "pub": "Journal of Physical and Chemical Reference Data"
+ },
+ {
+  "key": "VR3D66LE",
+  "type": "journalArticle",
+  "title": "He–Kr和Ar–Kr气体混合物中的瑞利-布里渊散射",
+  "DOI": "10.1063/1.432152",
+  "creators": "Lao Q. H.;Schoen P. E.;Chu B.",
+  "date": "1976-06-15",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "42ZNDWT7",
+  "type": "journalArticle",
+  "title": "用Fizeau干涉仪和PMT阵列进行瑞利-布里渊光谱法测量水下温度和盐度",
+  "DOI": "10.3390/rs16122214",
+  "creators": "Zhao Yanpeng;Wang Yuanqing;Liang Kun",
+  "date": "2024-06-19",
+  "pub": "Remote Sensing"
+ },
+ {
+  "key": "7JM8XWVZ",
+  "type": "journalArticle",
+  "title": "二氧化碳输运性质的计算。I.剪切粘度、粘性磁效应和自扩散",
+  "DOI": "10.1063/1.1486438",
+  "creators": "Bock Steffen;Bich Eckard;Vogel Eckhard",
+  "date": "2002-08-01",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "5HG5DRDB",
+  "type": "journalArticle",
+  "title": "【2001】【CRBS】【氙、SF6、CClF3】SBS（受激布里渊散射）产生的高超声速波声衰减时间的直接测量",
+  "DOI": "",
+  "creators": "Damzen M J;Hutchinson M H R;Schroeder A",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "ZYCDLRYT",
+  "type": "journalArticle",
+  "title": "【1991】【SRBS】【N2】高压气体温度测量的瑞利-布里渊散射",
+  "DOI": "",
+  "creators": "Seasholtz G",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "4MHYZR87",
+  "type": "journalArticle",
+  "title": "气体的光谱函数：利用模型动力学方程对近似进行测试",
+  "DOI": "10.1139/p76-016",
+  "creators": "Müller Norbert;Hess Siegfried",
+  "date": "1976-01-15",
+  "pub": "Canadian Journal of Physics"
+ },
+ {
+  "key": "SALPMRRA",
+  "type": "journalArticle",
+  "title": "动力学模型与线性化玻尔兹曼方程",
+  "DOI": "10.1063/1.1724415",
+  "creators": "Gross Eugene P.;Jackson E. Atlee",
+  "date": "1959-07-01",
+  "pub": "The Physics of Fluids"
+ },
+ {
+  "key": "4I6YGZQ2",
+  "type": "journalArticle",
+  "title": "【DSMC、MD】二元气体混合物中瑞利-布里渊散射的分子模拟及旋转弛豫数的提取",
+  "DOI": "10.1103/physreve.104.035109",
+  "creators": "Ma Qihan;Yang Chunxin;Bruno Domenico",
+  "date": "2021-9-27",
+  "pub": "Physical Review E"
+ },
+ {
+  "key": "MCIRZMY5",
+  "type": "journalArticle",
+  "title": "【CO2】【MD】从分子动力学计算二氧化碳的瑞利-布里渊光散射光谱",
+  "DOI": "10.1063/1.5110676",
+  "creators": "Jamali Seyed Hossein;De Groen Mariette;Moultos Othonas A.",
+  "date": "2019-08-14",
+  "pub": "The Journal of Chemical Physics"
+ },
+ {
+  "key": "22VQLDVI",
+  "type": "journalArticle",
+  "title": "分子气体稀薄效应的动理学建模",
+  "DOI": "",
+  "creators": " ; ; ",
+  "date": "2022",
+  "pub": "空气动力学学报"
+ },
+ {
+  "key": "ACN3PV3N",
+  "type": "journalArticle",
+  "title": "气体中受激布里渊散射的增益和线宽",
+  "DOI": "10.1070/qe1972v002n01abeh003536",
+  "creators": "Kovalev Valerii I;Popovichev V I;Ragul'skii Valerii V",
+  "date": "1972-01-31",
+  "pub": "Soviet Journal of Quantum Electronics"
+ },
+ {
+  "key": "8J9FN7QJ",
+  "type": "journalArticle",
+  "title": "基于分布式光纤传感的地下管线监测研究综述",
+  "DOI": "",
+  "creators": " ; ; ",
+  "date": "2019",
+  "pub": "浙江大学学报（工学版）"
+ },
+ {
+  "key": "5CY6M76D",
+  "type": "journalArticle",
+  "title": "受激布里渊散射对光纤的影响分析",
+  "DOI": "",
+  "creators": " ; ; ",
+  "date": "2011",
+  "pub": "重庆师范大学学报（自然科学版）"
+ },
+ {
+  "key": "CAACH5GZ",
+  "type": "journalArticle",
+  "title": "光纤分布式扰动传感器中瑞利和受激布里渊散射光谱特性及其影响研究",
+  "DOI": "",
+  "creators": " ; ; ",
+  "date": "2011",
+  "pub": "光谱学与光谱分析"
+ },
+ {
+  "key": "KSVFS9WL",
+  "type": "journalArticle",
+  "title": "基于受激布里渊散射效应的光谱分析",
+  "DOI": "10.13756/j.gtxyj.2023.01.007",
+  "creators": " ; ",
+  "date": "2023",
+  "pub": "光通信研究"
+ },
+ {
+  "key": "8MVYT8L3",
+  "type": "journalArticle",
+  "title": "布里渊光时域光纤传感中的快速测量技术",
+  "DOI": "10.16818/j.issn1001-5868.2022073003",
+  "creators": " ; ; ",
+  "date": "2022",
+  "pub": "半导体光电"
+ },
+ {
+  "key": "77SF66Y8",
+  "type": "journalArticle",
+  "title": "六氟化硫的热力学性质",
+  "DOI": "",
+  "creators": "Hurly J J;Defibaugh D R;Moldover M R",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "TR8UT6IL",
+  "type": "journalArticle",
+  "title": "六氟化硫（SF6）从熔点到625K，150MPa的热力学性质参考方程",
+  "DOI": "10.1063/1.2716004",
+  "creators": "Scalabrin Giancarlo;Bettio Luigi;Marchi Paolo",
+  "date": "2007-06-01",
+  "pub": "Journal of Physical and Chemical Reference Data"
+ },
+ {
+  "key": "D7AHCKLH",
+  "type": "journalArticle",
+  "title": "【H2-N2、H2-CH4】在高压下H2-N2和H2-CH4混合物的瑞利-布里渊散射",
+  "DOI": "10.1016/j.proci.2024.105420",
+  "creators": "Teav Ketana;Steinberg Adam M.",
+  "date": "2024",
+  "pub": "Proceedings of the Combustion Institute"
+ },
+ {
+  "key": "6Y2BB5SU",
+  "type": "journalArticle",
+  "title": "基于外差检测和波长扫描的瑞利-布里渊光时域分析系统",
+  "DOI": "10.1117/1.oe.57.5.056112",
+  "creators": "Li Yongqian;Zhang Lixin;Fan Hanbai",
+  "date": "2018-5-30",
+  "pub": "Optical Engineering"
+ },
+ {
+  "key": "J3ICCRT7",
+  "type": "journalArticle",
+  "title": "受激布里渊散射与强超音速波的相干产生",
+  "DOI": "10.1103/physrevlett.12.592",
+  "creators": "Chiao R. Y.;Townes C. H.;Stoicheff B. P.",
+  "date": "1964-5-25",
+  "pub": "Physical Review Letters"
+ },
+ {
+  "key": "BD44AE2H",
+  "type": "journalArticle",
+  "title": "受激布里渊过程斯托克斯发射的饱和度和光谱特性",
+  "DOI": "10.1063/1.1703144",
+  "creators": "Tang C. L.",
+  "date": "1966-07-01",
+  "pub": "Journal of Applied Physics"
+ },
+ {
+  "key": "9VXLHTPK",
+  "type": "journalArticle",
+  "title": "多模光纤布里渊散射效应研究进展",
+  "DOI": "",
+  "creators": "Yongqian LI;Yanrui LIU;Lei WANG",
+  "date": "2021",
+  "pub": ""
+ },
+ {
+  "key": "5KYJ2GRG",
+  "type": "journalArticle",
+  "title": "分布式光纤传感中非线性对注入光功率的限制",
+  "DOI": "10.3788/gzxb20204908.0806003",
+  "creators": "Tian-ming Luo 罗天明;Wei-ren Cheng 程炜仁;Ling-hao Cheng 程凌浩",
+  "date": "2020",
+  "pub": "ACTA PHOTONICA SINICA"
+ },
+ {
+  "key": "AAGF6C4H",
+  "type": "journalArticle",
+  "title": "在混频检测方案中实现信号的对比与混合操作",
+  "DOI": "10.1038/ncomms7444",
+  "creators": "Verbiest G.J.;Rost M.J.",
+  "date": "2015-03-10",
+  "pub": "Nature Communications"
+ },
+ {
+  "key": "PEMFXAKG",
+  "type": "journalArticle",
+  "title": "新一代分布式应变测量系统用脉冲预泵BOTDA技术",
+  "DOI": "",
+  "creators": "Kishida K;Li C-H",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "KM6QFJRZ",
+  "type": "journalArticle",
+  "title": "基于分布式光纤传感器测量的应变数据对钢梁裂缝开裂的预测",
+  "DOI": "10.1088/1361-6501/acfc5b",
+  "creators": "Ying Yu;Morgese Maurizio;Ansari Farhad",
+  "date": "2024-01-01",
+  "pub": "Measurement Science and Technology"
+ },
+ {
+  "key": "Z27TYWEH",
+  "type": "journalArticle",
+  "title": "一种改进BOTDA光纤传感器温度测量的新技术研究",
+  "DOI": "10.1109/jsen.2024.3487143",
+  "creators": "Fouda Bernard Marie Tabi;Hélène Carole Edima-Durand;Jacques Atangana",
+  "date": "2024-12-15",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "NCBR6S64",
+  "type": "journalArticle",
+  "title": "在单端BOTDA系统中使用少模光纤同时进行温度和应变传感",
+  "DOI": "10.1088/1402-4896/ad9866",
+  "creators": "Zhang Lixin;Zhang Lei;Liu Zijuan",
+  "date": "2025-01-01",
+  "pub": "Physica Scripta"
+ },
+ {
+  "key": "7WNETA3A",
+  "type": "journalArticle",
+  "title": "通过频域和时域滤波技术实现BOTDA光纤传感器的快速、准确测量",
+  "DOI": "10.1109/jsen.2023.3347307",
+  "creators": "Hamzah Abdulwahhab Essa;Zan Mohd Saiful Dzulkefly;Hamzah Mustafa Essa",
+  "date": "2024-2-15",
+  "pub": "IEEE Sensors Journal"
+ },
+ {
+  "key": "LC7SUFR8",
+  "type": "journalArticle",
+  "title": "单光纤上高度集成的BOTDAXFG传感器，用于坡度多参数的同时监测",
+  "DOI": "10.3390/s19092132",
+  "creators": "Li Feng;Zhao Weigang;Xu Hongbin",
+  "date": "2019-05-08",
+  "pub": "Sensors"
+ },
+ {
+  "key": "PA3JMZA7",
+  "type": "journalArticle",
+  "title": "土工结构变形BOTDA测量与误差分析的网络理论",
+  "DOI": "10.1016/j.measurement.2019.07.010",
+  "creators": "Feng Wei-Qiang;Yin Jian-Hua;Borana Lalit",
+  "date": "2019-11",
+  "pub": "Measurement"
+ },
+ {
+  "key": "KFX869L2",
+  "type": "journalArticle",
+  "title": "超长距离混合式BOTDAφ-OTDR",
+  "DOI": "10.3390/s18040976",
+  "creators": "Fu Yun;Wang Zinan;Zhu Richeng",
+  "date": "2018-03-25",
+  "pub": "Sensors"
+ },
+ {
+  "key": "DZUWKBU4",
+  "type": "journalArticle",
+  "title": "基于光学啁啾链探波的单光子BOTDA在分布式超快测量中的应用",
+  "DOI": "10.1038/s41377-018-0030-0",
+  "creators": "Zhou Dengwang;Dong Yongkang;Wang Benzhang",
+  "date": "2018-07-11",
+  "pub": "Light: Science & Applications"
+ },
+ {
+  "key": "P2TED2G5",
+  "type": "journalArticle",
+  "title": "【BOTDA】基于矢量SBS和频率敏捷技术的斜坡辅助BOTDA在宽应变范围动态测量中的应用",
+  "DOI": "10.1364/oe.25.001889",
+  "creators": "Zhou Dengwang;Dong Yongkang;Wang Benzhang",
+  "date": "2017-02-06",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "EZNSKXAW",
+  "type": "journalArticle",
+  "title": "无失真BOTDA测量的新型扫描方法",
+  "DOI": "10.1364/oe.24.010188",
+  "creators": "Dominguez-Lopez Alejandro;Yang Zhisheng;Soto Marcelo A.",
+  "date": "2016-05-16",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "B99KIZCE",
+  "type": "journalArticle",
+  "title": "基于相位频谱响应的BOTDA系统精度评价",
+  "DOI": "10.1364/oe.24.017200",
+  "creators": "Lopez-Gil Alexia;Soto Marcelo A.;Angulo-Vinuesa Xabier",
+  "date": "2016-07-25",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "W6TYUMF3",
+  "type": "journalArticle",
+  "title": "基于多斜率辅助快速BOTDA的动态应变分布式测量",
+  "DOI": "10.1364/oe.24.009781",
+  "creators": "Ba Dexin;Wang Benzhang;Zhou Dengwang",
+  "date": "2016-05-02",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "M88JTVKZ",
+  "type": "journalArticle",
+  "title": "频率扫描式BOTDA，最终快速采集速度",
+  "DOI": "10.1109/lpt.2015.2424271",
+  "creators": "Sovran Ido;Motil Avi;Tur Moshe",
+  "date": "2015-7-1",
+  "pub": "IEEE Photonics Technology Letters"
+ },
+ {
+  "key": "NAEHHVCK",
+  "type": "journalArticle",
+  "title": "PPP-BOTDA检测和监测表面微裂纹",
+  "DOI": "10.1364/ao.54.004972",
+  "creators": "Meng Dewei;Ansari Farhad;Feng Xin",
+  "date": "2015-06-01",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "6EY5Z9Y7",
+  "type": "journalArticle",
+  "title": "双极光脉冲编码提高BOTDA传感器性能",
+  "DOI": "10.1364/oe.21.016390",
+  "creators": "Soto Marcelo A.;Le Floch Sébastien;Thévenaz Luc",
+  "date": "2013-07-15",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "2AMARN5X",
+  "type": "journalArticle",
+  "title": "基于BOTDA的光纤分布式动态应变传感器监测机械波传播",
+  "DOI": "10.1364/oe.21.010697",
+  "creators": "Peled Yair;Motil Avi;Kressel Iddo",
+  "date": "2013-05-06",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "VLBY5QV7",
+  "type": "journalArticle",
+  "title": "基于布里渊相移和射频解调的动态BOTDA测量",
+  "DOI": "10.1364/oe.20.026942",
+  "creators": "Urricelqui Javier;Zornoza Ander;Sagues Mikel",
+  "date": "2012-11-19",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "V5K2LUBI",
+  "type": "journalArticle",
+  "title": "简易编码BOTDA光纤传感器，具有50 km范围内的1m空间分辨率",
+  "DOI": "10.1364/ol.35.000259",
+  "creators": "Soto Marcelo A.;Bolognini Gabriele;Di Pasquale Fabrizio",
+  "date": "2010-01-15",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "ET2UBDBN",
+  "type": "journalArticle",
+  "title": "利用一阶双向拉曼放大实现高分辨率长距离 BOTDA 传感系统的优化",
+  "DOI": "10.1364/oe.19.004444",
+  "creators": "Soto Marcelo A.;Bolognini Gabriele;Di Pasquale Fabrizio",
+  "date": "2011-02-28",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "JGSLXU6J",
+  "type": "journalArticle",
+  "title": "采用光前置放大器的长距离单边带编码BOTDA传感器，距离超过120km",
+  "DOI": "10.1364/ol.36.000232",
+  "creators": "Soto Marcelo A.;Bolognini Gabriele;Pasquale Fabrizio Di",
+  "date": "2011-01-15",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "83RT7U3W",
+  "type": "journalArticle",
+  "title": "使用返回零编码脉冲的50km以上高分辨率DPP-BOTDA",
+  "DOI": "10.1364/ol.35.001503",
+  "creators": "Liang Hao;Li Wenhai;Linze Nicolas",
+  "date": "2010-05-15",
+  "pub": "Optics Letters"
+ },
+ {
+  "key": "YWVMEPK5",
+  "type": "journalArticle",
+  "title": "【BOTDR】激光线宽对BOTDR布里渊频移精度的影响",
+  "DOI": "10.3390/app9010058",
+  "creators": "Bai Qing;Yan Min;Xue Bo",
+  "date": "2018-12-25",
+  "pub": "Applied Sciences"
+ },
+ {
+  "key": "QRAAGEDH",
+  "type": "journalArticle",
+  "title": "【BOTDR】激光线宽对布里渊光学时域反射计性能的影响",
+  "DOI": "10.1088/1674-1056/22/7/074214",
+  "creators": "Hao Yun-Qi;Ye Qing;Pan Zheng-Qing",
+  "date": "2013-07",
+  "pub": "Chinese Physics B"
+ },
+ {
+  "key": "C9X9Z8LQ",
+  "type": "journalArticle",
+  "title": "分布式光纤传感器在地下管线监测中的中试验证",
+  "DOI": "",
+  "creators": "Lalam Nageswara;Brister Matthew M;Bhatta Hari",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "V44YQVHF",
+  "type": "journalArticle",
+  "title": "瑞利布里渊光时域分析系统传感性能的提升方法",
+  "DOI": "10.3788/aos201737.0106001",
+  "creators": "Li Yongqian 李永倩;Zhang Lixin 张立欣;Li Xiaojuan 李晓娟",
+  "date": "2017",
+  "pub": "Acta Optica Sinica"
+ },
+ {
+  "key": "3J6E7NNE",
+  "type": "journalArticle",
+  "title": "【综述】机器学习技术在分布式光纤传感性能提升中的应用进展",
+  "DOI": "10.3788/lop241191",
+  "creators": "Ma Dingyi 马丁忆;Liu Xinyu 刘鑫煜;Li Yongzheng 李拥政",
+  "date": "2025",
+  "pub": "Laser & Optoelectronics Progress"
+ },
+ {
+  "key": "QC4SAD73",
+  "type": "journalArticle",
+  "title": "布里渊光相干域分析技术研究进展",
+  "DOI": "10.3788/cjl202148.0100001",
+  "creators": "Hu Xinxin 胡鑫鑫;Wang Yahui 王亚辉;Zhao Le 赵乐",
+  "date": "2021",
+  "pub": "Chinese Journal of Lasers"
+ },
+ {
+  "key": "ZJ3JLGXS",
+  "type": "journalArticle",
+  "title": "BOTDA系统温度应变双参量传感技术研究进展",
+  "DOI": "10.3788/lop202158.1306021",
+  "creators": "Liu Jingyang 刘靖阳;Wang Tao 王涛;Zhang Qian 张倩",
+  "date": "2021",
+  "pub": "Laser & Optoelectronics Progress"
+ },
+ {
+  "key": "TRVSHW7P",
+  "type": "journalArticle",
+  "title": "【?系统】【BFS提取算法】【RBFNN】基于径向基函数神经网络直接提取布里渊散射谱温度的方法",
+  "DOI": "10.3788/aos201838.1229001",
+  "creators": "Sui Yang 隋阳;Meng Chuannan 孟钏楠;Dong Wei 董玮",
+  "date": "2018",
+  "pub": "Acta Optica Sinica"
+ },
+ {
+  "key": "A5SHESLG",
+  "type": "journalArticle",
+  "title": "【综述】特种光纤布里渊时域分析技术综述",
+  "DOI": "10.3390/photonics8100421",
+  "creators": "Hu Dora Juan Juan;Humbert Georges;Dong Hui",
+  "date": "2021-09-30",
+  "pub": "Photonics"
+ },
+ {
+  "key": "WA89FEFZ",
+  "type": "journalArticle",
+  "title": "【综述】基于光纤布里渊散射的分布式动态应变传感",
+  "DOI": "10.3390/s20195629",
+  "creators": "Coscetta Agnese;Minardo Aldo;Zeni Luigi",
+  "date": "2020-10-01",
+  "pub": "Sensors"
+ },
+ {
+  "key": "8MPNPM5H",
+  "type": "journalArticle",
+  "title": "【综述】利用布里渊位移谱反分析的分布式光纤应变传感裂纹检测",
+  "DOI": "10.1177/14759217231206857",
+  "creators": "Ou Ruonan;Luo Linqing;Soga Kenichi",
+  "date": "2024-07",
+  "pub": "Structural Health Monitoring"
+ },
+ {
+  "key": "3IVRDPJ8",
+  "type": "journalArticle",
+  "title": "【综述】高空间分辨率：对布里渊光学时间域和相关域分析发展的综合综述",
+  "DOI": "10.1088/1361-6501/ab5f85",
+  "creators": "Wang Benzhang;Dong Yongkang;Ba Dexin",
+  "date": "2020-05-01",
+  "pub": "Measurement Science and Technology"
+ },
+ {
+  "key": "67PW2KA2",
+  "type": "journalArticle",
+  "title": "混合BOTDR/Φ-OTDR用于从光纤的单端进行多参数测量",
+  "DOI": "10.1364/oe.463127",
+  "creators": "Zhou Xiao;Wang Feng;Liu Zhen",
+  "date": "2022-08-01",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "T3Z7QP7A",
+  "type": "journalArticle",
+  "title": "【综述】基于机器学习的布里渊信号分析方法的研究进展",
+  "DOI": "10.3788/lop202158.1306010",
+  "creators": "Wang Liang 王亮;Wu Hao 吴昊;Tang Ming 唐明",
+  "date": "2021",
+  "pub": "Laser & Optoelectronics Progress"
+ },
+ {
+  "key": "J3YN69HA",
+  "type": "journalArticle",
+  "title": "【非分布式传感系统】基于时空相位孔径编码的运动去模糊",
+  "DOI": "10.1364/optica.399533",
+  "creators": "Elmalem Shay;Giryes Raja;Marom Emanuel",
+  "date": "2020-10-20",
+  "pub": "Optica"
+ },
+ {
+  "key": "WP2SJYPR",
+  "type": "journalArticle",
+  "title": "【非分布式传感系统】基于深度卷积神经网络的非盲反卷积算法在合成孔径系统中的图像恢复",
+  "DOI": "10.1364/oe.387623",
+  "creators": "Hui Mei;Wu Yong;Li Weiqian",
+  "date": "2020-03-30",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "FHLYCSYZ",
+  "type": "journalArticle",
+  "title": "计算纯气体和混合气体中瑞利散射的正确方程和常用近似方法及差异评估",
+  "DOI": "10.1364/ao.49.001116",
+  "creators": "Eberhard Wynn L.",
+  "date": "2010-03-01",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "2ANM9L9U",
+  "type": "journalArticle",
+  "title": "2 cm spatial-resolution and 2 km range Brillouin optical fiber sensor using a transient differential pulse pair",
+  "DOI": "10.1364/ao.51.001229",
+  "creators": "Dong Yongkang;Zhang Hongying;Chen Liang",
+  "date": "2012-03-20",
+  "pub": "Applied Optics"
+ },
+ {
+  "key": "U8A4R4CM",
+  "type": "journalArticle",
+  "title": "基于布里渊光时域分析的光纤非线性参数测量",
+  "DOI": "10.1364/josab.33.000630",
+  "creators": "Zhang Hongying;Zhang Shaopeng;Yuan Zhijun",
+  "date": "2016-04-01",
+  "pub": "Journal of the Optical Society of America B"
+ },
+ {
+  "key": "JQFTUXYY",
+  "type": "journalArticle",
+  "title": "【综述】布里渊光纤传感新兴方向研究进展：声波的分析、设计与实现",
+  "DOI": "",
+  "creators": "Li Tianfu;Chen Chao;Jiang Taofei",
+  "date": "",
+  "pub": ""
+ },
+ {
+  "key": "K8BZ866Z",
+  "type": "journalArticle",
+  "title": "【滤波瑞利散射技术】提高气体瑞利散射测量中压力、温度和速度精度的方法",
+  "DOI": "10.1088/0957-0233/27/12/125204",
+  "creators": "Doll Ulrich;Burow Eike;Stockhausen Guido",
+  "date": "2016-12-01",
+  "pub": "Measurement Science and Technology"
+ },
+ {
+  "key": "QBWUUFW4",
+  "type": "journalArticle",
+  "title": "【BOTDR】基于FFT技术与互补编码相结合的BOTDR性能提升",
+  "DOI": "10.1364/oe.25.003504",
+  "creators": "Wang Feng;Zhu Chenghao;Cao Chunqi",
+  "date": "2017-02-20",
+  "pub": "Optics Express"
+ },
+ {
+  "key": "6XVBAF4B",
+  "type": "journalArticle",
+  "title": "【非分布式传感系统】深度学习在提高磁粉成像空间分辨率中的应用",
+  "DOI": "10.1088/1361-6560/ac6e24",
+  "creators": "Shang Yaxin;Liu Jie;Zhang Liwen",
+  "date": "2022-06-21",
+  "pub": "Physics in Medicine & Biology"
+ },
+ {
+  "key": "S9H2A3NV",
+  "type": "journalArticle",
+  "title": "【动态】光时域布里渊分布式光纤动态应变传感技术研究进展",
+  "DOI": "10.3788/lop232364",
+  "creators": "Wei Ruoxue 韦若雪;Liu Ge 刘戈;Lu Hanglin 陆杭林",
+  "date": "2024",
+  "pub": "Laser & Optoelectronics Progress"
+ },
+ {
+  "key": "9JR937ZV",
+  "type": "preprint",
+  "title": "【CRBS】利用统一气体动力学方案对多种流动条件下相干瑞利-布里渊散射现象的研究",
+  "DOI": "10.48550/arxiv.2512.15357",
+  "creators": "Xi Xiaozhe;Cao Junzhe;Xu Kun",
+  "date": "2025-12-21",
+  "pub": ""
+ },
+ {
+  "key": "5Y73Y7QZ",
+  "type": "preprint",
+  "title": "Rayleigh-Brillouin Scattering in Binary Gas Mixtures",
+  "DOI": "10.48550/arxiv.1505.05623",
+  "creators": "Gu Ziyu;Ubachs Wim;Water Willem van de",
+  "date": "2015-05-21",
+  "pub": ""
+ },
+ {
+  "key": "7VAXFD5I",
+  "type": "preprint",
+  "title": "【SA-BOTDA】优化空间分辨率提高分布式光纤振动传感在大坝动力结构分析中的性能",
+  "DOI": "10.2139/ssrn.5146264",
+  "creators": "Fang Zheng;Wen Zhiping;Gu Yu",
+  "date": "2025",
+  "pub": ""
+ },
+ {
+  "key": "63ES4M5E",
+  "type": "preprint",
+  "title": "慢光波导中的受激布里渊散射",
+  "DOI": "10.48550/arxiv.1210.0738",
+  "creators": "Qiu Wenjun;Rakich Peter T.;Soljacic Marin",
+  "date": "2012-10-02",
+  "pub": ""
+ },
+ {
+  "key": "PK6796DU",
+  "type": "conferencePaper",
+  "title": "【CRBS】在实验室规模风洞中利用单次相干瑞利布里渊散射技术对翼型上方边界层中的多点速度测量及密度测量",
+  "DOI": "10.2514/6.2025-0242",
+  "creators": "Kumar Atulya U.;Karatodorov Stefan;Kounalakis Marios",
+  "date": "2025-01-06",
+  "pub": "AIAA SCITECH 2025 Forum"
+ },
+ {
+  "key": "26TT4FTW",
+  "type": "conferencePaper",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【N2】【Tenti S6】N2自发瑞利-布里渊散射光谱的分析",
+  "DOI": "10.1117/12.2243751",
+  "creators": "Wu Tao;Xia Ruxiao;He Xingdao",
+  "date": "2016-10-19",
+  "pub": ""
+ },
+ {
+  "key": "CCI69BDJ",
+  "type": "conferencePaper",
+  "title": "【CRBS】相干瑞利-布里渊散射：分子间势能的影响",
+  "DOI": "10.1063/1.4902654",
+  "creators": "Wu Lei;White Craig;Scanlon Thomas J.",
+  "date": "2014",
+  "pub": ""
+ },
+ {
+  "key": "886BHPTU",
+  "type": "conferencePaper",
+  "title": "【CRBS】高强度激光场中的相干瑞利-布里渊散射",
+  "DOI": "10.1063/1.4769677",
+  "creators": "Cornella B. M.;Gimelshein S. F.;Lilly T. C.",
+  "date": "2012",
+  "pub": ""
+ },
+ {
+  "key": "N6NPTQQT",
+  "type": "conferencePaper",
+  "title": "【CRBS】动力学区单原子气体中的相干瑞利-布里渊散射",
+  "DOI": "10.2514/6.2002-3235",
+  "creators": "Pan Xingguo;Shneider Mikhail;Miles Richard",
+  "date": "2002-06-24",
+  "pub": "22nd AIAA Aerodynamic Measurement Technology and Ground Testing Conference"
+ },
+ {
+  "key": "MTH6CYMV",
+  "type": "conferencePaper",
+  "title": "【CRBS】多原子气体中的相干瑞利-布里渊散射",
+  "DOI": "10.1109/qels.2003.237800",
+  "creators": " ;Schneider M.N.;Miles R.B.",
+  "date": "2003",
+  "pub": "Postconference Digest Quantum Electronics and Laser Science, 2003. QELS."
+ },
+ {
+  "key": "TPL4ZPEB",
+  "type": "conferencePaper",
+  "title": "【CRBS】相干瑞利-布里渊散射单次激光测速演示",
+  "DOI": "10.2514/6.2021-0224",
+  "creators": "Gerakis Alexandros;Bak Junhwi;Randolph Robert",
+  "date": "2021-01-11",
+  "pub": "AIAA Scitech 2021 Forum"
+ },
+ {
+  "key": "KT8WN6DQ",
+  "type": "conferencePaper",
+  "title": "【CRBS】实现相干瑞利-布里渊散射的最优化速度分辨率",
+  "DOI": "10.2514/6.2021-0223",
+  "creators": "Bak Junhwi;Randolph Robert;Gerakis Alexandros",
+  "date": "2021-01-11",
+  "pub": "AIAA Scitech 2021 Forum"
+ },
+ {
+  "key": "3SSUP3QR",
+  "type": "conferencePaper",
+  "title": "【CRBS】利用相干瑞利-布里渊散射测量体积粘度",
+  "DOI": "10.2514/6.2004-17",
+  "creators": "Pan Xingguo;Shneider Mikhail;Zhang Zhili",
+  "date": "2004-01-05",
+  "pub": "42nd AIAA Aerospace Sciences Meeting and Exhibit"
+ },
+ {
+  "key": "9RF393QN",
+  "type": "conferencePaper",
+  "title": "【xxxxxxxxxxxxxxxxxxxxxxxx】【N2】【Tenti S6】基于Wiener滤波的自发瑞利-布里渊散射光谱分析",
+  "DOI": "10.1117/12.2284251",
+  "creators": "Shang Jingcheng;Wu Tao;He Xingdao",
+  "date": "2017-10-24",
+  "pub": "AOPC 2017: Optical Spectroscopy and Imaging"
+ },
+ {
+  "key": "HIF5E5AH",
+  "type": "conferencePaper",
+  "title": "Temperature retrieval error in Rayleigh-Brillouin scattering using Tenti’s S6 kinetic model",
+  "DOI": "10.1063/1.4967548",
+  "creators": "Wu Lei;Reese Jason M.;Zhang Yonghao",
+  "date": "2016",
+  "pub": ""
+ },
+ {
+  "key": "FA5XDPWP",
+  "type": "conferencePaper",
+  "title": "低损耗记录值：1.3dB/km数据传输反谐振空芯光纤",
+  "DOI": "10.1109/ecoc.2018.8535324",
+  "creators": "Bradley T. D.;Hayes J. R.;Chen Y.",
+  "date": "2018-09",
+  "pub": "2018 European Conference on Optical Communication (ECOC)"
+ },
+ {
+  "key": "C6JIVL5L",
+  "type": "conferencePaper",
+  "title": "嵌套反谐振无节点空芯光纤中气体流动及其对光学性质影响的模拟",
+  "DOI": "10.1117/12.3056525",
+  "creators": "Elistratova Elizaveta;Davidson Ian A.;Sakr Hesham",
+  "date": "2025-05-29",
+  "pub": "Eighth International Workshop on Specialty Optical Fibers and Their Applications (WSOF 2025)"
+ },
+ {
+  "key": "RAZ8Y642",
+  "type": "conferencePaper",
+  "title": "基于机器学习的分布式温度传感通用解调框架",
+  "DOI": "10.1109/iecon55916.2024.10905173",
+  "creators": "Ling Jiamu;Kong Ziqian;He Zixuan",
+  "date": "2024-11-3",
+  "pub": "IECON 2024 - 50th Annual Conference of the IEEE Industrial Electronics Society"
+ },
+ {
+  "key": "P7NZGGC4",
+  "type": "conferencePaper",
+  "title": "【N2】【Tenti S6 vs L3】气体流动中瑞利-布里渊光谱的测量",
+  "DOI": "10.1117/12.2077142",
+  "creators": "Li Tao;Wu Lei;Yuan Liang",
+  "date": "2015-2-20",
+  "pub": ""
+ },
+ {
+  "key": "SY7NR8L2",
+  "type": "conferencePaper",
+  "title": "【N2】【Tenti S6 vs G3 vs V3】自发瑞利-布里渊散射剖面测温研究",
+  "DOI": "10.1117/12.2505397",
+  "creators": "Shang Jingcheng;Hu Rongjing;He Xingdao",
+  "date": "2018-12-12",
+  "pub": "Optical Sensing and Imaging Technologies and Applications"
+ },
+ {
+  "key": "LFJZVTU8",
+  "type": "conferencePaper",
+  "title": "【Air】【G3】在动力学区域解耦大气瑞利-布里渊散射光谱",
+  "DOI": "10.1117/12.2512152",
+  "creators": "Liu Jingjing;Kang Jiale;Hua Dengxin",
+  "date": "2019-3-7",
+  "pub": "Tenth International Symposium on Precision Engineering Measurements and Instrumentation"
+ },
+ {
+  "key": "W48F7TYQ",
+  "type": "conferencePaper",
+  "title": "【BOTDA】【BFS提取算法】基于概率深度神经网络的矢量BOTDA系统布里渊增益和相位谱信号处理",
+  "DOI": "10.1117/12.2578509",
+  "creators": "Lalam Nageswara;Venketeswaran Abhishek;Lu Ping",
+  "date": "2021-3-5",
+  "pub": "Optical Interconnects XXI"
+ },
+ {
+  "key": "YUBDB4M6",
+  "type": "conferencePaper",
+  "title": "利用信号处理技术提高背向散射光信号动态范围",
+  "DOI": "10.1109/aspcon49795.2020.9276692",
+  "creators": "Tangudu Ramji;Sahu Prasant Kumar",
+  "date": "2020-10-7",
+  "pub": "2020 IEEE Applied Signal Processing Conference (ASPCON)"
+ },
+ {
+  "key": "5MFK7XT3",
+  "type": "conferencePaper",
+  "title": "【综述】基于人工神经网络的分布式光纤传感器研究进展",
+  "DOI": "10.1109/csndsp49049.2020.9249588",
+  "creators": "Lalam Nageswara;Ng Wai Pang",
+  "date": "2020-7-20",
+  "pub": "2020 12th International Symposium on Communication Systems, Networks and Digital Signal Processing (CSNDSP)"
+ },
+ {
+  "key": "NQIPCP8Z",
+  "type": "conferencePaper",
+  "title": "利用人工神经网络提高分布式温度传感器的温度分辨率",
+  "DOI": "10.1109/imoc.2017.8121132",
+  "creators": "Bezerra Da Silva Luis Cicero;De Oliveira Rocha Helder Roberto;Schmidt Castellani Carlos Eduardo",
+  "date": "2017-08",
+  "pub": "2017 SBMO/IEEE MTT-S International Microwave and Optoelectronics Conference (IMOC)"
+ },
+ {
+  "key": "64QL5WWQ",
+  "type": "conferencePaper",
+  "title": "【?系统】基于鲸优化算法和批归一化卷积神经网络的振动信号去噪方法",
+  "DOI": "10.1109/icma57826.2023.10216043",
+  "creators": "Wang Yue;Wang Youming;Han Jiali",
+  "date": "2023-8-6",
+  "pub": "2023 IEEE International Conference on Mechatronics and Automation (ICMA)"
+ },
+ {
+  "key": "9RPECTGD",
+  "type": "conferencePaper",
+  "title": "【STFT-BOTDR】【Wiener滤波、正则化滤波、Richardson-Lucy方法和盲反卷积】实现高空间分辨率布里渊光时域反射仪的多种反卷积算法性能比较",
+  "DOI": "10.1117/12.3030726",
+  "creators": "Guo Wencun;Zhang Minghong;Wu Haoting",
+  "date": "2024-6-3",
+  "pub": "2024 International Conference on Optoelectronic Information and Optical Engineering (OIOE 2024)"
+ },
+ {
+  "key": "UL22TYYZ",
+  "type": "conferencePaper",
+  "title": "基于物理模型辅助混合神经网络的单晶光纤高空间分辨率分布式高温传感",
+  "DOI": "10.23919/oecc/psc62146.2025.11109613",
+  "creators": "Liu Xu;Liu Bo",
+  "date": "2025-6-29",
+  "pub": "2025 30th OptoElectronics and Communications Conference (OECC) and 2025 International Conference on Photonics in Switching and Computing (PSC)"
+ },
+ {
+  "key": "Y6552U6X",
+  "type": "conferencePaper",
+  "title": "【40barCO2】气体中的大的受激布里渊散射放大",
+  "DOI": "10.1117/12.2540660",
+  "creators": "Yang Fan;Gyger Flavien;Thévenaz Luc",
+  "date": "2019-08-28",
+  "pub": "Seventh European Workshop on Optical Fibre Sensors"
+ },
+ {
+  "key": "SYXYPPHN",
+  "type": "conferencePaper",
+  "title": "SF6流反谐振空芯光纤中的后向瑞利-布里渊散射",
+  "DOI": "10.1109/acp/ipoc63121.2024.10809472",
+  "creators": "Liang Hao;Sun Yizhi;Tan Haitong",
+  "date": "2024-11-2",
+  "pub": "2024 Asia Communications and Photonics Conference (ACP) and International Conference on Information Photonics and Optical Communications (IPOC)"
+ },
+ {
+  "key": "AEUI858B",
+  "type": "conferencePaper",
+  "title": "Analysis of Brillouin-Based Distributed Fiber Sensors Using Optical Pulse Coding",
+  "DOI": "10.1109/ofc.2008.4528402",
+  "creators": "Sahu Prasant K.;Soto Marcelo A.;Lee Jeonghwan",
+  "date": "2/2008",
+  "pub": "OFC/NFOEC 2008 - 2008 Conference on Optical Fiber Communication/National Fiber Optic Engineers Conference"
+ },
+ {
+  "key": "MCESYJWI",
+  "type": "conferencePaper",
+  "title": "【翻译】抽制态空芯光纤中瞬态差压诱导的损耗变化",
+  "DOI": "10.1117/12.2621301",
+  "creators": "Rikimi Shuichiro;Kelly Thomas W.;Horak Peter",
+  "date": "2022-05-19",
+  "pub": "Micro-Structured and Specialty Optical Fibres VII"
+ },
+ {
+  "key": "KZGJPWBI",
+  "type": "conferencePaper",
+  "title": "【翻译】【OTDR】通过光时域反射计分布式测量空芯光纤气体填充与排放",
+  "DOI": "10.1109/cleo/europe-eqec57999.2023.10232523",
+  "creators": "Elistratova Elizaveta;Kelly Thomas W.;Davidson Ian A.",
+  "date": "2023-06-26",
+  "pub": "2023 Conference on Lasers and Electro-Optics Europe & European Quantum Electronics Conference (CLEO/Europe-EQEC)"
+ },
+ {
+  "key": "YXMKPIZT",
+  "type": "conferencePaper",
+  "title": "【Tenti S6】利用Tenti S6动力学模型计算的瑞利-布里渊散射中的温度检索误差",
+  "DOI": "10.1063/1.4967548",
+  "creators": "Wu Lei;Reese Jason M.;Zhang Yonghao",
+  "date": "2016",
+  "pub": ""
+ },
+ {
+  "key": "D3M9L4NL",
+  "type": "conferencePaper",
+  "title": "【DPP-BOTDR】提高BOTDR传感器空间分辨率的差分交叉谱技术",
+  "DOI": "10.1109/icp.2018.8533208",
+  "creators": "Zan Mohd Saiful Dzulkefly;Masui Yuki;Horiguchi Tsuneo",
+  "date": "2018-04",
+  "pub": "2018 IEEE 7th International Conference on Photonics (ICP)"
+ },
+ {
+  "key": "LRUMBN9E",
+  "type": "conferencePaper",
+  "title": "低损耗记录值：1.3dB/km数据传输反谐振空芯光纤",
+  "DOI": "10.1109/ecoc.2018.8535324",
+  "creators": "Bradley T. D.;Hayes J. R.;Chen Y.",
+  "date": "9/2018",
+  "pub": "2018 European Conference on Optical Communication (ECOC)"
+ },
+ {
+  "key": "GIBZWXHI",
+  "type": "conferencePaper",
+  "title": "气体中的受激布里渊散射：从弱到强阻尼极限和从弱到强耦合状态",
+  "DOI": "10.1364/nlo.2023.w1b.5",
+  "creators": "Afeyan Bedros;Galloway Conner",
+  "date": "2023",
+  "pub": "Optica Nonlinear Optics Topical Meeting 2023"
+ },
+ {
+  "key": "8UCSS7SX",
+  "type": "conferencePaper",
+  "title": "【kr、Ar、N2】低压气体中受激布里渊散射增益耦合系数的测量",
+  "DOI": "10.1364/fio.2024.jtu5a.15",
+  "creators": "Messing Stephen;Reboli Thomas;Mironov Andrey",
+  "date": "2024",
+  "pub": "Frontiers in Optics + Laser Science 2024 (FiO, LS)"
+ },
+ {
+  "key": "L2PGITBU",
+  "type": "conferencePaper",
+  "title": "【DSMC】二元混合物中瑞利-布里渊散射的DSMC模拟",
+  "DOI": "10.1063/1.4967561",
+  "creators": "Bruno Domenico;Frezzotti Aldo;Ghiroldi Gian Pietro",
+  "date": "2016",
+  "pub": ""
+ },
+ {
+  "key": "NZHLFNYM",
+  "type": "conferencePaper",
+  "title": "【综述】分布式光纤传感技术在地下工程变形监测中的应用研究综述",
+  "DOI": "10.26914/c.cnkihy.2022.026302",
+  "creators": " ; ; ",
+  "date": "2022-10-14",
+  "pub": ""
+ },
+ {
+  "key": "SDI9U783",
+  "type": "conferencePaper",
+  "title": "用于BOTDA厘米级空间分辨率的脉冲预泵方法",
+  "DOI": "10.1117/12.624259",
+  "creators": "Kishida Kinzo;Li Che-Hien;Nishiguchi Ken'ichi",
+  "date": "2005-5-23",
+  "pub": ""
+ },
+ {
+  "key": "9QXNKNAU",
+  "type": "conferencePaper",
+  "title": "【BOTDR】利用双脉冲编码提高 BOTDR 的空间分辨率和信噪比",
+  "DOI": "10.1117/12.3008152",
+  "creators": "Zhou Xiao;Yang Chengyu;Wang Feng",
+  "date": "2023-11-24",
+  "pub": "Fourteenth International Conference on Information Optics and Photonics (CIOP 2023)"
+ },
+ {
+  "key": "6EK5H4DF",
+  "type": "thesis",
+  "title": "单模光纤中受激布里渊散射的相干性研究",
+  "DOI": "",
+  "creators": " ; ",
+  "date": "2007",
+  "pub": ""
+ },
+ {
+  "key": "RZZRKBSN",
+  "type": "thesis",
+  "title": "光纤中的受激布里渊散射效应研究",
+  "DOI": "",
+  "creators": " ; ",
+  "date": "2009",
+  "pub": ""
+ },
+ {
+  "key": "LFFPDKSZ",
+  "type": "thesis",
+  "title": "光纤布里渊散射特性测量方法及其应用研究",
+  "DOI": "",
+  "creators": " ; ",
+  "date": "2017",
+  "pub": ""
+ },
+ {
+  "key": "5GD877BL",
+  "type": "thesis",
+  "title": "特种光纤中布里渊散射特性的研究",
+  "DOI": "10.26944/d.cnki.gbfju.2022.000008",
+  "creators": " ; ",
+  "date": "2024",
+  "pub": ""
+ },
+ {
+  "key": "HG85DWTX",
+  "type": "thesis",
+  "title": "受激布里渊散射效应偏振相关性研究及应用",
+  "DOI": "10.27157/d.cnki.ghzku.2020.004893",
+  "creators": " ; ",
+  "date": "2022",
+  "pub": ""
+ },
+ {
+  "key": "ASRTTISG",
+  "type": "thesis",
+  "title": "光纤中布里渊散射的机理及其应用研究",
+  "DOI": "",
+  "creators": " ; ",
+  "date": "2012",
+  "pub": ""
+ },
+ {
+  "key": "SG4SY2EZ",
+  "type": "thesis",
+  "title": "光子晶体光纤中受激布里渊散射与四波混频技术研究",
+  "DOI": "",
+  "creators": " ; ",
+  "date": "2008",
+  "pub": ""
+ },
+ {
+  "key": "N9X66UDL",
+  "type": "thesis",
+  "title": "光纤布里渊散射及应用研究",
+  "DOI": "",
+  "creators": " ; ",
+  "date": "2014",
+  "pub": ""
+ },
+ {
+  "key": "YPKXR2RX",
+  "type": "thesis",
+  "title": "受激布里渊散射在微波光子学中应用",
+  "DOI": "",
+  "creators": " ; ",
+  "date": "2011",
+  "pub": ""
+ },
+ {
+  "key": "TCLPSFXD",
+  "type": "book",
+  "title": "《稀薄气体动力学动态建模与多尺度模拟》",
+  "DOI": "10.1007/978-981-19-2872-7",
+  "creators": "Wu Lei",
+  "date": "2022",
+  "pub": "Springer Nature Singapore"
+ },
+ {
+  "key": "LRAW976R",
+  "type": "bookSection",
+  "title": "光纤传感器信号处理中的人工智能技术",
+  "DOI": "10.1007/978-981-96-6158-9_4",
+  "creators": "Bhardwaj Vanita;Kumar Santosh;Kishor Kamal",
+  "date": "2025",
+  "pub": "Springer Nature Singapore"
+ },
+ {
+  "key": "JSN69S8M",
+  "type": "bookSection",
+  "title": "【翻译】空芯反谐振光纤",
+  "DOI": "10.1007/978-981-97-6218-7_1",
+  "creators": "Wei Lei;Wang Zhuo;Cui Mingjie",
+  "date": "2024",
+  "pub": "Springer Nature Singapore"
+ }
+]
