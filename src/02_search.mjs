@@ -49,7 +49,7 @@ for (const item of S.queries) {
   await sleep(S.pauseMs ?? 300);
 }
 
-// 直取 DOI（BOTDA 经验：探测清单里的经典文献用标题搜索可能漏，按 DOI 拉最可靠）
+// 直取 DOI：探测清单里的经典文献用标题搜索可能漏，按 DOI 拉最可靠
 for (const d of S.dois || []) {
   const doi = normDoi(d);
   if (!doi) continue;

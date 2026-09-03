@@ -3,6 +3,12 @@ node_modules/
 dist/
 build/
 
+# Zotero 数据库及其副本：体积大、含个人数据，且本工作流只走 API，不该出现在这里
+*.sqlite
+*.sqlite-journal
+*.bak
+*.corrupt
+
 # 环境变量与密钥
 .env
 .env.*

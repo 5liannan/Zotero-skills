@@ -4,7 +4,7 @@ import { loadConfig, ensureOut, out, readJson, writeText, log, normDoi, stamp, t
 // 按注记关键词分类，生成 report.md 与 references.bib。不联网、可重复跑。
 //
 // curated.json 格式（人工/Agent 逐条写）：
-//   [ { "doi": "10.1364/OL.15.001038", "note": "BOTDA 首创实验，奠基性经典" }, ... ]
+//   [ { "doi": "10.1000/example.001", "note": "首次提出该方法，奠基性经典" }, ... ]
 // 分类规则在 config.report.categories：按顺序匹配 note 中的关键词，第一个命中的类生效；
 // 都不中落 defaultCategory。不配 report 时全部进「文献清单」。
 const topic = process.argv[2];

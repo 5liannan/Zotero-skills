@@ -12,7 +12,7 @@ const baseDOIs = new Set(baseline.map(x => normDoi(x.DOI)).filter(Boolean));
 const cands = readJson(out(topic, 'candidates_all.json'), []) || [];
 log(`[3/7] 筛选：候选 ${cands.length} 条，其中已在库里 ${cands.filter(c => baseDOIs.has(normDoi(c.doi))).length} 条（将被排除）`);
 
-// 规则模型（与 rbs_task/filter.js 逻辑一致）：
+// 规则模型：
 //   命中主桶 = requireAny 有匹配 AND（requireContextAny 配了才要求有匹配）
 //   命中后若 excludeAny 匹配但 rescueAny 不匹配 -> 丢弃
 //   secondary 是第二梯队，规则同上，互相独立去重
@@ -22,8 +22,8 @@ function bucketRules(b) {
 const buckets = [{ name: 'main', rules: bucketRules(F), list: [], seen: new Set(), file: 'filtered_main.json' }];
 if (F.secondary) buckets.push({ name: 'secondary', rules: bucketRules(F.secondary), list: [], seen: new Set(), file: 'filtered_secondary.json' });
 
-// 库内标题相似度排除（源自 BOTDA in_library 口径）：DOI 对不上但标题实为同一篇的情况，
-// 多见于预印本/出版社不同版本。阈值 config.filter.simThreshold（默认 0.9，BOTDA 原口径 0.8），
+// 库内标题相似度排除：DOI 对不上但标题实为同一篇的情况，多见于预印本 / 出版社不同版本。
+// 阈值 config.filter.simThreshold（默认 0.9；调到 0.8 会明显变激进，容易误伤同主题的不同论文），
 // 设 simInLibrary=false 可整体关闭。被排除的明细写入 filter_report.json 的 simExcluded 供人工复查。
 const simOn = F.simInLibrary !== false;
 const simTh = Number(F.simThreshold) || 0.9;

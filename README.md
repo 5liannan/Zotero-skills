@@ -1,7 +1,6 @@
 # lit-workflow — 文献检索与 Zotero 导入通用工作流
 
-由早期一次性文献补充脚本（气体瑞利-布里渊散射、BOTDA 布里渊光时域分析两条管线）
-沉淀泛化而来的八阶段流水线。
+配置驱动的八阶段文献流水线：从摸底现有库、抓取候选、规则筛选，到人工圈定、入库、挂全文、出报告。
 换一个研究方向，只需要新写一个 `topics/<主题>.json` 配置，脚本一行不改。
 
 ## 流水线总览
@@ -21,25 +20,52 @@
 | `07_attach_pdfs.mjs` | 全文：Unpaywall OA + 出版社直链兜底，串行挂载 | `import_results` | `pdf_results.json` |
 | `08_report.mjs` | 报告：按人工注记分类 + BibTeX 导出 | `final_items`（+`curated.json`） | `report.md` `references.bib` |
 
-## 关键设计（每条都对应旧项目踩过的坑）
+05 和 06 是两条并行的入库路线：想手动确认就走 05 导 RIS 拖进 Zotero，想全自动就走 06 走 API。
+07 和 08 都可选。
+
+## 关键设计（每条都是实战踩坑换来的）
 
 - **断点续跑**：02 重跑自动合并旧候选池；06/07 跳过已成功条目，失败修复后重跑只补失败项
-- **逐条入库**：06 默认一条一个 session，失败只影响那一条——旧项目里全量 POST 翻车后靠 bisect.js 排查的教训
+- **逐条入库**：06 默认一条一个 session，失败只影响那一条——全量 POST 一旦翻车，排查成本极高
 - **过程留痕**：每组查询的命中数落盘 `candidates_meta.json`，不再有"只往终端打印、跑完就丢"的轮次
 - **人工检查点**：03 → 04 之间必须人审；`approved_dois.txt` 每行一个 DOI、`#` 可注释，本身就是版本可控的决策记录
-- **库内去重双保险**（源自 BOTDA 管线）：03 先按 DOI 精确排除，再按标题词相似度排除——公共词 ≥5 且占较短标题 80% 以上即判为同一篇，专治"DOI 不同实为同一篇"（预印本/多版本）。`filter.simInLibrary: false` 可关闭
-- **导入与挂全文分离**：06 只入库、07 才挂 PDF 且全程串行——BOTDA 项目在导入高峰并发下载附件，Zotero 曾因此连续崩溃
-- **出版社直链兜底**（源自 BOTDA 管线）：Unpaywall 覆盖不到的 Optica Optics Express / MDPI 条目，按 DOI + 卷期页直接构造 PDF 直链
+- **库内去重双保险**：03 先按 DOI 精确排除，再按标题词相似度排除，专治"DOI 不同实为同一篇"（预印本 / 多版本）。默认阈值 0.9 偏保守，被排除的明细写进 `filter_report.json` 的 `simExcluded` 供复查；`filter.simInLibrary: false` 可关闭
+- **导入与挂全文分离**：06 只入库、07 才挂 PDF 且全程串行——在入库高峰并发下载附件会把 Zotero 拖崩，有数据库损坏风险
+- **只走 Zotero API，绝不直读 `zotero.sqlite`**：直接读写库文件（哪怕只是复制出来读）都可能触发锁冲突和数据库损坏
+- **出版社直链兜底**：Unpaywall 覆盖不到的 Optica Optics Express / MDPI 条目，按 DOI + 卷期页直接构造 PDF 直链
 - **人工注记驱动报告**：把审阅时的一句话注记写进 `outputs/<主题>/curated.json`（`[{doi, note}]`），08 按注记关键词自动分类生成报告
 - **零依赖**：只用 Node 内置模块（fs + 全局 fetch），无 npm install
 
 ## 快速开始（新主题三步）
 
-要求 Node >= 18。运行方式统一为 `node src/<脚本>.mjs <主题>`。
+要求 Node >= 18，且 Zotero 桌面端处于打开状态。运行方式统一为 `node src/<脚本>.mjs <主题>`。
 
 1. 复制 `config.example.json` 为 `topics/<主题>.json`，填关键词与筛选规则
 2. 依次跑 `01` → `02` → `03`，审阅 `filtered_main.json`，把选中的 DOI 写进 `outputs/<主题>/approved_dois.txt`（顺手写一句话注记到 `curated.json` 更好）
 3. 跑 `04` → `05`（导 RIS 手动拖 Zotero），或 `06`（API 直接入库）→ `07`（挂 PDF）→ `08`（出报告 + BibTeX）
+
+```bash
+node src/01_baseline.mjs mytopic
+node src/02_search.mjs   mytopic
+node src/03_filter.mjs   mytopic
+# ... 人工审阅，写 outputs/mytopic/approved_dois.txt ...
+node src/04_finalize.mjs mytopic
+node src/06_import.mjs   mytopic      # 或 05_export_ris.mjs 走手动路线
+node src/07_attach_pdfs.mjs mytopic
+node src/08_report.mjs   mytopic
+```
+
+## 目录结构
+
+```
+src/                 八个阶段脚本 + lib.mjs（共享工具：Zotero/Crossref 客户端、相似度、BibTeX）
+topics/<主题>.json    每个研究方向一份配置，脚本本身不含任何主题知识
+outputs/<主题>/       该主题的全部中间产物与成果（脚本自动创建）
+config.example.json  配置模板，复制改名即用
+AGENT.md             Agent 执行剧本（含两个人工检查点的处理方式）
+```
+
+`outputs/` 与 `topics/` 默认只保留占位文件——主题配置和数据都属于使用者，不随模板分发。
 
 ## 配置字段说明
 
@@ -61,7 +87,8 @@
     "requireContextAny":   ["场景词", "强信号词"],  // 且须命中其一（可选；不配则不设上下文门槛）
     "excludeAny":          ["要排除的方向"],
     "rescueAny":           ["例外词"],      // 命中排除词但同时命中它 -> 保留
-    "simInLibrary": true,                  // 标题相似度排除库内已有（默认 true，false 关闭）
+    "simInLibrary": true,                  // 标题相似度排除库内已有（默认 true）
+    "simThreshold": 0.9,                   // 相似度阈值，调低更激进（0.8 容易误伤同主题不同论文）
     "secondary": { ... }                   // 第二梯队，规则同构，独立去重、默认不排除
   },
   "finalize": { "excludeDois": ["10.x/..."] },   // 定稿里再剔除的 DOI
@@ -81,46 +108,19 @@
 
 ```json
 [
-  { "doi": "10.1364/OL.15.001038", "note": "BOTDA 首创实验，奠基性经典" },
-  { "doi": "10.1364/OE.21.031347", "note": "暗脉冲 BOTDA 综述" }
+  { "doi": "10.1000/example.001", "note": "首次提出该方法，奠基性经典" },
+  { "doi": "10.1000/example.002", "note": "近五年综述，覆盖主流技术路线" }
 ]
 ```
 
 ## Agent 执行剧本
 
-见 [AGENT.md](AGENT.md)。Agent 按剧本自动跑 01–03、04–07，在两个检查点停下来等用户确认。
-
-## 从 rbs_task 迁移对照表
-
-| 旧（一次性脚本） | 新（配置驱动） |
-|---|---|
-| `dump_lib.js` | `01_baseline.mjs` |
-| `search_crossref.js` + `round2.js` + `round3.js` | `02_search.mjs`（多轮关键词统一进 config） |
-| `filter.js` | `03_filter.mjs`（四条正则进 config） |
-| `finalize.js` 硬编码 84 个 DOI | `outputs/rbs/approved_dois.txt`（由 `tools/migrate_rbs.mjs` 机械提取） |
-| `build_ris.js` | `05_export_ris.mjs`（Landau-Placzek 1934 → `manual_extra.ris`） |
-| `import.js` 全量失败 + `bisect.js` 排查 | `06_import.mjs` 默认逐条、失败隔离 |
-| `finalize_import.js` 收尾归档 | `06` 内置 updateSession 批量归档 |
-| `pdfs.js` + `pdfs2.js` | `07_attach_pdfs.mjs`（浏览器 UA 重试逻辑内置） |
-
-**回归验证**：用 rbs_task 的真实数据回放，筛选结果 181 / 66 条与旧版逐字节一致，RIS 导出 59320 字节 MD5 相同。
-
-## 从 BOTDA_literature 迁移对照表
-
-| 旧（Python 一次性管线） | 新（配置驱动） |
-|---|---|
-| `botda_collect.py` 的 `sim()` / `in_library()`（直读 zotero.sqlite 比对） | `lib.mjs` 的 `titleSim()` + `03_filter.mjs` 的标题相似排除（走 Zotero API，不再碰 sqlite——直读库文件曾引发崩溃） |
-| `pdf_boost.py` 的 Optica OE / MDPI 直链构造 | `lib.mjs` 的 `directPdfCandidates()`，内置于 `07_attach_pdfs.mjs` |
-| `botda_collect.py` 的 `to_bibtex()` / `make_key()` | `lib.mjs` 的 `toBibtex()` / `bibKey()`，`08_report.mjs` 输出 `references.bib` |
-| `finalize.py` 的注记分类 + report.md | `08_report.mjs` + `config.report.categories` + `outputs/<主题>/curated.json` |
-| `botda_collect.py` 的 PROBE_DOIS 直取 | `config.search.dois`（02 阶段按 DOI 直取） |
-| 36 条人工圈定成果 | `outputs/botda/approved_dois.txt`（由 `tools/migrate_botda.mjs` 机械迁移） |
-
-迁移命令：`node tools/migrate_botda.mjs`（默认读 `C:\Users\Administrator\Desktop\BOTDA_literature`，可传参覆盖）。
+见 [AGENT.md](AGENT.md)。Agent 按剧本自动跑 01–03、04–08，在两个检查点停下来等用户确认。
 
 ## 已知限制
 
 - Zotero 必须处于打开状态，否则本地 API（23119）无响应
 - PDF 挂载依赖 Unpaywall 覆盖率 + 内置出版社直链（Optica OE / MDPI），都没有的条目记为 `no-oa`（不是失败）；建议 Zotero 里全选条目右键「查找可用的PDF」兜底
-- 标题相似度判定偏保守（公共词 ≥5 且占短标题 80%+），短标题、译名差异大的重复可能漏过——最终以人工审阅为准
+- 标题相似度判定偏保守（公共词 ≥5 且占短标题 90%+），短标题、译名差异大的重复可能漏过——最终以人工审阅为准
 - Crossref 对高频请求会限流，`pauseMs` 不要调太小
+- 检索源目前只有 Crossref，不覆盖无 DOI 的会议论文、学位论文与部分中文期刊

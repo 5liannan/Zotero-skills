@@ -1,7 +1,7 @@
 import { loadConfig, zoteroBase, zoteroAllItems, ensureOut, out, writeJson, log, die } from './lib.mjs';
 
 const topic = process.argv[2];
-if (!topic) die('用法: node 01_baseline.mjs <topic>   例: node 01_baseline.mjs rbs');
+if (!topic) die('用法: node 01_baseline.mjs <topic>   例: node 01_baseline.mjs mytopic');
 
 const cfg = loadConfig(topic);
 ensureOut(topic);

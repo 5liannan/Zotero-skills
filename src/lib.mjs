@@ -9,10 +9,10 @@ export const sleep = ms => new Promise(r => setTimeout(r, ms));
 export const normTitle = s => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
 export const normDoi = d => (d || '').replace(/^https?:\/\/doi\.org\//i, '').replace(/^doi:\s*/i, '').trim().toLowerCase();
 
-// ---------- 标题相似度去重（移植自 BOTDA_literature/botda_collect.py 的实战口径）----------
+// ---------- 标题相似度去重（实战验证过的保守二值口径）----------
 export const titleTokens = s => new Set((s || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter(Boolean));
 // 判定规则：公共词 >= minInter 且 >= 较短标题词数的 threshold 倍 -> 认定同一篇（返回 1，否则 0）。
-// BOTDA 原口径 minInter=5、threshold=0.8；通用场景下 0.8 对泛化短标题误杀偏多，工作流默认用 0.9（见 03）。
+// 经验值：threshold=0.8 对泛化短标题误杀偏多，工作流默认用 0.9（见 03）。
 export function tokenSim(A, B, { minInter = 5, threshold = 0.8 } = {}) {
   if (!A.size || !B.size) return 0;
   let inter = 0;
@@ -21,7 +21,7 @@ export function tokenSim(A, B, { minInter = 5, threshold = 0.8 } = {}) {
   return 0;
 }
 export const titleSim = (a, b, opts) => tokenSim(titleTokens(a), titleTokens(b), opts);
-export const TITLE_SIM_THRESHOLD = 0.9;  // 工作流默认阈值（BOTDA 原为 0.85 线/0.8 比例）
+export const TITLE_SIM_THRESHOLD = 0.9;  // 工作流默认阈值
 
 export function readJson(p, fallback = null) {
   try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return fallback; }
@@ -131,7 +131,7 @@ export function toZoteroItem(x, topic) {
   return it;
 }
 
-// ---------- BibTeX 导出（移植自 BOTDA to_bibtex / make_key）----------
+// ---------- BibTeX 导出 ----------
 export function bibKey(x) {
   const fam = ((x.authors?.[0]?.family) || 'Unknown').replace(/[^A-Za-z]/g, '') || 'Unknown';
   const kw = [...titleTokens(x.title)].slice(0, 3).join('_') || 'paper';
@@ -157,7 +157,7 @@ export function toBibtex(x) {
   return L.join('\n');
 }
 
-// ---------- 出版社直链 PDF（移植自 BOTDA pdf_boost.py；Unpaywall 覆盖不到时的兜底）----------
+// ---------- 出版社直链 PDF（Unpaywall 覆盖不到时的兜底，可按同样套路扩展更多出版社）----------
 const MDPI_ISSN = { s: '1424-8220', app: '2076-3417', photonics: '2304-6732' }; // sensors / applied sciences / photonics
 export function directPdfCandidates(x) {
   const doi = normDoi(x.doi), urls = [];

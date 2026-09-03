@@ -26,7 +26,7 @@ log(`[7/7] PDF 全文：待处理 ${targets.length} 项（已挂载 ${attached.s
 const finals = new Map((readJson(out(topic, 'final_items.json'), []) || []).map(x => [normDoi(x.doi), x]));
 
 // 顺序：Unpaywall 优先（覆盖面广）-> 出版社直链兜底（Optica OE / MDPI，见 lib.directPdfCandidates）。
-// 全程串行，一条处理完再下一条 —— BOTDA 项目在导入高峰并发下载附件，Zotero 曾因此连续崩溃。
+// 全程串行，一条处理完再下一条 —— 实践中在入库高峰并发下载附件会把 Zotero 拖崩（有数据库损坏风险）。
 for (const doi of targets) {
   let oa = null;
   try {
