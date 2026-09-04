@@ -37,6 +37,13 @@
     "risFile": "文献补充.ris",
     "extraRis": ["manual_extra.ris"]
   },
+  "pdf": {
+    "dir": "",
+    "recursive": true,
+    "collection": "",
+    "tags": [],
+    "crossrefFallback": true
+  },
   "report": {
     "title": "示例主题文献报告",
     "defaultCategory": "文献清单",
