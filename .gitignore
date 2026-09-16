@@ -29,3 +29,4 @@ translate/scripts/__pycache__/
 *.pyc
 
 skills/translate-import/scripts/__pycache__/
+skills/translate-import/config.json
