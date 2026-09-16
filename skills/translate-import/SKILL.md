@@ -72,3 +72,5 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 
 优先使用环境变量 `ZOTERO_DATA_DIR` / `ZOTERO_WORK_BASE` / `ZOTERO_PYTHON`，或 `translate/config.json`。
 用 `python scripts/print_paths.py` 确认解析结果后再跑写库脚本。
+
+本 skill 位于 `skills/translate-import/`。

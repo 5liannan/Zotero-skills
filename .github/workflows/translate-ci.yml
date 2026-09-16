@@ -3,11 +3,11 @@
 on:
   push:
     paths:
-      - "translate/**"
+      - "skills/translate-import/**"
       - ".github/workflows/translate-ci.yml"
   pull_request:
     paths:
-      - "translate/**"
+      - "skills/translate-import/**"
       - ".github/workflows/translate-ci.yml"
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
         python-version: ["3.11", "3.12"]
     defaults:
       run:
-        working-directory: translate
+        working-directory: skills/translate-import
     steps:
       - uses: actions/checkout@v4
 
@@ -62,5 +62,6 @@ jobs:
           name: sample-docx
           path: /tmp/sample_out.docx
           if-no-files-found: ignore
+
 
 

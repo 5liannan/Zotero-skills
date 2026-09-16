@@ -28,3 +28,4 @@ Thumbs.db
 translate/scripts/__pycache__/
 *.pyc
 
+skills/translate-import/scripts/__pycache__/
