@@ -1,4 +1,4 @@
-# Zotero-skills — 两大 Skill
+﻿# Zotero-skills — 两大 Skill
 
 面向 Zotero 文献库的两套可独立使用、也可串联的工作流：
 
@@ -94,3 +94,23 @@ Zotero-skills/
 python scripts/migrate_zotero_datadir.py --src "C:/Users/You/Zotero" --dst "E:/Zotero" --dry-run
 # 确认后去掉 --dry-run；验证 Zotero 正常后再手动删除 --src
 ```
+
+## 数据目录迁移（任意路径）
+
+把 Zotero 数据目录从**任意当前路径**迁到**任意新路径**（换盘、外接盘、NAS 等）而不丢附件：
+
+- [docs/zotero-datadir-migration.md](docs/zotero-datadir-migration.md)
+- 辅助脚本：`scripts/migrate_zotero_datadir.py`
+
+```bash
+# 先演练（不改任何配置）
+python scripts/migrate_zotero_datadir.py --src "<旧路径>" --dst "<新路径>" --dry-run
+
+# 确认后执行；脚本会复制数据并备份/修改 prefs.js 中的 dataDir
+python scripts/migrate_zotero_datadir.py --src "<旧路径>" --dst "<新路径>"
+
+# 也可省略 --src，从 prefs 自动读取当前 dataDir
+python scripts/migrate_zotero_datadir.py --dst "<新路径>" --dry-run
+```
+
+迁移后在 Zotero 里验证附件可打开，再手动删除旧目录。
