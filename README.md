@@ -1,4 +1,4 @@
-﻿# Zotero-skills — 两大 Skill
+# Zotero-skills — 两大 Skill
 
 面向 Zotero 文献库的两套可独立使用、也可串联的工作流：
 
@@ -82,18 +82,6 @@ Zotero-skills/
 - 检索入库：**只走 Zotero API**，不直写 `zotero.sqlite`  
 - 翻译挂接：写 sqlite 前必须 **退出 Zotero**，并自动备份  
 - 两套 skill 的路径均可通过环境变量/配置迁移到其他机器  
-
-## 数据目录迁移
-
-把 Zotero 从 C 盘迁到 E 盘（或其他路径）而不丢附件，见：
-
-- [docs/zotero-datadir-migration.md](docs/zotero-datadir-migration.md)
-- 辅助脚本：`scripts/migrate_zotero_datadir.py`
-
-```powershell
-python scripts/migrate_zotero_datadir.py --src "C:/Users/You/Zotero" --dst "E:/Zotero" --dry-run
-# 确认后去掉 --dry-run；验证 Zotero 正常后再手动删除 --src
-```
 
 ## 数据目录迁移（任意路径）
 
