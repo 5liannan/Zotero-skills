@@ -67,3 +67,8 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 - [ ] 中文标题正确
 - [ ] 台账 `status_oc.json` 已更新
 - [ ] （若入库）Zotero 条目下可见译文附件
+
+## 路径配置
+
+优先使用环境变量 `ZOTERO_DATA_DIR` / `ZOTERO_WORK_BASE` / `ZOTERO_PYTHON`，或 `translate/config.json`。
+用 `python scripts/print_paths.py` 确认解析结果后再跑写库脚本。

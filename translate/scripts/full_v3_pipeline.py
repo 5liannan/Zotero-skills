@@ -2,17 +2,27 @@
 """Full academic retranslation pipeline for all short DOCX (target 3000-6000 chars)."""
 import json, os, re, subprocess, sys
 
-sys.stdout.reconfigure(encoding="utf-8")
-BASE = r"C:\Users\Administrator\.openclaw-autoclaw\workspace\zcode-continuation"
-ZC = r"C:\Users\Administrator\Zotero"
-PY = r"C:\Users\Administrator\AppData\Local\Programs\Python\Python312\python.exe"
-env = dict(os.environ, PYTHONUTF8="1")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from translate_config import cfg, ensure_utf8_stdio
 
-tasks = {t["itemID"]: t for t in json.load(open(os.path.join(ZC, "zotero_tasks.json"), encoding="utf-8"))}
-status_path = os.path.join(BASE, "status_oc.json")
+ensure_utf8_stdio()
+BASE = str(cfg.work_base)
+ZC = str(cfg.zotero_data_dir)
+PY = cfg.python
+env = dict(os.environ, PYTHONUTF8="1")
+MIN_CHARS = cfg.min_chars
+
+tasks = {t["itemID"]: t for t in json.load(open(str(cfg.tasks_json), encoding="utf-8"))}
+status_path = str(cfg.status_json)
 status = json.load(open(status_path, encoding="utf-8"))
-audit = json.load(open(r"C:\Users\Administrator\AppData\Local\Temp\length_audit.json", encoding="utf-8"))
-pending = sorted(audit["short"] + audit["mid"], key=lambda x: x["id"])
+# optional audit; if missing, rebuild pending from status
+_audit_path = os.environ.get("TRANSLATE_LENGTH_AUDIT", "").strip()
+if _audit_path and os.path.exists(_audit_path):
+    audit = json.load(open(_audit_path, encoding="utf-8"))
+    pending = sorted(audit.get("short", []) + audit.get("mid", []), key=lambda x: x["id"])
+else:
+    pending = [{"id": int(k), "chars": v.get("chars", 0), "title": v.get("title_cn", ""), "docx": v.get("docx", "")}
+               for k, v in status.items() if isinstance(v, dict) and v.get("status") == "ok"]
 from docx import Document as _Doc
 def _live_chars(docx):
     try:
@@ -25,7 +35,7 @@ for rec in pending:
     v=status.get(str(iid),{})
     docx=v.get("docx", rec.get("docx",""))
     c=_live_chars(docx) if docx and os.path.exists(docx) else 0
-    if c<3000:
+    if c<MIN_CHARS:
         _pending.append(rec)
 pending=_pending
 print("live pending", len(pending))
@@ -239,4 +249,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

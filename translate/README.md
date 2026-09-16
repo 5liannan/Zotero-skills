@@ -151,3 +151,38 @@ translate/
   examples/
     parts_example.json
 ```
+
+## 可移植配置（环境变量 / config.json）
+
+所有写死路径已改为可覆盖。优先级：**环境变量 > config.json > config.example.json > 内置默认**。
+
+| 环境变量 | 含义 | 默认 |
+|---|---|---|
+| `ZOTERO_DATA_DIR` | Zotero 数据目录（含 `storage/`、`zotero.sqlite`） | `~/Zotero` |
+| `ZOTERO_PYTHON` | Python 解释器 | 当前 `sys.executable` |
+| `ZOTERO_WORK_BASE` | 工作区（work/results/status） | `~/.openclaw-autoclaw/workspace/zcode-continuation` |
+| `ZOTERO_TASKS_JSON` | 任务表路径 | `<data>/zotero_tasks.json` |
+| `ZOTERO_STATUS_JSON` | 状态台账 | `<work>/status_oc.json` |
+| `ZOTERO_MIN_CHARS` | 精译字数阈值 | `3000` |
+| `ZOTERO_VERIFY_MIN_CHARS` | verify 最小字数 | `800` |
+| `TRANSLATE_CONFIG` | 指定 config.json 路径 | 同目录 `config.json` |
+| `TRANSLATE_LENGTH_AUDIT` | 批量流水线可选审计文件 | 无则从 status 生成 |
+
+复制模板：
+
+```bash
+cp config.example.json config.json
+# 编辑 config.json，或：
+export ZOTERO_DATA_DIR="D:/Zotero"
+export ZOTERO_WORK_BASE="D:/zwork"
+python scripts/print_paths.py
+```
+
+## CI
+
+GitHub Actions：`.github/workflows/translate-ci.yml`
+
+- Python 3.11 / 3.12
+- 语法检查全部脚本
+- config 环境变量冒烟测试
+- 用 `examples/parts` 构建并校验示例 DOCX

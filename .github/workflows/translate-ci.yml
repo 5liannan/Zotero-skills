@@ -1,0 +1,63 @@
+﻿name: translate-skill-ci
+
+on:
+  push:
+    paths:
+      - "translate/**"
+      - ".github/workflows/translate-ci.yml"
+  pull_request:
+    paths:
+      - "translate/**"
+      - ".github/workflows/translate-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: translate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Syntax check scripts
+        run: |
+          python -m py_compile scripts/translate_config.py
+          python -m py_compile scripts/extract_pdf_text.py
+          python -m py_compile scripts/build_docx.py
+          python -m py_compile scripts/verify_docx.py
+          python -m py_compile scripts/register_zotero_docx.py
+          python -m py_compile scripts/fix_zotero_titles.py
+          python -m py_compile scripts/full_v3_pipeline.py
+
+      - name: Config loader smoke test
+        run: |
+          export ZOTERO_DATA_DIR=/tmp/zotero
+          export ZOTERO_WORK_BASE=/tmp/zwork
+          export ZOTERO_MIN_CHARS=2500
+          python scripts/translate_config.py
+
+      - name: Build sample DOCX
+        run: |
+          python scripts/build_docx.py examples/parts /tmp/sample_out.docx
+          python scripts/verify_docx.py /tmp/sample_out.docx
+
+      - name: Upload sample artifact
+        if: matrix.python-version == '3.12'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-docx
+          path: /tmp/sample_out.docx
+          if-no-files-found: ignore
+

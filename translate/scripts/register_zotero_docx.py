@@ -9,15 +9,18 @@ creates a new attachment item + storage/<key>/ copy, inserts DB rows.
 import json, os, sys, sqlite3, shutil, random, string, time
 from datetime import datetime, timezone
 
-sys.stdout.reconfigure(encoding="utf-8")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from translate_config import cfg, ensure_utf8_stdio
 
-ZC = r"C:\Users\Administrator\Zotero"
-STORAGE = os.path.join(ZC, "storage")
-DB = os.path.join(ZC, "zotero.sqlite")
-STATUS = r"C:\Users\Administrator\.openclaw-autoclaw\workspace\zcode-continuation\status_oc.json"
-TASKS = os.path.join(ZC, "zotero_tasks.json")
+ensure_utf8_stdio()
+
+ZC = str(cfg.zotero_data_dir)
+STORAGE = str(cfg.storage_dir)
+DB = str(cfg.sqlite_path)
+STATUS = str(cfg.status_json)
+TASKS = str(cfg.tasks_json)
 BACKUP = os.path.join(ZC, "zotero.sqlite.bak_before_docx_attach_%s" % time.strftime("%Y%m%d_%H%M%S"))
-DOCX_CTYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+DOCX_CTYPE = cfg.docx_content_type
 ATT_TYPEID = 3
 
 # Zotero key alphabet (no vowels I,O etc. typical)

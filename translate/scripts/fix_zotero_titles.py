@@ -2,9 +2,12 @@
 """Add title field to Zotero DOCX attachments that lack it."""
 import os, sys, sqlite3, shutil, time
 
-sys.stdout.reconfigure(encoding="utf-8")
-DB = r"C:\Users\Administrator\Zotero\zotero.sqlite"
-BACKUP = r"C:\Users\Administrator\Zotero\zotero.sqlite.bak_before_titles_%s" % time.strftime("%Y%m%d_%H%M%S")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from translate_config import cfg, ensure_utf8_stdio
+
+ensure_utf8_stdio()
+DB = str(cfg.sqlite_path)
+BACKUP = os.path.join(str(cfg.zotero_data_dir), "zotero.sqlite.bak_before_titles_%s" % time.strftime("%Y%m%d_%H%M%S"))
 
 def main():
     # lock check
