@@ -24,3 +24,7 @@ Thumbs.db
 # 编辑器
 .vscode/
 .idea/
+
+translate/scripts/__pycache__/
+*.pyc
+
