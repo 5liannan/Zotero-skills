@@ -1,0 +1,69 @@
+{
+  "title_cn": "示例：基于相敏光时域反射技术的光纤传感器性能提升",
+  "blocks": [
+    {
+      "type": "title",
+      "text": "示例：基于相敏光时域反射技术的光纤传感器性能提升"
+    },
+    {
+      "type": "subtitle",
+      "text": "Performance improvement of optical fiber sensor based on phase sensitive optical time domain reflectometry"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "摘要"
+    },
+    {
+      "type": "para",
+      "text": "相敏光时域反射技术（Phase-Sensitive Optical Time-Domain Reflectometry, Φ-OTDR）具有精度高、动态范围大等优点。本文综述振动信号测量、信号识别与探测距离扩展三方面的研究进展。",
+      "noindent": true
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "1 引言"
+    },
+    {
+      "type": "para",
+      "text": "分布式光纤传感可对温度、应变、振动等物理量进行连续监测。Φ-OTDR 基于瑞利后向散射实现沿线振动定位，已广泛用于管道、周界安防等场景。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "2 方法"
+    },
+    {
+      "type": "para",
+      "text": "系统由超窄线宽激光器、声光调制器、掺铒光纤放大器与光电探测链路组成。信噪比定义为"
+    },
+    {
+      "type": "para",
+      "text": "$\\mathrm{SNR} = 10\\,\\lg\\!\\left(\\frac{P_S}{P_N}\\right), \\qquad (1)$"
+    },
+    {
+      "type": "image",
+      "file": "images/p02_00.png",
+      "caption": "图1 系统原理示意图。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "3 结论"
+    },
+    {
+      "type": "para",
+      "text": "总结主要技术路线与工程应用前景。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "参考文献"
+    },
+    {
+      "type": "para",
+      "text": "（参考文献保留英文原文。）",
+      "noindent": true
+    }
+  ]
+}

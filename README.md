@@ -1,3 +1,32 @@
+# lit-workflow — 文献检索、导入与中文翻译
+
+本仓库包含两套可组合的 Zotero 工作流：
+
+1. **检索入库**（`src/`）：Crossref 检索 → 筛选 → 入库 → 挂 PDF  
+2. **中文翻译**（`translate/`）：英文 PDF → 中文 DOCX → 挂回 Zotero 条目  
+
+## 中文翻译 Skill（translate/）
+
+将库中英文学术 PDF 批量译为规范中文 DOCX（宋体 + Times New Roman，A4 单栏），并登记为 Zotero 附件。
+
+```bash
+# 依赖
+pip install -r translate/requirements.txt
+
+# 核心脚本
+translate/scripts/extract_pdf_text.py   # PDF 文本/图片提取
+translate/scripts/build_docx.py         # parts JSON → DOCX
+translate/scripts/verify_docx.py        # 译文校验
+translate/scripts/register_zotero_docx.py  # 批量挂接到 Zotero（需退出 Zotero）
+translate/scripts/full_v3_pipeline.py   # 批量精译流水线
+```
+
+详见 [translate/README.md](translate/README.md) 与 [translate/SKILL.md](translate/SKILL.md)。
+
+---
+
+# 以下为检索入库工作流
+
 # lit-workflow — 文献检索与 Zotero 导入通用工作流
 
 配置驱动的九阶段文献流水线：从摸底现有库、抓取候选、规则筛选，到人工圈定、入库、挂全文、本地 PDF 回填、出报告。
