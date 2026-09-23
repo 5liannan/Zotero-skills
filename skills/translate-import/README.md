@@ -1,40 +1,64 @@
 # Zotero PDF → 中文 DOCX 翻译 Skill
 
-把 Zotero 库中的英文学术 PDF 批量翻译为规范中文 DOCX，并挂回对应文献条目。
+把 Zotero 库中的英文学术 PDF 翻译为规范中文 DOCX，并挂回对应文献条目。
 
 适用场景：布里渊 / 瑞利散射 / 光纤传感等领域的文献库中英混杂，需要统一中文译文便于阅读与归档。
+
+## 翻译方案（唯一：全文精译 · 逐句对应）
+
+| 项目 | 规定 |
+|---|---|
+| 方案 | **只保留全文精译** |
+| 对应关系 | **与英文原文逐句对应**（按原文顺序逐句翻译） |
+| 字数 | **不设上下限**（篇幅由原文决定） |
+| 缩写/扩写 | **禁止**（不缩写、不注水、不按模板重写） |
+| 编造 | **禁止**（不得添加原文没有的数据、公式、结论） |
+| 质量分档 | **无**（取消 A/B/C；不存在「摘要整理」「结构化改写」） |
+
+其余约定：
+
+- 公式用 `$...$`；术语首现可括注英文
+- 图表标题译中文；坐标轴/图例数值保持原样
+- 参考文献保留英文条目
+- 章节跟随原文结构，不合并、不删减论证关系
+
+**合格判定**：与英文原文逐句对应 + `verify_docx.py` 返回 `ok=true`。  
+**不合格**：任何以最小/最大字数判定的方式；摘要式短稿；非逐句的结构化改写。
 
 ## 能力概览
 
 | 阶段 | 作用 | 脚本 |
 |---|---|---|
 | 1. 提取 | 从 PDF 抽文本块 + 位图 | `scripts/extract_pdf_text.py` |
-| 2. 译文 | 生成 `parts/01.json` 中文结构稿 | Agent / 人工 / `full_v3_pipeline.py` |
+| 2. 译文 | 生成 `parts/01.json`（逐句全文精译） | Agent / 人工 / `full_v3_pipeline.py` |
 | 3. 构建 | 渲染为 A4 单栏 DOCX（宋体 + Times New Roman 五号） | `scripts/build_docx.py` |
-| 4. 校验 | 统计字数/段落/图片，`ok` 阈值 | `scripts/verify_docx.py` |
+| 4. 校验 | 检查可解析与完整性（**不以字数判定**） | `scripts/verify_docx.py` |
 | 5. 入库 | 复制到独立 storage key 并写 `itemAttachments` | `scripts/register_zotero_docx.py` |
 | 6. 标题 | 为附件补写 title 字段 | `scripts/fix_zotero_titles.py` |
 
 ## 环境依赖
 
-- Python 3.12+（推荐，需 `pymupdf` 与 `python-docx`）
+- Python 3.12+（推荐，需 `pymupdf` 或 `pypdf` 与 `python-docx`）
 - Windows 上建议：`python -X utf8` 并设 `PYTHONUTF8=1`
 - 写 `zotero.sqlite` 前必须 **完全退出 Zotero**
 - 修改库前脚本会自动备份 sqlite
 
 ```text
-# 最小依赖
-pymupdf
+# 最小依赖（PDF 文本提取任选其一）
+pypdf
+# 或 pymupdf
 python-docx
 ```
 
 安装示例：
 
 ```bash
-"C:\...\Python312\python.exe" -m pip install pymupdf python-docx
+"C:\...\Python312\python.exe" -m pip install pypdf python-docx
 ```
 
 ## parts/01.json 格式（译文中间产物）
+
+按英文原文顺序组织 blocks，**逐句对应**，不要求固定总字数：
 
 ```json
 {
@@ -44,6 +68,8 @@ python-docx
     {"type": "subtitle", "text": "English Original Title"},
     {"type": "heading", "level": 1, "text": "摘要"},
     {"type": "para", "text": "……", "noindent": true},
+    {"type": "heading", "level": 1, "text": "1 引言"},
+    {"type": "para", "text": "与原文逐句对应的中译……"},
     {"type": "para", "text": "$E=mc^2$, \\qquad (1)"},
     {"type": "image", "file": "images/p02_00.png", "caption": "图1 …"},
     {"type": "table", "header": true, "rows": [["A", "B"], ["1", "2"]]}
@@ -62,12 +88,12 @@ export PYTHONUTF8=1
 # 1) PDF → extract.json + images/
 $PY -X utf8 scripts/extract_pdf_text.py "<pdf_path>" "<workdir>/images" > "<workdir>/extract.json"
 
-# 2) 编写译文 parts/01.json（人工或 Agent）
+# 2) 编写译文 parts/01.json（与英文原文逐句对应的全文精译）
 
 # 3) 构建 DOCX
 $PY -X utf8 scripts/build_docx.py "<workdir>/parts" "<output.docx>"
 
-# 4) 校验
+# 4) 校验（ok 即可，无字数门槛）
 $PY -X utf8 scripts/verify_docx.py "<output.docx>"
 
 # 5) 批量挂接到 Zotero（需退出 Zotero）
@@ -79,13 +105,13 @@ $PY -X utf8 scripts/fix_zotero_titles.py
 
 `register_zotero_docx.py` / `fix_zotero_titles.py` 中的路径（Zotero 数据目录、status 台账）请按本机环境修改后再运行。
 
-## 批量精译流水线
+## 批量全文精译流水线
 
 `scripts/full_v3_pipeline.py`：
 
 1. 读 `zotero_tasks.json` + `status_oc.json`
-2. 对字数不足的条目：提取 PDF 全文 → 生成结构化中文学术稿 → 构建 DOCX → 写回台账
-3. 目标篇幅约 3000–5000 字（摘要/引言/方法/结果/结论/展望）
+2. 对需要翻译的条目：提取 PDF 全文 → **逐句全文精译** → 构建 DOCX → 写回台账
+3. **不设字数上下限**；以「与英文原文逐句对应」为唯一质量标准
 
 任务表 `zotero_tasks.json` 条目示例：
 
@@ -116,16 +142,6 @@ storage/<DOCX附件key>/中文标题.docx   ← 译文应放这里
 
 `register_zotero_docx.py` 会把译文复制到新 key 目录，并插入 `items` + `itemAttachments`，挂到 PDF 的父条目上。  
 **不要**把译文只丢在 PDF 同目录而不登记——界面里看不到。
-
-## 翻译质量分档
-
-| 档位 | 说明 | 适用 |
-|---|---|---|
-| A 全文精译 | 通读 fulltext，逐章完整中译 | 重点论文 |
-| B 结构化精译 | 按原文摘要/引言/结论生成完整中文章节（约 4k 字） | 批量主力 |
-| C 摘要整理 | 较短的中文结构稿 | 仅应急，不推荐 |
-
-`full_v3_pipeline.py` 默认按 **B 档** 输出。
 
 ## 安全与注意
 
@@ -163,10 +179,9 @@ translate/
 | `ZOTERO_WORK_BASE` | 工作区（work/results/status） | `~/.openclaw-autoclaw/workspace/zcode-continuation` |
 | `ZOTERO_TASKS_JSON` | 任务表路径 | `<data>/zotero_tasks.json` |
 | `ZOTERO_STATUS_JSON` | 状态台账 | `<work>/status_oc.json` |
-| `ZOTERO_MIN_CHARS` | 精译字数阈值 | `3000` |
-| `ZOTERO_VERIFY_MIN_CHARS` | verify 最小字数 | `800` |
 | `TRANSLATE_CONFIG` | 指定 config.json 路径 | 同目录 `config.json` |
-| `TRANSLATE_LENGTH_AUDIT` | 批量流水线可选审计文件 | 无则从 status 生成 |
+
+**说明**：已移除 `ZOTERO_MIN_CHARS` / `ZOTERO_VERIFY_MIN_CHARS` 等字数阈值；译文质量只看**与英文原文是否逐句对应**，以及 `verify_docx.py` 是否 `ok=true`。
 
 复制模板：
 

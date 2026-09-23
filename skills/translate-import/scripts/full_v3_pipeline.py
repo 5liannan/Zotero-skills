@@ -1,5 +1,5 @@
-﻿# -*- coding: utf-8 -*-
-"""Full academic retranslation pipeline for all short DOCX (target 3000-6000 chars)."""
+# -*- coding: utf-8 -*-
+"""Sentence-faithful full Chinese translation pipeline (no length limits)."""
 import json, os, re, subprocess, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -10,7 +10,8 @@ BASE = str(cfg.work_base)
 ZC = str(cfg.zotero_data_dir)
 PY = cfg.python
 env = dict(os.environ, PYTHONUTF8="1")
-MIN_CHARS = cfg.min_chars
+# Quality = sentence-by-sentence correspondence with English source.
+# No min/max character thresholds.
 
 tasks = {t["itemID"]: t for t in json.load(open(str(cfg.tasks_json), encoding="utf-8"))}
 status_path = str(cfg.status_json)
@@ -35,7 +36,11 @@ for rec in pending:
     v=status.get(str(iid),{})
     docx=v.get("docx", rec.get("docx",""))
     c=_live_chars(docx) if docx and os.path.exists(docx) else 0
-    if c<MIN_CHARS:
+    # no length gate: retranslate items flagged short/mid in audit, or missing docx
+    if (not docx) or (not os.path.exists(docx)) or c <= 0:
+        _pending.append(rec)
+    elif _audit_path and os.path.exists(_audit_path):
+        # audit listed these as needing retranslation
         _pending.append(rec)
 pending=_pending
 print("live pending", len(pending))

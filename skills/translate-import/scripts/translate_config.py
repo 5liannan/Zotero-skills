@@ -27,8 +27,6 @@ _DEFAULTS: Dict[str, Any] = {
     "work_base": str(Path.home() / ".openclaw-autoclaw" / "workspace" / "zcode-continuation"),
     "tasks_json": "",
     "status_json": "",
-    "min_chars": 3000,
-    "verify_min_chars": 800,
     "docx_content_type": (
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     ),
@@ -43,8 +41,6 @@ _ENV_MAP = {
     "work_base": "ZOTERO_WORK_BASE",
     "tasks_json": "ZOTERO_TASKS_JSON",
     "status_json": "ZOTERO_STATUS_JSON",
-    "min_chars": "ZOTERO_MIN_CHARS",
-    "verify_min_chars": "ZOTERO_VERIFY_MIN_CHARS",
     "docx_content_type": "ZOTERO_DOCX_CONTENT_TYPE",
 }
 
@@ -137,14 +133,6 @@ class _Cfg:
         return self.work_base / "work"
 
     @property
-    def min_chars(self) -> int:
-        return int(self.get("min_chars", 3000))
-
-    @property
-    def verify_min_chars(self) -> int:
-        return int(self.get("verify_min_chars", 800))
-
-    @property
     def docx_content_type(self) -> str:
         return str(self.get("docx_content_type"))
 
@@ -170,5 +158,4 @@ if __name__ == "__main__":
         "work_base": str(cfg.work_base),
         "tasks_json": str(cfg.tasks_json),
         "status_json": str(cfg.status_json),
-        "min_chars": cfg.min_chars,
     }, ensure_ascii=False, indent=2))

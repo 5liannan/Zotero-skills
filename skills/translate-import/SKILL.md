@@ -9,9 +9,23 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 
 用户要求把 Zotero 里的英文论文变成中文 DOCX，并在 Zotero 条目下能看到译文附件时使用本技能。
 
+## 翻译方案（唯一标准：全文精译 · 逐句对应）
+
+**只提供全文精译方案。**
+
+- **与英文原文逐句对应**：正文按原文顺序逐句翻译，不缩写、不扩写、不重排论证
+- **不设字数上下限**：篇幅由原文决定，禁止为凑字数而注水，也禁止因字数阈值而压缩
+- **不编造**：不添加原文没有的数据、公式、结论或图表信息
+- 公式用 `$...$` 保留；术语首现可括注英文
+- 图表标题译中文；坐标轴/图例数值保持原样
+- 参考文献保留英文条目（可按原文顺序列出）
+- 章节标题跟随原文结构（如 Abstract / I. Introduction / II. Experimental System / III. Results / IV. Conclusions / References 等），可译为「摘要 / 1 引言 / …」，但不得合并、删减或改写章节内容关系
+
+**禁止**：摘要式短稿、结构化改写、按固定模板扩写、A/B/C 分档、任何最小/最大字数门槛。
+
 ## 前置检查
 
-1. 确认 Python 3.12+，已安装 `pymupdf`、`python-docx`
+1. 确认 Python 3.12+，已安装 `pymupdf` 或 `pypdf`、`python-docx`
 2. Windows：使用 `python -X utf8`，设置 `PYTHONUTF8=1`
 3. 若需写 `zotero.sqlite`：**确认 Zotero 已完全退出**
 4. 确认路径：
@@ -24,29 +38,27 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 ### 单篇
 
 1. `extract_pdf_text.py <pdf> <workdir>/images > extract.json`
-2. 读 `fulltext.txt`，写出 `parts/01.json`（中文标题 + 摘要/引言/方法/结果/结论）
+2. 读 `fulltext.txt`，写出 `parts/01.json`（**逐句全文精译**，对应英文原文）
 3. `build_docx.py <workdir>/parts <out.docx>`
-4. `verify_docx.py <out.docx>`，要求 `ok=true` 且 `chars>=3000`（全文精译）
+4. `verify_docx.py <out.docx>`，要求 `ok=true`（仅校验可解析与基本完整性，**不以字数判定**）
 5. 若用户要求入库：运行 `register_zotero_docx.py`（先退出 Zotero）
 
 ### 批量
 
 1. 维护 `zotero_tasks.json`：`itemID / mode / ztitle / pdf / docx / folder`
-2. 运行 `full_v3_pipeline.py [N]` 分批处理
+2. 运行 `full_v3_pipeline.py [N]` 分批处理（按逐句全文精译产出）
 3. `update_status.py` 刷新台账（若用户环境有）
-4. 全量审计：每个任务的 `docx` 路径存在且校验通过
+4. 全量审计：每个任务的 `docx` 路径存在且校验通过（`ok=true`）
 
-## 译文结构（B 档全文精译）
+## 译文组织
+
+按原文结构逐句翻译即可。常见组织（跟随原文，非强制模板）：
 
 - 摘要
-- 1 引言
-- 2 方法与装置
-- 3 结果与讨论
-- 4 结论
-- 5 应用与展望
+- 正文各章节（与英文原文一一对应）
 - 参考文献（保留英文）
 
-公式用 `$...$`；术语首现可括注英文；图表标题译中文，坐标轴/图例数值保持原样。
+关键约束是**逐句对应英文原文**，不是固定章节字数或固定总字数。
 
 ## Zotero 挂接要点
 
@@ -60,10 +72,13 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 - Zotero 运行时写 `zotero.sqlite`
 - 删除用户数据前不备份
 - 把受版权 PDF 上传到公网
+- 用字数阈值判定译文是否合格（合格 = 与英文原文逐句对应且 `verify` 通过）
 
 ## 完成标准
 
-- [ ] DOCX 校验通过且篇幅达标
+- [ ] 与英文原文**逐句对应**（无缩写、无扩写、无漏译关键句）
+- [ ] 无编造数据/公式/结论
+- [ ] DOCX 校验通过（`ok=true`）
 - [ ] 中文标题正确
 - [ ] 台账 `status_oc.json` 已更新
 - [ ] （若入库）Zotero 条目下可见译文附件

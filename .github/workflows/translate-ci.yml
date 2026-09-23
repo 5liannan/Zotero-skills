@@ -1,4 +1,4 @@
-﻿name: translate-skill-ci
+name: translate-skill-ci
 
 on:
   push:
@@ -45,12 +45,9 @@ jobs:
         run: |
           export ZOTERO_DATA_DIR=/tmp/zotero
           export ZOTERO_WORK_BASE=/tmp/zwork
-          export ZOTERO_MIN_CHARS=2500
           python scripts/translate_config.py
 
       - name: Build sample DOCX
-        env:
-          ZOTERO_VERIFY_MIN_CHARS: "400"
         run: |
           python scripts/build_docx.py examples/parts /tmp/sample_out.docx
           python scripts/verify_docx.py /tmp/sample_out.docx

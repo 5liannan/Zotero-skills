@@ -5,7 +5,7 @@
 | Skill | 目录 | 做什么 |
 |---|---|---|
 | **① 检索文献与导入 Zotero** | [`skills/search-import/`](skills/search-import/) | Crossref 检索 → 筛选 → 入库 → 挂 PDF → 报告 |
-| **② 翻译文献与导入 Zotero** | [`skills/translate-import/`](skills/translate-import/) | 英文 PDF → 中文 DOCX → 挂回 Zotero 条目 |
+| **② 翻译文献与导入 Zotero** | [`skills/translate-import/`](skills/translate-import/) | 英文 PDF → 中文 DOCX（**全文精译 · 与原文逐句对应**，不设字数上下限）→ 挂回 Zotero 条目 |
 
 ```text
 search-import                    translate-import

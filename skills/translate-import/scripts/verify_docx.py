@@ -25,8 +25,10 @@ def main():
             for cell in row.cells:
                 chars += len(cell.text.strip())
     images = len(d.inline_shapes)
+    # Quality is sentence-by-sentence fidelity to the English source; no char thresholds.
+    ok = paras > 0 and (chars > 0 or tables > 0 or images > 0)
     json.dump({
-        "path": path, "ok": chars > 500, "paras": paras, "chars": chars,
+        "path": path, "ok": ok, "paras": paras, "chars": chars,
         "headings": headings, "tables": tables, "images": images,
     }, sys.stdout, ensure_ascii=False)
     print(file=sys.stdout)

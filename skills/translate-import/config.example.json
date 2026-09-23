@@ -4,8 +4,6 @@
   "work_base": "C:/Users/Administrator/.openclaw-autoclaw/workspace/zcode-continuation",
   "tasks_json": "C:/Users/Administrator/Zotero/zotero_tasks.json",
   "status_json": "C:/Users/Administrator/.openclaw-autoclaw/workspace/zcode-continuation/status_oc.json",
-  "min_chars": 3000,
-  "verify_min_chars": 800,
   "docx_content_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  "notes": "Path separators may use / or \\ ; env vars override any field. Example: ZOTERO_DATA_DIR, ZOTERO_PYTHON, ZOTERO_WORK_BASE, ZOTERO_TASKS_JSON, ZOTERO_STATUS_JSON"
+  "notes": "Path separators may use / or \\ ; env vars override any field. Translation standard: sentence-by-sentence fidelity to the English source; no min/max character limits. Env: ZOTERO_DATA_DIR, ZOTERO_PYTHON, ZOTERO_WORK_BASE, ZOTERO_TASKS_JSON, ZOTERO_STATUS_JSON"
 }
