@@ -62,10 +62,12 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 
 ## Zotero 挂接要点
 
-- 原生规则：一个附件一个 storage 目录
-- `create_new`：译文与 PDF 可先同目录生成，登记时复制到新 key 目录
-- `fill_existing`：覆盖 `docx` 字段路径（可能与 PDF 不同目录）
-- 登记后需有 `itemAttachments.path = storage:<文件名>` 与 title 字段
+- 原生规则：**一个附件一个 storage 目录**；PDF 与译文 DOCX **不得同目录**
+- `create_new`：译文登记为**新的附件 key 目录**，不要塞进 PDF 的 `storage/<pdf-key>/`
+- `fill_existing`：只更新既有 DOCX 附件的 `path` 与文件内容
+- 登记后需有 `itemAttachments.path = storage:<文件名>` 与 title 字段（建议 `[docx]中文译名`）
+- 同一文献只保留 **1 份** 译文 DOCX；重复/旧稿移入隔离区，勿硬删
+- 详见 `docs/zotero-storage-management.md`（去重、隔离区、path 对齐、孤儿清理）
 
 ## 禁止事项
 

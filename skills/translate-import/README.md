@@ -184,15 +184,19 @@ $PY -X utf8 scripts/fix_zotero_titles.py
 
 ## Zotero 存储规则（重要）
 
-Zotero 原生是 **一个附件一个 storage 目录**：
+Zotero 原生是 **一个附件一个 storage 目录**；**PDF 与译文 DOCX 必须分目录**：
 
 ```text
 storage/<PDF附件key>/paper.pdf
-storage/<DOCX附件key>/中文标题.docx   ← 译文应放这里
+storage/<DOCX附件key>/中文标题.docx   ← 译文应放这里（禁止与 PDF 同目录）
 ```
 
 `register_zotero_docx.py` 会把译文复制到新 key 目录，并插入 `items` + `itemAttachments`，挂到 PDF 的父条目上。  
-**不要**把译文只丢在 PDF 同目录而不登记——界面里看不到。
+**不要**把译文只丢在 PDF 同目录而不登记——界面里看不到；也不要覆盖 PDF 目录里的文件。
+
+管理细则（去重、隔离区、path 对齐、孤儿清理、缺失找回）见仓库文档：
+
+- [`docs/zotero-storage-management.md`](../../docs/zotero-storage-management.md)
 
 ## 安全与注意
 
