@@ -67,7 +67,7 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 - `fill_existing`：只更新既有 DOCX 附件的 `path` 与文件内容
 - 登记后需有 `itemAttachments.path = storage:<文件名>` 与 title 字段（建议 `[docx]中文译名`）
 - 同一文献只保留 **1 份** 译文 DOCX；重复/旧稿移入隔离区，勿硬删
-- 详见 `docs/zotero-storage-management.md`（去重、隔离区、path 对齐、孤儿清理）
+- 详见 `docs/zotero-storage-management.md` 与 `scripts/manage_zotero_storage.py`（去重、隔离区、path 对齐、孤儿清理、混放拆分）
 
 ## 禁止事项
 

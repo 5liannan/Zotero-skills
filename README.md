@@ -59,6 +59,12 @@ python scripts/print_paths.py
 Zotero-skills/
   README.md
   .github/workflows/translate-ci.yml
+  docs/
+    zotero-storage-management.md
+    zotero-datadir-migration.md
+  scripts/
+    manage_zotero_storage.py
+    migrate_zotero_datadir.py
   skills/
     search-import/
       SKILL.md
@@ -82,6 +88,28 @@ Zotero-skills/
 - 检索入库：**只走 Zotero API**，不直写 `zotero.sqlite`  
 - 翻译挂接：写 sqlite 前必须 **退出 Zotero**，并自动备份  
 - 两套 skill 的路径均可通过环境变量/配置迁移到其他机器  
+
+## 附件与 storage 管理
+
+库内附件（PDF / 中文 DOCX）与磁盘 `storage/` 对齐、去重、拆分的完整规范：
+
+- [docs/zotero-storage-management.md](docs/zotero-storage-management.md)
+- 可执行工具：`scripts/manage_zotero_storage.py`
+
+铁律摘要：
+
+1. **一附件一目录**：PDF 与译文 DOCX 永不同目录  
+2. **同一文献只留 1 份译文**  
+3. **先隔离、不硬删**（`quarantine_*`）  
+4. 写 `zotero.sqlite` 前必须完全退出 Zotero，并先备份  
+
+```bash
+export ZOTERO_DATA_DIR=E:/Zotero
+export ZOTERO_WORK_BASE=C:/path/to/work
+
+python scripts/manage_zotero_storage.py check    # 只读体检
+python scripts/manage_zotero_storage.py doctor   # 完整巡检（写库步骤前请退出 Zotero）
+```
 
 ## 数据目录迁移（任意路径）
 
