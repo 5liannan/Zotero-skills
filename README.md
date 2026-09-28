@@ -43,7 +43,8 @@ python scripts/print_paths.py
 # ... 详见 skills/translate-import/README.md
 ```
 
-技能说明：`skills/translate-import/SKILL.md`
+技能说明：`skills/translate-import/SKILL.md`  
+扫描件 PDF（无文本层）翻译流程：[`docs/scanned-pdf-translation.md`](docs/scanned-pdf-translation.md)
 
 ## 环境变量（translate）
 
