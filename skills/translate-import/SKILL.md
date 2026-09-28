@@ -35,13 +35,47 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 
 ## 工作流
 
-### 单篇
+### 单篇（文本层 PDF）
 
 1. `extract_pdf_text.py <pdf> <workdir>/images > extract.json`
 2. 读 `fulltext.txt`，写出 `parts/01.json`（**逐句全文精译**，对应英文原文）
 3. `build_docx.py <workdir>/parts <out.docx>`
 4. `verify_docx.py <out.docx>`，要求 `ok=true`（仅校验可解析与基本完整性，**不以字数判定**）
 5. 若用户要求入库：运行 `register_zotero_docx.py`（先退出 Zotero）
+
+### 扫描件 PDF（无文本层 / OCR 伪文本）
+
+当 PDF 为扫描影像、或 `extract_pdf_text.py` 得到的 `fulltext.txt` 仅含下载横幅/页眉页脚（`chars` 极少、或整页无正文）时，**不得**把残缺 OCR 当正文翻译，应改走扫描件流程：
+
+1. **判定扫描件**（满足任一即按扫描件处理）
+   - 页数 N 与 `fulltext.txt` 字符数比 < 约 800 字/页，且正文段落断裂
+   - `fulltext.txt` 只有出版社水印、下载声明、目录页
+   - 渲染页为整页位图（`get_text_bounded` 为空或几乎为空）
+2. **渲染页面影像**（不要用嵌入 1×1/小色条伪图）
+   ```python
+   import pypdfium2 as pdfium
+   doc = pdfium.PdfDocument(pdf)
+   for i, page in enumerate(doc):
+       page.render(scale=1.6~2.0).to_pil().save(f"pages/p{i+1:02d}.png")
+   ```
+   封面/下载横幅页可标注跳过；正文页按 `p01…pN` 连续编号。
+3. **视觉识读（OCR）后再精译**
+   - 用具备视觉能力的模型逐页阅读 `pages/pNN.png`，再按「全文精译 · 逐句对应」写 `parts/01.json`
+   - 也可用本地 OCR（如 RapidOCR）先出文本，再校对公式与上下标
+   - **禁止**跳过识读、按页数编造摘要式译文
+4. **公式与图表**
+   - 公式 OCR 易碎（`ffiffiffi`→`√`、丢失希腊字母、上下标拆行）：按量纲与文中 `where` 定义还原为 `$...$` 带原文式号
+   - 不可辨认处标 `[本页图像无法识别]` 或按上下文保守还原，**不得编造数值**
+   - 无嵌入位图时，图注照译为 `caption`；有可裁图元时再 `image`
+5. **长文**：可 `parts/01.json`、`02.json`… 分片，切片边界不截断句子
+6. **构建与入库**：与文本层流程相同（`build_docx.py` → `verify_docx.py` → 挂接）
+7. **验收附加项（扫描件）**
+   - [ ] 页码覆盖：译文对应全部正文页，不整页空白
+   - [ ] 公式：编号连续或与原文式号一致；关键式变量齐全
+   - [ ] 图表：题注中文且与原文图号一致
+   - [ ] 未把出版社水印/下载声明译入正文
+
+详见 `docs/scanned-pdf-translation.md`。
 
 ### 批量
 
