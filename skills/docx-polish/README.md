@@ -121,3 +121,5 @@ python scripts/verify_word.py optimized.docx --expect-omath 153 --pdf out.pdf
 - **Word 校验需 Windows + 装 Word + pywin32**。其他平台用 `--no-word-check`，
   退化为数 XML 的 `<m:oMath>`（不如前者可信）
 - **图注正则只认 `图 N`**。`图 1-1`、`图 A.2` 这类多级编号改 `CAP_RE` 即可
+- **图注会误吞正文引用句**（如「图 1 给出了…」），已用 `CAP_VERB_RE` 排除；
+  若你的文档里正文引用句以其他动词开头，补进该正则即可

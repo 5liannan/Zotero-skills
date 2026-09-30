@@ -27,6 +27,18 @@ from docx.shared import Cm, Pt, RGBColor
 M_NS = "http://schemas.openxmlformats.org/officeDocument/2006/math"
 CAP_RE = re.compile(r"^\s*图\s*(\d+)\s*[.．:：]?\s*(.*)$", re.S)
 REF_RE = re.compile(r"^[A-Z][a-zA-Z\-']+,?\s+[A-Z]?\.?")
+# 图片源文件追踪标记，如「原文图 p07_02.png」「原始图片 xxx.jpg」
+# —— 翻译流水线留下的孤立段，位于图片段与图注段之间，无正文价值，直接删除
+IMG_MARK_RE = re.compile(
+    r"^\s*(?:原文图|原始图|原图|图片|图源)\s*[:：]?\s*\S+\.(?:png|jpg|jpeg|bmp|gif|tif|tiff|emf|wmf)\s*$",
+    re.I)
+# 排除：以「图 N」开头的图注（避免与 IMG_MARK_RE 的「图片/图源」前缀冲突）
+CAP_HEAD_RE = re.compile(r"^\s*图\s*\d")
+# 图注正文不应以这些动词/助词开头（「图1给出了…」是正文引用句，不是图注）
+# 注：不含「由/为/是/如」等弱动词——它们是图注常用起笔（如「由…反演得到的廓线」）
+CAP_VERB_RE = re.compile(r"^\s*(?:给出|显示|展示|表明|说明|可见|反映|描绘|绘制|示意|标注)")
+# 图片段（含内嵌图片）识别：段内无文字但有 drawing
+DRAW_NS = "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
 # 这些小节标题下的段落不缩进、左对齐
 NO_INDENT_HEADS = ("补充材料", "利益声明", "数据可用性声明", "参考文献", "引用本文", "关键词")
 
@@ -36,6 +48,14 @@ def omml_of(xml):
     from lxml import etree
     root = etree.fromstring(xml.encode("utf-8"))
     return root.findall(".//{%s}oMath" % M_NS)
+
+
+def _drop_paragraph(para):
+    """从文档树中彻底移除一个段落（含其 pPr/rPr）。"""
+    el = para._element
+    parent = el.getparent()
+    if parent is not None:
+        parent.remove(el)
 
 
 class Styler(object):
@@ -168,12 +188,18 @@ def main():
 
     # ---------- 逐段 ----------
     stats = {"hl": 0, "display": 0, "display_num": 0, "inline": 0,
-             "caption": 0, "para": 0, "head": 0, "failed": 0}
+             "caption": 0, "para": 0, "head": 0, "failed": 0, "dropped_mark": 0}
 
     for pi, para in enumerate(doc.paragraphs):
         text = para.text
         style = para.style.name
         styler.clear_highlight(para)
+
+        # --- 图片源文件追踪标记（如「原文图 p07_02.png」）：整段删除
+        if IMG_MARK_RE.match(text) and not CAP_HEAD_RE.match(text):
+            _drop_paragraph(para)
+            stats["dropped_mark"] += 1
+            continue
 
         # --- 公式段
         if pi in by_para:
@@ -234,9 +260,12 @@ def main():
 
         # --- 图注
         m = CAP_RE.match(text.strip())
-        if m and len(text.strip()) < 200 and not style.startswith("Heading"):
+        body = m.group(2).strip().lstrip("：:．.").strip() if m else ""
+        if (m and body and len(text.strip()) < 200
+                and not style.startswith("Heading")
+                and not CAP_VERB_RE.match(body)):
             styler.clear_runs(para)
-            styler.apply(para.add_run("图%s  %s" % (m.group(1), m.group(2).strip())), 9)
+            styler.apply(para.add_run("图 %s\u3000%s" % (m.group(1), body)), 9)
             para.alignment = WD_ALIGN_PARAGRAPH.CENTER
             pf = para.paragraph_format
             pf.first_line_indent = Pt(0)
