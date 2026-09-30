@@ -31,10 +31,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Install pandoc
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y pandoc
+          pandoc --version | head -1
+
       - name: Syntax check scripts
         run: |
           python -m py_compile scripts/translate_config.py
           python -m py_compile scripts/extract_pdf_text.py
+          python -m py_compile scripts/omml.py
           python -m py_compile scripts/build_docx.py
           python -m py_compile scripts/verify_docx.py
           python -m py_compile scripts/register_zotero_docx.py
@@ -51,6 +58,22 @@ jobs:
         run: |
           python scripts/build_docx.py examples/parts /tmp/sample_out.docx
           python scripts/verify_docx.py /tmp/sample_out.docx
+
+      - name: Assert formulas became OMML objects
+        run: |
+          python - <<'PY'
+          import json, subprocess, sys
+          out = subprocess.run(
+              [sys.executable, "scripts/verify_docx.py", "/tmp/sample_out.docx"],
+              capture_output=True, text=True, check=True).stdout
+          st = json.loads(out)
+          print("verify:", st)
+          assert st["ok"], "verify_docx returned ok=false"
+          assert st["omath"] > 0, "no OMML formula objects produced"
+          assert st["raw_dollar"] == 0, "unconverted $ delimiters remain"
+          assert st["raw_latex"] == 0, "unconverted LaTeX commands remain"
+          print("PASS: %d OMML formula objects, 0 raw LaTeX" % st["omath"])
+          PY
 
       - name: Upload sample artifact
         if: matrix.python-version == '3.12'

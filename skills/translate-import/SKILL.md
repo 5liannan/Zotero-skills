@@ -59,16 +59,31 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
  "image": "formulas/fml01_01.png", "no": "1"}
 ```
 
+**LaTeX 会被转成 Word 原生公式对象（OMML），不是当纯文本排。**
+`build_docx.py` 调用 pandoc 完成转换（见 `scripts/omml.py`），因此：
+
+- 产出的 DOCX 里公式**可在 Word 中双击编辑**，上下标、分式、积分号都正常
+- 正文里的行内公式（`$P_S$`）同样转成内联公式对象
+- `latex` 字段自带 `$$...$$` 定界符没关系，会被自动剥掉；式号写在 `latex` 末尾
+  也会被自动摘出，不会重复渲染
+- **pandoc 不可用时自动降级为纯文本 LaTeX** 并在 stderr 警告，构建不中断、内容不丢
+
 公式区识别采用**字体启发式 + 内容启发式取并集**（`extract_pdf_text.py`）：
 前者认数学字体（Cambria Math / XITS / Latin Modern Math / STIX / cmmi-cmsy / MT Extra…），
 后者按字符类（`= + − ± ∑ ∫ √ ∂ ≤ ≥ ≈ ∞ α β …`）占比补充，避免正文用 Times 排版时漏检。
 
 ## 前置检查
 
-1. 确认 Python 3.12+，已安装 `pymupdf` 或 `pypdf`、`python-docx`
-2. Windows：使用 `python -X utf8`，设置 `PYTHONUTF8=1`
-3. 若需写 `zotero.sqlite`：**确认 Zotero 已完全退出**
-4. 确认路径：
+1. 确认 Python 3.12+，已安装 `pymupdf` 或 `pypdf`、`python-docx`、`lxml`
+2. **确认 pandoc 可用**（LaTeX → Word 公式对象的关键）：
+   ```bash
+   pandoc --version        # 或 conda install -c conda-forge pandoc
+   ```
+   找不到时 `build_docx.py` 会把公式降级为纯文本 LaTeX 并警告。
+   本机 Anaconda 自带时通常在 `D:\Anaconda3\Library\bin\pandoc.exe`（`omml.py` 会自动探测）。
+3. Windows：使用 `python -X utf8`，设置 `PYTHONUTF8=1`
+4. 若需写 `zotero.sqlite`：**确认 Zotero 已完全退出**
+5. 确认路径：
    - Zotero 数据目录（含 `storage/` 与 `zotero.sqlite`）
    - 任务表 `zotero_tasks.json`（可选，用于批量）
    - 台账 `status_oc.json`（可选）
@@ -82,9 +97,12 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 2. 读 `extract.json` 的正文块，对照 `figures/`、`formulas/`，
    写出 `parts/01.json`（**逐句全文精译**，对应英文原文；图用 `figure` 块、公式用 `formula` 块）
 3. `build_docx.py <workdir>/parts <out.docx>`
-4. `verify_docx.py <out.docx>`，要求 `ok=true`（仅校验可解析与基本完整性，**不以字数判定**）
+   → 公式转 Word 原生公式对象；stderr 会打出 `formula: OMML: ...` 统计，
+   若有 `warning: N 个公式未能转为 OMML` 需回查 `parts` 里的 LaTeX 写法
+4. `verify_docx.py <out.docx>`，要求 `ok=true`（仅校验可解析与基本完整性，**不以字数判定**）；
+   同时看 `omath`（公式对象数）、`raw_dollar` / `raw_latex`（应为 0）
 5. **图/公式自检**：译文图序与原文图号一一对应；原文式 (1)–(n) 无缺号；
-   每个公式既有 `latex` 又有 `image`
+   每个公式既有 `latex` 又有 `image`；公式在 Word 里是**可编辑的公式对象**
 6. 若用户要求入库：运行 `register_zotero_docx.py`（先退出 Zotero）
 
 ### 扫描件 PDF（无文本层 / OCR 伪文本）
@@ -179,6 +197,8 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 **体例**
 - [ ] 公式用 `$...$`，式号随原文；OCR 散式按量纲自洽还原，不改物理含义
 - [ ] **每个公式两种产物齐全**：`latex`（LaTeX 写法）+ `image`（原文公式截图）
+- [ ] **公式在 Word 里是可编辑的公式对象**（OMML）：`verify_docx.py` 的 `omath > 0`
+      且 `raw_dollar == 0`、`raw_latex == 0`
 - [ ] **检查公式（带编号）是否完整**：原文式 (1)–(n) 不得缺号、缺式、缺变量/系数；式号与正文引用一一对应
 - [ ] **检查图像是否完整**：原文图 1–n 不得缺图或缺图注；图序连续，图注内容与原图对应（坐标轴/图例数值原样）
 - [ ] **图的来源合规**：优先原始图（`images/`），无原始图时用 PDF 裁切（`figures/`）
@@ -210,6 +230,8 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 - **用脚本模板自动拼凑中文段落**（`full_v3_pipeline.py` 已移除该能力，若出现即为回退）
 - 添加原文没有的数据/公式/结论
 - **公式只给 LaTeX 不贴原文截图**，或只贴截图无 LaTeX
+- **公式在 Word 里是纯文本 LaTeX 而非公式对象**（`raw_dollar > 0` / `raw_latex > 0`；
+  多因 pandoc 缺失或 LaTeX 写法有误，见 build 阶段的 warning）
 - **矢量图缺失**（有图注却无图；未走 PDF 裁切兜底）
 - 公式（带编号）缺失、式号跳号、或式中变量/系数不完整
 - 图像缺失、图序跳号、或图注与原图不对应

@@ -22,13 +22,19 @@ Usage:
 
 图（figure / image）：优先原始图，其次 PDF 裁切图；两者都作为普通图片插入。
 公式（formula / equation）：
-  * latex  —— 数学公式的 LaTeX 写法，原样排入 DOCX（纯文本，不转 OMML）
-  * image  —— 原文公式截图，紧跟 LaTeX 之后插入，供核对与保真
+  * latex  —— 数学公式的 LaTeX 写法，**转为 Word 原生公式对象（OMML）**
+  * image  —— 原文公式截图，紧跟公式之后插入，供核对与保真
   * no     —— 原文式号，右对齐排在公式同一行
+
+正文里的行内公式（`$E=mc^2$`）同样会被转成内联公式对象。
+
+**LaTeX → OMML 依赖 pandoc**（见 omml.py）。pandoc 不可用时自动降级为
+纯文本 LaTeX 排入，并在 stderr 明确警告，不中断构建。
 
 Formatting: A4 single column; Chinese SimSun 10.5pt; Latin Times New Roman 10.5pt;
 body justified, 1.5 line spacing, first-line indent 2 chars; headings bold black.
 """
+import copy
 import json, os, sys, glob
 from docx import Document
 from docx.shared import Pt, Cm, RGBColor
@@ -36,8 +42,14 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from omml import LatexToOmml, clean_latex, segment_inline   # noqa: E402
+
 EA_FONT = "宋体"
 LATIN_FONT = "Times New Roman"
+
+# 公式转换器：模块级单例，跨段共享缓存
+_CONV = LatexToOmml()
 
 def set_fonts(style, size_pt=None, bold=None, color_black=True):
     style.font.name = LATIN_FONT
@@ -130,8 +142,52 @@ def add_para(doc, text, noindent=False):
         p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     if not noindent and not _is_formula_para(text):
         p.paragraph_format.first_line_indent = Pt(21)
+
+    # 含行内公式：按 $...$ 切分，交替插入文本 run 与内联 OMML
+    if "$" in text and _CONV.ok:
+        segs = segment_inline(text)
+        if any(k == "math" for k, _ in segs):
+            _render_inline_math(p, segs)
+            return p
+
     run = p.add_run(text)
     run_fonts(run)
+    return p
+
+
+def _render_inline_math(p, segs):
+    """把 [("text", s)|("math", s)] 交替渲染进段落。
+
+    行内公式转 OMML 成功则插入公式对象；失败则原样回退为 `$...$` 文本，
+    保证内容不丢。
+
+    公式对象与相邻汉字之间补一个空格，避免贴死；但**紧跟中文标点时不补**
+    （否则会出现「公式 。」这种中文排版错误）。
+    """
+    # 中文标点：公式后面紧跟这些字符时不需要空格
+    NO_SPACE_AFTER = "。，、；：？！）》」』】〉”’%,.;:!?)]}&"
+
+    for i, (kind, val) in enumerate(segs):
+        if kind == "text":
+            if val:
+                run_fonts(p.add_run(val))
+            continue
+
+        els = _CONV.convert(val, display=False)
+        if not els:
+            run_fonts(p.add_run("$%s$" % val))
+            continue
+        for el in els:
+            p._element.append(copy.deepcopy(el))
+
+        # 看下一个片段是否以中文标点开头
+        nxt = segs[i + 1][1] if i + 1 < len(segs) else ""
+        nxt = nxt.lstrip()
+        if nxt and nxt[0] in NO_SPACE_AFTER:
+            continue
+        if not nxt:
+            continue
+        run_fonts(p.add_run(" "))
 
 def add_caption(doc, text):
     p = doc.add_paragraph()
@@ -163,25 +219,41 @@ def add_image(doc, path, caption):
 
 
 def add_formula_para(doc, latex, image_path, no=None):
-    """行间公式：LaTeX 写法 + 原文截图 + 右对齐式号。
+    """行间公式：Word 原生公式对象 + 原文截图 + 右对齐式号。
 
     两种产物并存：
-      * latex —— 数学公式的 LaTeX 写法（如 $$E=mc^2$$），原样排入
+      * latex —— 数学公式的 LaTeX 写法，转成 Word 原生公式对象（OMML）
+                 转换失败时回退为纯文本 LaTeX，内容不丢
       * image —— 原文公式截图，紧跟其后插入，供逐字核对
+
+    注意 feeds parts 里的 latex 常自带 `$$...$$` 定界符，需先剥掉再送 pandoc，
+    否则会变成 `$$$$...$$$$` 导致解析失败。
     """
-    # LaTeX 文本行
     if latex:
+        # 剥定界符与式号（parts 里两者都可能写在 latex 字段内）
+        pure, num_in_latex = clean_latex(latex)
+        num = no or num_in_latex
+
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.LEFT
         p.paragraph_format.first_line_indent = Pt(0)
         p.paragraph_format.space_before = Pt(6)
         p.paragraph_format.keep_with_next = True
-        if no:
-            # 右对齐式号：左段 LaTeX + 制表位 + 式号
-            _add_tabbed_formula(p, latex, no)
+
+        els = _CONV.convert(pure, display=True)
+        if els:
+            for el in els:
+                p._element.append(copy.deepcopy(el))
+            if num:
+                _add_formula_number(p, num)
+            else:
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         else:
-            run = p.add_run(latex)
-            run_fonts(run)
+            # 降级：纯文本 LaTeX + 式号（不丢内容）
+            if num:
+                _add_tabbed_text_formula(p, pure, num)
+            else:
+                run_fonts(p.add_run(pure))
 
     # 原文公式截图
     if image_path:
@@ -203,14 +275,19 @@ def add_formula_para(doc, latex, image_path, no=None):
         add_caption(doc, "（公式缺失：既无 LaTeX 也无截图）")
 
 
-def _add_tabbed_formula(p, latex, no):
-    """左 LaTeX、右式号，用右对齐制表位实现。"""
+def _add_formula_number(p, no):
+    """公式对象已在段中，右对齐补式号（制表位实现）。"""
     from docx.enum.text import WD_TAB_ALIGNMENT
     p.paragraph_format.tab_stops.add_tab_stop(Cm(14.6), WD_TAB_ALIGNMENT.RIGHT)
-    r1 = p.add_run(latex)
-    run_fonts(r1)
-    r2 = p.add_run("\t(%s)" % no)
-    run_fonts(r2)
+    run_fonts(p.add_run("\t(%s)" % no))
+
+
+def _add_tabbed_text_formula(p, latex, no):
+    """降级路径：左 LaTeX、右式号，用右对齐制表位实现。"""
+    from docx.enum.text import WD_TAB_ALIGNMENT
+    p.paragraph_format.tab_stops.add_tab_stop(Cm(14.6), WD_TAB_ALIGNMENT.RIGHT)
+    run_fonts(p.add_run(latex))
+    run_fonts(p.add_run("\t(%s)" % no))
 
 
 def add_figure(doc, path, caption):
@@ -258,6 +335,13 @@ def _resolve(parts_dir, rel):
 def build(parts_dir, out_path):
     doc = Document()
     setup_document(doc)
+
+    if not _CONV.ok:
+        print("WARNING: 未找到 pandoc —— 公式将以纯文本 LaTeX 排入，"
+              "不是可编辑的 Word 公式对象。", file=sys.stderr)
+        print("         安装：conda install -c conda-forge pandoc "
+              "或 https://pandoc.org/installing.html", file=sys.stderr)
+
     files = sorted(glob.glob(os.path.join(parts_dir, "*.json")))
     if not files:
         raise SystemExit("no part json files in " + parts_dir)
@@ -283,7 +367,7 @@ def build(parts_dir, out_path):
                 add_figure(doc, _resolve(parts_dir, b.get("file", "")),
                            b.get("caption", ""))
             elif bt in ("formula", "equation"):
-                # 公式：LaTeX 写法 + 原文截图，两种产物并存
+                # 公式：Word 原生公式对象 + 原文截图，两种产物并存
                 add_formula_para(
                     doc,
                     b.get("latex") or b.get("text") or "",
@@ -296,6 +380,18 @@ def build(parts_dir, out_path):
                 unknown.add(str(bt))
     if unknown:
         print("warning: unrendered block types:", sorted(unknown), file=sys.stderr)
+
+    # 公式转换小结：失败的逐条列出，便于人工在 parts 里修正 LaTeX
+    print("formula: " + _CONV.report(), file=sys.stderr)
+    fails = _CONV.failures()
+    if fails:
+        print("warning: %d 个公式未能转为 OMML（已回退纯文本）：" % len(fails),
+              file=sys.stderr)
+        for lx, reason in fails[:20]:
+            print("  - %r -> %s" % (lx[:70], reason), file=sys.stderr)
+        if len(fails) > 20:
+            print("  ... 另有 %d 条" % (len(fails) - 20), file=sys.stderr)
+
     doc.save(out_path)
     print("saved:", out_path, file=sys.stderr)
 

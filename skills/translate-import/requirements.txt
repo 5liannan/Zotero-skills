@@ -1,2 +1,9 @@
 pymupdf>=1.24.0
 python-docx>=1.1.0
+lxml>=4.9.0
+
+# 外部依赖（不在 pip 里）：
+#   pandoc —— LaTeX → Word 原生公式对象（OMML）的关键
+#     conda install -c conda-forge pandoc
+#     或 https://pandoc.org/installing.html
+#   缺 pandoc 时公式降级为纯文本 LaTeX，构建仍可完成但公式不可编辑。

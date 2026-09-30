@@ -55,6 +55,18 @@
  "no": "1"}
 ```
 
+**LaTeX 会被转成 Word 原生公式对象（OMML）**，不是当纯文本排进 DOCX。
+`build_docx.py` 通过 pandoc 完成转换（封装在 `scripts/omml.py`）：
+
+- 产出的公式**可在 Word 中双击编辑**，上下标、分式、积分号、希腊字母都正常
+- 正文行内公式（`$P_S$`）同样转成内联公式对象
+- `latex` 自带 `$$` 定界符 / 末尾带式号都会被自动剥离，不会重复渲染
+- 同一公式只调一次 pandoc（带缓存）
+- **pandoc 缺失时自动降级**为纯文本 LaTeX 并在 stderr 警告，构建不中断、内容不丢
+
+> 若拿到的是**别处给的、公式没渲染的旧 DOCX**（里面是一堆 `$` 和反斜杠），
+> 用同仓库的 `docx-polish` skill 事后修复。
+
 公式区识别 = **字体启发式 + 内容启发式并集**：字体名认 Cambria Math / XITS /
 Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 （`= + − ± ∑ ∫ √ ∂ ≤ ≥ ≈ ∞ α β …`）占比补充，避免正文用 Times 排版时漏检。
@@ -80,6 +92,8 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 
 8. **公式** `$...$`，式号随原文；OCR 散式按量纲自洽还原，不改物理含义  
 9. **每个公式双产物**：`latex`（LaTeX 写法）+ `image`（原文公式截图），缺一不可  
+9b. **公式在 Word 里是可编辑的公式对象**：`verify_docx.py` 的 `omath > 0` 且
+    `raw_dollar == 0`、`raw_latex == 0`  
 10. **检查公式（带编号）是否完整**：原文式 (1)–(n) 不得缺号、缺式、缺变量/系数；式号与正文引用一一对应  
 11. **检查图像是否完整**：原文图 1–n 不得缺图或缺图注；图序连续，图注与原图对应（坐标轴/图例数值原样）  
 12. **图的来源合规**：优先原始图（`images/`），无原始图时用 PDF 裁切（`figures/`）  
@@ -111,6 +125,8 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 - **用脚本模板自动拼凑中文段落**（`full_v3_pipeline.py` 已移除该能力，若出现即为回退）  
 - 添加原文没有的数据/公式/结论  
 - **公式只给 LaTeX 不贴原文截图**，或只贴截图无 LaTeX  
+- **公式在 Word 里是纯文本 LaTeX 而非公式对象**（`raw_dollar > 0` / `raw_latex > 0`；
+  多因 pandoc 缺失或 LaTeX 写法有误，见构建阶段的 warning）  
 - **矢量图缺失**（有图注却无图；未走 PDF 裁切兜底）  
 - 公式（带编号）缺失、式号跳号、或式中变量/系数不完整  
 - 图像缺失、图序跳号、或图注与原图不对应  
@@ -125,8 +141,8 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 |---|---|---|
 | 1. 提取 | 从 PDF 抽文本块 + 原始位图 + 裁切图 + 公式截图 | `scripts/extract_pdf_text.py` |
 | 2. 译文 | **Agent / 人工**写 `parts/01.json`（逐句全文精译，脚本不代写） | Agent / 人工 |
-| 3. 构建 | 渲染为 A4 单栏 DOCX（宋体 + Times New Roman 五号），含图与公式双产物 | `scripts/build_docx.py` |
-| 4. 校验 | 检查可解析与完整性（**不以字数判定**） | `scripts/verify_docx.py` |
+| 3. 构建 | 渲染为 A4 单栏 DOCX（宋体 + Times New Roman 五号）；**公式转 Word 原生公式对象** | `scripts/build_docx.py` + `scripts/omml.py` |
+| 4. 校验 | 检查可解析与完整性，并报告公式对象数（**不以字数判定**） | `scripts/verify_docx.py` |
 | 5. 入库 | 复制到独立 storage key 并写 `itemAttachments` | `scripts/register_zotero_docx.py` |
 | 6. 标题 | 为附件补写 title 字段 | `scripts/fix_zotero_titles.py` |
 
@@ -135,7 +151,14 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 
 ## 环境依赖
 
-- Python 3.12+（需 `pymupdf` 与 `python-docx`）
+- Python 3.12+（需 `pymupdf`、`python-docx`、`lxml`）
+- **pandoc**（LaTeX → Word 公式对象的关键，pip 装不了）
+  ```bash
+  conda install -c conda-forge pandoc
+  # 或 https://pandoc.org/installing.html
+  ```
+  缺 pandoc 时公式降级为纯文本 LaTeX，构建仍可完成但公式不可编辑。
+  `omml.py` 会自动探测常见安装位置（含 Anaconda 自带的 `Library/bin/pandoc.exe`）。
 - Windows 上建议：`python -X utf8` 并设 `PYTHONUTF8=1`
 - 写 `zotero.sqlite` 前必须 **完全退出 Zotero**
 - 修改库前脚本会自动备份 sqlite
@@ -143,6 +166,7 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 ```text
 pymupdf>=1.24.0
 python-docx>=1.1.0
+lxml>=4.9.0
 ```
 
 安装示例：
@@ -291,6 +315,7 @@ translate/
   requirements.txt
   scripts/
     extract_pdf_text.py
+    omml.py              ← LaTeX → Word 公式对象（OMML），供 build_docx 调用
     build_docx.py
     verify_docx.py
     register_zotero_docx.py
