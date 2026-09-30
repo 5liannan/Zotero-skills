@@ -127,7 +127,13 @@ print("OMaths:", doc.OMaths.Count)   # 必须等于预期公式数
   → 长文本先 `Write` 成文件再引用（如 `git commit -F file`）
 - **pandoc 临时文件要在 `finally` 里删掉**，否则残留 `_f.md` / `_f.docx`
 - **OMML 元素复用务必 `copy.deepcopy`**
+- **Word COM 首调可能报 RPC 失败**（`-2147023170 远程过程调用失败`），此时 `w.Quit()`
+  还会因 `__getattr__` 抛 AttributeError。**过一会儿重试即可**。所以必须对
+  Dispatch / Open / ComputeStatistics / Close / Quit **逐层 try 包裹**；
+  `ComputeStatistics` 要单独 try —— 页数字数读不到不该影响公式判定
 - Word COM 用完必须 `doc.Close(False)` + `w.Quit()`，否则残留 WINWORD.EXE 进程
+- **Word 开着文档时会持有锁文件 `~$xxx.docx`**，且会阻碍写回/删除。脚本里删临时文件
+  若报 `trash-failed` 但能确认 Word 已退出，重试一次即可
 
 ## 文件说明
 
