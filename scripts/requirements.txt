@@ -1,0 +1,8 @@
+# scripts/ 下工具的运行依赖
+#
+# manage_zotero_storage.py 的 check/split/... 只用标准库；
+# quality / quality-normalize / quality-relink / quality-remove 需要读取 docx 正文，
+# 因此需要 python-docx。quality-normalize 还会调用
+# skills/translate-import/scripts/finalize.py（那边另有 requirements.txt）。
+python-docx>=1.1.0
+lxml>=4.9.0

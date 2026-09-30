@@ -79,8 +79,12 @@ Zotero-skills/
     zotero-storage-management.md
     zotero-datadir-migration.md
   scripts/
-    manage_zotero_storage.py
+    manage_zotero_storage.py   # 结构对齐（check/split/align…）+ 译文质量治理（quality-*）
+    docx_quality.py            # 译文质量判定内核（可单独运行）
     migrate_zotero_datadir.py
+    requirements.txt
+  tests/
+    test_storage_quality.py    # 质量审计回归测试（合成 fixture）
   skills/
     search-import/
       SKILL.md
@@ -117,6 +121,7 @@ Zotero-skills/
 
 - [docs/zotero-storage-management.md](docs/zotero-storage-management.md)
 - 可执行工具：`scripts/manage_zotero_storage.py`
+- 译文质量判定内核：`scripts/docx_quality.py`
 
 铁律摘要：
 
@@ -124,14 +129,29 @@ Zotero-skills/
 2. **同一文献只留 1 份译文**  
 3. **先隔离、不硬删**（`quarantine_*`）  
 4. 写 `zotero.sqlite` 前必须完全退出 Zotero，并先备份  
+5. **结构对齐 ≠ 附件没问题**：`path` 对得上，挂的仍可能是假译文
 
 ```bash
 export ZOTERO_DATA_DIR=E:/Zotero
 export ZOTERO_WORK_BASE=C:/path/to/work
 
-python scripts/manage_zotero_storage.py check    # 只读体检
+python scripts/manage_zotero_storage.py check    # 只读体检（结构）
 python scripts/manage_zotero_storage.py doctor   # 完整巡检（写库步骤前请退出 Zotero）
+
+# 译文质量：判定「挂的是不是真译文」，并治理
+python scripts/manage_zotero_storage.py quality            # 只读审计，出报告+清单
+python scripts/manage_zotero_storage.py quality-relink     # 把条目指向合格译文（先 --dry-run）
+python scripts/manage_zotero_storage.py quality-remove     # 不合格译文送回收站（先 --dry-run）
+python scripts/manage_zotero_storage.py quality-normalize  # 批量终稿规范化（页眉页码/交叉引用等）
 ```
+
+> **为什么需要 quality**：旧模板流水线产出过大量假译文——「本文题为《…》」
+> 「参考文献保留英文原文…详见原 PDF」+ 图注重复 8 遍 + 裸 LaTeX，
+> 而**正确的那份译文常常就在同一个目录里没被登记**。
+> 判定只看客观结构信号（模板套话 / 段落重复 / 裸 LaTeX / 高亮 / 中文字数 / 中英混排），
+> 不靠主观阅读。见规范文档第 8 节。
+>
+> 回归测试：`python tests/test_storage_quality.py`（合成 fixture，不需要真 Zotero）
 
 ## 数据目录迁移（任意路径）
 

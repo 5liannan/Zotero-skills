@@ -14,6 +14,8 @@
 | 无孤儿 | 磁盘文件所属 key 必须在 `items` 表中 |
 | 无 bak | storage 正式目录内无 `*bak*` / `*.bak` |
 | 缺失可解释 | 库有记录但磁盘无文件的条目进入缺失清单，不静默丢弃 |
+| **内容合格** | 条目下挂的 DOCX **是真正的全文精译**，不是旧模板流水线留下的假译文（模板套话 / 图注重复 / 裸 LaTeX） |
+| **附件指向对** | 目录里若同时存在合格与不合格译文，`path` 必须指向**合格**的那份 |
 
 ---
 
@@ -155,9 +157,26 @@ python scripts/manage_zotero_storage.py restore
 
 # 一次跑完整备检顺序（除 restore 需人工看缺失清单）
 python scripts/manage_zotero_storage.py doctor
+
+# ---- 译文质量（结构对齐之外，检查「内容是不是真译文」）----
+# 7) 只读审计：判定过关/不过关 + 交叉比对附件登记
+python scripts/manage_zotero_storage.py quality
+# 8) 预览改挂（不写库）
+python scripts/manage_zotero_storage.py quality-relink --dry-run
+# 9) 执行改挂（需退出 Zotero，自动备份库）
+python scripts/manage_zotero_storage.py quality-relink
+# 10) 预览删除不过关译文（默认只列「无引用」的）
+python scripts/manage_zotero_storage.py quality-remove --dry-run
+# 11) 送回收站（可恢复；加 --include-referenced 才动仍被引用的）
+python scripts/manage_zotero_storage.py quality-remove
+# 12) 对保留的合格译文批量跑终稿规范化（图注/页眉页码/交叉引用/参考文献）
+python scripts/manage_zotero_storage.py quality-normalize --dry-run
+python scripts/manage_zotero_storage.py quality-normalize
 ```
 
-每步会在 `$ZOTERO_WORK_BASE` 写出 `<step>_result.json` 报告。
+每步会在 `$ZOTERO_WORK_BASE` 写出 `<step>_result.json` 报告；
+质量系列另在 `$ZOTERO_WORK_BASE/quality/` 产出 `quality_report.md`、
+`quality_problems.csv`、`quality_audit.json` 与垃圾清单（含 md5）。
 
 ---
 
@@ -186,7 +205,76 @@ python scripts/manage_zotero_storage.py doctor
 
 ---
 
-## 8. 与翻译挂接的关系
+## 8. 译文质量审计（quality 系列）
+
+结构对齐（`check` / `align`）只能保证「一处一目录、path 对得上」，
+**管不了「挂的那份到底是不是真译文」**。历史上旧模板流水线产出过大量假译文：
+
+```text
+摘要：本文题为《<原文标题>》，属于气体、温度、黏滞、压力方向的研究工作。
+引言：引言部分阐述研究背景与动机。……
+参考文献：参考文献保留英文原文，编号与原文一致，详见原 PDF。
+（外加「补全图注（对齐原文图号）」+ 图 1–15 的英文图注重复 8 遍、公式仍是 $R pτi ,$）
+```
+
+这类文件的典型特征是：中文占比只有 5–19%、段落重复率 68–84%、无图片无公式。
+而**正确的那份译文往往就躺在同一个目录里没被登记**。
+
+### 判定信号（只看客观结构，不靠主观阅读）
+
+命中任一即判**不过关**：
+
+| 信号 | 含义 |
+|---|---|
+| 模板套话 | 「本文题为《…》」「引言部分阐述研究背景与动机」「方法与装置部分给出实现研究目标的技术方案」「结果与讨论部分展示主要实验或计算结果」「结论总结本文主要发现」「参考文献保留英文原文…详见原 PDF」「补全图注（对齐原文图号）」 |
+| 段落重复 | 非空段落（≥12 字）中重复文本占比 > 30% |
+| 裸 LaTeX | 残留 `$...$` 或 `\frac` 之类命令（公式没转成 Word 公式对象） |
+| 高亮残留 | 仍有 `w:highlight` 底色 |
+| 中文字数过少 | 正文中文字符 < 2000（涵盖「摘要式短稿」与「中文名却是英文内容」） |
+| 中英混排 | 每段英文功能词 > 4 **且** 中英混排段占比 > 15%（逐词替换式伪翻译，如「1 引言 Optical 光纤 技术 plays 一个ever increasing role…」） |
+
+**不参与判定、仅作提示**：有参考文献标题但无 `[n]` 条目（作者-年份制如 EGUsphere/ACP
+本来就无编号）、英文功能词偏多、中文字数偏少、无图片。
+
+> 「中英混排」用**双条件**是刻意的：单看英文功能词密度会误伤「英文引文较多」的正常译文。
+> 「参考文献缺失」从判定降为提示，同样是因为作者-年份制合法。
+
+### 三步治理流程
+
+```bash
+# ① 审计（只读）——产出问题清单与可执行计划
+python scripts/manage_zotero_storage.py quality --with-md5
+
+# ② 改挂——把条目指向合格译文
+python scripts/manage_zotero_storage.py quality-relink --dry-run   # 先看
+python scripts/manage_zotero_storage.py quality-relink             # 执行（需退出 Zotero）
+
+# ③ 清理——把不合格译文送回收站
+python scripts/manage_zotero_storage.py quality-remove --dry-run
+python scripts/manage_zotero_storage.py quality-remove             # 默认只删「无引用」的
+```
+
+**改挂为什么通常只需一句 UPDATE**：合格译文大多就在该附件自己的 `storage/<key>/` 里
+（与垃圾同目录），附件 title 也已是正确的 `[docx]<中文标题>`。因此把 `path` 从垃圾文件
+改到合格文件即可——**不新建 items 行、不新建 storage 目录、不产生孤儿**。
+脚本内置**乐观锁**：只有当前 `path` 仍等于所认定的旧文件时才改，否则跳过并报出。
+
+**删除的安全性**：
+- 默认只删**已无任何引用**的文件；仍被 Zotero 引用的（删后条目下会显示文件缺失）
+  必须显式加 `--include-referenced`
+- 送**回收站**（Windows `SHFileOperationW` + `FOF_ALLOWUNDO`），可恢复
+- 删除前写含 md5 的清单，可核对、可追溯
+- 分批执行，**每批以「文件是否真的消失」为准**（该 API 对多文件列表可能返回非 0
+  却已完成操作，不要看返回值）
+
+**批量规范化** `quality-normalize` 调用
+`skills/translate-import/scripts/finalize.py`（图注规范 / 标题层级 / 页眉 + 页脚 PAGE 域 /
+交叉引用 / 参考文献一致性）。每个文件先集中备份，改前改后比对
+公式数、图片数、表格数、字符数、段落数，任何一项变少即判回退。
+
+---
+
+## 9. 与翻译挂接的关系
 
 - 翻译产出 `译文.docx` 后，**登记为新附件 key 目录**，不要覆盖 PDF 目录里的文件
 - `fill_existing`：只更新既有 DOCX 附件的 `path` 与内容，仍保持「一附件一目录」
@@ -196,7 +284,7 @@ python scripts/manage_zotero_storage.py doctor
 
 ---
 
-## 9. 禁止事项
+## 10. 禁止事项
 
 - Zotero 运行时写 `zotero.sqlite`
 - 不备份就改库 / 不隔离就硬删用户文件
@@ -204,9 +292,13 @@ python scripts/manage_zotero_storage.py doctor
 - 同一文献挂多份译文而不清理
 - 把受版权 PDF 上传到公网
 - 在 storage 正式目录留下 `*bak*` 中间稿
+- **只做结构对齐就以为附件没问题**——`path` 对得上，挂的仍可能是假译文
+- **批量改/删译文不经 `--dry-run` 预览**，或不经 `quality` 清单核对
 
 相关：
 
 - `skills/translate-import/README.md` — 翻译验收
 - `docs/zotero-datadir-migration.md` — 数据目录迁移
 - `scripts/manage_zotero_storage.py` — 本规范的可执行工具
+- `scripts/docx_quality.py` — 译文质量判定内核（可单独 `python scripts/docx_quality.py` 使用）
+- `tests/test_storage_quality.py` — 质量审计回归测试（合成 fixture，`python tests/test_storage_quality.py`）

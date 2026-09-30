@@ -3,25 +3,33 @@
 
 Implements docs/zotero-storage-management.md:
   check | split | dedup-hash | dedup-parent | clean-bak | align | restore | doctor
+  quality | quality-normalize | quality-relink | quality-remove
 
-Never hard-deletes user files: extras go to $ZOTERO_WORK_BASE/quarantine_*.
-Writes zotero.sqlite only when needed (split / dedup-parent / align / restore).
-Caller must fully quit Zotero before write steps and keep a DB backup (auto).
+Never hard-deletes user files: extras go to $ZOTERO_WORK_BASE/quarantine_*, and
+`quality-remove` sends files to the OS Recycle Bin (recoverable).
+Writes zotero.sqlite only when needed (split / dedup-parent / align / restore /
+quality-relink). Caller must fully quit Zotero before write steps and keep a DB
+backup (auto).
 """
 from __future__ import annotations
 
 import argparse
+import ctypes
 import hashlib
 import json
 import os
 import re
 import shutil
 import sqlite3
+import subprocess
 import sys
 import time
 import uuid
 from collections import defaultdict
 from pathlib import Path
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import docx_quality as dq  # noqa: E402  (译文质量审计：纯逻辑，无副作用)
 
 KEY_ALPHABET = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ"
 DOCX_CT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -618,6 +626,332 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     return final
 
 
+# ==========================================================================
+# 译文质量审计（见 scripts/docx_quality.py）
+# ==========================================================================
+class _SHFILEOPSTRUCTW(ctypes.Structure):
+    """Win32 SHFILEOPSTRUCTW（仅 Windows 用；惰性构建，避免非 Windows 平台导入失败）。"""
+
+    @classmethod
+    def _make(cls):
+        if getattr(cls, "_ready", False):
+            return cls
+        from ctypes import wintypes
+        cls._fields_ = [("hwnd", wintypes.HWND), ("wFunc", wintypes.UINT),
+                        ("pFrom", ctypes.c_wchar_p), ("pTo", ctypes.c_wchar_p),
+                        ("fFlags", ctypes.c_uint16),
+                        ("fAnyOperationsAborted", wintypes.BOOL),
+                        ("hNameMappings", ctypes.c_void_p),
+                        ("lpszProgressTitle", ctypes.c_wchar_p)]
+        cls._ready = True
+        return cls
+
+
+_FO_DELETE = 3
+_FOF_SILENT = 0x0004
+_FOF_NOCONFIRMATION = 0x0010
+_FOF_ALLOWUNDO = 0x0040
+_FOF_NOERRORUI = 0x0400
+
+
+def send_to_recycle_bin(paths: list[str]) -> tuple[int, bool]:
+    """把一批文件送进回收站（可恢复）。返回 (ret, aborted)。
+
+    注意：多文件列表时 `SHFileOperationW` 可能返回非 0 却已完成操作，
+    **批次成败务必以「文件是否真的消失」为准**，不要看返回值。
+    """
+    if not hasattr(ctypes, "windll"):
+        raise RuntimeError("send_to_recycle_bin 仅在 Windows 上可用")
+    op = _SHFILEOPSTRUCTW._make()()
+    op.hwnd = None
+    op.wFunc = _FO_DELETE
+    op.pFrom = "\0".join(paths) + "\0"      # ctypes 再补一个 -> 双 null 结尾
+    op.pTo = None
+    op.fFlags = (_FOF_ALLOWUNDO | _FOF_NOCONFIRMATION | _FOF_SILENT
+                 | _FOF_NOERRORUI)
+    shell32 = ctypes.windll.shell32
+    shell32.SHFileOperationW.restype = ctypes.c_int
+    ret = shell32.SHFileOperationW(ctypes.byref(op))
+    return ret, bool(op.fAnyOperationsAborted)
+
+
+def zotero_running() -> bool | None:
+    """Zotero 是否在运行（Windows）。无法判断时返回 None。"""
+    try:
+        out = subprocess.run(
+            ["tasklist", "/FI", "IMAGENAME eq zotero.exe", "/FO", "CSV", "/NH"],
+            capture_output=True).stdout.decode("gbk", "replace")
+    except Exception:  # noqa: BLE001
+        return None
+    return "zotero.exe" in out.lower()
+
+
+def _quality_scan(args: argparse.Namespace):
+    """跑一次质量审计（只读），返回 (result, work)。"""
+    data, db, storage, work = resolve_paths(args)
+    tmp, dbfile = dq.snapshot_db(str(db))
+    try:
+        print("扫描中（只读）……")
+        return dq.scan(str(storage), dbfile), work
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def cmd_quality(args: argparse.Namespace) -> int:
+    """只读审计：判定译文过关与否，并交叉比对附件登记。"""
+    res, work = _quality_scan(args)
+    outdir = Path(args.out) if getattr(args, "out", "") else work / "quality"
+    paths = dq.write_outputs(res, outdir, with_md5=args.with_md5)
+    s = res["summary"]
+    print(
+        "dirs=%d translations=%d bad=%d good=%d problems=%d extra_relink=%d mixed=%d"
+        % (s["dirs"], s["translations"], s["bad"], s["good"], s["problems"],
+           s["extra_relink"], s["mixed_dirs"])
+    )
+    for k, v in paths.items():
+        print("  %-14s %s" % (k, v))
+    write_report(work, "quality", s)
+    return 0 if (s["problems"] == 0 and s["extra_relink"] == 0) else 1
+
+
+def cmd_quality_relink(args: argparse.Namespace) -> int:
+    """把合格译文改挂到 Zotero 对应条目（写库，先备份）。
+
+    只改 `itemAttachments.path`：合格译文通常就在该附件自己的 storage 目录里，
+    因此不新建 items 行、不新建目录、不产生孤儿。
+    """
+    res, work = _quality_scan(args)
+    todo = list(res["relink"]) + list(res["extra_relink"])
+    print("待改挂: %d（问题条目 %d + 需补挂 %d）"
+          % (len(todo), len(res["relink"]), len(res["extra_relink"])))
+    if not todo:
+        write_report(work, "quality_relink", {"changed": 0})
+        return 0
+
+    data, db, storage, _ = resolve_paths(args)
+    missing = [x for x in todo
+               if not (Path(storage) / x["dir"] / x["new_file"]).exists()]
+    if missing:
+        for m in missing[:5]:
+            print("  !! 合格文件缺失 [%s] %s" % (m["dir"], m["new_file"][:50]))
+        print("存在缺失的合格文件，先排查再执行")
+        return 2
+
+    if args.dry_run:
+        for x in todo[:15]:
+            print("   [%s] %s  ->  %s" % (x["dir"], x["old_file"][:40],
+                                          x["new_file"][:40]))
+        print("（--dry-run，未写库）")
+        return 0
+
+    if zotero_running():
+        print("Zotero 正在运行 —— 写库会损坏，请完全退出后重试")
+        return 2
+
+    backup_db(db, "quality_relink")
+    con = open_rw(db)
+    cur = con.cursor()
+    changed = skipped = 0
+    problems = []
+    try:
+        for x in todo:
+            row = cur.execute("SELECT path FROM itemAttachments WHERE itemID=?",
+                              (x["att_item_id"],)).fetchone()
+            if row is None:
+                problems.append((x["dir"], "无对应附件行"))
+                continue
+            want = "storage:" + x["new_file"]
+            if row[0] == want:
+                skipped += 1
+                continue
+            # 乐观锁：当前必须仍指向我们所认定的旧文件，否则不盲改
+            if row[0] != "storage:" + x["old_file"]:
+                problems.append((x["dir"], "path 与预期不符: %r" % (row[0],)))
+                continue
+            cur.execute("UPDATE itemAttachments SET path=? WHERE itemID=?",
+                        (want, x["att_item_id"]))
+            if cur.rowcount != 1:
+                problems.append((x["dir"], "UPDATE rowcount=%d" % cur.rowcount))
+                continue
+            changed += 1
+        con.commit()
+    except Exception:
+        con.rollback()
+        con.close()
+        raise
+    con.close()
+
+    print("改挂 %d ；已正确(跳过) %d ；异常 %d" % (changed, skipped, len(problems)))
+    for p in problems[:20]:
+        print("   !! %s  %s" % p)
+    write_report(work, "quality_relink",
+                 {"changed": changed, "skipped": skipped,
+                  "problems": [list(p) for p in problems]})
+    return 0 if not problems else 1
+
+
+def cmd_quality_remove(args: argparse.Namespace) -> int:
+    """把不过关的译文 docx 送回收站（可恢复）。
+
+    默认**只删已无引用**的文件；仍被 Zotero 引用的（删后条目下会显示文件缺失）
+    需要显式加 `--include-referenced` 才会动。
+    """
+    res, work = _quality_scan(args)
+    storage = Path(res["storage"])
+    allg = res["garbage"]
+    referenced = [g for g in allg if g["attached"]]
+    free = [g for g in allg if not g["attached"]]
+    targets = allg if args.include_referenced else free
+    print("不过关译文 %d 个（%.1f MB）；其中仍被 Zotero 引用 %d 个"
+          % (len(allg), sum(g["size"] for g in allg) / 1048576, len(referenced)))
+    print("本次将删除: %d 个（%s）"
+          % (len(targets),
+             "含被引用件 —— 删后条目下会显示文件缺失"
+             if args.include_referenced else "仅无引用件（默认）"))
+    if not targets:
+        write_report(work, "quality_remove", {"removed": 0})
+        return 0
+
+    if args.dry_run:
+        for g in targets[:15]:
+            print("   %s [%s] %s"
+                  % ("[被引用]" if g["attached"] else "[无引用]",
+                     g["dir"], g["file"][:56]))
+        print("（--dry-run，未删除）")
+        return 0
+
+    # 清单（含 md5）——可核对、可恢复
+    ts = time.strftime("%Y%m%d_%H%M%S")
+    outdir = Path(work) / "quality"
+    outdir.mkdir(parents=True, exist_ok=True)
+    man = []
+    for g in targets:
+        p = storage / g["dir"] / g["file"]
+        rec = dict(g)
+        rec["path"] = str(p)
+        try:
+            rec["md5"] = dq._md5(p)
+        except Exception as e:  # noqa: BLE001
+            rec["md5"] = "ERR:%s" % e
+        man.append(rec)
+    (outdir / ("garbage_manifest_%s.json" % ts)).write_text(
+        json.dumps(man, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    removed = failed = 0
+    batch = 50
+    for i in range(0, len(man), batch):
+        chunk = man[i:i + batch]
+        ret, aborted = send_to_recycle_bin([c["path"] for c in chunk])
+        time.sleep(0.4)
+        left = [c for c in chunk if os.path.exists(c["path"])]
+        removed += len(chunk) - len(left)
+        print("  批次 %2d：%d/%d 已入回收站  ret=%s" %
+              (i // batch + 1, len(chunk) - len(left), len(chunk), ret))
+        if left:
+            failed += len(left)
+            for c in left[:10]:
+                print("     !! 未删除 %s" % c["path"])
+            print("  停止后续批次")
+            break
+    print("已送回收站 %d ；未删除 %d" % (removed, failed))
+    write_report(work, "quality_remove",
+                 {"removed": removed, "failed": failed, "reference_kept": len(referenced)})
+    return 0 if failed == 0 else 1
+
+
+def _find_finalize() -> str | None:
+    env = os.environ.get("DOCX_FINALIZE", "").strip()
+    if env and os.path.exists(env):
+        return env
+    root = Path(__file__).resolve().parent.parent
+    cand = root / "skills" / "translate-import" / "scripts" / "finalize.py"
+    return str(cand) if cand.exists() else None
+
+
+def cmd_quality_normalize(args: argparse.Namespace) -> int:
+    """对保留的合格译文批量跑终稿规范化（译后处理）。
+
+    调用 `skills/translate-import/scripts/finalize.py`（图注规范 / 标题层级 /
+    页眉 + 页脚 PAGE 域 / 交叉引用 / 参考文献一致性检查）。
+    每个文件先集中备份，改前改后比对公式数、图片数、表格数、字符数、段落数，
+    任何一项变少即判回退。
+    """
+    res, work = _quality_scan(args)
+    targets = res["optimize"]
+    fin = _find_finalize()
+    if not fin:
+        print("未找到 finalize.py（设 DOCX_FINALIZE 或用 --finalize 指定）")
+        return 2
+    print("待优化: %d 个（%.1f MB）；finalize：%s"
+          % (len(targets), sum(t["size"] for t in targets) / 1048576, fin))
+    if not targets:
+        return 0
+    if args.dry_run:
+        for t in targets[:15]:
+            print("   [%s] %s" % (t["dir"], t["file"][:60]))
+        print("（--dry-run，未修改）")
+        return 0
+
+    storage = Path(res["storage"])
+    ts = time.strftime("%Y%m%d_%H%M%S")
+    bk = Path(work) / ("docx_normalize_backup_%s" % ts)
+    bk.mkdir(parents=True, exist_ok=True)
+    log = {"started": ts, "backup": str(bk), "ok": 0,
+           "regressions": [], "failed": [], "items": []}
+
+    for i, t in enumerate(targets, 1):
+        src = storage / t["dir"] / t["file"]
+        rec = {"dir": t["dir"], "file": t["file"]}
+        try:
+            before = dq.probe(src)
+            (bk / t["dir"]).mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, bk / t["dir"] / t["file"])
+            r = subprocess.run(
+                [sys.executable, "-X", "utf8", fin, str(src), "--no-backup", "--quiet"],
+                capture_output=True, timeout=600)
+            if r.returncode != 0:
+                rec["status"] = "error"
+                rec["error"] = r.stderr.decode("utf-8", "replace")[-300:]
+                log["failed"].append(rec)
+                print("%3d/%d ERROR %s" % (i, len(targets), t["file"][:40]))
+                continue
+            after = dq.probe(src)
+            rec["before"] = {k: before.get(k) for k in
+                             ("paras", "chars", "omath", "images", "tables")}
+            rec["after"] = {k: after.get(k) for k in
+                            ("paras", "chars", "omath", "images", "tables")}
+            bad = [k for k in ("paras", "chars", "omath", "images", "tables")
+                   if (after.get(k) or 0) < (before.get(k) or 0)]
+            if bad:
+                rec["status"] = "regression"
+                rec["regressed"] = bad
+                log["regressions"].append(rec)
+                print("%3d/%d REGRESSION %s %s"
+                      % (i, len(targets), t["file"][:36],
+                         {k: (before.get(k), after.get(k)) for k in bad}))
+            else:
+                rec["status"] = "ok"
+                log["ok"] += 1
+                if i <= 3 or i % 50 == 0:
+                    print("%3d/%d ok  %s" % (i, len(targets), t["file"][:44]))
+        except Exception as e:  # noqa: BLE001
+            rec["status"] = "error"
+            rec["error"] = "%s: %s" % (type(e).__name__, str(e)[:200])
+            log["failed"].append(rec)
+            print("%3d/%d ERROR %s -> %s" % (i, len(targets), t["file"][:36],
+                                             rec["error"]))
+        log["items"].append(rec)
+
+    out = Path(work) / "quality" / ("normalize_log_%s.json" % ts)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(log, ensure_ascii=False, indent=1),
+                   encoding="utf-8")
+    print("成功 %d ；回退 %d ；失败 %d"
+          % (log["ok"], len(log["regressions"]), len(log["failed"])))
+    print("备份 %s\n日志 %s" % (bk, out))
+    return 0 if (not log["regressions"] and not log["failed"]) else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -631,12 +965,24 @@ def main(argv: list[str] | None = None) -> int:
             "align",
             "restore",
             "doctor",
+            "quality",
+            "quality-normalize",
+            "quality-relink",
+            "quality-remove",
         ],
     )
     parser.add_argument("--data-dir", default=os.environ.get("ZOTERO_DATA_DIR", ""))
     parser.add_argument("--sqlite", default=os.environ.get("ZOTERO_SQLITE", ""))
     parser.add_argument("--storage", default=os.environ.get("ZOTERO_STORAGE", ""))
     parser.add_argument("--work", default=os.environ.get("ZOTERO_WORK_BASE", ""))
+    # quality-* 专用
+    parser.add_argument("--out", default="", help="quality 报告输出目录")
+    parser.add_argument("--with-md5", action="store_true",
+                        help="quality：额外产出不过关文件清单（含 md5）")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="quality-relink / quality-remove / quality-normalize：只预览")
+    parser.add_argument("--include-referenced", action="store_true",
+                        help="quality-remove：连仍被 Zotero 引用的也一起删（删后条目显示缺失）")
     args = parser.parse_args(argv)
     if not args.data_dir and not (args.sqlite and args.storage):
         if not os.environ.get("ZOTERO_DATA_DIR"):
@@ -650,6 +996,10 @@ def main(argv: list[str] | None = None) -> int:
         "align": cmd_align,
         "restore": cmd_restore,
         "doctor": cmd_doctor,
+        "quality": cmd_quality,
+        "quality-normalize": cmd_quality_normalize,
+        "quality-relink": cmd_quality_relink,
+        "quality-remove": cmd_quality_remove,
     }
     return handlers[args.step](args)
 

@@ -27,6 +27,7 @@ Thumbs.db
 
 translate/scripts/__pycache__/
 *.pyc
+__pycache__/
 
 skills/translate-import/scripts/__pycache__/
 skills/translate-import/config.json
