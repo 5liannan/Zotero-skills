@@ -1,22 +1,24 @@
-# Zotero-skills — 两大 Skill
+# Zotero-skills — 三大 Skill
 
-面向 Zotero 文献库的两套可独立使用、也可串联的工作流：
+面向 Zotero 文献库的三套可独立使用、也可串联的工作流：
 
 | Skill | 目录 | 做什么 |
 |---|---|---|
 | **① 检索文献与导入 Zotero** | [`skills/search-import/`](skills/search-import/) | Crossref 检索 → 筛选 → 入库 → 挂 PDF → 报告 |
 | **② 翻译文献与导入 Zotero** | [`skills/translate-import/`](skills/translate-import/) | 英文 PDF → 中文 DOCX（**全文精译 · 与原文逐句对应**，不设字数上下限）→ 挂回 Zotero 条目 |
+| **③ 译文 DOCX 公式与排版优化** | [`skills/docx-polish/`](skills/docx-polish/) | 译文里的纯文本 LaTeX → **Word 原生公式对象（OMML）** + 清高亮 + 规范图注/行距/页眉页码 |
 
 ```text
-search-import                    translate-import
-    │                                  │
-    ▼                                  ▼
- Zotero 库（有 PDF）  ──────────►  中文 DOCX 附件
+search-import                    translate-import            docx-polish
+    │                                  │                          │
+    ▼                                  ▼                          ▼
+ Zotero 库（有 PDF）  ──────────►  中文 DOCX 附件  ──────────►  可编辑公式的规范 DOCX
 ```
 
-- 只做入库：用 ①  
-- 只做中文化：用 ②  
-- 全流程：先 ① 后 ②  
+- 只做入库：用 ①
+- 只做中文化：用 ②
+- 译文公式没渲染（一堆 `$` 和反斜杠）：用 ③
+- 全流程：① → ② →（必要时）③
 
 ## 快速入口
 
@@ -45,6 +47,24 @@ python scripts/print_paths.py
 
 技能说明：`skills/translate-import/SKILL.md`  
 扫描件 PDF（无文本层）翻译流程：[`docs/scanned-pdf-translation.md`](docs/scanned-pdf-translation.md)
+
+### ③ 译文 DOCX 优化
+
+```bash
+cd skills/docx-polish
+pip install -r requirements.txt
+# pandoc 需单独装：conda install -c conda-forge pandoc
+
+# 一键（自动备份 + 原地覆盖）
+python scripts/run_polish.py "译文.docx" --title "文章短标题"
+
+# 先试跑，不动源文件
+python scripts/run_polish.py "译文.docx" --dry-run
+```
+
+技能说明：`skills/docx-polish/SKILL.md`  
+完整用法：[`skills/docx-polish/README.md`](skills/docx-polish/README.md)
+
 
 ## 环境变量（translate）
 
@@ -82,6 +102,12 @@ Zotero-skills/
       requirements.txt
       scripts/      # extract/build/verify/register/...
       examples/     # parts 示例
+    docx-polish/
+      SKILL.md
+      README.md
+      config.example.json
+      requirements.txt
+      scripts/      # run_polish / diagnose / extract_formulas / optimize / verify_word
 ```
 
 ## 原则

@@ -1,0 +1,29 @@
+{
+  "_comment": "docx-polish 配置示例。所有项都有默认值，可全部省略。",
+  "pandoc": "pandoc",
+  "_pandoc_windows_hint": "Windows 上 Anaconda 自带时通常是 D:\\\\Anaconda3\\\\Library\\\\bin\\\\pandoc.exe",
+
+  "title": "",
+  "_title_hint": "页眉标题。留空则自动取文档首个非空段落。",
+
+  "header": true,
+  "page_number": true,
+
+  "ea_font": "宋体",
+  "latin_font": "Times New Roman",
+  "body_size": 10.5,
+  "header_size": 9,
+
+  "indent_chars": 2.0,
+  "line_spacing": 1.5,
+  "margin": 2.5,
+  "top_margin": 2.4,
+  "center_first": 4,
+  "_center_first_hint": "前 N 段视为标题区（题目/作者/单位/日期），不首行缩进且保持居中。",
+
+  "backup_suffix": "bak_YYYYMMDD",
+  "_backup_hint": "备份名后缀，脚本默认自动填当天日期。同名已存在时自动加时间戳。",
+
+  "no_word_check": false,
+  "_no_word_check_hint": "设为 true 则跳过 Word COM 校验（非 Windows 或无 Word 时）。"
+}
