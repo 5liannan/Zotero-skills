@@ -53,6 +53,30 @@ python scripts/diagnose.py        optimized.docx           # 4. 验收
 python scripts/verify_word.py     optimized.docx --expect-omath 153 --pdf out.pdf  # 5. Word 权威校验
 ```
 
+### 用配置文件固定排版（不再每次敲一堆旗标）
+
+`run_polish.py` 会读配置：
+
+```bash
+cp config.example.json config.json   # 改字体/字号/页眉等
+python scripts/run_polish.py "译文.docx"        # 自动用上
+python scripts/run_polish.py "译文.docx" --config ~/my.json   # 或临时指定
+```
+
+优先级：`--config` > `$DOCX_POLISH_CONFIG` > `<技能根>/config.json` >
+`<技能根>/config.example.json`；**命令行参数仍然高于配置文件**。
+`_` 开头的键是说明文字，不参与转发。
+
+| 配置键 | 转发给 `optimize.py` |
+|---|---|
+| `ea_font` / `latin_font` / `body_size` / `header_size` | 字体字号 |
+| `indent_chars` / `line_spacing` / `margin` / `top_margin` / `center_first` | 缩进行距边距 |
+| `title` / `header` / `page_number` | 页眉标题、是否写页眉页码 |
+| `pandoc` / `no_word_check` / `backup_suffix` | 依赖与流程 |
+
+> `backup_suffix` 写 `bak_YYYYMMDD` 会被解析成当天日期（也可写 strftime 格式串如
+> `bak_%Y%m%d_%H%M`）；直接写字面量则原样当后缀。
+
 ## 核心技术：pandoc 能产 OMML
 
 **这是本技能的关键。** 不需要 latex2mathml / sympy / MathType，

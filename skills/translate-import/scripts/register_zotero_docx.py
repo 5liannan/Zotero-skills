@@ -6,7 +6,7 @@ Backs up DB first. For each status-ok DOCX not already registered,
 finds parent item via sibling PDF in same storage folder (or task mapping),
 creates a new attachment item + storage/<key>/ copy, inserts DB rows.
 """
-import json, os, sys, sqlite3, shutil, random, string, time
+import json, os, sys, sqlite3, shutil, random, time
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

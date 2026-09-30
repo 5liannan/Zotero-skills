@@ -25,16 +25,13 @@ Thumbs.db
 .vscode/
 .idea/
 
-translate/scripts/__pycache__/
 *.pyc
 __pycache__/
 
-skills/translate-import/scripts/__pycache__/
-skills/translate-import/config.json
+# 各技能的本地配置（只提交 config.example.json）
+skills/*/config.json
 
 # docx-polish 工作目录与中间产物
 _polish_work/
-skills/docx-polish/scripts/__pycache__/
-skills/docx-polish/config.json
 formulas.json
 optimized.docx

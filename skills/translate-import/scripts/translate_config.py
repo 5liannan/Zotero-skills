@@ -17,9 +17,12 @@ import json
 import os
 import sys
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 _HERE = Path(__file__).resolve().parent
+# 配置文件放在**技能根目录**（README 与 config.example.json 的约定），
+# 不在 scripts/ 下；scripts/ 保留为兼容查找位置。
+_SKILL_ROOT = _HERE.parent
 
 _DEFAULTS: Dict[str, Any] = {
     "zotero_data_dir": str(Path.home() / "Zotero"),
@@ -52,12 +55,23 @@ def _env_key(key: str) -> str:
 
 
 def _load_file_config() -> Dict[str, Any]:
+    """取第一个存在的配置文件。
+
+    顺序：`TRANSLATE_CONFIG` > `<技能根>/config.json` > `<技能根>/config.example.json`
+    > `<scripts>/config.json` > `<scripts>/config.example.json`。
+    技能根排在前面，因为 README 让人把 `config.example.json` 复制到技能根目录当
+    `config.json` 用；scripts/ 下仅作兼容。
+    """
     path = os.environ.get("TRANSLATE_CONFIG", "").strip()
     candidates = []
     if path:
         candidates.append(Path(path))
-    candidates.append(_HERE / "config.json")
-    candidates.append(_HERE / "config.example.json")
+    candidates.extend([
+        _SKILL_ROOT / "config.json",
+        _SKILL_ROOT / "config.example.json",
+        _HERE / "config.json",
+        _HERE / "config.example.json",
+    ])
     for p in candidates:
         if p.is_file():
             try:

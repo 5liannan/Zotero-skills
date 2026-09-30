@@ -1,9 +1,10 @@
 {
-  "zotero_data_dir": "C:/Users/Administrator/Zotero",
-  "python": "C:/Users/Administrator/AppData/Local/Programs/Python/Python312/python.exe",
-  "work_base": "C:/Users/Administrator/.openclaw-autoclaw/workspace/zcode-continuation",
-  "tasks_json": "C:/Users/Administrator/Zotero/zotero_tasks.json",
-  "status_json": "C:/Users/Administrator/.openclaw-autoclaw/workspace/zcode-continuation/status_oc.json",
+  "_comment": "复制为 config.json 后按本机情况修改。留空 = 用内置默认（python 用当前解释器；tasks_json/status_json 由 zotero_data_dir / work_base 推导）。路径支持 ~ 展开，分隔符 / 或 \\ 均可。环境变量优先级最高，可覆盖任意字段。",
+  "zotero_data_dir": "~/Zotero",
+  "python": "",
+  "work_base": "~/zotero-work",
+  "tasks_json": "",
+  "status_json": "",
   "docx_content_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  "notes": "Path separators may use / or \\ ; env vars override any field. Translation standard: sentence-by-sentence fidelity to the English source; no min/max character limits. Env: ZOTERO_DATA_DIR, ZOTERO_PYTHON, ZOTERO_WORK_BASE, ZOTERO_TASKS_JSON, ZOTERO_STATUS_JSON"
+  "notes": "Translation standard: sentence-by-sentence fidelity to the English source; no min/max character limits. Env: ZOTERO_DATA_DIR, ZOTERO_PYTHON, ZOTERO_WORK_BASE, ZOTERO_TASKS_JSON, ZOTERO_STATUS_JSON"
 }

@@ -1,38 +1,6 @@
-﻿# 检索文献与导入 Zotero
+# 检索文献与导入 Zotero（Skill ①）
 
-本目录为 Skill ①：文献检索与 Zotero 导入。
-
----
-# lit-workflow — 文献检索、导入与中文翻译
-
-本仓库包含两套可组合的 Zotero 工作流：
-
-1. **检索入库**（`src/`）：Crossref 检索 → 筛选 → 入库 → 挂 PDF  
-2. **中文翻译**（`translate/`）：英文 PDF → 中文 DOCX → 挂回 Zotero 条目  
-
-## 中文翻译 Skill（translate/）
-
-将库中英文学术 PDF 批量译为规范中文 DOCX（宋体 + Times New Roman，A4 单栏），并登记为 Zotero 附件。
-
-```bash
-# 依赖
-pip install -r translate/requirements.txt
-
-# 核心脚本
-translate/scripts/extract_pdf_text.py   # PDF 文本/图片提取
-translate/scripts/build_docx.py         # parts JSON → DOCX
-translate/scripts/verify_docx.py        # 译文校验
-translate/scripts/register_zotero_docx.py  # 批量挂接到 Zotero（需退出 Zotero）
-translate/scripts/full_v3_pipeline.py   # 批量精译流水线
-```
-
-详见 [translate/README.md](translate/README.md) 与 [translate/SKILL.md](translate/SKILL.md)。
-
----
-
-# 以下为检索入库工作流
-
-# lit-workflow — 文献检索与 Zotero 导入通用工作流
+本目录为 Skill ①：文献检索与 Zotero 导入。中文翻译见 [`skills/translate-import/`](../translate-import/)。
 
 配置驱动的九阶段文献流水线：从摸底现有库、抓取候选、规则筛选，到人工圈定、入库、挂全文、本地 PDF 回填、出报告。
 换一个研究方向，只需要新写一个 `topics/<主题>.json` 配置，脚本一行不改。
@@ -100,7 +68,7 @@ node src/09_import_pdfs.mjs mytopic --dir "D:/papers/inbox"         # 确认无�
 ## 目录结构
 
 ```
-src/                 八个阶段脚本 + lib.mjs（共享工具：Zotero/Crossref 客户端、相似度、BibTeX）
+src/                 九个阶段脚本 + lib.mjs（共享工具：Zotero/Crossref 客户端、相似度、BibTeX）
 topics/<主题>.json    每个研究方向一份配置，脚本本身不含任何主题知识
 outputs/<主题>/       该主题的全部中间产物与成果（脚本自动创建）
 config.example.json  配置模板，复制改名即用
@@ -176,4 +144,3 @@ AGENT.md             Agent 执行剧本（含两个人工检查点的处理方�
 - 从 PDF 里抽 DOI 的实测命中率约 68%（本人库内 34 个真实 PDF：XMP 元数据 14、首页文本 6、其余抽不到）。抽不到的会退回标题检索，再不行交给 Zotero 识别 PDF；扫描版、纯图片 PDF 拿不到任何文本，只能靠识别或手工补
 - Crossref 对高频请求会限流，`pauseMs` 不要调太小
 - 检索源目前只有 Crossref，不覆盖无 DOI 的会议论文、学位论文与部分中文期刊
-

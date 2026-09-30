@@ -1,0 +1,29 @@
+name: repo-ci
+
+# 只跑「纯标准库」的守卫：仓库卫生 + 配置转发。
+# 不需要 pandoc / Word / python-docx / Zotero，因此对整个仓库的改动都该跑一遍。
+on:
+  push:
+  pull_request:
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Repo hygiene (BOM / 个人绝对路径 / 死链 / 示例配置)
+        run: python tests/test_repo_hygiene.py
+
+      - name: docx-polish config loading & forwarding
+        run: python tests/test_polish_config.py
+
+      - name: All Python files still compile
+        run: python -m compileall -q skills scripts tests

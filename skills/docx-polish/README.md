@@ -59,6 +59,20 @@ python scripts/run_polish.py "相干瑞利-布里渊散射：分子间势能和�
 python scripts/run_polish.py "译文.docx" --dry-run
 ```
 
+### 配置文件（一次设好，之后不用敲旗标）
+
+```bash
+cp config.example.json config.json    # 改字体、字号、页眉、pandoc 路径等
+python scripts/run_polish.py "译文.docx"          # 自动读取
+python scripts/run_polish.py "译文.docx" --config ~/my.json   # 临时指定
+```
+
+优先级：`--config` > `$DOCX_POLISH_CONFIG` > `<技能根>/config.json` >
+`<技能根>/config.example.json`。**命令行参数高于配置文件**；`_` 开头的键是说明文字。
+排版类配置（字体/字号/缩进/行距/边距/标题区段数）会原样转发给 `optimize.py`，
+`header`/`page_number`/`no_word_check`/`backup_suffix` 控制流程。
+`backup_suffix` 写 `bak_YYYYMMDD` 会解析为当天日期。
+
 ### 分步（便于排查）
 
 ```bash
