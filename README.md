@@ -74,7 +74,9 @@ python scripts/print_paths.py
 ```text
 Zotero-skills/
   README.md
-  .github/workflows/translate-ci.yml
+  .github/workflows/translate-ci.yml   # 翻译流水线（需要 pandoc）
+  .github/workflows/storage-ci.yml     # storage 治理与质量审计
+  .github/workflows/repo-ci.yml        # 仓库卫生 + 配置转发 + 规则一致性（零依赖）
   docs/
     zotero-storage-management.md
     zotero-datadir-migration.md
@@ -85,6 +87,9 @@ Zotero-skills/
     requirements.txt
   tests/
     test_storage_quality.py    # 质量审计回归测试（合成 fixture）
+    test_repo_hygiene.py       # BOM / 硬编码个人路径 / 死链 / 示例配置
+    test_polish_config.py      # docx-polish 配置加载与参数转发
+    test_rule_parity.py        # 终稿规则两份实现的一致性守卫
   skills/
     search-import/
       SKILL.md
@@ -130,6 +135,16 @@ Zotero-skills/
 3. **先隔离、不硬删**（`quarantine_*`）  
 4. 写 `zotero.sqlite` 前必须完全退出 Zotero，并先备份  
 5. **结构对齐 ≠ 附件没问题**：`path` 对得上，挂的仍可能是假译文
+
+## 守卫测试
+
+`python tests/<file>`，随 `repo-ci` 每次推送都跑：
+
+| 测试 | 依赖 | 盯住什么 |
+|---|---|---|
+| `tests/test_repo_hygiene.py` | 无 | UTF-8 BOM、硬编码个人绝对路径、Markdown 相对死链、示例配置不是合法 JSON、技能缺 `SKILL.md` |
+| `tests/test_polish_config.py` | 无 | `docx-polish` 的配置**确实被读取**（历史上文档说有、代码不看）、参数确实转发给 `optimize.py`、`--dry-run` 不动源文件 |
+| `tests/test_rule_parity.py` | python-docx | 终稿规则在 `finalize.py` 与 `optimize.py` 两份实现间不漂移（正则/常量/判定行为逐项比对） |
 
 ```bash
 export ZOTERO_DATA_DIR=E:/Zotero

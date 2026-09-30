@@ -296,3 +296,10 @@ python tests/test_idempotent.py   # 幂等性：连续跑两次 finalize 必须�
 （悬挂引用 / 空文献列表 / 有文献无引用 / 编号断号 / 未引用条目 / 缺 pandoc）。
 幂等性测试兜住「重复执行悄悄改坏文档」这类不报错的缺陷（同名书签重复添加就是这么
 被抓出来的）。改动 `build_docx.py` / `finalize.py` / `verify_docx.py` 后必须先跑这两个。
+
+> **终稿规则在 `docx-polish/scripts/optimize.py` 里还有一份。** 那个技能会被单独
+> 安装到 `~/.workbuddy/skills/docx-polish/`，跨技能 import 会让已安装副本崩，
+> 所以规则只能各存一份。改 `finalize.py` 的 `CAP_RE` / `CAP_VERB_RE` /
+> 图注与正文字号常量时，**同步改 `optimize.py`**，并跑
+> `python tests/test_rule_parity.py`（仓库根的守卫测试，逐项比对两边的正则、
+> 常量与判定行为，漂移就红）。

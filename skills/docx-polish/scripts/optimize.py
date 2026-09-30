@@ -24,6 +24,12 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 
+# ============================================================ 终稿规则
+# 这一组常量/正则与 translate-import/scripts/finalize.py **必须保持一致**：
+# 两份实现是同一套规则（本工具是"事后版"，finalize.py 是"构建时正式版"），
+# 但 docx-polish 会被单独安装到 ~/.workbuddy/skills/ 下，无法跨技能 import，
+# 所以规则是有意各存一份的 —— 一致性由 tests/test_rule_parity.py 守卫，
+# 改这里就必须改那边，否则 CI 会红。
 M_NS = "http://schemas.openxmlformats.org/officeDocument/2006/math"
 CAP_RE = re.compile(r"^\s*图\s*(\d+)\s*[.．:：]?\s*(.*)$", re.S)
 REF_RE = re.compile(r"^[A-Z][a-zA-Z\-']+,?\s+[A-Z]?\.?")
@@ -41,6 +47,24 @@ CAP_VERB_RE = re.compile(r"^\s*(?:给出|显示|展示|表明|说明|可见|反�
 DRAW_NS = "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
 # 这些小节标题下的段落不缩进、左对齐
 NO_INDENT_HEADS = ("补充材料", "利益声明", "数据可用性声明", "参考文献", "引用本文", "关键词")
+
+# 排版默认值（同样由 test_rule_parity.py 与 finalize.py 对齐）
+EA_FONT = "宋体"
+LATIN_FONT = "Times New Roman"
+BODY_SIZE = 10.5
+HEADER_SIZE = 9.0
+INDENT_CHARS = 2.0
+LINE_SPACING = 1.5
+MARGIN = 2.5
+TOP_MARGIN = 2.4
+CENTER_FIRST = 4
+HEADING_SIZES = {"Heading 1": 14, "Heading 2": 12}
+# 图注排版
+CAP_MAX_LEN = 200                # 超过这个长度不可能是图注
+CAPTION_SIZE = 9.0
+CAPTION_LINE_SPACING = 1.3
+CAPTION_SPACE_BEFORE = 3
+CAPTION_SPACE_AFTER = 8
 
 
 def omml_of(xml):
@@ -122,15 +146,16 @@ def main():
     ap.add_argument("--title", default="", help="页眉标题（默认取首个非空段落）")
     ap.add_argument("--no-header", action="store_true", help="不写页眉")
     ap.add_argument("--no-page-number", action="store_true", help="不写页码")
-    ap.add_argument("--ea-font", default="宋体", help="中文字体")
-    ap.add_argument("--latin-font", default="Times New Roman")
-    ap.add_argument("--body-size", type=float, default=10.5)
-    ap.add_argument("--header-size", type=float, default=9)
-    ap.add_argument("--indent-chars", type=float, default=2.0, help="首行缩进字符数")
-    ap.add_argument("--line-spacing", type=float, default=1.5)
-    ap.add_argument("--margin", type=float, default=2.5, help="左右页边距(cm)")
-    ap.add_argument("--top-margin", type=float, default=2.4)
-    ap.add_argument("--center-first", type=int, default=4,
+    ap.add_argument("--ea-font", default=EA_FONT, help="中文字体")
+    ap.add_argument("--latin-font", default=LATIN_FONT)
+    ap.add_argument("--body-size", type=float, default=BODY_SIZE)
+    ap.add_argument("--header-size", type=float, default=HEADER_SIZE)
+    ap.add_argument("--indent-chars", type=float, default=INDENT_CHARS,
+                    help="首行缩进字符数")
+    ap.add_argument("--line-spacing", type=float, default=LINE_SPACING)
+    ap.add_argument("--margin", type=float, default=MARGIN, help="左右页边距(cm)")
+    ap.add_argument("--top-margin", type=float, default=TOP_MARGIN)
+    ap.add_argument("--center-first", type=int, default=CENTER_FIRST,
                     help="前 N 段按标题区居中处理")
     args = ap.parse_args()
 
@@ -162,7 +187,7 @@ def main():
     npf.space_before = Pt(0)
     npf.space_after = Pt(0)
 
-    for name, size in (("Heading 1", 14), ("Heading 2", 12)):
+    for name, size in sorted(HEADING_SIZES.items()):
         try:
             st = doc.styles[name]
         except KeyError:
@@ -272,17 +297,18 @@ def main():
         # --- 图注
         m = CAP_RE.match(text.strip())
         body = m.group(2).strip().lstrip("：:．.").strip() if m else ""
-        if (m and body and len(text.strip()) < 200
+        if (m and body and len(text.strip()) < CAP_MAX_LEN
                 and not style.startswith("Heading")
                 and not CAP_VERB_RE.match(body)):
             styler.clear_runs(para)
-            styler.apply(para.add_run("图 %s\u3000%s" % (m.group(1), body)), 9)
+            styler.apply(para.add_run("图 %s\u3000%s" % (m.group(1), body)),
+                         CAPTION_SIZE)
             para.alignment = WD_ALIGN_PARAGRAPH.CENTER
             pf = para.paragraph_format
             pf.first_line_indent = Pt(0)
-            pf.line_spacing = 1.3
-            pf.space_before = Pt(3)
-            pf.space_after = Pt(8)
+            pf.line_spacing = CAPTION_LINE_SPACING
+            pf.space_before = Pt(CAPTION_SPACE_BEFORE)
+            pf.space_after = Pt(CAPTION_SPACE_AFTER)
             stats["caption"] += 1
             continue
 

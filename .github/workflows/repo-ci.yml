@@ -27,3 +27,20 @@ jobs:
 
       - name: All Python files still compile
         run: python -m compileall -q skills scripts tests
+
+  # 终稿规则在 finalize.py 与 optimize.py 里各存一份（docx-polish 会被单独安装，
+  # 无法跨技能 import），所以必须靠测试盯住两边不漂移。
+  rule-parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Final-deliverable rules must not drift
+        run: python tests/test_rule_parity.py

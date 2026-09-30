@@ -147,6 +147,14 @@ for el in root.findall(".//{%s}oMath" % M_NS):
 
 **反向也要修**：外部旧文档里，上游流水线常把**所有**「图 N」开头的段落都当图注排，
 于是「图 1 给出了…」这类正文被排成居中 9pt。脚本会把它恢复成正文样式。
+
+> **规则有两份，改一处必须改两处。** 上面这套图注/正文判定在
+> `translate-import/scripts/finalize.py` 里还有一份（那是构建时的"正式版"）。
+> 本技能会被**单独安装**到 `~/.workbuddy/skills/docx-polish/`（那份里没有
+> `translate-import`），跨技能 import 会让已安装副本直接崩，所以只能各存一份。
+> 一致性由 `tests/test_rule_parity.py` 盯着：正则、常量、判定行为逐项比对，
+> 漂移就让 CI 变红。改这里的 `CAP_RE` / `CAP_VERB_RE` / 字号常量，
+> 请同步改 `finalize.py`。
 判据是「形似图注 **且** 当前确实排成图注样（居中，或字号明显小于正文）」——
 所以正常正文段落不会因为开头恰好是「图 9 展示了…」而被误改。
 统计里体现为 `prose_restyled`。`finalize.py`（translate-import 侧）行为一致。

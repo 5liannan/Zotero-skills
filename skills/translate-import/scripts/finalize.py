@@ -49,6 +49,11 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Pt, RGBColor
 
+# ============================================================ 终稿规则
+# 这一组常量/正则在 docx-polish/scripts/optimize.py 里还有一份：
+# docx-polish 会被单独安装（~/.workbuddy/skills/docx-polish/），无法跨技能 import，
+# 所以规则是有意各存一份的。一致性由 tests/test_rule_parity.py 守卫 ——
+# 改这里就必须改那边，否则 CI 会红。
 M_NS = "http://schemas.openxmlformats.org/officeDocument/2006/math"
 
 # ---------------------------------------------------------------- 图注
@@ -76,6 +81,16 @@ CITE_RANGE_RE = re.compile(r"\[\s*\d+\s*[-–—]\s*\d+\s*\]")
 
 HEADING_SIZES = {"Heading 1": 14, "Heading 2": 12,
                  "Heading 3": 10.5, "Heading 4": 10.5}
+
+# 图注排版（同样由 test_rule_parity.py 与 docx-polish/optimize.py 对齐）
+CAP_MAX_LEN = 200                # 超过这个长度不可能是图注
+CAPTION_SIZE = 9.0
+CAPTION_LINE_SPACING = 1.3
+CAPTION_SPACE_BEFORE = 3
+CAPTION_SPACE_AFTER = 8
+
+BODY_LINE_SPACING = 1.5          # 正文行距倍数
+INDENT_CHARS = 2.0               # 正文首行缩进字符数
 
 EA_FONT = "宋体"
 LATIN_FONT = "Times New Roman"
@@ -161,12 +176,12 @@ def _looks_like_caption_style(p, body_size=BODY_SIZE):
     return False
 
 
-def _apply_body_style(p, body_size=BODY_SIZE, line_spacing=1.5,
+def _apply_body_style(p, body_size=BODY_SIZE, line_spacing=BODY_LINE_SPACING,
                       ea=EA_FONT, latin=LATIN_FONT):
     """按正文学体式重排（两端对齐 + 首行缩进 2 字符 + 正文行距）。"""
     pf = p.paragraph_format
     p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    pf.first_line_indent = Pt(body_size * 2)
+    pf.first_line_indent = Pt(body_size * INDENT_CHARS)
     pf.line_spacing = line_spacing
     pf.space_before = Pt(0)
     pf.space_after = Pt(0)
@@ -205,10 +220,10 @@ def apply_captions(doc, body_size=BODY_SIZE, fix_prose=True,
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
             pf = p.paragraph_format
             pf.first_line_indent = Pt(0)
-            pf.line_spacing = 1.3
-            pf.space_before = Pt(3)
-            pf.space_after = Pt(8)
-            _apply_run(p.add_run(new), size=9)
+            pf.line_spacing = CAPTION_LINE_SPACING
+            pf.space_before = Pt(CAPTION_SPACE_BEFORE)
+            pf.space_after = Pt(CAPTION_SPACE_AFTER)
+            _apply_run(p.add_run(new), size=CAPTION_SIZE)
             cap += 1
             continue
 
