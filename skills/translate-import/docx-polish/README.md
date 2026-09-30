@@ -47,8 +47,8 @@ pip install -r requirements.txt
 ### 一键（推荐）
 
 ```bash
-python scripts/run_polish.py "相干瑞利-布里渊散射：分子间势能和啁啾率的影响.docx" \
-    --title "相干瑞利-布里渊散射"
+python scripts/run_polish.py "示例文献标题.docx" \
+    --title "示例标题"
 ```
 
 自动完成：诊断基线 → 抽取转 OMML → 重建排版 → 验收 → Word 校验 → 备份 → 原地写回。
@@ -81,7 +81,7 @@ python scripts/diagnose.py "译文.docx"
 
 # 2. 抽公式并转 OMML（Windows 上 pandoc 不在 PATH 时加 --pandoc）
 python scripts/extract_formulas.py "译文.docx" formulas.json \
-    --pandoc "D:/Anaconda3/Library/bin/pandoc.exe"
+    --pandoc "C:/path/to/pandoc.exe"
 
 # 3. 重建文档
 python scripts/optimize.py "译文.docx" optimized.docx formulas.json \

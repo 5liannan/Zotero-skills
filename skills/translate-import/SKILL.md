@@ -1,9 +1,9 @@
 ---
-name: zotero-translate
-description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DOCX 并挂回对应条目。适用于布里渊/瑞利散射/光纤传感等文献库的批量中文化。触发词：翻译 Zotero PDF、中文译文入库、PDF to DOCX 中文、批量翻译文献。
+name: translate-import
+description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DOCX 并挂回对应条目（全文精译 · 与原文逐句对应 · 公式为 Word 原生对象）。含外部旧 DOCX 公式补转（docx-polish）。触发词：翻译 Zotero PDF、中文译文入库、PDF to DOCX 中文、批量翻译文献、修复旧 docx、LaTeX 转 Word 公式。
 ---
 
-# Zotero 文献中文翻译 Skill
+# Skill：翻译文献与导入 Zotero
 
 ## 目标
 
@@ -42,7 +42,7 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 写进译文时，两种来源都用 `figure` 块（`image` 为等价别名）：
 
 ```json
-{"type": "figure", "file": "figures/fig01_01.png", "caption": "图1 沿光纤的布里渊增益谱。"}
+{"type": "figure", "file": "figures/fig01_01.png", "caption": "图1 示例图：测量量随位置的变化。"}
 {"type": "figure", "file": "images/p02_bitmap01.png", "caption": "图2 传感系统的实验装置。"}
 ```
 
@@ -95,7 +95,7 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
    ```
    **含公式的译文里 pandoc 是硬性依赖**：缺失会让 `build_docx.py` 直接报错退出
    （不再降级为纯文本 LaTeX）。完全不含公式的文档不受影响。
-   本机 Anaconda 自带时通常在 `D:\Anaconda3\Library\bin\pandoc.exe`（`omml.py` 会自动探测）。
+   若随 Anaconda/conda 安装，`omml.py` 会自动探测常见位置；也可用 `where pandoc` 确认。
 3. Windows：使用 `python -X utf8`，设置 `PYTHONUTF8=1`
 4. 若需写 `zotero.sqlite`：**确认 Zotero 已完全退出**
 5. 确认路径：
@@ -271,6 +271,27 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 - 页眉页脚/水印/双版本重复段落进入译文
 - 切片边界截断半句、或分片间重复翻译同一句
 
+## 外部旧 DOCX 补救（内置 `docx-polish/`）
+
+正常流程构建出的译文**已是终稿**，不需要再修。  
+若拿到的是**别处给的、公式已退化成纯文本 LaTeX** 的旧 DOCX（打开满屏 `$...$` 和反斜杠），走本技能内置的补救分支：
+
+```bash
+cd docx-polish
+python scripts/run_polish.py "译文.docx" --title "文章短标题"   # 一键补转
+python scripts/run_polish.py "译文.docx" --dry-run             # 先试跑
+```
+
+职责边界：
+
+| 情况 | 用哪个 |
+|---|---|
+| 本技能正常翻译新文献 | `scripts/build_docx.py`（产物即终稿） |
+| 外部旧 DOCX，公式是纯文本 LaTeX | `docx-polish/scripts/run_polish.py` |
+| 只需补页眉页码 / 图注 / 交叉引用 | `scripts/finalize.py "<docx>"` |
+
+详见 [`docx-polish/README.md`](docx-polish/README.md)。
+
 ## 路径配置
 
 优先使用环境变量 `ZOTERO_DATA_DIR` / `ZOTERO_WORK_BASE` / `ZOTERO_PYTHON`，或 `translate/config.json`。
@@ -290,9 +311,8 @@ python tests/test_idempotent.py   # 幂等性：连续跑两次 finalize 必须�
 幂等性测试兜住「重复执行悄悄改坏文档」这类不报错的缺陷（同名书签重复添加就是这么
 被抓出来的）。改动 `build_docx.py` / `finalize.py` / `verify_docx.py` 后必须先跑这两个。
 
-> **终稿规则在 `docx-polish/scripts/optimize.py` 里还有一份。** 那个技能会被单独
-> 安装到 `~/.workbuddy/skills/docx-polish/`，跨技能 import 会让已安装副本崩，
-> 所以规则只能各存一份。改 `finalize.py` 的 `CAP_RE` / `CAP_VERB_RE` /
+> **终稿规则在 `docx-polish/scripts/optimize.py` 里还有一份。** 补救入口需可独立运行，
+> 因此规则各存一份。改 `finalize.py` 的 `CAP_RE` / `CAP_VERB_RE` /
 > 图注与正文字号常量时，**同步改 `optimize.py`**，并跑
 > `python tests/test_rule_parity.py`（仓库根的守卫测试，逐项比对两边的正则、
 > 常量与判定行为，漂移就红）。

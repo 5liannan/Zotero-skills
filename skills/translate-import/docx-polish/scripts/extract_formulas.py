@@ -84,7 +84,7 @@ def main():
     ap.add_argument("src", help="输入 .docx")
     ap.add_argument("out", help="输出 formulas.json")
     ap.add_argument("--pandoc", default="pandoc",
-                    help="pandoc 可执行文件路径（Windows 常在 D:\\Anaconda3\\Library\\bin\\pandoc.exe）")
+                    help="pandoc 可执行文件路径（Windows 常随 Anaconda/conda 提供，用 where pandoc 定位）")
     args = ap.parse_args()
 
     workdir = os.path.dirname(os.path.abspath(args.out)) or "."

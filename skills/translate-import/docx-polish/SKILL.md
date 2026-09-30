@@ -1,9 +1,9 @@
 ---
-name: docx-polish
-description: 【补救工具】把**别处给的、外部来源的**旧译文/学术 DOCX 里「未转换的 LaTeX 源码」批量转成 Word 原生公式对象（OMML），并顺带清理高亮残留、规范图注、统一行距缩进、补页眉页码。自己用 translate-import 翻译的文档不需要本技能（构建时已自动规范化）。当用户要求「优化别处给的 docx」「旧译文公式没渲染」「LaTeX 显示成源码」「$...$ 一堆乱码」时使用。触发词：修复旧 docx、外部 docx 优化、公式没显示、LaTeX 转 Word 公式、OMML、$ 乱码。
+name: translate-import/docx-polish
+description: 【translate-import 内置补救】把**别处给的、外部来源的**旧译文/学术 DOCX 里「未转换的 LaTeX 源码」批量转成 Word 原生公式对象（OMML），并顺带清理高亮残留、规范图注、统一行距缩进、补页眉页码。自己用 translate-import 翻译的文档不需要本技能（构建时已自动规范化）。当用户要求「优化别处给的 docx」「旧译文公式没渲染」「LaTeX 显示成源码」「$...$ 一堆乱码」时使用。触发词：修复旧 docx、外部 docx 优化、公式没显示、LaTeX 转 Word 公式、OMML、$ 乱码。
 ---
 
-# DOCX 公式与排版优化（LaTeX → OMML）
+# 补救分支：DOCX 公式与排版优化（LaTeX → OMML）
 
 把「LaTeX 源码当纯文本排」的译文 DOCX，转成带**真·Word 公式对象**的规范文档。
 
@@ -87,7 +87,7 @@ printf '$$E=mc^2 + \\frac{\\alpha_2}{\\beta}$$' > t.md
 pandoc t.md -o t.docx        # 产出 <m:oMath ...>，可移植进已有文档
 ```
 
-Windows 上 pandoc 常在 `D:\Anaconda3\Library\bin\pandoc.exe`（Anaconda 自带）。
+Windows 上 pandoc 可能随 Anaconda/conda 提供，可用 `where pandoc` 定位。
 先 `where pandoc` / `which pandoc` 确认；没有就 `conda install -c conda-forge pandoc`。
 
 **送 pandoc 之前必须剥掉两端定界符。** 若 LaTeX 自带 `$$...$$`，直接送会变成
@@ -150,8 +150,8 @@ for el in root.findall(".//{%s}oMath" % M_NS):
 
 > **规则有两份，改一处必须改两处。** 上面这套图注/正文判定在
 > `translate-import/scripts/finalize.py` 里还有一份（那是构建时的"正式版"）。
-> 本技能会被**单独安装**到 `~/.workbuddy/skills/docx-polish/`（那份里没有
-> `translate-import`），跨技能 import 会让已安装副本直接崩，所以只能各存一份。
+> 本目录是 `translate-import` 工作流的补救分支，需可独立运行，
+> 因此终稿规则与 `finalize.py` 各存一份。
 > 一致性由 `tests/test_rule_parity.py` 盯着：正则、常量、判定行为逐项比对，
 > 漂移就让 CI 变红。改这里的 `CAP_RE` / `CAP_VERB_RE` / 字号常量，
 > 请同步改 `finalize.py`。

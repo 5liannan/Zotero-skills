@@ -4,11 +4,10 @@
 背景
 ----
 `translate-import/scripts/finalize.py`（构建时正式版）与
-`docx-polish/scripts/optimize.py`（事后补救版）是**同一套终稿规则**的两份实现。
+`translate-import/docx-polish/scripts/optimize.py`（事后补救版）是**同一套终稿规则**的两份实现。
 
-为什么不做成一份公共模块？因为 `docx-polish` 会被**单独安装**到
-`~/.workbuddy/skills/docx-polish/`（那份里没有 `translate-import`），
-跨技能 import 会让已安装的副本直接崩。所以规则只能各存一份 ——
+为什么不做成一份公共模块？因为补救入口（docx-polish）需可独立运行，
+不依赖构建流水线的模块加载路径。所以规则仍各存一份 ——
 代价就是**会漂移**：改了这边的动词表，那边还是旧的，而且不报错。
 
 本测试把漂移变成 CI 红灯：正则、常量、以及"是否像图注样式"的判定行为，
@@ -23,7 +22,7 @@ import unittest
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FINALIZE = os.path.join(REPO, "skills", "translate-import", "scripts", "finalize.py")
-OPTIMIZE = os.path.join(REPO, "skills", "docx-polish", "scripts", "optimize.py")
+OPTIMIZE = os.path.join(REPO, "skills", "translate-import", "docx-polish", "scripts", "optimize.py")
 
 
 def _load(name, path):

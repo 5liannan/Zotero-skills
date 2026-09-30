@@ -27,7 +27,7 @@ from docx.shared import Cm, Pt, RGBColor
 # ============================================================ 终稿规则
 # 这一组常量/正则与 translate-import/scripts/finalize.py **必须保持一致**：
 # 两份实现是同一套规则（本工具是"事后版"，finalize.py 是"构建时正式版"），
-# 但 docx-polish 会被单独安装到 ~/.workbuddy/skills/ 下，无法跨技能 import，
+# 但补救入口需可独立运行，
 # 所以规则是有意各存一份的 —— 一致性由 tests/test_rule_parity.py 守卫，
 # 改这里就必须改那边，否则 CI 会红。
 M_NS = "http://schemas.openxmlformats.org/officeDocument/2006/math"

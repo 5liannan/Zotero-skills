@@ -39,7 +39,7 @@ TAIL_CMD_RE = re.compile(r"(\\quad|\\qquad|\\;|\\,|\\!|,|\.|\s)+$")
 # Windows 上 pandoc 常见位置（Anaconda 自带）
 COMMON_PANDOC = [
     "pandoc",
-    r"D:\Anaconda3\Library\bin\pandoc.exe",
+    # common install locations probed at runtime
     r"C:\ProgramData\Anaconda3\Library\bin\pandoc.exe",
     os.path.expanduser(r"~\Anaconda3\Library\bin\pandoc.exe"),
     "/usr/local/bin/pandoc",

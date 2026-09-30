@@ -1,6 +1,6 @@
 ---
 name: search-import
-description: 从 Crossref 等来源检索学术文献，筛选后导入 Zotero，并挂载 PDF 全文。触发词：检索文献、导入 Zotero、文献检索入库、找论文并入库、批量下载文献。
+description: 按主题检索学术文献（Crossref 等），人工筛选后导入 Zotero 并挂载 PDF 全文。触发词：检索文献、导入 Zotero、文献检索入库、找论文并入库、批量下载文献。
 ---
 
 # Skill：检索文献与导入 Zotero

@@ -3,7 +3,7 @@
 
 为什么需要它
 ------------
-历史上 `skills/docx-polish/config.example.json` 存在但**没有任何代码读取它**，
+历史上 `skills/translate-import/docx-polish/config.example.json` 存在但**没有任何代码读取它**，
 README 里写的"复制成 config.json 改参数"其实是无效操作。本测试锁死两件事：
 
 1. 配置确实被加载，且优先级为
@@ -22,7 +22,7 @@ import tempfile
 import unittest
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SCRIPTS = os.path.join(REPO, "skills", "docx-polish", "scripts")
+SCRIPTS = os.path.join(REPO, "skills", "translate-import", "docx-polish", "scripts")
 SKILL_ROOT = os.path.dirname(SCRIPTS)
 
 if SCRIPTS not in sys.path:

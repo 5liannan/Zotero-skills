@@ -25,7 +25,7 @@ sys.path.insert(0, str(HERE.parent / "scripts"))
 
 import docx_quality as dq  # noqa: E402
 
-GOOD_SENTENCE = ("分布式光纤传感可对温度、应变、振动等物理量进行连续监测，"
+GOOD_SENTENCE = ("示例正文：该方法可对待测物理量进行连续监测，"
                  "其空间分辨率与信噪比之间存在相互制约关系，需要综合优化。")
 TEMPLATE_HEAD = [
     "本文题为《示例文献》，属于气体、温度、黏滞、压力方向的研究工作。原文摘要表明："
@@ -250,7 +250,7 @@ def check_cli(storage, dbfile, work):
     r = subprocess.run(
         [sys.executable, "-X", "utf8", cli, "quality",
          "--storage", str(storage), "--sqlite", str(dbfile), "--work", str(work)],
-        capture_output=True, text=True)
+        capture_output=True, text=True, encoding="utf-8", errors="replace")
     out = (r.stdout or "") + (r.stderr or "")
     assert "problems=1" in out, out[-500:]
     assert r.returncode == 1, "有问题条目时应返回 1，实际 %d\n%s" % (r.returncode, out)
@@ -260,7 +260,7 @@ def check_cli(storage, dbfile, work):
     r2 = subprocess.run(
         [sys.executable, "-X", "utf8", cli, "quality-relink", "--dry-run",
          "--storage", str(storage), "--sqlite", str(dbfile), "--work", str(work)],
-        capture_output=True, text=True)
+        capture_output=True, text=True, encoding="utf-8", errors="replace")
     assert r2.returncode == 0 and "dry-run" in (r2.stdout or ""), r2.stdout
     print("  CLI 子命令（quality / relink --dry-run）PASS")
 

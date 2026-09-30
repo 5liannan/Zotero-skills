@@ -28,7 +28,7 @@
 
 与 docx-polish 的分工
 =====================
-`docx-polish` 是**事后补救工具**，用于「别处给的、公式已退化成纯文本 LaTeX」的旧
+`docx-polish` 是本技能内置的**事后补救步骤**，用于「别处给的、公式已退化成纯文本 LaTeX」的旧
 DOCX（LaTeX→OMML 的事后补转）。本模块**不做**这件事——正常流程里公式在构建时
 就已经是原生公式对象，没有可补转的东西。
 """
@@ -51,7 +51,7 @@ from docx.shared import Pt, RGBColor
 
 # ============================================================ 终稿规则
 # 这一组常量/正则在 docx-polish/scripts/optimize.py 里还有一份：
-# docx-polish 会被单独安装（~/.workbuddy/skills/docx-polish/），无法跨技能 import，
+# 补救入口需可独立运行，
 # 所以规则是有意各存一份的。一致性由 tests/test_rule_parity.py 守卫 ——
 # 改这里就必须改那边，否则 CI 会红。
 M_NS = "http://schemas.openxmlformats.org/officeDocument/2006/math"

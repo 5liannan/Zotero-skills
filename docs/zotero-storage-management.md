@@ -191,7 +191,7 @@ python scripts/manage_zotero_storage.py quality-normalize
 7. **restore** 缺失文件从隔离区恢复；仍缺失则导出清单，等用户补文件或删条目
 8. 打开 Zotero 抽查附件可打开、条目下 PDF/DOCX 分列
 
-本库一次完整整理的参考量级（约 1400+ 附件）：
+一次完整整理的参考量级（示例库约 1400 附件）：
 
 | 步骤 | 典型结果 |
 |---|---|
@@ -231,7 +231,7 @@ python scripts/manage_zotero_storage.py quality-normalize
 | 裸 LaTeX | 残留 `$...$` 或 `\frac` 之类命令（公式没转成 Word 公式对象） |
 | 高亮残留 | 仍有 `w:highlight` 底色 |
 | 中文字数过少 | 正文中文字符 < 2000（涵盖「摘要式短稿」与「中文名却是英文内容」） |
-| 中英混排 | 每段英文功能词 > 4 **且** 中英混排段占比 > 15%（逐词替换式伪翻译，如「1 引言 Optical 光纤 技术 plays 一个ever increasing role…」） |
+| 中英混排 | 每段英文功能词 > 4 **且** 中英混排段占比 > 15%（逐词替换式伪翻译，如「1 引言 The 方法 plays 一个 important role…」） |
 
 **不参与判定、仅作提示**：有参考文献标题但无 `[n]` 条目（作者-年份制如 EGUsphere/ACP
 本来就无编号）、英文功能词偏多、中文字数偏少、无图片。

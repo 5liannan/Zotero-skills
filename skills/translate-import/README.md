@@ -2,7 +2,7 @@
 
 把 Zotero 库中的英文学术 PDF 翻译为规范中文 DOCX，并挂回对应文献条目。
 
-适用场景：布里渊 / 瑞利散射 / 光纤传感等领域的文献库中英混杂，需要统一中文译文便于阅读与归档。
+适用场景：英文文献库需要统一中文译文，便于阅读、检索与归档。
 
 ## 翻译方案（唯一：全文精译 · 逐句对应）
 
@@ -62,7 +62,7 @@
   （不再降级为纯文本 LaTeX：「产出即终稿」不接受半成品）
 
 > 若拿到的是**别处给的、公式没渲染的旧 DOCX**（里面是一堆 `$` 和反斜杠），
-> 用同仓库的 `docx-polish` skill 做强制补转——那是它现在唯一的职责。
+> 用本技能内置的 `docx-polish/` 补救步骤做强制补转。
 
 ## 终稿规范（构建时自动完成）
 
@@ -95,7 +95,7 @@ $PY -X utf8 scripts/build_docx.py "<workdir>/parts" "<out.docx>" --allow-unused-
 ```
 
 > `finalize.py` 是**幂等**的：对同一份文档跑两次，第二次零改动。
-> `docx-polish` 里的 `optimize.py` 是同一套规则的**事后版**（用于外部旧文档），
+> `docx-polish/scripts/optimize.py` 是同一套规则的**事后版**（用于外部旧文档），
 > 新流程请直接依赖 `build_docx.py` 的自动规范化。
 
 公式区识别 = **字体启发式 + 内容启发式并集**：字体名认 Cambria Math / XITS /
@@ -229,7 +229,7 @@ lxml>=4.9.0
      "image": "formulas/fml01_01.png",
      "no": "1"},
     {"type": "para", "text": "行内公式写作 $E=mc^2$。"},
-    {"type": "figure", "file": "figures/fig01_01.png", "caption": "图1 沿光纤的布里渊增益谱。"},
+    {"type": "figure", "file": "figures/fig01_01.png", "caption": "图1 示例图：测量量随位置的变化。"},
     {"type": "figure", "file": "images/p02_bitmap01.png", "caption": "图2 传感系统的实验装置。"},
     {"type": "table", "header": true, "rows": [["A", "B"], ["1", "2"]]}
   ]

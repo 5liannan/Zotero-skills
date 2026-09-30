@@ -28,7 +28,7 @@ jobs:
       - name: All Python files still compile
         run: python -m compileall -q skills scripts tests
 
-  # 终稿规则在 finalize.py 与 optimize.py 里各存一份（docx-polish 会被单独安装，
+  # 终稿规则在 finalize.py 与 optimize.py 里各存一份（补救入口需可独立运行，
   # 无法跨技能 import），所以必须靠测试盯住两边不漂移。
   rule-parity:
     runs-on: ubuntu-latest
