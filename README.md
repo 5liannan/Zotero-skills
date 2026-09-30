@@ -5,7 +5,7 @@
 | Skill | 目录 | 做什么 |
 |---|---|---|
 | **① 检索文献与导入 Zotero** | [`skills/search-import/`](skills/search-import/) | Crossref 检索 → 筛选 → 入库 → 挂 PDF → 报告 |
-| **② 翻译文献与导入 Zotero** | [`skills/translate-import/`](skills/translate-import/) | 英文 PDF → 中文 DOCX（**全文精译 · 与原文逐句对应**）→ **公式转 Word 原生公式对象** → 挂回 Zotero 条目 |
+| **② 翻译文献与导入 Zotero** | [`skills/translate-import/`](skills/translate-import/) | 英文 PDF → 中文 DOCX（**全文精译 · 与原文逐句对应**）→ **构建即终稿**（公式为 Word 原生公式对象 + 页眉页码 + 图注规范 + 引用可点击跳转 + 参考文献一致性校验）→ 挂回 Zotero 条目 |
 
 ```text
 search-import                    translate-import
@@ -18,11 +18,12 @@ search-import                    translate-import
 - 只做中文化：用 ②
 - 全流程：先 ① 后 ②
 
-> **附：`skills/docx-polish/` — 译文 DOCX 修复工具（按需使用）**
+> **附：`skills/docx-polish/` — 外部旧 DOCX 的补救工具（按需使用）**
 >
-> ②在构建阶段已通过 pandoc 把 LaTeX 转成 Word 公式对象，**正常流程不需要它**。
-> 它只用于修复**别处给的、公式没渲染的旧 DOCX**（里面是一堆 `$` 和反斜杠）：
-> 批量转 OMML、清高亮残留、规范图注、补页眉页码。
+> ②的**正常流程已内置终稿规范化**（`translate-import/scripts/finalize.py`，由
+> `build_docx.py` 自动调用），所以**自己翻译的文档不需要它**。
+> 它现在唯一的不可替代职责，是把**别处给的、公式已退化成纯文本 LaTeX** 的旧 DOCX
+> 强制补转成 Word 公式对象（顺带清高亮残留、规范图注、补页眉页码）。
 > 详见 [`skills/docx-polish/README.md`](skills/docx-polish/README.md)。
 
 ## 快速入口
@@ -50,6 +51,11 @@ cp config.example.json config.json     # 或设 ZOTERO_DATA_DIR 等环境变量
 python scripts/print_paths.py
 # ... 详见 skills/translate-import/README.md
 ```
+
+> **构建产出即终稿**：`build_docx.py` 保存前会自动跑 `scripts/finalize.py`
+> 做终稿规范化（图注、标题层级、页眉 + 页脚 PAGE 域、正文引用可点击跳转、
+> 参考文献一致性校验）。缺 pandoc、公式转不动、参考文献对不上号时，
+> 构建**直接报错退出、不产出文件**——不存在「报成功但公式还是 `$` 源码」的假成功。
 
 技能说明：`skills/translate-import/SKILL.md`  
 扫描件 PDF（无文本层）翻译流程：[`docs/scanned-pdf-translation.md`](docs/scanned-pdf-translation.md)
@@ -89,9 +95,9 @@ Zotero-skills/
       README.md
       config.example.json
       requirements.txt
-      scripts/      # extract / omml / build / verify / register / ...
-      examples/     # parts 示例
-    docx-polish/    # 附：修复别处给的、公式没渲染的旧 DOCX
+      scripts/      # extract / omml / finalize / build / verify / register / ...
+      examples/     # parts 示例（含公式、图、正文引用与文末文献）
+    docx-polish/    # 附：补救外部旧 DOCX（公式事后补转 OMML）
       SKILL.md
       README.md
       config.example.json

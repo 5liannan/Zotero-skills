@@ -28,8 +28,14 @@ Usage:
 
 正文里的行内公式（`$E=mc^2$`）同样会被转成内联公式对象。
 
-**LaTeX → OMML 依赖 pandoc**（见 omml.py）。pandoc 不可用时自动降级为
-纯文本 LaTeX 排入，并在 stderr 明确警告，不中断构建。
+**LaTeX → OMML 依赖 pandoc**（见 omml.py）。**本流程不再静默降级**：
+parts 里真的含公式、而 pandoc 不可用时，构建**直接报错退出**，不产出半成品——
+这样「产出即终稿」才有保证。
+
+**产物即终稿**：保存前会调用 `finalize.py` 做终稿规范化（图注规范、标题层级、
+页眉 + 页脚 PAGE 域、正文引用换可点击跳转、参考文献一致性检查）。
+任何一项不通过（尤其 pandoc 缺失、公式转换失败、参考文献对不上号）都会
+**中止写出**，不会留下一份看起来成功、实际有问题的 DOCX。
 
 Formatting: A4 single column; Chinese SimSun 10.5pt; Latin Times New Roman 10.5pt;
 body justified, 1.5 line spacing, first-line indent 2 chars; headings bold black.
@@ -44,6 +50,7 @@ from docx.oxml.ns import qn
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from omml import LatexToOmml, clean_latex, segment_inline   # noqa: E402
+from finalize import finalize_document                      # noqa: E402
 
 EA_FONT = "宋体"
 LATIN_FONT = "Times New Roman"
@@ -332,20 +339,45 @@ def _resolve(parts_dir, rel):
     return os.path.join(os.path.dirname(parts_dir), rel)
 
 
-def build(parts_dir, out_path):
+def _has_formulas(parts_dir):
+    """预扫描 parts：只有真存在公式时，才强制要求 pandoc 可用。
+
+    没有公式的文档不该因为环境里没装 pandoc 就跑不动。
+    """
+    for fp in sorted(glob.glob(os.path.join(parts_dir, "*.json"))):
+        try:
+            with open(fp, encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            continue
+        for b in data.get("blocks", []):
+            if b.get("type") in ("formula", "equation"):
+                return True
+            t = b.get("text") or b.get("latex") or ""
+            if "$" in t:
+                return True
+    return False
+
+
+def build(parts_dir, out_path, finalize=True, header=None, xref=True,
+          check_refs=True, allow_unused_refs=False, xref_style=False):
     doc = Document()
     setup_document(doc)
 
-    if not _CONV.ok:
-        print("WARNING: 未找到 pandoc —— 公式将以纯文本 LaTeX 排入，"
-              "不是可编辑的 Word 公式对象。", file=sys.stderr)
-        print("         安装：conda install -c conda-forge pandoc "
-              "或 https://pandoc.org/installing.html", file=sys.stderr)
+    # ---- pandoc 硬门槛：含公式却无法转 OMML 时直接失败，不产出降级件 ----
+    if _has_formulas(parts_dir) and not _CONV.ok:
+        raise SystemExit(
+            "ERROR: parts 里含公式，但未找到 pandoc —— 无法把 LaTeX 转成 Word\n"
+            "       原生公式对象。本流程要求「产出的译文 DOCX 直接就是 Word 原生\n"
+            "       公式对象」，因此不再降级为纯文本 LaTeX，构建中止。\n"
+            "       安装：conda install -c conda-forge pandoc\n"
+            "             或 https://pandoc.org/installing.html")
 
     files = sorted(glob.glob(os.path.join(parts_dir, "*.json")))
     if not files:
         raise SystemExit("no part json files in " + parts_dir)
     unknown = set()
+    doc_title = None
     for fp in files:
         with open(fp, encoding="utf-8") as f:
             data = json.load(f)
@@ -353,6 +385,7 @@ def build(parts_dir, out_path):
         for b in blocks:
             bt = b.get("type")
             if bt == "title":
+                doc_title = doc_title or b["text"]
                 add_title(doc, b["text"])
             elif bt == "subtitle":
                 add_subtitle(doc, b["text"])
@@ -381,19 +414,65 @@ def build(parts_dir, out_path):
     if unknown:
         print("warning: unrendered block types:", sorted(unknown), file=sys.stderr)
 
-    # 公式转换小结：失败的逐条列出，便于人工在 parts 里修正 LaTeX
+    # ---- 公式转换小结：失败即中止，避免「看起来成功、其实是纯文本」----
     print("formula: " + _CONV.report(), file=sys.stderr)
     fails = _CONV.failures()
     if fails:
-        print("warning: %d 个公式未能转为 OMML（已回退纯文本）：" % len(fails),
-              file=sys.stderr)
+        print("以下公式未能转为 OMML：", file=sys.stderr)
         for lx, reason in fails[:20]:
             print("  - %r -> %s" % (lx[:70], reason), file=sys.stderr)
         if len(fails) > 20:
             print("  ... 另有 %d 条" % (len(fails) - 20), file=sys.stderr)
+        raise SystemExit(
+            "ERROR: %d 个公式未能转为 Word 原生公式对象，构建中止（未写出文件）。\n"
+            "       请检查 parts 里的 LaTeX 写法后重跑。" % len(fails))
+
+    # ---- 终稿规范化（保存前就地做，产出即终稿）----
+    if finalize:
+        stats = finalize_document(
+            doc,
+            title=(header or doc_title)[:80] if (header or doc_title) else None,
+            strict=True,
+            xref=xref,
+            check_refs=check_refs,
+            allow_unused_refs=allow_unused_refs,
+            xref_style=xref_style,
+        )
+        rc = stats.get("refs_check") or {}
+        print("finalize: marks=%s captions=%s headings=%s header=%s page=%s "
+              "refs=%s cites=%s links=%s"
+              % (stats.get("marks_removed"), stats.get("captions"),
+                 stats.get("headings"), stats.get("header"),
+                 stats.get("page_number"), rc.get("refs"), rc.get("cites"),
+                 (stats.get("xref") or {}).get("links")),
+              file=sys.stderr)
+        for w in (rc.get("warnings") or []):
+            print("warning: " + w, file=sys.stderr)
 
     doc.save(out_path)
     print("saved:", out_path, file=sys.stderr)
 
+
 if __name__ == "__main__":
-    build(sys.argv[1], sys.argv[2])
+    import argparse
+    ap = argparse.ArgumentParser(description="由 parts/*.json 构建终稿译文 DOCX")
+    ap.add_argument("parts_dir")
+    ap.add_argument("out_docx")
+    ap.add_argument("--no-finalize", action="store_true",
+                    help="只出内容稿，不做终稿规范化（不推荐）")
+    ap.add_argument("--header", default=None, help="页眉标题（默认取首个 title 块）")
+    ap.add_argument("--no-xref", action="store_true", help="不做正文引用交叉跳转")
+    ap.add_argument("--no-ref-check", action="store_true",
+                    help="跳过参考文献一致性检查（不推荐）")
+    ap.add_argument("--allow-unused-refs", action="store_true",
+                    help="文献列表中有未被正文引用的条目时不算错误")
+    ap.add_argument("--hyperlink-style", action="store_true",
+                    help="交叉引用套用蓝色下划线样式")
+    a = ap.parse_args()
+    build(a.parts_dir, a.out_docx,
+          finalize=not a.no_finalize,
+          header=a.header,
+          xref=not a.no_xref,
+          check_refs=not a.no_ref_check,
+          allow_unused_refs=a.allow_unused_refs,
+          xref_style=a.hyperlink_style)

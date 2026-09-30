@@ -42,11 +42,13 @@ jobs:
           python -m py_compile scripts/translate_config.py
           python -m py_compile scripts/extract_pdf_text.py
           python -m py_compile scripts/omml.py
+          python -m py_compile scripts/finalize.py
           python -m py_compile scripts/build_docx.py
           python -m py_compile scripts/verify_docx.py
           python -m py_compile scripts/register_zotero_docx.py
           python -m py_compile scripts/fix_zotero_titles.py
           python -m py_compile scripts/full_v3_pipeline.py
+          python -m py_compile tests/test_pipeline.py
 
       - name: Config loader smoke test
         run: |
@@ -54,12 +56,12 @@ jobs:
           export ZOTERO_WORK_BASE=/tmp/zwork
           python scripts/translate_config.py
 
-      - name: Build sample DOCX
+      - name: Build sample DOCX (build = final deliverable)
         run: |
           python scripts/build_docx.py examples/parts /tmp/sample_out.docx
           python scripts/verify_docx.py /tmp/sample_out.docx
 
-      - name: Assert formulas became OMML objects
+      - name: Assert the build output is already a final deliverable
         run: |
           python - <<'PY'
           import json, subprocess, sys
@@ -69,11 +71,24 @@ jobs:
           st = json.loads(out)
           print("verify:", st)
           assert st["ok"], "verify_docx returned ok=false"
+          # --- 公式必须是 Word 原生公式对象 ---
           assert st["omath"] > 0, "no OMML formula objects produced"
           assert st["raw_dollar"] == 0, "unconverted $ delimiters remain"
           assert st["raw_latex"] == 0, "unconverted LaTeX commands remain"
-          print("PASS: %d OMML formula objects, 0 raw LaTeX" % st["omath"])
+          # --- 终稿规范项 ---
+          assert st["header"], "header is empty"
+          assert st["footer_page"], "footer has no PAGE field"
+          assert st["xref"] > 0, "no clickable in-text citations"
+          assert st["bookmarks"] == st["refs"], (
+              "bookmark count %s != reference count %s" % (st["bookmarks"], st["refs"]))
+          assert not st["ref_errors"], "reference consistency: %s" % st["ref_errors"]
+          assert not st["dangling"] and not st["unused"], "dangling/unused citations"
+          print("PASS: %d OMML, %d refs, %d links, header+page OK"
+                % (st["omath"], st["refs"], st["xref"]))
           PY
+
+      - name: Assert broken builds are refused (no silent degradation)
+        run: python tests/test_pipeline.py
 
       - name: Upload sample artifact
         if: matrix.python-version == '3.12'

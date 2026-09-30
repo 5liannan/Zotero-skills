@@ -1,5 +1,6 @@
 {
   "title_cn": "示例：基于相敏光时域反射技术的光纤传感器性能提升",
+  "_note": "示例 fixture：文献条目与作者名均为占位内容（Example/示例），仅用于演示「正文引用号 ↔ 文末编号一一对应」的规范形态，请勿当作真实文献引用。",
   "blocks": [
     {
       "type": "title",
@@ -26,7 +27,7 @@
     },
     {
       "type": "para",
-      "text": "分布式光纤传感可对温度、应变、振动等物理量进行连续监测。Φ-OTDR 基于瑞利后向散射实现沿线振动定位，已广泛用于管道、周界安防等场景。"
+      "text": "分布式光纤传感可对温度、应变、振动等物理量进行连续监测。Φ-OTDR 基于瑞利后向散射实现沿线振动定位，已广泛用于管道、周界安防等场景[1]。"
     },
     {
       "type": "heading",
@@ -35,7 +36,7 @@
     },
     {
       "type": "para",
-      "text": "系统由超窄线宽激光器、声光调制器、掺铒光纤放大器与光电探测链路组成。信噪比定义为"
+      "text": "系统由超窄线宽激光器、声光调制器、掺铒光纤放大器与光电探测链路组成，其信噪比分析方法见文献[2]。信噪比定义为"
     },
     {
       "type": "formula",
@@ -45,7 +46,7 @@
     },
     {
       "type": "para",
-      "text": "其中 $P_S$ 为信号功率，$P_N$ 为噪声功率。"
+      "text": "其中 $P_S$ 为信号功率，$P_N$ 为噪声功率[2, 3]。"
     },
     {
       "type": "figure",
@@ -70,7 +71,7 @@
     },
     {
       "type": "para",
-      "text": "总结主要技术路线与工程应用前景。"
+      "text": "总结主要技术路线与工程应用前景[3]。"
     },
     {
       "type": "heading",
@@ -79,7 +80,17 @@
     },
     {
       "type": "para",
-      "text": "（参考文献保留英文原文。）",
+      "text": "[1] Example, A. B., and Sample, C. D.: Distributed acoustic sensing with phase-sensitive OTDR: a review, J. Example Photonics, 12(3), 210-226, 2024.",
+      "noindent": true
+    },
+    {
+      "type": "para",
+      "text": "[2] 示例作者, 示例合作者: 相敏光时域反射技术的信噪比分析, 示例学报, 45(3), 210-226, 2024.",
+      "noindent": true
+    },
+    {
+      "type": "para",
+      "text": "[3] Placeholder, E. F., et al.: Long-range phase-sensitive OTDR for pipeline monitoring, J. Example Sensors, 8(2), 55-70, 2023.",
       "noindent": true
     }
   ]

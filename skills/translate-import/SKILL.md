@@ -66,7 +66,26 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 - 正文里的行内公式（`$P_S$`）同样转成内联公式对象
 - `latex` 字段自带 `$$...$$` 定界符没关系，会被自动剥掉；式号写在 `latex` 末尾
   也会被自动摘出，不会重复渲染
-- **pandoc 不可用时自动降级为纯文本 LaTeX** 并在 stderr 警告，构建不中断、内容不丢
+- **pandoc 不可用、或任一公式转换失败 → 构建直接报错退出，不产出文件**
+  （`parts` 里完全不含公式的文档不受此限制）
+
+### 构建产物即终稿
+
+`build_docx.py` 在保存前调用 `scripts/finalize.py` 做终稿规范化，因此
+**跑完第 3 步拿到的就已经是终稿**，不需要再手工过一遍排版/修复工具：
+
+| 规范项 | 结果 |
+|---|---|
+| 图注 | `图 1：xxx` / `图1 xxx` → **`图 1　xxx`**（编号后全角空格），9pt 居中；自动排除「图 1 给出了…」这类正文引用句 |
+| 标题 | H1 14pt / H2 12pt，黑色加粗 |
+| 页眉 / 页脚 | 页眉 = 文章短标题；页脚 = PAGE 域；均 9pt 居中 |
+| 交叉引用 | 文末 `[n] …` 条目加隐藏书签，正文 `[n]` / `[n, m]` 换成**可点击跳转**的内部超链接（编号文本与外观不变） |
+| 残留标记 | 「原文图 p07_02.png」这类图片源文件追踪段整段删除 |
+| 参考文献一致性 | 正文引用号 ↔ 文末条目编号一一对应；悬挂引用 / 未引用条目 / 编号断号 → **报错并中止写出** |
+
+⚠️ **构建失败时不产出任何文件** —— 从根上杜绝「构建报成功、打开却发现公式还是
+`$` 源码」「参考文献被整节丢掉」这类静默缺陷。
+需要放宽「文献列表中存在未被正文引用的条目」时加 `--allow-unused-refs`。
 
 公式区识别采用**字体启发式 + 内容启发式取并集**（`extract_pdf_text.py`）：
 前者认数学字体（Cambria Math / XITS / Latin Modern Math / STIX / cmmi-cmsy / MT Extra…），
@@ -79,7 +98,8 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
    ```bash
    pandoc --version        # 或 conda install -c conda-forge pandoc
    ```
-   找不到时 `build_docx.py` 会把公式降级为纯文本 LaTeX 并警告。
+   **含公式的译文里 pandoc 是硬性依赖**：缺失会让 `build_docx.py` 直接报错退出
+   （不再降级为纯文本 LaTeX）。完全不含公式的文档不受影响。
    本机 Anaconda 自带时通常在 `D:\Anaconda3\Library\bin\pandoc.exe`（`omml.py` 会自动探测）。
 3. Windows：使用 `python -X utf8`，设置 `PYTHONUTF8=1`
 4. 若需写 `zotero.sqlite`：**确认 Zotero 已完全退出**
@@ -95,12 +115,18 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 1. `extract_pdf_text.py <pdf> <workdir>/images <workdir>/figures <workdir>/formulas`
    → 产出 `extract.json` + `images/`（原始位图）+ `figures/`（裁切图）+ `formulas/`（公式截图）
 2. 读 `extract.json` 的正文块，对照 `figures/`、`formulas/`，
-   写出 `parts/01.json`（**逐句全文精译**，对应英文原文；图用 `figure` 块、公式用 `formula` 块）
+   写出 `parts/01.json`（**逐句全文精译**，对应英文原文；图用 `figure` 块、公式用
+   `formula` 块，参考文献用带 `noindent` 的 `para` 块且以 `[n] ` 开头，
+   正文引用写 `[n]` / `[n, m]`）
 3. `build_docx.py <workdir>/parts <out.docx>`
-   → 公式转 Word 原生公式对象；stderr 会打出 `formula: OMML: ...` 统计，
-   若有 `warning: N 个公式未能转为 OMML` 需回查 `parts` 里的 LaTeX 写法
-4. `verify_docx.py <out.docx>`，要求 `ok=true`（仅校验可解析与基本完整性，**不以字数判定**）；
-   同时看 `omath`（公式对象数）、`raw_dollar` / `raw_latex`（应为 0）
+   → **一步产出终稿**：公式转 Word 原生公式对象，并自动完成终稿规范化
+   （图注、标题层级、页眉 + 页脚 PAGE 域、交叉引用、参考文献一致性校验）。
+   stderr 会打出 `formula: OMML: ...` 与 `finalize: ...` 统计。
+   **任一环节不通过（缺 pandoc / 公式转不动 / 参考文献对不上号）都报错并中止，
+   不产出文件** —— 所以「构建成功」就等于「产物可交付」
+4. `verify_docx.py <out.docx>`，要求 `ok=true`
+   （= 完整性 + `raw_dollar==0` + `raw_latex==0` + 参考文献无 error，**不以字数判定**）；
+   同时看 `omath`（公式对象数）、`header`、`footer_page`、`xref`、`bookmarks`
 5. **图/公式自检**：译文图序与原文图号一一对应；原文式 (1)–(n) 无缺号；
    每个公式既有 `latex` 又有 `image`；公式在 Word 里是**可编辑的公式对象**
 6. 若用户要求入库：运行 `register_zotero_docx.py`（先退出 Zotero）
@@ -147,9 +173,12 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 2. 先只做提取：`full_v3_pipeline.py <N> --extract-only`
    → 为每篇产出 `extract.json` + `images/` + `figures/` + `formulas/`
 3. **由 Agent 逐篇读原文写 `parts/*.json`**（逐句精译；脚本不代写）
-4. `full_v3_pipeline.py <N>` 执行 提取 → 构建 → 校验，并刷新台账
+4. `full_v3_pipeline.py <N>` 执行 提取 → 构建（含终稿规范化）→ 校验，并刷新台账
    - 缺 `parts/*.json` 的条目报 `SKIP` 并跳过，**绝不自动生成填充内容**
-5. 全量审计：每个任务的 `docx` 路径存在且校验通过（`ok=true`），
+   - 构建被硬门槛拦下的条目报 `BUILD FAIL` 并打出来自 `build_docx.py` 的原因
+     （缺 pandoc / 公式转不动 / 参考文献对不上号），**不会留下半成品文件**
+5. 全量审计：每个任务的 `docx` 路径存在且校验通过（`ok=true`，含
+   `omath` / `header` / `footer_page` / `xref` / 参考文献一致性），
    且图序、式号与原文一致
 
 ## 译文组织
@@ -199,6 +228,11 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 - [ ] **每个公式两种产物齐全**：`latex`（LaTeX 写法）+ `image`（原文公式截图）
 - [ ] **公式在 Word 里是可编辑的公式对象**（OMML）：`verify_docx.py` 的 `omath > 0`
       且 `raw_dollar == 0`、`raw_latex == 0`
+- [ ] **终稿规范到位**（构建时自动完成）：页眉非空、页脚含 PAGE 域、正文引用可点击
+      跳转（`verify_docx.py` 的 `header` / `footer_page` / `xref`、`bookmarks` 与
+      文献条目数一致），图注为「图 N　题注」形态
+- [ ] **参考文献一一对应**：正文引用号 ↔ 文末条目编号，无悬挂引用、无未引用条目、
+      编号连续（`verify_docx.py` 的 `dangling` / `unused` 为空、`ref_errors` 为空）
 - [ ] **检查公式（带编号）是否完整**：原文式 (1)–(n) 不得缺号、缺式、缺变量/系数；式号与正文引用一一对应
 - [ ] **检查图像是否完整**：原文图 1–n 不得缺图或缺图注；图序连续，图注内容与原图对应（坐标轴/图例数值原样）
 - [ ] **图的来源合规**：优先原始图（`images/`），无原始图时用 PDF 裁切（`figures/`）
@@ -231,7 +265,11 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 - 添加原文没有的数据/公式/结论
 - **公式只给 LaTeX 不贴原文截图**，或只贴截图无 LaTeX
 - **公式在 Word 里是纯文本 LaTeX 而非公式对象**（`raw_dollar > 0` / `raw_latex > 0`；
-  多因 pandoc 缺失或 LaTeX 写法有误，见 build 阶段的 warning）
+  新流程下这类产物**根本不会被写出**——缺 pandoc 或 LaTeX 写法有误时构建即报错退出）
+- **参考文献对不上号**：悬挂引用（正文引用了列表里没有的编号）、未引用条目
+  （列表里有却从未被引用）、编号断号；构建时即报错中止
+- **有引用标记但没有文献列表**，或有文献列表但正文一处引用都没有
+  （历史上出现过「参考文献被整节丢掉、只留一句概括说明」的静默缺陷，现由构建拦截）
 - **矢量图缺失**（有图注却无图；未走 PDF 裁切兜底）
 - 公式（带编号）缺失、式号跳号、或式中变量/系数不完整
 - 图像缺失、图序跳号、或图注与原图不对应
@@ -246,3 +284,13 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 用 `python scripts/print_paths.py` 确认解析结果后再跑写库脚本。
 
 本 skill 位于 `skills/translate-import/`。
+
+## 回归测试
+
+```bash
+python tests/test_pipeline.py     # 9 例：6 条失败路径 + 3 条成功路径
+```
+
+断言「构建产物即终稿」的规范项，以及**坏输入必须被拒绝且不产出文件**
+（悬挂引用 / 空文献列表 / 有文献无引用 / 编号断号 / 未引用条目 / 缺 pandoc）。
+改动 `build_docx.py` / `finalize.py` / `verify_docx.py` 后必须先跑它。

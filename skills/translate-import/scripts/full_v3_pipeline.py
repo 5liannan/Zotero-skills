@@ -2,7 +2,12 @@
 """Batch pipeline for sentence-faithful full translation of Zotero PDFs.
 
 本脚本**只做机械步骤**：
-    提取（extract） → 构建（build） → 校验（verify） → 记录台账
+    提取（extract） → 构建（build，内含终稿规范化） → 校验（verify） → 记录台账
+
+其中「构建」这一步（`build_docx.py`）产出的**就已经是终稿**：公式是 Word 原生公式
+对象、带页眉页码、图注规范、正文引用可点击跳转、参考文献一致性已校验。构建阶段
+任何一项不通过（缺 pandoc、公式转不动、参考文献对不上号）都会返回 `build_failed`，
+**不会**留下一份看起来成功、实际有问题的 DOCX。
 
 它**不生成任何译文内容**。
 「全文精译 · 逐句对应」的 parts/*.json 必须由 Agent / 人工按英文原文逐句写出，
@@ -130,10 +135,16 @@ def build_one(rec):
     if not docx:
         fn = re.sub(r'[\\/:*?"<>|]', "_", title)[:90]
         docx = os.path.join(t.get("folder") or os.path.dirname(t.get("pdf", ".")), fn + ".docx")
-    subprocess.run([PY, "-X", "utf8", os.path.join(ZC, "build_docx.py"), parts, docx],
-                   check=False, env=env)
+    br = subprocess.run([PY, "-X", "utf8", os.path.join(ZC, "build_docx.py"),
+                         parts, docx], capture_output=True, env=env, timeout=3600)
+    if br.returncode != 0:
+        err = br.stderr.decode("utf-8", "replace").strip().splitlines()
+        return {"itemID": iid, "status": "build_failed", "docx": docx,
+                "title_cn": title, "chars": 0, "images": 0,
+                "note": " / ".join(err[-6:])[:600] or
+                        "build_docx.py exit %d" % br.returncode}
     vr = subprocess.run([PY, "-X", "utf8", os.path.join(ZC, "verify_docx.py"), docx],
-                        capture_output=True, env=env)
+                        capture_output=True, env=env, timeout=600)
     try:
         v = json.loads(vr.stdout.decode("utf-8", "replace").strip().splitlines()[-1])
     except Exception:
@@ -177,9 +188,13 @@ def main():
             if out["status"] == "ok":
                 ok += 1
                 print("OK", iid, out.get("chars", 0), out.get("title_cn", "")[:40])
+            elif out["status"] == "build_failed":
+                fail += 1
+                print("BUILD FAIL", iid, "->", (out.get("note") or "")[:160])
             else:
                 fail += 1
-                print("VERIFY FAIL", iid, out.get("title_cn", "")[:40])
+                print("VERIFY FAIL", iid, out.get("title_cn", "")[:40],
+                      "->", (out.get("note") or "")[:160])
         except Exception as e:
             fail += 1
             print("ERR", iid, type(e).__name__, e)

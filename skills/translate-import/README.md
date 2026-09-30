@@ -62,10 +62,45 @@
 - 正文行内公式（`$P_S$`）同样转成内联公式对象
 - `latex` 自带 `$$` 定界符 / 末尾带式号都会被自动剥离，不会重复渲染
 - 同一公式只调一次 pandoc（带缓存）
-- **pandoc 缺失时自动降级**为纯文本 LaTeX 并在 stderr 警告，构建不中断、内容不丢
+- **pandoc 缺失、或任一公式转换失败 → 构建直接报错退出，不产出文件**
+  （不再降级为纯文本 LaTeX：「产出即终稿」不接受半成品）
 
 > 若拿到的是**别处给的、公式没渲染的旧 DOCX**（里面是一堆 `$` 和反斜杠），
-> 用同仓库的 `docx-polish` skill 事后修复。
+> 用同仓库的 `docx-polish` skill 做强制补转——那是它现在唯一的职责。
+
+## 终稿规范（构建时自动完成）
+
+`build_docx.py` 在 `doc.save()` **之前**会调用 `scripts/finalize.py` 做终稿规范化，
+所以**一次构建产出就是可交付终稿**，不需要再手工过一遍排版工具：
+
+| 规范项 | 结果 |
+|---|---|
+| 公式 | Word 原生公式对象（OMML），可双击编辑 |
+| 图注 | `图 1：xxx` / `图1 xxx` → **`图 1　xxx`**（编号后全角空格），9pt 居中；自动排除「图 1 给出了…」这类正文引用句 |
+| 标题 | H1 14pt / H2 12pt，黑色加粗 |
+| 页眉 | 文章短标题，9pt 居中 |
+| 页脚 | PAGE 域自动页码，9pt 居中 |
+| 交叉引用 | 文末 `[n] …` 条目加隐藏书签，正文 `[n]` / `[n, m]` 换成**可点击跳转**的内部超链接（编号文本不变、外观与正文一致） |
+| 残留标记 | 「原文图 p07_02.png」这类图片源文件追踪段整段删除 |
+| 参考文献一致性 | 正文引用号 ↔ 文末条目编号一一对应；**悬挂引用、未引用条目、编号断号 → 报错并中止写出** |
+
+任何一项不通过都**不会留下文件**——不会出现「构建报成功、打开发现公式还是 `$` 源码」
+这种情况。排查时单独跑：
+
+```bash
+# 只做参考文献一致性检查（只读，不改文件）
+$PY -X utf8 scripts/finalize.py "<output.docx>" --check-only
+
+# 独立对任意 DOCX 做终稿规范化（原地覆盖前自动备份）
+$PY -X utf8 scripts/finalize.py "<some.docx>"
+
+# 放宽「文献列表中存在未被正文引用的条目」这一条
+$PY -X utf8 scripts/build_docx.py "<workdir>/parts" "<out.docx>" --allow-unused-refs
+```
+
+> `finalize.py` 是**幂等**的：对同一份文档跑两次，第二次零改动。
+> `docx-polish` 里的 `optimize.py` 是同一套规则的**事后版**（用于外部旧文档），
+> 新流程请直接依赖 `build_docx.py` 的自动规范化。
 
 公式区识别 = **字体启发式 + 内容启发式并集**：字体名认 Cambria Math / XITS /
 Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
@@ -94,6 +129,11 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 9. **每个公式双产物**：`latex`（LaTeX 写法）+ `image`（原文公式截图），缺一不可  
 9b. **公式在 Word 里是可编辑的公式对象**：`verify_docx.py` 的 `omath > 0` 且
     `raw_dollar == 0`、`raw_latex == 0`  
+9c. **终稿规范到位**（构建时自动完成）：页眉非空、页脚含 PAGE 域、正文引用
+    可点击跳转、图注为「图 N　题注」——对应 `verify_docx.py` 的
+    `header` / `footer_page` / `xref` 与 `bookmarks`  
+9d. **参考文献一一对应**：`verify_docx.py` 的 `dangling` 与 `unused` 均为空、
+    编号连续、`ref_errors` 为空
 10. **检查公式（带编号）是否完整**：原文式 (1)–(n) 不得缺号、缺式、缺变量/系数；式号与正文引用一一对应  
 11. **检查图像是否完整**：原文图 1–n 不得缺图或缺图注；图序连续，图注与原图对应（坐标轴/图例数值原样）  
 12. **图的来源合规**：优先原始图（`images/`），无原始图时用 PDF 裁切（`figures/`）  
@@ -115,7 +155,8 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 20. 长文分 `parts/01.json`… 时切片边界不截断句子；续句只译一次、分片间不重复  
 21. 块类型统一：`title` / `subtitle` / `heading` / `para` / `caption` / `figure`|`image` / `formula`|`equation` / `table`；首篇才带 `title_cn`  
 22. `build_docx.py` 未报 `unrendered block types`（所有块类型都有渲染分支）  
-23. **DOCX** 可解析（`verify_docx.py` 的 `ok=true`，仅查完整性，**不以字数判定**）  
+23. **DOCX** 可解析且 `verify_docx.py` 的 `ok=true`（= 完整性 + 无裸 LaTeX 残留 +
+    参考文献对得上号；**不以字数判定**）  
 24. 中文标题正确；台账已更新；（若入库）Zotero 条目下可见译文附件  
 
 ### 不合格
@@ -126,7 +167,9 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 - 添加原文没有的数据/公式/结论  
 - **公式只给 LaTeX 不贴原文截图**，或只贴截图无 LaTeX  
 - **公式在 Word 里是纯文本 LaTeX 而非公式对象**（`raw_dollar > 0` / `raw_latex > 0`；
-  多因 pandoc 缺失或 LaTeX 写法有误，见构建阶段的 warning）  
+  新流程下这类产物**根本不会被写出**——pandoc 缺失或 LaTeX 写法有误时构建即报错退出）  
+- **参考文献对不上号**：正文引用了文献列表里没有的编号（悬挂引用）、文献列表里有
+  从未被正文引用的条目、或编号断号——构建时报错并中止，不会写出文件
 - **矢量图缺失**（有图注却无图；未走 PDF 裁切兜底）  
 - 公式（带编号）缺失、式号跳号、或式中变量/系数不完整  
 - 图像缺失、图序跳号、或图注与原图不对应  
@@ -141,13 +184,14 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 |---|---|---|
 | 1. 提取 | 从 PDF 抽文本块 + 原始位图 + 裁切图 + 公式截图 | `scripts/extract_pdf_text.py` |
 | 2. 译文 | **Agent / 人工**写 `parts/01.json`（逐句全文精译，脚本不代写） | Agent / 人工 |
-| 3. 构建 | 渲染为 A4 单栏 DOCX（宋体 + Times New Roman 五号）；**公式转 Word 原生公式对象** | `scripts/build_docx.py` + `scripts/omml.py` |
-| 4. 校验 | 检查可解析与完整性，并报告公式对象数（**不以字数判定**） | `scripts/verify_docx.py` |
+| 3. 构建 | 渲染为 A4 单栏 DOCX（宋体 + Times New Roman 五号）；**公式转 Word 原生公式对象**；并自动完成终稿规范化（图注/标题/页眉页码/交叉引用/参考文献校验） | `scripts/build_docx.py` + `scripts/omml.py` + `scripts/finalize.py` |
+| 4. 校验 | 检查可解析与完整性、公式对象数、页眉页码、交叉引用、参考文献一致性（**不以字数判定**） | `scripts/verify_docx.py` |
 | 5. 入库 | 复制到独立 storage key 并写 `itemAttachments` | `scripts/register_zotero_docx.py` |
 | 6. 标题 | 为附件补写 title 字段 | `scripts/fix_zotero_titles.py` |
 
 `full_v3_pipeline.py` 只串联 1 → 3 → 4 三个机械步骤，**不产生任何译文内容**；
-它按 `--extract-only` 先批量提取素材供 Agent 逐篇精译。
+它按 `--extract-only` 先批量提取素材供 Agent 逐篇精译。构建阶段失败会被标为
+`build_failed` 并在日志里打出原因，不会静默产出问题文件。
 
 ## 环境依赖
 
@@ -157,7 +201,8 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
   conda install -c conda-forge pandoc
   # 或 https://pandoc.org/installing.html
   ```
-  缺 pandoc 时公式降级为纯文本 LaTeX，构建仍可完成但公式不可编辑。
+  **译文含公式时 pandoc 是硬性依赖**：缺失会让构建报错退出，不会静默降级。
+  完全不含公式的文档（`parts` 里没有 `formula` 块也没有 `$`）不受影响。
   `omml.py` 会自动探测常见安装位置（含 Anaconda 自带的 `Library/bin/pandoc.exe`）。
 - Windows 上建议：`python -X utf8` 并设 `PYTHONUTF8=1`
 - 写 `zotero.sqlite` 前必须 **完全退出 Zotero**
@@ -204,7 +249,15 @@ lxml>=4.9.0
 `file` / `image` 路径相对 `parts/` 的父目录（即 `work/item_<id>/`）。
 
 - **图**：`figure`（`image` 为等价别名）。原始位图放 `images/`，PDF 裁切图放 `figures/`，二者都直接插入。
-- **公式**：`formula`（`equation` 为等价别名）。`latex` 原样排入，`image` 截图紧跟其后，`no` 为原文式号（右对齐）。
+- **公式**：`formula`（`equation` 为等价别名）。`latex` **转成 Word 原生公式对象**（不是当纯文本排入），`image` 截图紧跟其后，`no` 为原文式号（右对齐）。
+- **参考文献**：每条写成独立 `para` 块并带 `"noindent": true`，正文以 `[n] ` 开头：
+  ```json
+  {"type": "heading", "level": 1, "text": "参考文献"},
+  {"type": "para", "noindent": true, "text": "[1] Alpers, M., et al.: Ground-based remote sensing of wind by lidar, Atmos. Meas. Tech., 17, 1-20, 2024."}
+  ```
+  正文里的引用标记写 `[n]` 或 `[n, m]`（分组引用，升序）。构建时会校验
+  「正文引用号 ↔ 文末条目编号」一一对应，**悬挂引用 / 未引用条目 / 编号断号都会让构建失败**。
+  `examples/parts/01.json` 是一份可运行的参考形态。
 - 未识别的块类型会被 `build_docx.py` 在 stderr 报警，不会静默丢弃。
 
 ## 标准工作流
@@ -219,11 +272,16 @@ $PY -X utf8 scripts/extract_pdf_text.py "<pdf>" \
 
 # 2) 由 Agent / 人工写 parts/01.json（逐句全文精译，含 figure 与 formula 块）
 
-# 3) 构建 DOCX
+# 3) 构建 DOCX —— 这一步产出的就是**终稿**
+#    （公式转 Word 原生公式对象 + 图注规范 + 页眉页码 + 交叉引用 + 参考文献校验）
 $PY -X utf8 scripts/build_docx.py "<workdir>/parts" "<output.docx>"
 
-# 4) 校验（ok 即可，无字数门槛）
+# 4) 校验（ok=true 即可，无字数门槛）
 $PY -X utf8 scripts/verify_docx.py "<output.docx>"
+
+# 4b) 可选：只看参考文献一致性，或对任意 DOCX 做终稿规范化
+$PY -X utf8 scripts/finalize.py "<output.docx>" --check-only
+$PY -X utf8 scripts/finalize.py "<别处给的旧译文.docx>"
 
 # 5) 批量挂接到 Zotero（需退出 Zotero）
 $PY -X utf8 scripts/register_zotero_docx.py
@@ -316,12 +374,16 @@ translate/
   scripts/
     extract_pdf_text.py
     omml.py              ← LaTeX → Word 公式对象（OMML），供 build_docx 调用
-    build_docx.py
+    finalize.py          ← 终稿规范化（图注/标题/页眉页码/交叉引用/参考文献校验）
+    build_docx.py        ← 构建；保存前自动跑 finalize，产物即终稿
     verify_docx.py
     register_zotero_docx.py
     fix_zotero_titles.py
     full_v3_pipeline.py
+  tests/
+    test_pipeline.py     ← 9 例回归（失败路径必须报错且不产出文件）
   examples/
+    parts/01.json        ← 可运行的参考 fixture（含公式、图、正文引用、文末文献）
     parts_example.json
 ```
 
@@ -355,6 +417,14 @@ python scripts/print_paths.py
 GitHub Actions：`.github/workflows/translate-ci.yml`
 
 - Python 3.11 / 3.12
-- 语法检查全部脚本
+- 语法检查全部脚本（含 `finalize.py`、`tests/test_pipeline.py`）
 - config 环境变量冒烟测试
 - 用 `examples/parts` 构建并校验示例 DOCX
+- **断言「产物即终稿」**：`omath > 0`、`raw_dollar == 0`、`raw_latex == 0`、
+  页眉非空、页脚含 PAGE 域、`xref > 0`、书签数 == 文献条目数、参考文献无 error
+- **回归测试 `tests/test_pipeline.py`（9 例）**：本地也能直接跑
+  ```bash
+  python tests/test_pipeline.py
+  ```
+  覆盖 6 条失败路径（悬挂引用 / 空文献列表 / 有文献无引用 / 编号断号 /
+  未引用条目 / 缺 pandoc）+ 3 条成功路径，断言失败路径**必须报错且不产出文件**
