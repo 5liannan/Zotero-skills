@@ -14,8 +14,9 @@
             para._element.append(copy.deepcopy(el))
 
 设计要点：
-  * **失败必须可降级**：pandoc 缺失或转换失败时返回 None，调用方回退为纯文本，
-    绝不抛异常中断整个构建流程。
+  * **失败返回 None，由调用方硬失败**：pandoc 缺失或转换失败时返回 None，
+    调用方（build_docx.py）据此中止构建、不产出纯文本 LaTeX 的半成品。
+    本模块自身不抛异常中断，把「是否容忍失败」的决策交给上层。
   * **结果缓存**：同一公式（论文里重复出现的符号很常见）只调一次 pandoc。
   * **临时文件必清理**：放在 tempfile 目录，finally 里删掉。
 """
@@ -101,7 +102,7 @@ def clean_latex(latex):
 
 
 class LatexToOmml(object):
-    """LaTeX → OMML 转换器（带缓存与降级）。"""
+    """LaTeX → OMML 转换器（带缓存；失败返回 None 由调用方决定）。"""
 
     def __init__(self, pandoc=None, timeout=60, verbose=False):
         self.pandoc = find_pandoc(pandoc)
@@ -153,7 +154,7 @@ class LatexToOmml(object):
     def convert(self, latex, display=False):
         """转成 OMML 元素列表。
 
-        返回 list[Element]，失败返回 None（调用方应降级为纯文本）。
+        返回 list[Element]，失败返回 None（调用方据此中止构建）。
         **注意：调用方必须 copy.deepcopy 后再插入，否则元素被多处引用会丢失。**
         """
         if not self.ok:
@@ -180,7 +181,7 @@ class LatexToOmml(object):
 
     def report(self):
         if not self.ok:
-            return "pandoc 不可用：公式以纯文本 LaTeX 排入"
+            return "pandoc 不可用：含公式时构建将中止"
         s = self.stats
         return "OMML: 缓存命中 %d / 转换 %d / 失败 %d" % (s["hit"], s["miss"], s["fail"])
 

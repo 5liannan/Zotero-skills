@@ -75,7 +75,7 @@ def pending_items():
 
 
 def ensure_extract(iid):
-    """提取 PDF：文本块 + 原始图 + 裁切图 + 公式截图。返回 extract.json 路径。"""
+    """提取 PDF：文本块 + 原始图 + 裁切图 + 公式定位。返回 extract.json 路径。"""
     t = tasks.get(iid)
     if not t:
         return None

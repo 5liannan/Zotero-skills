@@ -44,14 +44,10 @@
 | 产物 | 说明 | 字段 |
 |---|---|---|
 | 1 | **数学公式保存为 LaTeX 写法**（如 `$$E=mc^2$$`），式号随原文 | `latex` / `no` |
-| 2 | **贴上原文的公式截图**：按公式包围盒 4× 高 DPI 裁切 | `image` |
-
-两种产物**并存**：LaTeX 便于检索与再编辑，截图用于逐字核对与保真。
 
 ```json
 {"type": "formula",
  "latex": "$$\\mathrm{SNR} = 10\\,\\lg\\!\\left(\\frac{P_S}{P_N}\\right),$$",
- "image": "formulas/fml01_01.png",
  "no": "1"}
 ```
 
@@ -126,14 +122,8 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 **体例**
 
 8. **公式** `$...$`，式号随原文；OCR 散式按量纲自洽还原，不改物理含义  
-9. **每个公式双产物**：`latex`（LaTeX 写法）+ `image`（原文公式截图），缺一不可  
-9b. **公式在 Word 里是可编辑的公式对象**：`verify_docx.py` 的 `omath > 0` 且
-    `raw_dollar == 0`、`raw_latex == 0`  
-9c. **终稿规范到位**（构建时自动完成）：页眉非空、页脚含 PAGE 域、正文引用
-    可点击跳转、图注为「图 N　题注」——对应 `verify_docx.py` 的
-    `header` / `footer_page` / `xref` 与 `bookmarks`  
-9d. **参考文献一一对应**：`verify_docx.py` 的 `dangling` 与 `unused` 均为空、
-    编号连续、`ref_errors` 为空
+9. **公式转成可编辑的 Word 公式对象**：`latex`（LaTeX 写法）转 OMML，`verify_docx.py`
+   的 `omath > 0` 且 `raw_dollar == 0`、`raw_latex == 0`  
 10. **检查公式（带编号）是否完整**：原文式 (1)–(n) 不得缺号、缺式、缺变量/系数；式号与正文引用一一对应  
 11. **检查图像是否完整**：原文图 1–n 不得缺图或缺图注；图序连续，图注与原图对应（坐标轴/图例数值原样）  
 12. **图的来源合规**：优先原始图（`images/`），无原始图时用 PDF 裁切（`figures/`）  
@@ -182,7 +172,7 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 
 | 阶段 | 作用 | 脚本 |
 |---|---|---|
-| 1. 提取 | 从 PDF 抽文本块 + 原始位图 + 裁切图 + 公式截图 | `scripts/extract_pdf_text.py` |
+| 1. 提取 | 从 PDF 抽文本块 + 原始位图 + 裁切图 + 公式定位 | `scripts/extract_pdf_text.py` |
 | 2. 译文 | **Agent / 人工**写 `parts/01.json`（逐句全文精译，脚本不代写） | Agent / 人工 |
 | 3. 构建 | 渲染为 A4 单栏 DOCX（宋体 + Times New Roman 五号）；**公式转 Word 原生公式对象**；并自动完成终稿规范化（图注/标题/页眉页码/交叉引用/参考文献校验） | `scripts/build_docx.py` + `scripts/omml.py` + `scripts/finalize.py` |
 | 4. 校验 | 检查可解析与完整性、公式对象数、页眉页码、交叉引用、参考文献一致性（**不以字数判定**） | `scripts/verify_docx.py` |
@@ -249,7 +239,7 @@ lxml>=4.9.0
 `file` / `image` 路径相对 `parts/` 的父目录（即 `work/item_<id>/`）。
 
 - **图**：`figure`（`image` 为等价别名）。原始位图放 `images/`，PDF 裁切图放 `figures/`，二者都直接插入。
-- **公式**：`formula`（`equation` 为等价别名）。`latex` **转成 Word 原生公式对象**（不是当纯文本排入），`image` 截图紧跟其后，`no` 为原文式号（右对齐）。
+- **公式**：`formula`（`equation` 为等价别名）。`latex` **转成 Word 原生公式对象**（不是当纯文本排入），`no` 为原文式号（右对齐）。
 - **参考文献**：每条写成独立 `para` 块并带 `"noindent": true`，正文以 `[n] ` 开头：
   ```json
   {"type": "heading", "level": 1, "text": "参考文献"},

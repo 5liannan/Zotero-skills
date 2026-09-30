@@ -16,14 +16,12 @@ Usage:
         {"type":"image","file":"figures/fig02_00.png","caption":"图1 ..."},   # file relative to parts_dir's parent
         {"type":"figure","file":"figures/fig02_00.png","caption":"图1 ..."},  # same as image, explicit figure
         {"type":"formula","latex":"$$E=mc^2$$","no":"1"},                    # LaTeX form
-        {"type":"formula","latex":"$$E=mc^2$$","image":"formulas/fml02_00.png","no":"1"},
         {"type":"table","header":true,"rows":[["a","b"],["c","d"]]}
      ]}
 
 图（figure / image）：优先原始图，其次 PDF 裁切图；两者都作为普通图片插入。
 公式（formula / equation）：
   * latex  —— 数学公式的 LaTeX 写法，**转为 Word 原生公式对象（OMML）**
-  * image  —— 原文公式截图，紧跟公式之后插入，供核对与保真
   * no     —— 原文式号，右对齐排在公式同一行
 
 正文里的行内公式（`$E=mc^2$`）同样会被转成内联公式对象。
@@ -225,75 +223,42 @@ def add_image(doc, path, caption):
         add_caption(doc, caption)
 
 
-def add_formula_para(doc, latex, image_path, no=None):
-    """行间公式：Word 原生公式对象 + 原文截图 + 右对齐式号。
+def add_formula_para(doc, latex, no=None):
+    """行间公式：转为 Word 原生公式对象（OMML）+ 右对齐式号。
 
-    两种产物并存：
-      * latex —— 数学公式的 LaTeX 写法，转成 Word 原生公式对象（OMML）
-                 转换失败时回退为纯文本 LaTeX，内容不丢
-      * image —— 原文公式截图，紧跟其后插入，供逐字核对
+      * latex —— 数学公式的 LaTeX 写法，转为 Word 原生公式对象（OMML）。
+                 转换失败时抛错、中止构建（不产出纯文本 LaTeX 的半成品）。
 
     注意 feeds parts 里的 latex 常自带 `$$...$$` 定界符，需先剥掉再送 pandoc，
     否则会变成 `$$$$...$$$$` 导致解析失败。
     """
-    if latex:
-        # 剥定界符与式号（parts 里两者都可能写在 latex 字段内）
-        pure, num_in_latex = clean_latex(latex)
-        num = no or num_in_latex
+    if not latex:
+        raise SystemExit("公式块缺少 latex 字段，无法转 OMML")
+    # 剥定界符与式号（parts 里两者都可能写在 latex 字段内）
+    pure, num_in_latex = clean_latex(latex)
+    num = no or num_in_latex
 
-        p = doc.add_paragraph()
-        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
-        p.paragraph_format.first_line_indent = Pt(0)
-        p.paragraph_format.space_before = Pt(6)
-        p.paragraph_format.keep_with_next = True
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    p.paragraph_format.first_line_indent = Pt(0)
+    p.paragraph_format.space_before = Pt(6)
+    p.paragraph_format.keep_with_next = True
 
-        els = _CONV.convert(pure, display=True)
-        if els:
-            for el in els:
-                p._element.append(copy.deepcopy(el))
-            if num:
-                _add_formula_number(p, num)
-            else:
-                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        else:
-            # 降级：纯文本 LaTeX + 式号（不丢内容）
-            if num:
-                _add_tabbed_text_formula(p, pure, num)
-            else:
-                run_fonts(p.add_run(pure))
-
-    # 原文公式截图
-    if image_path:
-        if not os.path.exists(image_path):
-            add_caption(doc, "（缺失公式截图：%s）" % os.path.basename(image_path))
-        else:
-            pic = doc.add_picture(image_path)
-            width = pic.width if pic.width else 0
-            height = pic.height if pic.height else 0
-            max_w, max_h = Cm(13.0), Cm(6.0)
-            if width > max_w or height > max_h:
-                scale = min(max_w / width, max_h / height)
-                pic.width = int(width * scale)
-                pic.height = int(height * scale)
-            doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
-            doc.paragraphs[-1].paragraph_format.space_after = Pt(6)
-
-    if not latex and not image_path:
-        add_caption(doc, "（公式缺失：既无 LaTeX 也无截图）")
+    els = _CONV.convert(pure, display=True)
+    if not els:
+        raise SystemExit("公式未能转为 Word 原生公式对象：%r" % pure)
+    for el in els:
+        p._element.append(copy.deepcopy(el))
+    if num:
+        _add_formula_number(p, num)
+    else:
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
 
 def _add_formula_number(p, no):
     """公式对象已在段中，右对齐补式号（制表位实现）。"""
     from docx.enum.text import WD_TAB_ALIGNMENT
     p.paragraph_format.tab_stops.add_tab_stop(Cm(14.6), WD_TAB_ALIGNMENT.RIGHT)
-    run_fonts(p.add_run("\t(%s)" % no))
-
-
-def _add_tabbed_text_formula(p, latex, no):
-    """降级路径：左 LaTeX、右式号，用右对齐制表位实现。"""
-    from docx.enum.text import WD_TAB_ALIGNMENT
-    p.paragraph_format.tab_stops.add_tab_stop(Cm(14.6), WD_TAB_ALIGNMENT.RIGHT)
-    run_fonts(p.add_run(latex))
     run_fonts(p.add_run("\t(%s)" % no))
 
 
@@ -400,11 +365,10 @@ def build(parts_dir, out_path, finalize=True, header=None, xref=True,
                 add_figure(doc, _resolve(parts_dir, b.get("file", "")),
                            b.get("caption", ""))
             elif bt in ("formula", "equation"):
-                # 公式：Word 原生公式对象 + 原文截图，两种产物并存
+                # 公式：转为 Word 原生公式对象（OMML），失败即中止
                 add_formula_para(
                     doc,
                     b.get("latex") or b.get("text") or "",
-                    _resolve(parts_dir, b.get("image", "")),
                     no=b.get("no") or b.get("number"),
                 )
             elif bt == "table":

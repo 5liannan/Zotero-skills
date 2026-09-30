@@ -6,4 +6,4 @@ lxml>=4.9.0
 #   pandoc —— LaTeX → Word 原生公式对象（OMML）的关键
 #     conda install -c conda-forge pandoc
 #     或 https://pandoc.org/installing.html
-#   缺 pandoc 时公式降级为纯文本 LaTeX，构建仍可完成但公式不可编辑。
+#   缺 pandoc 且文档含公式时，构建直接报错退出（不再降级为纯文本 LaTeX）。

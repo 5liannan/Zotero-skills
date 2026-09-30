@@ -49,14 +49,9 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 ### 公式
 
 1. **数学公式保存为 LaTeX 写法形式**（如 `$$E=mc^2$$`），式号随原文，用 `no` 字段给出。
-2. **贴上原文的公式截图**：由 `extract_pdf_text.py` 按公式包围盒高 DPI（4×）裁切，
-   存为 `formulas/fmlNN_MM.png`；写进译文时用 `image` 字段引用。
-
-两种产物**并存**：LaTeX 便于检索与再编辑，原文截图用于逐字核对、保真防错。
 
 ```json
-{"type": "formula", "latex": "$$\\mathrm{SNR} = 10\\,\\lg\\!\\left(\\frac{P_S}{P_N}\\right),$$",
- "image": "formulas/fml01_01.png", "no": "1"}
+{"type": "formula", "latex": "$$\\mathrm{SNR} = 10\\,\\lg\\!\\left(\\frac{P_S}{P_N}\\right),$$", "no": "1"}
 ```
 
 **LaTeX 会被转成 Word 原生公式对象（OMML），不是当纯文本排。**
@@ -113,7 +108,7 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 ### 单篇（文本层 PDF）
 
 1. `extract_pdf_text.py <pdf> <workdir>/images <workdir>/figures <workdir>/formulas`
-   → 产出 `extract.json` + `images/`（原始位图）+ `figures/`（裁切图）+ `formulas/`（公式截图）
+   → 产出 `extract.json` + `images/`（原始位图）+ `figures/`（裁切图）+ `formulas/`（公式定位）
 2. 读 `extract.json` 的正文块，对照 `figures/`、`formulas/`，
    写出 `parts/01.json`（**逐句全文精译**，对应英文原文；图用 `figure` 块、公式用
    `formula` 块，参考文献用带 `noindent` 的 `para` 块且以 `[n] ` 开头，
@@ -128,7 +123,7 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
    （= 完整性 + `raw_dollar==0` + `raw_latex==0` + 参考文献无 error，**不以字数判定**）；
    同时看 `omath`（公式对象数）、`header`、`footer_page`、`xref`、`bookmarks`
 5. **图/公式自检**：译文图序与原文图号一一对应；原文式 (1)–(n) 无缺号；
-   每个公式既有 `latex` 又有 `image`；公式在 Word 里是**可编辑的公式对象**
+   公式在 Word 里是**可编辑的公式对象**（`latex` 已转 OMML）
 6. 若用户要求入库：运行 `register_zotero_docx.py`（先退出 Zotero）
 
 ### 扫描件 PDF（无文本层 / OCR 伪文本）
@@ -155,8 +150,7 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
    - 公式 OCR 易碎（`ffiffiffi`→`√`、丢失希腊字母、上下标拆行）：按量纲与文中 `where` 定义还原为 `$...$` 带原文式号
    - 不可辨认处标 `[本页图像无法识别]` 或按上下文保守还原，**不得编造数值**
    - 无嵌入位图时，图注照译为 `caption`；有可裁图元时再 `image`
-   - 扫描件同样适用「公式 LaTeX + 原文截图」双产物：把 `page.render()` 的整页影像
-     按公式位置二次裁切存进 `formulas/`，供核对
+   - 公式在译文里转成 Word 原生公式对象（`latex` → OMML）
 5. **长文**：可 `parts/01.json`、`02.json`… 分片，切片边界不截断句子
 6. **构建与入库**：与文本层流程相同（`build_docx.py` → `verify_docx.py` → 挂接）
 7. **验收附加项（扫描件）**
@@ -225,8 +219,7 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 
 **体例**
 - [ ] 公式用 `$...$`，式号随原文；OCR 散式按量纲自洽还原，不改物理含义
-- [ ] **每个公式两种产物齐全**：`latex`（LaTeX 写法）+ `image`（原文公式截图）
-- [ ] **公式在 Word 里是可编辑的公式对象**（OMML）：`verify_docx.py` 的 `omath > 0`
+- [ ] **公式转成可编辑的 Word 公式对象**（OMML）：`verify_docx.py` 的 `omath > 0`
       且 `raw_dollar == 0`、`raw_latex == 0`
 - [ ] **终稿规范到位**（构建时自动完成）：页眉非空、页脚含 PAGE 域、正文引用可点击
       跳转（`verify_docx.py` 的 `header` / `footer_page` / `xref`、`bookmarks` 与

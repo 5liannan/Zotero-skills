@@ -16,11 +16,10 @@ stdout: JSON
   2) PDF 裁切：对无位图的图区（矢量图，或被拆散成多个小位图的图），
              按「图注上沿 → 上一文本块下沿」的版面区域整页高 DPI 渲染再裁切。
 
-公式（formulas）—— 两种产物并存
-  1) LaTeX 写法：由 Agent 依据 crop 与上下文写进 parts/*.json 的
-                {"type":"formula","latex":"$$...$$"}；本脚本负责定位公式区。
-  2) 原文截图：本脚本按公式包围盒（数学字体启发式 + 行内/行间分类）
-              高 DPI 渲染裁切，存进 <formula_dir>。
+公式（formulas）
+  本脚本负责定位公式区（数学字体启发式 + 行内/行间分类），供 Agent 依据
+  定位结果把 LaTeX 写法写进 parts/*.json 的 {"type":"formula","latex":"$$...$$"}；
+  译文构建时由 build_docx.py 把 LaTeX 转成 Word 原生公式对象（OMML）。
 """
 import json
 import os
@@ -453,7 +452,7 @@ def main():
                 "source": "crop",
             })
 
-        # ---- 4. 公式截图
+        # ---- 4. 公式定位（按数学字体启发式切出公式区，供 Agent 写 LaTeX）
         formulas = []
         for g in _formula_spans(page, math_fonts):
             display = _is_display_formula(g, page_rect)
