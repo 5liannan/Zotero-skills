@@ -58,6 +58,16 @@ def _drop_paragraph(para):
         parent.remove(el)
 
 
+def _looks_like_caption_style(para, body_pt):
+    """段落当前是否被排成了图注样式（居中，或字号明显小于正文）。"""
+    if para.alignment == WD_ALIGN_PARAGRAPH.CENTER:
+        return True
+    for r in para.runs:
+        if r.font.size and r.font.size.pt < body_pt - 0.5:
+            return True
+    return False
+
+
 class Styler(object):
     def __init__(self, ea_font, latin_font, body_size):
         self.ea = ea_font
@@ -188,7 +198,8 @@ def main():
 
     # ---------- 逐段 ----------
     stats = {"hl": 0, "display": 0, "display_num": 0, "inline": 0,
-             "caption": 0, "para": 0, "head": 0, "failed": 0, "dropped_mark": 0}
+             "caption": 0, "prose_restyled": 0, "para": 0, "head": 0,
+             "failed": 0, "dropped_mark": 0}
 
     for pi, para in enumerate(doc.paragraphs):
         text = para.text
@@ -273,6 +284,23 @@ def main():
             pf.space_before = Pt(3)
             pf.space_after = Pt(8)
             stats["caption"] += 1
+            continue
+
+        # --- 反向：正文引用句被误排成图注 → 恢复正文样式
+        # 上游流水线常把所有「图 N」开头的段落都当图注，于是「图 1 给出了…」
+        # 这类正文被排成居中 9pt。只改**确实排成图注样式**的段落，避免误伤正文。
+        if (m and body and CAP_VERB_RE.match(body)
+                and not style.startswith("Heading")
+                and _looks_like_caption_style(para, body_pt)):
+            for r in para.runs:
+                styler.apply(r, body_pt)
+            pf = para.paragraph_format
+            para.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+            pf.first_line_indent = indent_pt
+            pf.line_spacing = args.line_spacing
+            pf.space_before = Pt(0)
+            pf.space_after = Pt(0)
+            stats["prose_restyled"] += 1
             continue
 
         # --- 标题

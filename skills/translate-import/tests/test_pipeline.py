@@ -16,7 +16,8 @@
   5. 未引用条目（默认严格）
   6. 含公式但环境缺 pandoc —— 必须报错，不得降级为纯文本
 覆盖的成功路径：
-  7. 常规：正文引用 + 完整文献列表
+  7. 常规：正文引用 + 完整文献列表，且「图 N 给出了…」这类正文引用句必须被
+     恢复成正文样式、真图注必须规范化为「图 N　题注」
   8. 无公式文档在缺 pandoc 环境下仍可构建
   9. `--allow-unused-refs` 放宽未引用条目
 """
@@ -25,6 +26,7 @@ from __future__ import annotations
 import importlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -36,6 +38,9 @@ sys.path.insert(0, SCRIPTS)
 
 PY = sys.executable
 BASE = None  # 在 main 里建临时目录
+
+# 「图 N 给出了…」这类正文引用句（形似图注、实为正文），不应被排成图注样式
+PROSE_REF_RE = re.compile(r"^图\s*\d+\s*(给出|显示|展示|表明|说明)")
 
 HEAD = [
     {"type": "title", "text": "回归测试用例"},
@@ -75,7 +80,10 @@ CASES = {
                 {"type": "para", "text": "式(1)为质能方程[1]。"}]
         + REF_HEAD + refs(1), True, True, {}),
     "ok_basic": (
-        HEAD + [{"type": "para", "text": "正文引用文献[1, 2]。"}]
+        HEAD + [{"type": "para", "text": "正文引用文献[1, 2]。"},
+                # 形似图注、实为正文引用句 —— 必须被恢复成正文样式
+                {"type": "caption", "text": "图 1 给出了系统的基本原理。"},
+                {"type": "caption", "text": "图2 系统结构示意图。"}]
         + REF_HEAD + refs(1, 2), False, False, {}),
     "ok_no_formula_no_pandoc": (
         HEAD + [{"type": "para", "text": "无公式文档，引用文献[1]。"}]
@@ -147,6 +155,23 @@ def run_case(name, spec):
     if not all(checks):
         print("       !! 终稿规范项未全部满足: %s" % checks)
         return False
+
+    # --- 图注方向性断言 ---------------------------------------------
+    from docx import Document
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.oxml.ns import qn
+    doc = Document(out)
+    for x in doc.paragraphs:
+        t = "".join(tt.text or "" for tt in x._p.iter(qn("w:t"))).strip()
+        if not t.startswith("图"):
+            continue
+        if PROSE_REF_RE.match(t):
+            if x.alignment == WD_ALIGN_PARAGRAPH.CENTER:
+                print("       !! 正文引用句仍被排成图注样式: %r" % t[:40])
+                return False
+        elif re.match(r"^图\s*\d", t) and not re.match(r"^图\s\d+\u3000", t):
+            print("       !! 图注未规范化为「图 N　题注」: %r" % t[:40])
+            return False
     return True
 
 

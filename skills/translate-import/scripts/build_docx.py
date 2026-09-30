@@ -439,11 +439,13 @@ def build(parts_dir, out_path, finalize=True, header=None, xref=True,
             xref_style=xref_style,
         )
         rc = stats.get("refs_check") or {}
-        print("finalize: marks=%s captions=%s headings=%s header=%s page=%s "
-              "refs=%s cites=%s links=%s"
-              % (stats.get("marks_removed"), stats.get("captions"),
-                 stats.get("headings"), stats.get("header"),
-                 stats.get("page_number"), rc.get("refs"), rc.get("cites"),
+        caps = stats.get("captions") or {}
+        print("finalize: marks=%s captions=%s restyled_prose=%s headings=%s "
+              "header=%s page=%s refs=%s cites=%s links=%s"
+              % (stats.get("marks_removed"), caps.get("captions"),
+                 caps.get("restyled_prose"), stats.get("headings"),
+                 stats.get("header"), stats.get("page_number"),
+                 rc.get("refs"), rc.get("cites"),
                  (stats.get("xref") or {}).get("links")),
               file=sys.stderr)
         for w in (rc.get("warnings") or []):

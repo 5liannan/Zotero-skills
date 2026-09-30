@@ -16,7 +16,9 @@
 
 规范项（全部幂等，可重复运行）
 ============================
-1. 图注          `图 1：xxx` / `图1 xxx` → `图 1　xxx`（全角空格），9pt 居中
+1. 图注          `图 1：xxx` / `图1 xxx` → `图 1　xxx`（全角空格），9pt 居中；
+                 反向修复：被误排成图注样式的正文引用句（「图 1 给出了…」）
+                 恢复为正文样式（两端对齐 + 缩进 2 字符 + 正文行距）
 2. 标题          H1 14pt / H2 12pt，黑色加粗
 3. 页眉 / 页脚   页眉 = 文章短标题；页脚 = PAGE 域；均 9pt 居中
 4. 交叉引用      文末 `[n] …` 条目加隐藏书签，正文 `[n]` / `[n, m]` 换内部超链接
@@ -137,27 +139,85 @@ def normalize_caption(text):
     return "图 %s\u3000%s" % (m.group(1), body)
 
 
-def apply_captions(doc):
-    """规范全部图注段落，返回处理条数。"""
-    n = 0
+BODY_SIZE = 10.5
+
+
+def _is_caption_shaped_prose(text):
+    """是否是「图 N 给出了…」这类**正文引用句**（形似图注、实为正文）。"""
+    m = CAP_RE.match((text or "").strip())
+    if not m:
+        return False
+    body = m.group(2).strip().lstrip("：:．.").strip()
+    return bool(body) and bool(CAP_VERB_RE.match(body))
+
+
+def _looks_like_caption_style(p, body_size=BODY_SIZE):
+    """段落当前是否被排成了图注样式（居中，或字号明显小于正文）。"""
+    if p.alignment == WD_ALIGN_PARAGRAPH.CENTER:
+        return True
+    for r in p.runs:
+        if r.font.size and r.font.size.pt < body_size - 0.5:
+            return True
+    return False
+
+
+def _apply_body_style(p, body_size=BODY_SIZE, line_spacing=1.5,
+                      ea=EA_FONT, latin=LATIN_FONT):
+    """按正文学体式重排（两端对齐 + 首行缩进 2 字符 + 正文行距）。"""
+    pf = p.paragraph_format
+    p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    pf.first_line_indent = Pt(body_size * 2)
+    pf.line_spacing = line_spacing
+    pf.space_before = Pt(0)
+    pf.space_after = Pt(0)
+    for r in p.runs:
+        _apply_run(r, size=body_size, ea=ea, latin=latin)
+    return p
+
+
+def apply_captions(doc, body_size=BODY_SIZE, fix_prose=True,
+                   ea=EA_FONT, latin=LATIN_FONT):
+    """规范图注段落，并修掉「正文被误排成图注」的反向缺陷。
+
+    正向：`图 1：xxx` / `图1 xxx` → 「图 1　xxx」，9pt 居中。
+
+    反向：外部旧文档里常见上游流水线把**所有**「图 N」开头的段落都当图注排，
+    于是「图 1 给出了…」这类正文引用句被排成居中 9pt。这类段落会被恢复成正文样式。
+
+    保守起见，只改写**当前确实排成图注样**（居中或小字号）的段落——正常的正文
+    段落不会因为开头恰好是「图 9 展示了…」而被动到。
+
+    返回 {"captions": n, "restyled_prose": m}。
+    """
+    cap = prose = 0
     for p in doc.paragraphs:
         if p.style.name.startswith("Heading"):
             continue
         if _has_object(p):
             continue
-        new = normalize_caption(full_text(p))
-        if not new:
+        t = full_text(p).strip()
+        if not t:
             continue
-        _clear_paragraph(p)
-        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        pf = p.paragraph_format
-        pf.first_line_indent = Pt(0)
-        pf.line_spacing = 1.3
-        pf.space_before = Pt(3)
-        pf.space_after = Pt(8)
-        _apply_run(p.add_run(new), size=9)
-        n += 1
-    return n
+
+        new = normalize_caption(t)
+        if new:
+            _clear_paragraph(p)
+            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            pf = p.paragraph_format
+            pf.first_line_indent = Pt(0)
+            pf.line_spacing = 1.3
+            pf.space_before = Pt(3)
+            pf.space_after = Pt(8)
+            _apply_run(p.add_run(new), size=9)
+            cap += 1
+            continue
+
+        if (fix_prose and _is_caption_shaped_prose(t)
+                and _looks_like_caption_style(p, body_size)):
+            _apply_body_style(p, body_size, ea=ea, latin=latin)
+            prose += 1
+
+    return {"captions": cap, "restyled_prose": prose}
 
 
 def apply_headings(doc, ea=EA_FONT, latin=LATIN_FONT):
@@ -488,7 +548,7 @@ def finalize_document(doc, title=None, *, header=True, page_number=True,
     if strip_marks:
         stats["marks_removed"] = strip_image_marks(doc)
     if captions:
-        stats["captions"] = apply_captions(doc)
+        stats["captions"] = apply_captions(doc, ea=ea, latin=latin)
     if headings:
         stats["headings"] = apply_headings(doc, ea=ea, latin=latin)
 

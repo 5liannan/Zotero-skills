@@ -49,6 +49,7 @@ jobs:
           python -m py_compile scripts/fix_zotero_titles.py
           python -m py_compile scripts/full_v3_pipeline.py
           python -m py_compile tests/test_pipeline.py
+          python -m py_compile tests/test_idempotent.py
 
       - name: Config loader smoke test
         run: |
@@ -89,6 +90,9 @@ jobs:
 
       - name: Assert broken builds are refused (no silent degradation)
         run: python tests/test_pipeline.py
+
+      - name: Assert finalize is idempotent
+        run: python tests/test_idempotent.py
 
       - name: Upload sample artifact
         if: matrix.python-version == '3.12'

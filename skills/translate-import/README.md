@@ -76,7 +76,7 @@
 | 规范项 | 结果 |
 |---|---|
 | 公式 | Word 原生公式对象（OMML），可双击编辑 |
-| 图注 | `图 1：xxx` / `图1 xxx` → **`图 1　xxx`**（编号后全角空格），9pt 居中；自动排除「图 1 给出了…」这类正文引用句 |
+| 图注 | `图 1：xxx` / `图1 xxx` → **`图 1　xxx`**（编号后全角空格），9pt 居中。**双向处理**：①「图 1 给出了…」这类正文引用句不会被当成图注；② 若它**已经被排成了图注样式**（居中 / 小字号），恢复为正文样式（两端对齐 + 缩进 2 字符 + 正文行距） |
 | 标题 | H1 14pt / H2 12pt，黑色加粗 |
 | 页眉 | 文章短标题，9pt 居中 |
 | 页脚 | PAGE 域自动页码，9pt 居中 |
@@ -382,6 +382,7 @@ translate/
     full_v3_pipeline.py
   tests/
     test_pipeline.py     ← 9 例回归（失败路径必须报错且不产出文件）
+    test_idempotent.py   ← 幂等性（连续两次 finalize 零变化、无重复书签）
   examples/
     parts/01.json        ← 可运行的参考 fixture（含公式、图、正文引用、文末文献）
     parts_example.json
@@ -422,9 +423,13 @@ GitHub Actions：`.github/workflows/translate-ci.yml`
 - 用 `examples/parts` 构建并校验示例 DOCX
 - **断言「产物即终稿」**：`omath > 0`、`raw_dollar == 0`、`raw_latex == 0`、
   页眉非空、页脚含 PAGE 域、`xref > 0`、书签数 == 文献条目数、参考文献无 error
-- **回归测试 `tests/test_pipeline.py`（9 例）**：本地也能直接跑
+- **回归测试 `tests/`（本地也能直接跑）**
   ```bash
-  python tests/test_pipeline.py
+  python tests/test_pipeline.py      # 9 例：构建与硬失败
+  python tests/test_idempotent.py    # 幂等性：连续跑两次 finalize 必须零变化
   ```
-  覆盖 6 条失败路径（悬挂引用 / 空文献列表 / 有文献无引用 / 编号断号 /
-  未引用条目 / 缺 pandoc）+ 3 条成功路径，断言失败路径**必须报错且不产出文件**
+  `test_pipeline.py` 覆盖 6 条失败路径（悬挂引用 / 空文献列表 / 有文献无引用 /
+  编号断号 / 未引用条目 / 缺 pandoc）+ 3 条成功路径，断言失败路径**必须报错且不产出
+  文件**，并对成功产物断言「图 N　题注」与「正文引用句未被排成图注样式」。
+  `test_idempotent.py` 兜住「重复执行悄悄改坏文档」这类不报错的缺陷
+  （同名书签重复添加就是这样被发现的）。
