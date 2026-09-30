@@ -7,15 +7,8 @@ description: 把中文译文/学术 DOCX 里「未转换的 LaTeX 源码」批�
 
 把「LaTeX 源码当纯文本排」的译文 DOCX，转成带**真·Word 公式对象**的规范文档。
 
-## 什么时候用（重要）
-
-| 场景 | 用什么 |
-|---|---|
-| **新翻译**一篇文献 | **用 `translate-import`** —— 它在构建 DOCX 时已通过 pandoc 把 LaTeX 转成公式对象，产出即正确，**不需要本 skill** |
-| 拿到**别处给的、公式没渲染的旧 DOCX**（一堆 `$` 和反斜杠） | 用**本 skill** 事后修复 |
-| 需要批量清高亮残留、规范图注、补页眉页码 | 用本 skill |
-
-本 skill 是**修复工具**，不是翻译流程的一环。
+> 与 `translate-import` 的关系：那边负责**产出**译文 DOCX；
+> 这边负责**事后补救**——当译文里的公式是纯文本 LaTeX 时，转成可编辑的 Word 公式。
 
 ## 快速开始
 
@@ -53,6 +46,20 @@ pandoc t.md -o t.docx        # 产出 <m:oMath ...>，可移植进已有文档
 Windows 上 pandoc 常在 `D:\Anaconda3\Library\bin\pandoc.exe`（Anaconda 自带）。
 先 `where pandoc` / `which pandoc` 确认；没有就 `conda install -c conda-forge pandoc`。
 
+**送 pandoc 之前必须剥掉两端定界符。** 若 LaTeX 自带 `$$...$$`，直接送会变成
+`$$$$...$$$$`，pandoc 报 `no oMath produced`。剥法定界符 + 摘式号一步到位：
+
+```python
+LEAD_DELIM_RE = re.compile(r"^\s*\${1,2}\s*")
+TAIL_DELIM_RE = re.compile(r"\s*\${1,2}\s*$")
+
+def strip_delims(latex):
+    t = (latex or "").strip()
+    t = LEAD_DELIM_RE.sub("", t)
+    t = TAIL_DELIM_RE.sub("", t)
+    return t.strip()
+```
+
 取出 OMML 并塞进现有段落：
 
 ```python
@@ -64,6 +71,10 @@ for el in root.findall(".//{%s}oMath" % M_NS):
 ```
 
 **必须 deepcopy**，否则同一元素被多处引用会丢失。
+
+> 同一仓库的 `translate-import` 也有个 `scripts/omml.py`，是**逐块构建时**用的转换器
+> （带缓存、失败降级）。两者的定位不同：那边在新译文构建时把 LaTeX 转成公式对象；
+> 这边在事后批量修复旧文档。需要写新流程时可以互相参考。
 
 ## 处理规则
 
