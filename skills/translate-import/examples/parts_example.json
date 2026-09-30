@@ -38,13 +38,30 @@
       "text": "系统由超窄线宽激光器、声光调制器、掺铒光纤放大器与光电探测链路组成。信噪比定义为"
     },
     {
-      "type": "para",
-      "text": "$\\mathrm{SNR} = 10\\,\\lg\\!\\left(\\frac{P_S}{P_N}\\right), \\qquad (1)$"
+      "type": "formula",
+      "latex": "$$\\mathrm{SNR} = 10\\,\\lg\\!\\left(\\frac{P_S}{P_N}\\right),$$",
+      "image": "formulas/fml01_01.png",
+      "no": "1"
     },
     {
-      "type": "image",
-      "file": "images/p02_00.png",
-      "caption": "图1 系统原理示意图。"
+      "type": "para",
+      "text": "其中 $P_S$ 为信号功率，$P_N$ 为噪声功率。"
+    },
+    {
+      "type": "figure",
+      "file": "images/p01_bitmap01.png",
+      "caption": "图1 系统原理示意图（原始图，PDF 内嵌入位图）。"
+    },
+    {
+      "type": "figure",
+      "file": "figures/fig02_01.png",
+      "caption": "图2 矢量图经 PDF 裁切插入（无嵌入位图时的兜底）。"
+    },
+    {
+      "type": "formula",
+      "latex": "$$G(\\nu) = \\frac{g_0}{1 + \\left(2(\\nu-\\nu_0)/\\Delta\\nu_B\\right)^2},$$",
+      "image": "formulas/fml02_01.png",
+      "no": "2"
     },
     {
       "type": "heading",
