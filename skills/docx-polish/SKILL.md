@@ -117,6 +117,45 @@ for typ, text in (("begin", None), (None, " PAGE "), ("end", None)):
     run._element.append(el)
 ```
 
+## 交叉引用（参考文献可点击跳转）
+
+`scripts/add_xref.py` 给文献条目加隐藏书签、把正文 `[5]` / `[5, 6]` 换成指向书签的
+内部超链接（`<w:hyperlink w:anchor="_RefList5">`）：
+
+```bash
+python scripts/add_xref.py in.docx out.docx                      # 保持正文字体外观
+python scripts/add_xref.py in.docx out.docx --hyperlink-style    # 蓝色下划线，一眼可见
+```
+
+默认**不**套用 Hyperlink 样式，与 Word 原生交叉引用外观一致（黑、无下划线、可点击）。
+编号文本一律不动，公式对象不受影响。
+
+### 三种实现方式（均已实测）
+
+| 方式 | 文献列表外观 | 分组引用 `[5, 6]` | 增删条目自动重编号 | 点击跳转 |
+|---|---|---|---|---|
+| 超链接（本脚本） | 不变 | ✅ | ❌ | ✅ |
+| `SEQ` 域 + 书签 + `REF \h` | 不变 | ✅ | ✅（新条目须带 SEQ 域） | ✅ |
+| 自动编号列表 + `REF \r \h` | 变成不带方括号的 `1` | ⚠️ 实现别扭 | ✅ | ✅ |
+
+**关键实测 —— 它决定了上表第 3 行为什么要牺牲外观**：
+`{ REF _RefN \r \h }` 的输出**包含列表编号格式里的全部字面文本**。
+编号格式设成 `[%1]` 时，域结果就是 `[1]` 而非 `1`；正文若再手写一对方括号
+就成了 `[[1]]`，多篇挤在一起则是 `[[5], [6]]`。
+⇒ 想用 `\r` 支持分组引用，必须把列表编号格式改成不带方括号的 `%1`。
+
+**`\h` 的跳转不会落成 `w:hyperlink`**：`REF … \h` 的链接由 Word 在渲染期生成，
+`doc.Hyperlinks.Count` 仍为 0，XML 里也搜不到 `<w:hyperlink>`。
+判断它是否生效要看**导出 PDF 里的 GOTO 链接注释**（`page.get_links()`）。
+而 `add_xref.py` 用的是真 `w:hyperlink` 元素，`doc.Hyperlinks.Count` 会如实计数。
+
+**python-docx 的 `Paragraph.text` 不含 `w:hyperlink` 里的 run**：转换后的段落用它读会
+**整段丢掉引用标记**（且不报错）。验收必须用：
+
+```python
+text = "".join(t.text or "" for t in p._p.iter(qn("w:t")))
+```
+
 ## 验证（必须做到）
 
 **权威判据 —— 让 Word 自己数公式对象：**
@@ -177,5 +216,6 @@ docx-polish/
     diagnose.py           诊断/验收：统计各项指标并判定
     extract_formulas.py   抽取 LaTeX → pandoc → OMML，产出 formulas.json
     optimize.py           以原文档为基底逐段重建，产出 optimized.docx
+    add_xref.py           给文献列表加书签、正文引用换内部超链接（可点击跳转）
     verify_word.py        Word COM 权威校验 OMaths.Count + 导出 PDF
 ```
