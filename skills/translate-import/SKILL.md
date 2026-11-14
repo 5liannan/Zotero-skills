@@ -82,6 +82,26 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 `$` 源码」「参考文献被整节丢掉」这类静默缺陷。
 需要放宽「文献列表中存在未被正文引用的条目」时加 `--allow-unused-refs`。
 
+#### 多行同编号：一条 `aligned`，不要拆块
+
+原文里 `X = … / Y = … / Z = …` 三式共用一个式号时：
+
+```json
+{"type": "formula", "no": "10",
+ "latex": "$$\\begin{aligned}X&=Q-B_{11}+2B_{12}-B_{22}\\\\ Y&=-2Q+\\tilde{V}_0+2B_{11}-2B_{12}\\\\ Z&=Q-\\tilde{V}_0-B_{11}\\end{aligned}$$"}
+```
+
+- `&` 放**等号前**：渲染成左对齐、按 `=` 对齐、编号在右，是三种写法里唯一可用的。
+- `&` 放**行首**（`&X=…`）更糟：第一行会被吞掉、其余行缩进。
+- **拆成三个 `formula` 块也不行**：无编号的两条居中、带编号的那条（走右制表位）靠左，
+  三行必然错位。
+
+#### 别自己包 `m:oMathPara`
+
+把 `m:oMath` 包成 `m:oMathPara` 会让**式号跑到公式左侧**（挤进公式行首）。
+本流程统一用「行内 OMML + 独立段落 + 右制表位式号」，全批观感一致；
+需要改这一点时，得同时改 `add_formula_para()` 的编号排布，不能只改 XML。
+
 公式区识别采用**字体启发式 + 内容启发式取并集**（`extract_pdf_text.py`）：
 前者认数学字体（Cambria Math / XITS / Latin Modern Math / STIX / cmmi-cmsy / MT Extra…），
 后者按字符类（`= + − ± ∑ ∫ √ ∂ ≤ ≥ ≈ ∞ α β …`）占比补充，避免正文用 Times 排版时漏检。
@@ -105,26 +125,46 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 
 ## 工作流
 
+> 版面探测、公式拼版、扫描件 OCR、补图与 parts lint 的完整用法：
+> [`docs/layout-probe-and-figures.md`](../../docs/layout-probe-and-figures.md)
+
 ### 单篇（文本层 PDF）
 
+0. **先量版面**：`probe_layout.py <pdf> -o report.json --crop-dir figs --contact`
+   → 一次给出双栏分界 `columns.split`、页眉带下沿、页脚带上沿、图注/表注 bbox、
+   编号公式坐标、图区建议 bbox（含四边「脏边」自检）。
+   这几项每换一个期刊就要重试一次（PRL 栏界 306、JCP 300/313、SPIE 310；
+   PRL 页眉横线在 y 41.5–42.2，裁图顶界多取 2pt 就会把横线带进图里）。
+   直接看 `figs/contact.png` 就能判断哪张裁片脏了。
 1. `extract_pdf_text.py <pdf> <workdir>/images <workdir>/figures <workdir>/formulas`
    → 产出 `extract.json` + `images/`（原始位图）+ `figures/`（裁切图）+ `formulas/`（公式定位）
+   （`probe_layout.py` 与它互补：前者只给坐标并做边缘自检，后者抽位图与公式区）
 2. 读 `extract.json` 的正文块，对照 `figures/`、`formulas/`，
    写出 `parts/01.json`（**逐句全文精译**，对应英文原文；图用 `figure` 块、公式用
    `formula` 块，参考文献用带 `noindent` 的 `para` 块且以 `[n] ` 开头，
-   正文引用写 `[n]` / `[n, m]`）
-3. `build_docx.py <workdir>/parts <out.docx>`
+   正文引用写 `[n]` / `[n, m]`）。
+   公式条数多时用 `render_formulas.py <pdf> --out sheets` 裁成「一版三条」的拼图再读图转录。
+3. `check_parts.py <workdir>/parts`（**构建前 lint**）
+   要求无 error：未知块类型（build 对未知类型只打 warning、随后静默跳过）、
+   文本含 `**`（`para` 不支持 markdown 粗体，会原样印出「**58**」）、
+   图片路径不存在、图注为空、`latex` 为空、式号重复。
+   必须排在 build **之前**——build 的 `warning:` 会被紧跟的 `formula: OMML …`
+   与 `finalize: …` 两行刷过去，等导出 PDF 才发现就晚了一轮。
+4. `build_docx.py <workdir>/parts <out.docx>`
    → **一步产出终稿**：公式转 Word 原生公式对象，并自动完成终稿规范化
    （图注、标题层级、页眉 + 页脚 PAGE 域、交叉引用、参考文献一致性校验）。
    stderr 会打出 `formula: OMML: ...` 与 `finalize: ...` 统计。
    **任一环节不通过（缺 pandoc / 公式转不动 / 参考文献对不上号）都报错并中止，
    不产出文件** —— 所以「构建成功」就等于「产物可交付」
-4. `verify_docx.py <out.docx>`，要求 `ok=true`
+5. `verify_docx.py <out.docx>`，要求 `ok=true`
    （= 完整性 + `raw_dollar==0` + `raw_latex==0` + 参考文献无 error，**不以字数判定**）；
    同时看 `omath`（公式对象数）、`header`、`footer_page`、`xref`、`bookmarks`
-5. **图/公式自检**：译文图序与原文图号一一对应；原文式 (1)–(n) 无缺号；
+6. **图/公式自检**：译文图序与原文图号一一对应；原文式 (1)–(n) 无缺号；
    公式在 Word 里是**可编辑的公式对象**（`latex` 已转 OMML）
-6. 若用户要求入库：运行 `register_zotero_docx.py`（先退出 Zotero）
+7. 若用户要求入库：运行 `register_zotero_docx.py`（先退出 Zotero）
+8. **已有译稿只缺图时不要重建**：`patch_figures.py --docx old.docx --figs figs/*.png --out new.docx`
+   按图题正则定位就地插图（幂等：题注上方已有图则跳过；图与题注 `keep_with_next` 不分页），
+   不动正文、公式与页眉页脚。文字与公式都在、只是缺图的稿子，重建的风险大于收益。
 
 ### 扫描件 PDF（无文本层 / OCR 伪文本）
 

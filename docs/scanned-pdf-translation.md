@@ -32,6 +32,18 @@ for i, page in enumerate(doc):
 
 ## 3. 识读与精译
 
+0. **先跑一次 `ocr_pages.py`（推荐）**：它把「渲染 → OCR → 坐标还原 → 按栏重排」串起来，
+   一次产出带 pt 坐标的 `ocr.json` 与可读的 `text_col.txt`：
+
+   ```bash
+   python scripts/ocr_pages.py <pdf> --out ocr --pages 2-11 --scale 2.6
+   ```
+
+   **OCR 的价值在坐标**：拿到 bbox 后，公式与表头可以直接回原文裁小图
+   （`get_pixmap(clip=Rect(x0-3, y0-3, x1+3, y1+3))`），不必目测估位置；
+   文字本身仍要人工校读——`ffiffiffi`→`√`、上下标拆行、希腊字母错认都是常态。
+   页眉页脚带与栏分界可先用 `probe_layout.py` 量出来，再由 `--split` 传入。
+
 1. **逐页识读**：视觉模型直接读 `pages/pNN.png`；或先本地 OCR（RapidOCR 等）再人工校对。
 2. **逐句翻译**：严格按「全文精译 · 逐句对应」写 `parts/01.json`（必要时 `02.json`）。
 3. **结构跟原文**：Letter/PRL 不硬套「1 引言 / 5 应用与展望」；有编号章节才译编号章节。

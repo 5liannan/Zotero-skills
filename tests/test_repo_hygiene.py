@@ -203,8 +203,16 @@ class TestSkillLayout(unittest.TestCase):
         missing = []
         for name in sorted(os.listdir(skills)):
             d = os.path.join(skills, name)
-            if os.path.isdir(d) and not os.path.isfile(os.path.join(d, "SKILL.md")):
-                missing.append(name)
+            if not os.path.isdir(d):
+                continue
+            if os.path.isfile(os.path.join(d, "SKILL.md")):
+                continue
+            # 子技能挂在技能目录下是合法的（如 translate-import/docx-polish），
+            # 前提是它的每一个子目录都自带 SKILL.md —— 否则还是裸目录。
+            subs = [s for s in os.listdir(d) if os.path.isdir(os.path.join(d, s))]
+            if subs and all(os.path.isfile(os.path.join(d, s, "SKILL.md")) for s in subs):
+                continue
+            missing.append(name)
         self.assertEqual([], missing, "技能缺 SKILL.md：%s" % missing)
 
 
