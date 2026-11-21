@@ -1,7 +1,7 @@
 # Zotero-skills
 
 > 面向 Zotero 文献库的三套可独立使用、也可串联的 AI 工作流：
-> **检索文献与导入 Zotero**、**翻译文献与导入 Zotero**、**管理文献与条目**。
+> **检索文献与导入 Zotero**、**翻译文献与导入 Zotero**、**Zotero条目与附件管理**。
 
 把「找论文 → 入库 → 挂全文 → 中文化 → 挂回译文 → 条目与附件规范化」做成可重复执行的流水线，  
 并且把公式、图注、交叉引用、参考文献一致性等交付质量门槛**写进构建**，避免「报成功但产物不可用」。
@@ -10,7 +10,7 @@
 |---|---|---|
 | **① 检索文献与导入 Zotero** | [`skills/search-import/`](skills/search-import/) | Crossref 检索 → 筛选 → 入库 → 挂 PDF → 报告 |
 | **② 翻译文献与导入 Zotero** | [`skills/translate-import/`](skills/translate-import/) | 英文 PDF → 中文 DOCX（**全文精译 · 与原文逐句对应**）→ **构建即终稿**（Word 原生公式对象 + 页眉页码 + 图注规范 + 引用可点击跳转 + 参考文献一致性校验）→ 挂回 Zotero；内置外部旧 DOCX 公式补转（`docx-polish/`） |
-| **③ 管理文献与条目** | [`skills/manage-items/`](skills/manage-items/) | 标题统一中文译名 → 附件按 `[pdf]`/`[docx]` + `作者等 - 年 - 标题` 命名 → PDF 与译文分目录（一附件一目录）→ 译文补齐挂载 → 一致性校验 |
+| **③ Zotero条目与附件管理** | [`skills/manage-items/`](skills/manage-items/) | 标题统一中文译名 → 附件按 `[pdf]`/`[docx]` + `作者等 - 年 - 标题` 命名 → PDF 与译文分目录（一附件一目录）→ 译文补齐挂载 → 一致性校验 |
 
 ```text
 search-import          translate-import          manage-items
@@ -63,7 +63,7 @@ python scripts/print_paths.py
 技能说明：[`skills/translate-import/SKILL.md`](skills/translate-import/SKILL.md)  
 扫描件 PDF（无文本层）翻译流程：[`docs/scanned-pdf-translation.md`](docs/scanned-pdf-translation.md)
 
-### ③ 管理条目与附件
+### ③ Zotero条目与附件管理
 
 ```bash
 cd skills/manage-items

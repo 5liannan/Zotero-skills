@@ -3,7 +3,7 @@ name: zotero-manage-items
 description: 管理 Zotero 条目与附件——把条目标题统一为中文译名，按 [pdf]/[docx] 前缀与「作者等 - 年 - 标题」规范重命名附件，PDF 与译文 DOCX 分目录存放（一附件一目录），并把磁盘上的译文 DOCX 补齐挂在对应条目下、校验库内记录与 storage 一致。触发词：条目标题中文化、附件重命名、storage 整理、PDF 与 DOCX 分目录、补齐译文、附件对齐、查缺附件。
 ---
 
-# Zotero 条目与附件管理 Skill（③）
+# Zotero条目与附件管理（Skill ③）
 
 ## 目标
 
