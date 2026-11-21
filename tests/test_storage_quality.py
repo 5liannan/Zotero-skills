@@ -136,6 +136,11 @@ def check_verdicts():
     ok = True
     good = dq.probe(Path(os.environ["FIXTURE_GOOD"]))
     assert dq.verdict(good) == [], "合格译文被误判: %s" % dq.verdict(good)
+    # 字数门槛默认关闭（见 translate-import/SKILL.md「翻译验收标准」）；
+    # 这里显式打开，以覆盖「按长度筛查」这条可选分支。
+    assert dq.CJK_MIN_FULL == 0, "字数门槛应默认关闭"
+    dq.CJK_MIN_FULL = 2000
+
     bad = dq.probe(Path(os.environ["FIXTURE_BAD"]))
     v = dq.verdict(bad)
     assert v, "模板垃圾未被判不过关"

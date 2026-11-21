@@ -70,7 +70,9 @@ FUNC = {
 
 DUP_THRESHOLD = 0.30        # 段落重复率
 CJK_MIN_TRANSLATION = 300   # 低于此不算「译文」，不参与判定
-CJK_MIN_FULL = 2000         # 低于此判「中文字数过少」
+# 字数不是合格判据（见 skills/translate-import/SKILL.md「翻译验收标准」）。
+# 需要「过短」告警时显式设环境变量，例如 DOCX_MIN_CJK=2000；默认关闭。
+CJK_MIN_FULL = int(os.environ.get("DOCX_MIN_CJK", "0") or 0)
 FUNC_MAX = 4.0              # 每段英文功能词上限
 MIXED_MAX = 0.15            # 中英混排段占比上限
 KEY_CHARS = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ"
@@ -184,8 +186,9 @@ def verdict(st: dict):
         bad.append("裸LaTeX($%d,\\%d)" % (st["raw_dollar"], st["raw_latex"]))
     if st.get("hl"):
         bad.append("高亮残留%d" % st["hl"])
-    if st.get("cjk", 0) < CJK_MIN_FULL:
-        bad.append("中文字数过少(%d字/共%d字符)" % (st["cjk"], st["chars"]))
+    if CJK_MIN_FULL > 0 and st.get("cjk", 0) < CJK_MIN_FULL:
+        bad.append("中文字数过少(%d字/共%d字符，阈值%s)"
+                   % (st["cjk"], st["chars"], CJK_MIN_FULL))
     # 两个条件同时满足才判，避免把「英文引文较多的正常译文」误判
     if st.get("func_per_para", 0) > FUNC_MAX and st.get("mixed_ratio", 0) > MIXED_MAX:
         bad.append("中英混排(每段英文功能词%.1f/混排段%.0f%%)"
@@ -201,7 +204,7 @@ def notes(st: dict) -> list:
     if st.get("func_per_para", 0) > 1.5:
         out.append("英文功能词密度偏高(%.1f/段)，建议确认英文引文占比"
                    % st["func_per_para"])
-    if st.get("cjk", 0) < 3000 and st.get("cjk") is not None:
+    if CJK_MIN_FULL > 0 and st.get("cjk", 0) < CJK_MIN_FULL * 1.5:
         out.append("中文字数偏少(%d字)" % st["cjk"])
     if st.get("images", 0) == 0:
         out.append("无图片（若原文有图则缺失）")
@@ -430,7 +433,7 @@ def write_outputs(result: dict, outdir, *, with_md5=False) -> dict:
     A("| 段落重复 | 非空段落（≥12 字）中重复文本占比 > %.0f%% |" % (DUP_THRESHOLD * 100))
     A("| 裸 LaTeX | 残留 `$...$` 或 `\\frac` 之类命令 |")
     A("| 高亮残留 | 仍有 `w:highlight` 底色 |")
-    A("| 中文字数过少 | 正文中文字符 < %d |" % CJK_MIN_FULL)
+    A("| 中文字数过少 | 仅在设置 `DOCX_MIN_CJK` 时按阈值判定（默认关闭） |")
     A("| 中英混排 | 每段英文功能词 > %.0f 且中英混排段占比 > %.0f%%"
       "（逐词替换式伪翻译） |" % (FUNC_MAX, MIXED_MAX * 100))
     A("")

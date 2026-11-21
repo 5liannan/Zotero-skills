@@ -107,6 +107,9 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 **唯一合格判定**：与英文原文**逐句对应** + `verify_docx.py` 返回 `ok=true`。  
 **禁止**用最小/最大字数判定是否合格。
 
+> 质量审计（`scripts/docx_quality.py`）里的「中文字数过少」检查**默认关闭**；
+> 确需按长度筛查时设环境变量 `DOCX_MIN_CJK=2000` 显式开启。
+
 ### 合格条件
 
 **内容对应**
