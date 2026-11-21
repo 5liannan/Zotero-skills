@@ -35,3 +35,6 @@ skills/*/config.json
 _polish_work/
 formulas.json
 optimized.docx
+
+# manage-items 审计产物
+skills/manage-items/outputs/

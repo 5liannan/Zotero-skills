@@ -1,0 +1,11 @@
+{
+  "zotero_data_dir": "E:/Zotero",
+  "pdf_title_prefix": "[pdf]",
+  "docx_title_prefix": "[docx]",
+  "pdf_filename": "{author}等 - {year} - {title_en}.pdf",
+  "docx_filename": "{author}等 - {year} - {title_zh}.docx",
+  "max_filename_len": 120,
+  "unknown_author": "佚名",
+  "unknown_year": "n.d.",
+  "notes": "路径可用 / 或 \\\\。文件名模板占位符：{author} {year} {title_en} {title_zh} {ext}。环境变量可覆盖：ZOTERO_DATA_DIR / ZOTERO_PDF_PREFIX / ZOTERO_DOCX_PREFIX / ZOTERO_PDF_PATTERN / ZOTERO_DOCX_PATTERN"
+}

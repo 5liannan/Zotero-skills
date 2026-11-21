@@ -1,26 +1,28 @@
 # Zotero-skills
 
-> 面向 Zotero 文献库的两套可独立使用、也可串联的 AI 工作流：
-> **检索文献与导入 Zotero**、**翻译文献与导入 Zotero**。
+> 面向 Zotero 文献库的三套可独立使用、也可串联的 AI 工作流：
+> **检索文献与导入 Zotero**、**翻译文献与导入 Zotero**、**管理文献与条目**。
 
-把「找论文 → 入库 → 挂全文 → 中文化 → 挂回译文」做成可重复执行的流水线，  
+把「找论文 → 入库 → 挂全文 → 中文化 → 挂回译文 → 条目与附件规范化」做成可重复执行的流水线，  
 并且把公式、图注、交叉引用、参考文献一致性等交付质量门槛**写进构建**，避免「报成功但产物不可用」。
 
 | Skill | 目录 | 做什么 |
 |---|---|---|
 | **① 检索文献与导入 Zotero** | [`skills/search-import/`](skills/search-import/) | Crossref 检索 → 筛选 → 入库 → 挂 PDF → 报告 |
 | **② 翻译文献与导入 Zotero** | [`skills/translate-import/`](skills/translate-import/) | 英文 PDF → 中文 DOCX（**全文精译 · 与原文逐句对应**）→ **构建即终稿**（Word 原生公式对象 + 页眉页码 + 图注规范 + 引用可点击跳转 + 参考文献一致性校验）→ 挂回 Zotero；内置外部旧 DOCX 公式补转（`docx-polish/`） |
+| **③ 管理文献与条目** | [`skills/manage-items/`](skills/manage-items/) | 标题统一中文译名 → 附件按 `[pdf]`/`[docx]` + `作者等 - 年 - 标题` 命名 → PDF 与译文分目录（一附件一目录）→ 译文补齐挂载 → 一致性校验 |
 
 ```text
-search-import                    translate-import
-    │                                  │
-    ▼                                  ▼
- Zotero 库（有 PDF）  ──────────►  中文 DOCX 附件（公式可编辑）
+search-import          translate-import          manage-items
+    │                        │                        │
+    ▼                        ▼                        ▼
+ Zotero 库（有 PDF）  ──►  中文 DOCX 附件  ──►  条目 / 附件规范化
 ```
 
 - 只做入库：用 ①  
 - 只做中文化：用 ②  
-- 全流程：先 ① 后 ②  
+- 只做整理：用 ③  
+- 全流程：① → ② → ③  
 
 ② 的正常流程已内置终稿规范化，自己翻译的文档**不需要**再跑修复工具。  
 若拿到的是外部旧 DOCX（公式退化成纯文本 LaTeX），走 ② 内置的补救分支  
@@ -60,6 +62,22 @@ python scripts/print_paths.py
 
 技能说明：[`skills/translate-import/SKILL.md`](skills/translate-import/SKILL.md)  
 扫描件 PDF（无文本层）翻译流程：[`docs/scanned-pdf-translation.md`](docs/scanned-pdf-translation.md)
+
+### ③ 管理条目与附件
+
+```bash
+cd skills/manage-items
+cp config.example.json config.json     # 改成你的 Zotero 数据目录
+python scripts/audit.py                                  # 只读审计
+python scripts/retitle_zh.py --map zh.json --apply        # 标题中文化
+python scripts/split_storage.py --apply                   # PDF / DOCX 分目录
+python scripts/rename_attachments.py --apply              # 附件改名
+python scripts/link_docx.py --dir "E:/翻译稿" --apply      # 挂载译文
+python scripts/verify.py --expect-docx                    # 校验
+```
+
+技能说明：[`skills/manage-items/SKILL.md`](skills/manage-items/SKILL.md)  
+除 `audit.py` / `verify.py` 外均默认 dry-run，加 `--apply` 才写库；写库前必须退出 Zotero。
 
 ## 环境变量
 
@@ -109,6 +127,11 @@ Zotero-skills/
       scripts/      # extract / omml / finalize / build / verify / register / ...
       docx-polish/  # 内置补救：外部旧 DOCX 公式事后补转 OMML
       examples/     # parts 示例（含公式、图、正文引用与文末文献）
+    manage-items/
+      SKILL.md
+      README.md
+      config.example.json
+      scripts/      # audit / retitle / split / rename / link_docx / verify
 ```
 
 ## 原则
@@ -116,7 +139,7 @@ Zotero-skills/
 - 检索入库：**只走 Zotero API**，不直写 `zotero.sqlite`
 - 翻译挂接：写 sqlite 前必须 **退出 Zotero**，并自动备份
 - 构建失败不产出文件；结构对齐 ≠ 内容合格，内容另做质量审计
-- 两套 skill 的路径均可通过环境变量/配置迁移到其他机器
+- 三套 skill 的路径均可通过环境变量/配置迁移到其他机器
 
 ## 附件与 storage 管理
 
