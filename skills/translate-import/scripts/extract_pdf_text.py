@@ -107,6 +107,33 @@ def _setup_fonts(doc):
 
 # ---------------------------------------------------------------- 位图抽取
 
+def _order_blocks(blocks, page_rect):
+    """按阅读顺序排列文本块。
+
+    双栏论文（IEEE/Elsevier 模板）若只按纵坐标排序，左右栏会交错，句子被拆散。
+    判据：以页面中线分左右，两栏各有足够多的块，且跨栏块很少，则视为双栏，
+    按「左栏自上而下 + 右栏自上而下」输出。
+    """
+    if not blocks:
+        return blocks
+
+    mid = (page_rect.x0 + page_rect.x1) / 2.0
+
+    def cx(b):
+        return (b["bbox"][0] + b["bbox"][2]) / 2.0
+
+    left = [b for b in blocks if cx(b) < mid]
+    right = [b for b in blocks if cx(b) >= mid]
+    spanning = [b for b in blocks
+                if b["bbox"][0] < mid - 40 and b["bbox"][2] > mid + 40]
+
+    if len(left) >= 3 and len(right) >= 3 and len(spanning) <= max(2, len(blocks) // 8):
+        left.sort(key=lambda b: (b["bbox"][1], b["bbox"][0]))
+        right.sort(key=lambda b: (b["bbox"][1], b["bbox"][0]))
+        return left + right
+    return sorted(blocks, key=lambda b: (b["bbox"][1], b["bbox"][0]))
+
+
 def _extract_bitmaps(doc, page, pno, image_dir, saved, counters):
     """抽取页面上真实存在的嵌入位图。返回 [{"file","bbox","source"}]。
 
@@ -474,7 +501,7 @@ def main():
             })
 
         out["pages"].append({
-            "page": pno + 1, "blocks": blocks, "images": images,
+            "page": pno + 1, "blocks": _order_blocks(blocks, page_rect), "images": images,
             "figures": figures, "formulas": formulas,
         })
 
