@@ -45,6 +45,7 @@ def main():
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--only", choices=["pdf", "docx"], default=None)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--titles-only", action="store_true", help="只统一标题栏，不动磁盘文件名")
     args = ap.parse_args()
 
     con = connect(readonly=not args.apply)
@@ -68,17 +69,30 @@ def main():
             if link != 0:
                 problems.append((aid, iid, "非导入型附件(linkMode=%s)" % link))
                 continue
-            title_src = en if kind == "pdf" else (zh if CJK.search(zh or "") else en)
+            prefix = cfg["pdf_title_prefix"] if kind == "pdf" else cfg["docx_title_prefix"]
+            cur_raw = (db.get(aid, "title") or "").strip()
+            for pfx in (cfg["pdf_title_prefix"], cfg["docx_title_prefix"]):
+                if cur_raw.startswith(pfx):
+                    cur_raw = cur_raw[len(pfx):].strip()
+            # 占位标题（"PDF"/"Full Text" 之类）视为空
+            if len(cur_raw) < 5 or cur_raw.lower() in ("pdf", "full text", "document", "untitled", "全文"):
+                cur_raw = ""
+            stem = os.path.splitext(os.path.basename((path or "").replace("storage:", "")))[0]
+            # PDF 优先英文原名；没有则沿用现有标题，再不济用原文件名（不臆造）
+            title_src = (en or cur_raw or stem) if kind == "pdf" else \
+                (zh if CJK.search(zh or "") else (en or cur_raw or stem))
             if not title_src:
                 problems.append((aid, iid, "缺标题来源"))
                 continue
-            prefix = cfg["pdf_title_prefix"] if kind == "pdf" else cfg["docx_title_prefix"]
             want_title = prefix + title_src
             pattern = cfg["pdf_filename"] if kind == "pdf" else cfg["docx_filename"]
             want_file = render(pattern, author, year, en or title_src, zh if CJK.search(zh or "") else title_src)
             cur_file = os.path.basename(db.file_of(aid, path, akey) or "")
             cur_title = db.get(aid, "title")
-            if cur_title == want_title and cur_file == want_file:
+            if args.titles_only:
+                if cur_title == want_title:
+                    continue
+            elif cur_title == want_title and cur_file == want_file:
                 continue
             acts.append((aid, iid, kind, cur_title, want_title, cur_file, want_file, path, akey))
 
@@ -97,6 +111,10 @@ def main():
     print("备份:", backup(tag="rename"))
     done = fail = 0
     for aid, iid, kind, _, want_title, cur_file, want_file, path, akey in acts:
+        if args.titles_only:
+            db.set(aid, "title", want_title)
+            done += 1
+            continue
         src_dir = os.path.join(cfg["storage_dir"], akey)
         src = os.path.join(src_dir, cur_file) if cur_file else None
         try:
