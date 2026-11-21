@@ -65,7 +65,11 @@ def main():
     if args.apply and todo:
         bak = backup(tag="retitle")
         print("备份:", bak)
-        for iid, _, new in todo:
+        for iid, old, new in todo:
+            # 英文原名写进「其他」，供 PDF 命名与回溯
+            if old and not CJK.search(old) and "Original Title:" not in (db.get(iid, "extra") or ""):
+                extra = (db.get(iid, "extra") or "").strip()
+                db.set(iid, "extra", (extra + "\nOriginal Title: " + old).strip(), touch=False)
             db.set(iid, "title", new)
         con.commit()
         print("已写入 %d 条" % len(todo))
