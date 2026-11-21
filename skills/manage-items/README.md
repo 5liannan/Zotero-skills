@@ -12,6 +12,7 @@
 | PDF 与 DOCX 同目录 | 违反「一附件一目录」，易误删 | `split_storage.py` 拆到各自目录 |
 | 译文没挂上 | 磁盘有 DOCX，Zotero 里看不到 | `link_docx.py` 挂载 |
 | 记录与磁盘对不上 | 点了附件打不开 | `verify.py` 校验 |
+| 译文要一篇篇补 | 需要可控节奏 | `batch.py` 分批 + 台账 |
 
 ## 命名规范
 
@@ -40,6 +41,11 @@ python scripts/split_storage.py --apply                # 3. PDF/DOCX 分目录
 python scripts/rename_attachments.py --apply           # 4. 附件改名
 python scripts/link_docx.py --dir "E:/翻译稿" --apply   # 5. 挂载译文
 python scripts/verify.py --expect-docx                 # 6. 校验
+
+# 译文量大时用批次调度
+python scripts/batch.py --status
+python scripts/batch.py --next 3 --extract
+python scripts/batch.py --done <itemID> --docx <docx路径>
 ```
 
 除 `audit.py` / `verify.py` 外，所有脚本**默认 dry-run**，加 `--apply` 才写库。

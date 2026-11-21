@@ -105,6 +105,16 @@ python scripts/link_docx.py --dir "E:/翻译稿" --apply
 按中文标题匹配父条目，复制进该附件独占的新目录，标题栏写 `[docx]中文标题`。
 若译文尚未生成，先用 ② `translate-import` 生成 DOCX，再回到本步骤挂载。
 
+### 5.5 分批调度（译文量大时）
+
+```bash
+python scripts/batch.py --status        # 还有多少篇缺译文
+python scripts/batch.py --next 3 --extract   # 取下一批并抽取正文
+python scripts/batch.py --done 10642 --docx <路径>   # 记为已挂载
+```
+
+台账落在 `outputs/ledger.csv`。会自动跳过中文原版（PDF 文件名含中文且无 `Original Title`）。
+
 ### 6. 校验
 
 ```bash
@@ -123,6 +133,7 @@ python scripts/verify.py --expect-docx
 | `scripts/rename_attachments.py` | 附件标题栏 + 文件名规范化 | 是 |
 | `scripts/link_docx.py` | 译文 DOCX 挂载 | 是 |
 | `scripts/verify.py` | 规范与一致性校验 | 否 |
+| `scripts/batch.py` | 分批调度：挑下一批待译、记台账、标完成 | 否 |
 | `scripts/zoterodb.py` | 公共库（字段/类型按名解析、key 生成、附件搬迁） | — |
 | `scripts/config.py` | 路径与命名模板配置 | — |
 
