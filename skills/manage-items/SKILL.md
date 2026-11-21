@@ -115,6 +115,17 @@ python scripts/batch.py --done 10642 --docx <路径>   # 记为已挂载
 
 台账落在 `outputs/ledger.csv`。会自动跳过中文原版（PDF 文件名含中文且无 `Original Title`）。
 
+### 5.6 补全日期
+
+```bash
+python scripts/fix_dates.py            # 预览
+python scripts/fix_dates.py --apply
+```
+
+只处理不完整日期（仅年份 / 年-月 / 空）。优先用 DOI 查 OpenAlex 的 `publication_date`；
+无 DOI 或查不到时，解析 PDF 前两页的 Published / Accepted / 期号信息。
+新年份与已有年份不一致时跳过，避免错配。
+
 ### 6. 校验
 
 ```bash
@@ -134,6 +145,7 @@ python scripts/verify.py --expect-docx
 | `scripts/link_docx.py` | 译文 DOCX 挂载 | 是 |
 | `scripts/verify.py` | 规范与一致性校验 | 否 |
 | `scripts/batch.py` | 分批调度：挑下一批待译、记台账、标完成 | 否 |
+| `scripts/fix_dates.py` | 补全日期：DOI→OpenAlex，无 DOI 回退解析 PDF 首页 | 是 |
 | `scripts/zoterodb.py` | 公共库（字段/类型按名解析、key 生成、附件搬迁） | — |
 | `scripts/config.py` | 路径与命名模板配置 | — |
 

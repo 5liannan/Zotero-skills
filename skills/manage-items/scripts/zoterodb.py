@@ -69,7 +69,7 @@ class DB:
     def __init__(self, con):
         self.con = con
         self.cur = con.cursor()
-        self.fields = {n: i for i, n in self.cur.execute("SELECT fieldID, fieldName FROM fields")}
+        self.fields = {n.lower(): i for i, n in self.cur.execute("SELECT fieldID, fieldName FROM fields")}
         self.types = {n: i for i, n in self.cur.execute("SELECT itemTypeID, typeName FROM itemTypes")}
         r = self.cur.execute("SELECT creatorTypeID FROM creatorTypes WHERE creatorType='author'").fetchone()
         self.author_type = r[0] if r else 1
@@ -80,7 +80,7 @@ class DB:
 
     # ---------- 基础字段 ----------
     def get(self, item_id, field_name):
-        fid = self.fields.get(field_name)
+        fid = self.fields.get((field_name or "").lower())
         if not fid:
             return ""
         r = self.cur.execute(
@@ -89,7 +89,7 @@ class DB:
         return (r[0] or "") if r else ""
 
     def set(self, item_id, field_name, value, touch=True):
-        fid = self.fields.get(field_name)
+        fid = self.fields.get((field_name or "").lower())
         if not fid:
             raise KeyError("未知字段: %s" % field_name)
         value = (value or "").strip()

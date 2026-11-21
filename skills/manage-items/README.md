@@ -12,6 +12,7 @@
 | PDF 与 DOCX 同目录 | 违反「一附件一目录」，易误删 | `split_storage.py` 拆到各自目录 |
 | 译文没挂上 | 磁盘有 DOCX，Zotero 里看不到 | `link_docx.py` 挂载 |
 | 记录与磁盘对不上 | 点了附件打不开 | `verify.py` 校验 |
+| 日期只到年份 | Zotero 只显示 2024 | `fix_dates.py` 按 DOI/PDF 补全 |
 | 译文要一篇篇补 | 需要可控节奏 | `batch.py` 分批 + 台账 |
 
 ## 命名规范
