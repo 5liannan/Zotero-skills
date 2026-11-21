@@ -46,7 +46,7 @@ def load():
     for key, env in ENV_MAP.items():
         if os.environ.get(env):
             cfg[key] = os.environ[env]
-    data = cfg["zotero_data_dir"].replace("\\", "/").rstrip("/")
+    data = os.path.expanduser(cfg["zotero_data_dir"]).replace("\\", "/").rstrip("/")
     cfg["zotero_data_dir"] = data
     cfg["storage_dir"] = data + "/storage"
     cfg["sqlite_path"] = data + "/zotero.sqlite"

@@ -1,5 +1,5 @@
 {
-  "zotero_data_dir": "E:/Zotero",
+  "zotero_data_dir": "~/Zotero",
   "pdf_title_prefix": "[pdf]",
   "docx_title_prefix": "[docx]",
   "pdf_filename": "{author}等 - {year} - {title_en}.pdf",
