@@ -34,14 +34,15 @@ PAT_ISSUE = re.compile(MON + r"\s+(\d{4})")
 
 
 def want_date(day, mon, year):
+    """统一输出单段 ISO 日期：YYYY / YYYY-MM / YYYY-MM-DD。"""
     y = int(year)
     m = MONTHS.get((mon or "").title(), 0)
-    d = int(day) if day and day.isdigit() and 1 <= int(day) <= 31 else 0
+    d = int(day) if day and str(day).isdigit() and 1 <= int(day) <= 31 else 0
     if not m:
-        return "%04d-00-00 %04d-00" % (y, y)
+        return "%04d" % y
     if not d:
-        return "%04d-%02d-00 %04d-%02d" % (y, m, y, m)
-    return "%04d-%02d-%02d %04d-%02d-%02d" % (y, m, d, y, m, d)
+        return "%04d-%02d" % (y, m)
+    return "%04d-%02d-%02d" % (y, m, d)
 
 
 def from_pdf(path):
@@ -67,6 +68,34 @@ def from_pdf(path):
     m = PAT_ISSUE.search(txt)
     if m:
         return want_date(None, m.group(1), m.group(2)), "pdf:issue"
+    return None
+
+
+def crossref(doi):
+    """Crossref 的 published-print / published-online / issued，优先取带日的。"""
+    if not doi:
+        return None
+    url = "https://api.crossref.org/works/" + urllib.parse.quote(doi, safe="/")
+    for _ in range(2):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "zotero-date-fix/1.0 (mailto:1712098147@qq.com)"})
+            with urllib.request.urlopen(req, timeout=25) as r:
+                d = json.loads(r.read().decode())["message"]
+            best = None
+            for k in ("published-print", "published-online", "issued", "created"):
+                parts = (d.get(k) or {}).get("date-parts") or []
+                if parts and parts[0]:
+                    p = parts[0]
+                    y = p[0]
+                    m = p[1] if len(p) > 1 else 0
+                    dd = p[2] if len(p) > 2 else 0
+                    if dd:
+                        return "%04d-%02d-%02d" % (y, m, dd)
+                    if m and not best:
+                        best = "%04d-%02d" % (y, m)
+            return best
+        except Exception:
+            time.sleep(1)
     return None
 
 
@@ -98,6 +127,8 @@ def main():
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--no-pdf", action="store_true")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--normalize", action="store_true",
+                    help="把已有日期统一为单段 ISO；月级日期尝试用 Crossref 补到日")
     args = ap.parse_args()
 
     con = connect(readonly=not args.apply)
@@ -123,19 +154,25 @@ def main():
         doi = (db.get(iid, "doi") or "").strip().lower()
         new = oa.get(doi)
         src = "openalex"
+        new_fmt = None
         if new:
             parts = (new or "").split("-")
             y = parts[0]
             m = parts[1] if len(parts) > 1 and parts[1] != "00" else "00"
             d = parts[2] if len(parts) > 2 and parts[2] != "00" else "00"
             if m == "00":
-                new_fmt = "%s-00-00 %s-00" % (y, y)
+                new_fmt = y
             elif d == "00":
-                new_fmt = "%s-%s-00 %s-%s" % (y, m, y, m)
+                new_fmt = "%s-%s" % (y, m)
             else:
-                new_fmt = "%s-%s-%s %s-%s-%s" % (y, m, d, y, m, d)
-        else:
-            new_fmt, src = None, None
+                new_fmt = "%s-%s-%s" % (y, m, d)
+        # OpenAlex 只到年/月时，用 Crossref 尝试补到日
+        if doi and (not new_fmt or len(new_fmt) < 10):
+            cr = crossref(doi)
+            if cr and len(cr) > len(new_fmt or ""):
+                new_fmt, src = cr, "crossref"
+        if not new_fmt:
+            src = None
             if not args.no_pdf:
                 for a in db.attachments(iid):
                     if (a[2] or "").lower().endswith(".pdf"):
@@ -159,6 +196,30 @@ def main():
         print("  %-6d %-22s -> %-22s [%s]" % (iid, old or "空", new, src))
     for iid, why in skipped[:5]:
         print("  跳过 %-6d %s" % (iid, why))
+
+    if args.normalize:
+        norm = []
+        for iid in db.items():
+            d = (db.get(iid, "date") or "").strip()
+            if not d:
+                continue
+            m = re.match(r"^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?", d)
+            if not m:
+                continue
+            y, mo, dy = m.group(1), m.group(2) or "00", m.group(3) or "00"
+            if mo == "00":
+                tgt = y
+            elif dy == "00":
+                tgt = "%s-%s" % (y, mo)
+            else:
+                tgt = "%s-%s-%s" % (y, mo, dy)
+            if tgt != d:
+                norm.append((iid, d, tgt))
+        print("格式需归一:", len(norm))
+        for iid, old, new in norm[:5]:
+            print("  %-6d %-24s -> %s" % (iid, old, new))
+        seen = {c[0] for c in changes}
+        changes = changes + [(n[0], n[1], n[2], "normalize") for n in norm if n[0] not in seen]
 
     if not args.apply:
         print("[dry-run] 未写入；加 --apply 生效")

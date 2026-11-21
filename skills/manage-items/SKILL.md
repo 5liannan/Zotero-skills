@@ -122,9 +122,11 @@ python scripts/fix_dates.py            # 预览
 python scripts/fix_dates.py --apply
 ```
 
-只处理不完整日期（仅年份 / 年-月 / 空）。优先用 DOI 查 OpenAlex 的 `publication_date`；
-无 DOI 或查不到时，解析 PDF 前两页的 Published / Accepted / 期号信息。
-新年份与已有年份不一致时跳过，避免错配。
+**日期统一写单段 ISO：`YYYY-MM-DD`（如 `2001-03-05`），不写 Zotero 的双段格式。**
+
+来源优先级：OpenAlex `publication_date` → Crossref（补到日）→ PDF 前两页的 Published / Accepted / 期号。
+只到月时写 `YYYY-MM`，只到年时写 `YYYY`；新年份与已有年份不一致则跳过，避免错配。
+`--normalize` 会把历史上 `2024-04-30 2024-04-30`、`2019-00-00 2019` 这类写法统一成单段。
 
 ### 6. 校验
 
