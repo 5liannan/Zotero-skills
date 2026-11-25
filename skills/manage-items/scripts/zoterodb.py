@@ -22,6 +22,17 @@ ILLEGAL = re.compile(r'[\\/:*?"<>|\r\n\t]')
 CJK = re.compile(r"[\u4e00-\u9fa5]")
 
 
+def clean_title(text):
+    """生成文件名/附件标题用的标题：按配置剥掉「【…】」这类分类标签（不改条目标题本身）。
+
+    配置：`strip_title_tags`（默认 False）+ `title_tag_pattern`。
+    """
+    if not text or not cfg.get("strip_title_tags"):
+        return text
+    pat = cfg.get("title_tag_pattern") or "【[^】]*】"
+    return re.sub(pat, "", text).strip()
+
+
 def new_key(n=8):
     return "".join(random.choice(KEY_CHARS) for _ in range(n))
 
@@ -124,14 +135,18 @@ class DB:
 
     # ---------- 条目 ----------
     def items(self, types=("journalArticle", "conferencePaper", "thesis", "preprint", "book", "bookSection"),
-              include_deleted=False):
+              include_deleted=False, collection=None):
         tids = [self.types[t] for t in types if t in self.types]
         if not tids:
             return []
         q = "SELECT itemID FROM items WHERE itemTypeID IN (%s)" % ",".join("?" * len(tids))
+        args = list(tids)
         if not include_deleted:
             q += " AND itemID NOT IN (SELECT itemID FROM deletedItems)"
-        return [r[0] for r in self.cur.execute(q, tids)]
+        if collection:
+            q += " AND itemID IN (SELECT itemID FROM collectionItems WHERE collectionID=?)"
+            args.append(int(collection))
+        return [r[0] for r in self.cur.execute(q, args)]
 
     def title(self, item_id):
         return self.get(item_id, "title")

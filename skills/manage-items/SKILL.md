@@ -52,6 +52,14 @@ Zotero 里是**父条目 + 子附件**两级：
 - `itemAttachments.path` 用 `storage:<文件名>`；解析时拼 `storage/<附件key>/`。
 - 迁移目录后必须同时改 `items.key`（附件行）与 `itemAttachments.path`。
 
+## 作用范围与命名取舍
+
+- **所有脚本都支持 `--collection <collectionID>`**：只治理指定分类，不碰库内其它条目
+  （不加则整库处理，条目多时务必先试 `audit.py --collection <id>`）。
+- 配置 `strip_title_tags`（默认 false）开启后，生成**文件名 / 附件标题**时剥掉
+  `title_tag_pattern` 匹配的分类标签（如 `【BOTDA】【SR提高算法】`），
+  **条目标题本身不动**——分类标签属于检索习惯，不属于标题。
+
 ## 工作流
 
 ### 0. 前置（写库前必做）

@@ -19,6 +19,9 @@ DEFAULTS = {
     "max_filename_len": 120,
     "unknown_author": "佚名",
     "unknown_year": "n.d.",
+    # 生成文件名/附件标题时，是否从标题里剥掉「【…】」这类分类标签（不改条目标题本身）
+    "strip_title_tags": False,
+    "title_tag_pattern": "【[^】]*】",
 }
 
 ENV_MAP = {

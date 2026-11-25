@@ -36,12 +36,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "outputs"))
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--collection", type=int, default=None, help="只处理该分类(collectionID)")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
 
     con = connect(readonly=True)
     db = DB(con)
-    ids = db.items()
+    ids = db.items(collection=args.collection)
     if args.limit:
         ids = ids[:args.limit]
 

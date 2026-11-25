@@ -21,11 +21,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--collection", type=int, default=None, help="只处理该分类(collectionID)")
     args = ap.parse_args()
 
     con = connect(readonly=not args.apply)
     db = DB(con)
-    ids = db.items()
+    ids = db.items(collection=args.collection)
     if args.limit:
         ids = ids[:args.limit]
 

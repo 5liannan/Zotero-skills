@@ -40,12 +40,13 @@ def main():
     ap.add_argument("--map", required=True, help="itemID -> 中文标题 的 JSON/TSV")
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--force", action="store_true", help="已经是中文也覆盖")
+    ap.add_argument("--collection", type=int, default=None, help="只处理该分类(collectionID)")
     args = ap.parse_args()
 
     zh = load_map(args.map)
     con = connect(readonly=not args.apply)
     db = DB(con)
-    ids = db.items()
+    ids = db.items(collection=args.collection)
 
     todo, skip_zh, no_map = [], 0, []
     for iid in ids:

@@ -16,10 +16,21 @@ import re
 import sys
 
 from config import cfg, ensure_utf8_stdio
-from zoterodb import DB, connect, backup, render, CJK
+from zoterodb import DB, connect, backup, render, clean_title, CJK
 
 ensure_utf8_stdio()
 DOCX_CT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+NAME_PREFIX_RE = re.compile(r'^.*?\s*等\s*-\s*(?:\d{4}|n\.d\.)\s*-\s*')
+
+
+def strip_name_prefix(s):
+    """去掉名字来源里已有的「作者 等 - 年 - 」前缀（可能被叠了两次）。"""
+    s = (s or "").strip()
+    prev = None
+    while prev != s:
+        prev = s
+        s = NAME_PREFIX_RE.sub("", s).strip()
+    return s
 
 
 def kind_of(path, ctype):
@@ -45,12 +56,13 @@ def main():
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--only", choices=["pdf", "docx"], default=None)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--collection", type=int, default=None, help="只处理该分类(collectionID)")
     ap.add_argument("--titles-only", action="store_true", help="只统一标题栏，不动磁盘文件名")
     args = ap.parse_args()
 
     con = connect(readonly=not args.apply)
     db = DB(con)
-    ids = db.items()
+    ids = db.items(collection=args.collection)
     if args.limit:
         ids = ids[:args.limit]
 
@@ -77,16 +89,19 @@ def main():
             # 占位标题（"PDF"/"Full Text" 之类）视为空
             if len(cur_raw) < 5 or cur_raw.lower() in ("pdf", "full text", "document", "untitled", "全文"):
                 cur_raw = ""
-            stem = os.path.splitext(os.path.basename((path or "").replace("storage:", "")))[0]
+            stem = clean_title(strip_name_prefix(
+                os.path.splitext(os.path.basename((path or "").replace("storage:", "")))[0]))
+            cur_raw = clean_title(strip_name_prefix(cur_raw))
             # PDF 优先英文原名；没有则沿用现有标题，再不济用原文件名（不臆造）
             title_src = (en or cur_raw or stem) if kind == "pdf" else \
-                (zh if CJK.search(zh or "") else (en or cur_raw or stem))
+                clean_title(zh) if CJK.search(zh or "") else (en or cur_raw or stem)
             if not title_src:
                 problems.append((aid, iid, "缺标题来源"))
                 continue
             want_title = prefix + title_src
             pattern = cfg["pdf_filename"] if kind == "pdf" else cfg["docx_filename"]
-            want_file = render(pattern, author, year, en or title_src, zh if CJK.search(zh or "") else title_src)
+            want_file = render(pattern, author, year, en or title_src,
+                               clean_title(zh) if CJK.search(zh or "") else title_src)
             cur_file = os.path.basename(db.file_of(aid, path, akey) or "")
             cur_title = db.get(aid, "title")
             if args.titles_only:

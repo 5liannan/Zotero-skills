@@ -12,7 +12,7 @@ import re
 import sys
 
 from config import cfg, ensure_utf8_stdio
-from zoterodb import DB, connect, render, CJK
+from zoterodb import DB, connect, render, clean_title, CJK
 
 ensure_utf8_stdio()
 DOCX_CT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -30,13 +30,14 @@ def kind(path, ctype):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--expect-docx", action="store_true", help="要求有 PDF 的条目也必须有 DOCX")
+    ap.add_argument("--collection", type=int, default=None, help="只处理该分类(collectionID)")
     args = ap.parse_args()
 
     con = connect(readonly=True)
     db = DB(con)
     bad_title, bad_name, missing, shared, no_docx = [], [], [], [], []
     n_att = 0
-    for iid in db.items():
+    for iid in db.items(collection=args.collection):
         zh = db.title(iid)
         en = None
         m = re.search(r"Original Title:\s*(.+)", db.get(iid, "extra") or "")
@@ -63,7 +64,8 @@ def main():
                 src = en if k == "pdf" else (zh if CJK.search(zh or "") else en)
                 if src:
                     pat = cfg["pdf_filename"] if k == "pdf" else cfg["docx_filename"]
-                    want = render(pat, author, year, en or src, zh if CJK.search(zh or "") else src)
+                    want = render(pat, author, year, en or src,
+                                  clean_title(zh) if CJK.search(zh or "") else src)
                     if os.path.basename(fp) != want:
                         bad_name.append((aid, iid, os.path.basename(fp)[:44], want[:44]))
         for d, files in by_dir.items():

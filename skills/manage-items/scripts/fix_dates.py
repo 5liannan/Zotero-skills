@@ -127,6 +127,7 @@ def main():
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--no-pdf", action="store_true")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--collection", type=int, default=None, help="只处理该分类(collectionID)")
     ap.add_argument("--normalize", action="store_true",
                     help="把已有日期统一为单段 ISO；月级日期尝试用 Crossref 补到日")
     args = ap.parse_args()
@@ -134,7 +135,7 @@ def main():
     con = connect(readonly=not args.apply)
     db = DB(con)
     todo = []
-    for iid in db.items():
+    for iid in db.items(collection=args.collection):
         d = (db.get(iid, "date") or "").strip()
         if re.fullmatch(r"\d{4}-\d{2}-\d{2}", d.split(" ")[0]):
             continue
@@ -199,7 +200,7 @@ def main():
 
     if args.normalize:
         norm = []
-        for iid in db.items():
+        for iid in db.items(collection=args.collection):
             d = (db.get(iid, "date") or "").strip()
             if not d:
                 continue
