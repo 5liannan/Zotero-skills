@@ -78,6 +78,7 @@ python scripts/retitle_zh.py --map zh.json --apply
 ```
 
 `zh.json` 由 agent 产出：`{"itemID": "中文译名"}`。已是中文的标题默认跳过，`--force` 强制覆盖。
+agent 产出的译名**不带【标签】**——标签由使用者后续自行添加（`retitle_zh` 既不生成也不清理标签）；条目中原有的标签保持原样。
 英文原名应在条目「其他 / Extra」字段保留 `Original Title: <英文>`，供 PDF 命名与回溯。
 
 ### 3. 拆分共用目录
