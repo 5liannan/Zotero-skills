@@ -74,7 +74,6 @@ python scripts/retitle_zh.py --map zh.json --apply        # 标题中文化
 python scripts/split_storage.py --apply                   # PDF / DOCX 分目录
 python scripts/rename_attachments.py --apply              # 附件改名
 python scripts/link_docx.py --dir "E:/翻译稿" --apply      # 挂载译文
-python scripts/fix_dates.py --normalize --apply            # 日期补全（单段 YYYY-MM-DD）
 python scripts/verify.py --expect-docx                    # 校验
 ```
 
