@@ -61,7 +61,8 @@ python scripts/print_paths.py
 > 构建**直接报错退出、不产出文件**——不存在「报成功但公式还是 `$` 源码」的假成功。
 
 技能说明：[`skills/translate-import/SKILL.md`](skills/translate-import/SKILL.md)  
-扫描件 PDF（无文本层）翻译流程：[`docs/scanned-pdf-translation.md`](docs/scanned-pdf-translation.md)
+扫描件 PDF（无文本层）翻译流程：[`docs/scanned-pdf-translation.md`](docs/scanned-pdf-translation.md)  
+**多篇并行翻译**（8 路子代理 + 一键记账挂接 + 分类审计）：[`docs/parallel-batch-translation.md`](docs/parallel-batch-translation.md)
 
 ### ③ Zotero条目与附件管理
 
@@ -101,6 +102,8 @@ Zotero-skills/
     zotero-storage-management.md
     zotero-datadir-migration.md
     scanned-pdf-translation.md
+    parallel-batch-translation.md
+    layout-probe-and-figures.md
   scripts/
     manage_zotero_storage.py   # 结构对齐（check/split/align…）+ 译文质量治理（quality-*）
     docx_quality.py            # 译文质量判定内核（可单独运行）

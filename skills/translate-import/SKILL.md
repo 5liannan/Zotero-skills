@@ -203,6 +203,10 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 
 ### 批量
 
+按篇数选模式，两种模式的单篇质量门槛完全相同（§校验-构建-验证）。
+
+#### A. 串行小批量（约 ≤5 篇）
+
 1. 维护 `zotero_tasks.json`：`itemID / mode / ztitle / pdf / docx / folder`
 2. 先只做提取：`full_v3_pipeline.py <N> --extract-only`
    → 为每篇产出 `extract.json` + `images/` + `figures/` + `formulas/`
@@ -214,6 +218,32 @@ description: 将 Zotero 库中的英文 PDF 学术论文翻译为规范中文 DO
 5. 全量审计：每个任务的 `docx` 路径存在且校验通过（`ok=true`，含
    `omath` / `header` / `footer_page` / `xref` / 参考文献一致性），
    且图序、式号与原文一致
+
+#### B. 并行编排（推荐 ≥6 篇；实测 24 篇 8 路并行约 4.5 小时交付）
+
+主控只做编排与记账，翻译由 N 个子代理并行执行（实测 8 路稳定）。完整角色、提示词
+模板、故障处置见 [`docs/parallel-batch-translation.md`](../../docs/parallel-batch-translation.md)。
+
+1. **固化子代理手册**：把 [`examples/WORKFLOW.template.md`](examples/WORKFLOW.template.md)
+   复制为 `<work_base>/WORKFLOW.md` 并替换占位符。子代理提示词只需"先读 WORKFLOW.md"，
+   外加本篇 itemID / PDF 绝对路径 / 中文标题 / 唯一生成脚本名。
+2. **分派**：一代理一篇，满并行度后**完成一篇立即补一篇**；子代理只写
+   `parts/` → `build` → `verify` → `report.json`，**禁止**挂接 Zotero、禁止改台账。
+3. **完成校验（只看文件，不信"completed"）**：工作目录里有 `<标题>.docx` 且有
+   `report.json` 才算完成。空转退出就发消息要求"从 parts 继续，不要重做提取"；
+   会话中断则新起代理"接手半成品"。
+4. **一条命令记账 + 挂接**：
+   ```bash
+   python scripts/record_done.py work/item_XXXX/report.json --work-root <work_base>
+   ```
+   幂等：按 itemID 去重（同一完成消息重复触发不会虚增计数）；把 docx 同时挂到
+   主条目与 `zotero_sibling_itemIDs`（同文重复条目一次翻译多处挂接）。
+5. **收尾独立审计**（不信任台账）：
+   ```bash
+   python scripts/audit_collection.py --collection "<分类名>" --out AUDIT.md
+   ```
+   按 storage 文件名索引核对附件真实存在，输出"有 PDF 未译 / 无 PDF / 台账不一致"，
+   并用 DOI 聚类识别"英文条目未译但中文兄弟已译"的假待办。
 
 ## 译文组织
 

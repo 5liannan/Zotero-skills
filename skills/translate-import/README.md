@@ -181,10 +181,16 @@ Latin Modern Math / STIX / cmmi-cmsy-cmex / MT Extra 等；内容再按字符类
 | 4. 校验 | 检查可解析与完整性、公式对象数、页眉页码、交叉引用、参考文献一致性（**不以字数判定**） | `scripts/verify_docx.py` |
 | 5. 入库 | 复制到独立 storage key 并写 `itemAttachments` | `scripts/register_zotero_docx.py` |
 | 6. 标题 | 为附件补写 title 字段 | `scripts/fix_zotero_titles.py` |
+| 7. 批量记账 | 多篇并行时一条命令完成：校验产物 → 更新台账 → 挂接主条目 + 同文重复条目（幂等） | `scripts/record_done.py` + `scripts/attach_docx.py` |
+| 8. 分类审计 | 独立扫库核对翻译情况：已译/未译/缺 PDF、台账一致性、DOI 重复聚类 | `scripts/audit_collection.py` |
 
 `full_v3_pipeline.py` 只串联 1 → 3 → 4 三个机械步骤，**不产生任何译文内容**；
 它按 `--extract-only` 先批量提取素材供 Agent 逐篇精译。构建阶段失败会被标为
 `build_failed` 并在日志里打出原因，不会静默产出问题文件。
+
+多篇（≥6）推荐走**并行编排**：主控 + 8 路子代理，完成一篇即记账挂接并补位，
+流程与故障处置见 [`docs/parallel-batch-translation.md`](../../docs/parallel-batch-translation.md)，
+子代理手册模板见 [`examples/WORKFLOW.template.md`](examples/WORKFLOW.template.md)。
 
 ## 环境依赖
 
