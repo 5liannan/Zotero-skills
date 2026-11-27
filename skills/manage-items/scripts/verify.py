@@ -36,6 +36,7 @@ def main():
     db = DB(con)
     bad_title, bad_name, missing, shared, no_docx = [], [], [], [], []
     n_att = 0
+    used_files = {}  # (itemID, kind) -> set(已占用目标文件名, 小写)，与 rename_attachments 消歧一致
     for iid in db.items():
         zh = db.title(iid)
         en = None
@@ -58,15 +59,27 @@ def main():
             fp = db.file_of(aid, path, akey)
             if not fp or not os.path.exists(fp):
                 missing.append((aid, iid, path))
-            else:
+            if fp and os.path.exists(fp):
                 by_dir.setdefault(os.path.dirname(fp), []).append(os.path.basename(fp))
-                src = en if k == "pdf" else (zh if CJK.search(zh or "") else en)
-                src = strip_tags(src)
-                if src:
-                    pat = cfg["pdf_filename"] if k == "pdf" else cfg["docx_filename"]
-                    want = render(pat, author, year, en or src, src)
-                    if os.path.basename(fp) != want:
-                        bad_name.append((aid, iid, os.path.basename(fp)[:44], want[:44]))
+            src = en if k == "pdf" else (zh if CJK.search(zh or "") else en)
+            src = strip_tags(src)
+            if src:
+                pat = cfg["pdf_filename"] if k == "pdf" else cfg["docx_filename"]
+                want = render(pat, author, year, en or src, src)
+                # 同条目同类附件重名：rename 会做消歧（规范名 / 规范名+(N) /
+                # 规范前缀+区分后缀），这里接受这三种形态，其余视为不合规
+                used = used_files.setdefault((iid, k), set())
+                bn = os.path.basename(fp) if fp else ""
+                if want.lower() in used:
+                    pref = "%s 等 - %s - " % (author or cfg["unknown_author"],
+                                              year or cfg["unknown_year"])
+                    ok_alt = bn.startswith(pref) and len(bn) > len(pref)
+                    ok_alt = ok_alt or bool(re.match(
+                        r"^" + re.escape(os.path.splitext(want)[0]) + r" \(\d+\)"
+                        + re.escape(os.path.splitext(want)[1]) + r"$", bn))
+                    if not ok_alt:
+                        bad_name.append((aid, iid, bn[:44], want[:44]))
+                used.add(want.lower())
         for d, files in by_dir.items():
             if len(files) > 1:
                 shared.append((iid, os.path.basename(d), files))

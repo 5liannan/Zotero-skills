@@ -54,7 +54,16 @@ def main():
     if args.limit:
         ids = ids[:args.limit]
 
+    # 每个目录里"其他附件登记引用的文件"（忽略 .zotero-ft-cache 等伴随文件）
+    refs_by_dir = {}
+    for path_v, akey2 in con.execute(
+            "SELECT a.path, i.key FROM itemAttachments a JOIN items i ON i.itemID=a.itemID "
+            "WHERE a.linkMode=0 AND a.path LIKE 'storage:%'"):
+        d2 = os.path.normpath(os.path.join(cfg["storage_dir"], akey2))
+        refs_by_dir.setdefault(d2, set()).add(path_v[len("storage:"):])
+
     acts, problems = [], []
+    used_files = {}  # (parentItemID, kind) -> set(已占用目标文件名, 小写)
     for iid in ids:
         zh = db.title(iid)
         en = original_title(db, iid)
@@ -81,15 +90,34 @@ def main():
             stem = strip_tags(os.path.splitext(os.path.basename((path or "").replace("storage:", "")))[0])
             zh_s, en_s = strip_tags(zh), strip_tags(en or "")
             # PDF 优先英文原名；没有则沿用现有标题，再不济用原文件名（不臆造）
+            # DOCX：条目中文标题 → 现有附件标题（若为中文，避免英文标题条目的
+            #       中文译文标题被回退成英文）→ 英文原名 → 原文件名
             # 条目标题中的【分类标签】不进入附件标题与文件名（strip_tags）
             title_src = (en_s or cur_raw or stem) if kind == "pdf" else \
-                (zh_s if CJK.search(zh_s or "") else (en_s or cur_raw or stem))
+                (zh_s if CJK.search(zh_s or "") else
+                 (cur_raw if CJK.search(cur_raw or "") else (en_s or stem)))
             if not title_src:
                 problems.append((aid, iid, "缺标题来源"))
                 continue
+            # 去掉标题来源里内嵌的「作者 - 年 - 」前缀，避免文件名出现重复前缀
+            _m = re.match(r"^(?P<who>.{1,60}?)\s+-\s+(?P<yr>(19|20)\d{2})\s+-\s+(?P<rest>.+)$", title_src or "")
+            if _m and author and author in _m.group("who") and (not year or _m.group("yr") == year):
+                title_src = _m.group("rest").strip()
             want_title = prefix + title_src
             pattern = cfg["pdf_filename"] if kind == "pdf" else cfg["docx_filename"]
             want_file = render(pattern, author, year, en_s or title_src, zh_s if CJK.search(zh_s or "") else title_src)
+            # 同条目同类附件目标重名消歧：第 2+ 个改用原文件名 stem，仍重复则追加 (N)
+            used = used_files.setdefault((iid, kind), set())
+            if want_file.lower() in used:
+                alt = render(pattern, author, year, title_src, stem)
+                if alt.lower() in used:
+                    _base, _ext = os.path.splitext(want_file)
+                    _k = 2
+                    while ("%s (%d)%s" % (_base, _k, _ext)).lower() in used:
+                        _k += 1
+                    alt = "%s (%d)%s" % (_base, _k, _ext)
+                want_file = alt
+            used.add(want_file.lower())
             cur_file = os.path.basename(db.file_of(aid, path, akey) or "")
             cur_title = db.get(aid, "title")
             if args.titles_only:
@@ -122,8 +150,10 @@ def main():
         src = os.path.join(src_dir, cur_file) if cur_file else None
         try:
             if src and os.path.exists(src):
-                # 若目录里还有其他文件，先拆到独立目录
-                if len([f for f in os.listdir(src_dir) if os.path.isfile(os.path.join(src_dir, f))]) > 1:
+                # 若目录里还有其他附件登记的文件，先拆到独立目录
+                # （.zotero-ft-cache / jasminum-outline.json 等伴随文件不算）
+                if len([f for f in refs_by_dir.get(os.path.normpath(src_dir), set())
+                        if f != cur_file]) > 0:
                     new_src, st = db.move_attachment_to_own_dir(aid, want_file)
                     if not new_src:
                         raise RuntimeError(st)

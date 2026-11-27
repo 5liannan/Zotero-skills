@@ -103,7 +103,7 @@ python scripts/rename_attachments.py --apply         # 标题栏 + 磁盘文件�
 | 类型 | 优先 | 回退 1 | 回退 2 |
 |---|---|---|---|
 | PDF | `Original Title:`（英文原名） | 现有附件标题 | 原文件名（去掉 `storage:` 与扩展名） |
-| DOCX | 条目中文标题 | 英文原名 | 现有附件标题 / 原文件名 |
+| DOCX | 条目中文标题 | 现有附件标题（若为中文） | 英文原名 / 原文件名 |
 
 占位标题（`PDF`、`Full Text`、`untitled`、`全文` 等）一律视为空，按上面回退。
 
