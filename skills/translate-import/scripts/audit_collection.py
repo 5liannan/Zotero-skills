@@ -113,7 +113,13 @@ def main(argv: list[str] | None = None) -> int:
     if not db.exists():
         raise SystemExit(f"找不到 zotero.sqlite：{db}")
     tmp = Path(os.environ.get("TEMP", ".")) / f"_zotero_audit_{os.getpid()}.sqlite"
+    # 只拷 .sqlite 会漏掉还在 WAL 里、尚未 checkpoint 的近期变更（分类成员/新附件），
+    # 导致"昨晚 152 条、今早 173 条"这类口径漂移；-wal/-shm 必须一起拷。
     shutil.copy(db, tmp)
+    for suffix in ("-wal", "-shm"):
+        side = Path(str(db) + suffix)
+        if side.exists():
+            shutil.copy(side, Path(str(tmp) + suffix))
     cur = sqlite3.connect(str(tmp))
 
     idx = build_storage_index(cfg.storage_dir)
@@ -164,7 +170,8 @@ def main(argv: list[str] | None = None) -> int:
                 lib_doi.setdefault(d, []).append(iid)
 
     cur.close()
-    tmp.unlink(missing_ok=True)
+    for suffix in ("", "-wal", "-shm"):
+        Path(str(tmp) + suffix).unlink(missing_ok=True)
 
     done = [r for r in rows if r["docx_exist"]]
     todo = [r for r in rows if not r["docx_exist"] and r["pdf_exist"]]
