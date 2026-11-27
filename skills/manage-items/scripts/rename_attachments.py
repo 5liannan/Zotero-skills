@@ -109,7 +109,14 @@ def main():
             # 同条目同类附件目标重名消歧：第 2+ 个改用原文件名 stem，仍重复则追加 (N)
             used = used_files.setdefault((iid, kind), set())
             if want_file.lower() in used:
-                alt = render(pattern, author, year, title_src, stem)
+                stem_c = stem
+                for _ in range(5):
+                    _m2 = re.match(r"^(?P<who>.{1,60}?)\s+-\s+(?P<yr>(19|20)\d{2})\s+-\s+(?P<rest>.+)$", stem_c)
+                    if not (_m2 and author and author in _m2.group("who")
+                            and (not year or _m2.group("yr") == year)):
+                        break
+                    stem_c = _m2.group("rest").strip()
+                alt = render(pattern, author, year, title_src, stem_c)
                 if alt.lower() in used:
                     _base, _ext = os.path.splitext(want_file)
                     _k = 2
