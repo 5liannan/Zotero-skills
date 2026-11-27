@@ -32,6 +32,7 @@ DOCX 文件名: Zhang 等 - 2023 - 基于深度学习的布里渊光时域分析
 ```
 
 > 用户原始需求里 PDF 那一行的示例写成了 `[docx]…` 和 `.docx`，属于笔误；**以表格为准**。
+> 条目标题中的【分类标签】**不进入**附件标题与文件名：附件标题栏与文件名一律剥离开头的【…】标签序列（`zoterodb.strip_tags`），条目标题本身保留标签。
 > 模板可在 `config.json` 改：`pdf_filename` / `docx_filename`，占位符 `{author} {year} {title_en} {title_zh} {ext}`；
 > 若希望 DOCX 只保留中文标题，把模板改成 `{title_zh}.docx` 即可。
 

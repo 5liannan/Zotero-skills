@@ -16,7 +16,7 @@ import re
 import sys
 
 from config import cfg, ensure_utf8_stdio
-from zoterodb import DB, connect, backup, render, CJK
+from zoterodb import DB, connect, backup, render, strip_tags, CJK
 
 ensure_utf8_stdio()
 DOCX_CT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -74,19 +74,22 @@ def main():
             for pfx in (cfg["pdf_title_prefix"], cfg["docx_title_prefix"]):
                 if cur_raw.startswith(pfx):
                     cur_raw = cur_raw[len(pfx):].strip()
+            cur_raw = strip_tags(cur_raw)
             # 占位标题（"PDF"/"Full Text" 之类）视为空
             if len(cur_raw) < 5 or cur_raw.lower() in ("pdf", "full text", "document", "untitled", "全文"):
                 cur_raw = ""
-            stem = os.path.splitext(os.path.basename((path or "").replace("storage:", "")))[0]
+            stem = strip_tags(os.path.splitext(os.path.basename((path or "").replace("storage:", "")))[0])
+            zh_s, en_s = strip_tags(zh), strip_tags(en or "")
             # PDF 优先英文原名；没有则沿用现有标题，再不济用原文件名（不臆造）
-            title_src = (en or cur_raw or stem) if kind == "pdf" else \
-                (zh if CJK.search(zh or "") else (en or cur_raw or stem))
+            # 条目标题中的【分类标签】不进入附件标题与文件名（strip_tags）
+            title_src = (en_s or cur_raw or stem) if kind == "pdf" else \
+                (zh_s if CJK.search(zh_s or "") else (en_s or cur_raw or stem))
             if not title_src:
                 problems.append((aid, iid, "缺标题来源"))
                 continue
             want_title = prefix + title_src
             pattern = cfg["pdf_filename"] if kind == "pdf" else cfg["docx_filename"]
-            want_file = render(pattern, author, year, en or title_src, zh if CJK.search(zh or "") else title_src)
+            want_file = render(pattern, author, year, en_s or title_src, zh_s if CJK.search(zh_s or "") else title_src)
             cur_file = os.path.basename(db.file_of(aid, path, akey) or "")
             cur_title = db.get(aid, "title")
             if args.titles_only:

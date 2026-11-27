@@ -20,6 +20,7 @@ from config import cfg
 KEY_CHARS = "23456789ABCDEFGHIJKLMNPQRSTUVWXYZ"
 ILLEGAL = re.compile(r'[\\/:*?"<>|\r\n\t]')
 CJK = re.compile(r"[\u4e00-\u9fa5]")
+TAGS = re.compile(r"^((【[^】]*】)+)\s*")
 
 
 def new_key(n=8):
@@ -246,6 +247,14 @@ def safe_filename(name, max_len=None):
         base, ext = os.path.splitext(name)
         name = base[:max_len - len(ext)].rstrip() + ext
     return name
+
+
+def strip_tags(name):
+    """去掉条目标题开头的【分类标签】序列。
+
+    规则：条目标题可以带【xxx】标签，但附件标题栏与文件名一律剥离标签。
+    """
+    return TAGS.sub("", name or "").strip()
 
 
 def render(pattern, author, year, title_en, title_zh, ext=""):

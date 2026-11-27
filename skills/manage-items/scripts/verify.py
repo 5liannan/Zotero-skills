@@ -12,7 +12,7 @@ import re
 import sys
 
 from config import cfg, ensure_utf8_stdio
-from zoterodb import DB, connect, render, CJK
+from zoterodb import DB, connect, render, strip_tags, CJK
 
 ensure_utf8_stdio()
 DOCX_CT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -61,9 +61,10 @@ def main():
             else:
                 by_dir.setdefault(os.path.dirname(fp), []).append(os.path.basename(fp))
                 src = en if k == "pdf" else (zh if CJK.search(zh or "") else en)
+                src = strip_tags(src)
                 if src:
                     pat = cfg["pdf_filename"] if k == "pdf" else cfg["docx_filename"]
-                    want = render(pat, author, year, en or src, zh if CJK.search(zh or "") else src)
+                    want = render(pat, author, year, en or src, src)
                     if os.path.basename(fp) != want:
                         bad_name.append((aid, iid, os.path.basename(fp)[:44], want[:44]))
         for d, files in by_dir.items():
